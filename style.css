@@ -4,7 +4,15 @@
 
 /*********************Login-CSS************************/
 
+.login-body {
+    background-color: #F6F7F8;
+}
+
 .login-header {
+    margin: 80px;
+}
+
+.login-head-container {
     display: flex;
     justify-content: space-between;
 }
@@ -17,7 +25,28 @@
 }
 
 .login-nav p {
-    font-size: 24px;
+    font-size: 20px;
+}
+
+.login-main-section {
+    display: flex;
+    justify-content: center;
+}
+
+.login-maincontainer {
+    width: 652px;
+    height: 493px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.login-main {
+    display: flex;
+    justify-content: center;
+}
+
+.login-main h1 {
+ font-size: 61px;
 }
 
 /*********************Login-CSS************************/
