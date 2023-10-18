@@ -11,31 +11,35 @@
     <title>Join</title>
 </head>
 <!-- Login upper part -->
+
 <body class="login-body">
     <header class="login-header">
-        <div class="login-head-container">
             <img src="img/login_logo.png" alt="Login Logo Join">
             <nav class="login-nav">
                 <p>Not a Join user?</p>
-                <a href=""><img src="img/signup_button.png" alt=""></a>
+                <button>Sign up</button>
             </nav>
-        </div>
     </header>
-<!-- Login main container -->
+    <!-- Login main container -->
     <section class="login-main-section">
         <main class="login-maincontainer">
             <div class="login-main">
                 <h1>Log in</h1>
-                <div class="input-fields">
-                    <input type="email" name="" id="" placeholder="Email">
-                    <input type="password" name="" id="" placeholder="Password">
+                <form class="input-fields">
+                    <input required type="email" placeholder="Email">
+                    <input required type="password" placeholder="Password">
+                </form>
+                <div class="remember-container">
+                    <input type="checkbox">
+                    <p>Remember me</p>
                 </div>
-                <input type="checkbox"> Remember me
+                <div>
+                <button class="login-button">Log in</button>
+                <button class="guest-login-button">Guest Log in</button>
+            </div>
             </div>
         </main>
     </section>
-
-    <script src="script.js"></script>
 </body>
 
 </html>
