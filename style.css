@@ -141,3 +141,7 @@
     height: 40px;
     margin: 24px;
 }
+
+.summary-main-section-row {
+    display: flex;
+}
