@@ -128,3 +128,15 @@
     font-weight: 700;
 }
 /*********************Login-CSS************************/
+
+/*********************Summary-CSS************************/
+
+.summary-header {
+    display: flex;
+    align-items: center;
+}
+
+.summary-line {
+    width: 2px;
+    height: 40px;
+}
