@@ -34,6 +34,7 @@ header {
     height: 32px;
     width: 32px;
     border: none;
+    cursor: pointer;
 }
 
 .profile_tag {
@@ -42,6 +43,7 @@ header {
     border-radius: 50%;
     color: #29ABE2;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .design_template {
@@ -77,6 +79,17 @@ header {
     color: white;
     padding-top: 180px;
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    align-items: center;
+
+}
+
+.left_top_header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .contacs,
@@ -85,19 +98,21 @@ header {
 .board {
     font-size: 16px;
     gap: 15px;
-    padding-top: 15px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     font-family: 'Inter';
     width: 100%;
+    padding-left: 35%;
+    box-sizing: border-box;
 }
 
 .contacs:hover,
 .summary:hover,
 .add_tasks:hover,
 .board:hover {
-    background-color: #091931
+    background-color: #091931;
+    cursor: pointer;
 }
 
 .menu img {
@@ -111,4 +126,5 @@ header {
     color: #A8A8A8;
     font-family: 'Inter';
     gap: 15px;
+    cursor: pointer;
 }
