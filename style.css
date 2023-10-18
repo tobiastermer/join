@@ -131,17 +131,103 @@
 
 /*********************Summary-CSS************************/
 
+.summary-body {
+    background-color: rgb(246, 247, 248);
+    padding: 32px;
+}
+
 .summary-header {
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
 }
 
-.summary-line {
+.summary-header-line {
     width: 2px;
     height: 40px;
     margin: 24px;
 }
 
-.summary-main-section-row {
+.summary-main-section {
     display: flex;
+    gap: 56px;
+    align-items: center;
 }
+
+.summary-main-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summary-main-dashboard-row {
+    display: flex;
+    gap: 16px;
+    max-width: 480px;
+}
+
+.summary-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 32px 16px 32px;
+    background-color: white !important;
+    border-radius: 18px;
+    width: 100%;
+}
+
+.summary-main-container img {
+    width: 56px;
+    height: 56px;
+}
+
+.summary-kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.summary-kpi p {
+    font-size: 48px;
+    font-weight: bold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.summary-main-line {
+    width: 2px;
+    height: 60px;
+    margin: 24px;
+}
+
+.summary-urgent-date p {
+    font-weight: bold;
+    font-size: 18px;
+    margin-block-start: 0;
+    margin-block-end: 8px;
+}
+
+.summary-urgent-date span {
+    font-size: 14px;
+}
+
+.summary-main-hello {
+    text-wrap: nowrap;
+}
+
+.summary-main-hello p {
+    font-size: 32px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.summary-main-hello span {
+    font-weight: bold;
+    font-size: 48px;
+    margin-block-start: 0;
+}
+
+/*********************Summary-CSS************************/
