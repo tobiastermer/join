@@ -269,3 +269,33 @@
 }
 
 /*********************Summary-CSS************************/
+
+/*********************AddTask-CSS************************/
+
+.addTask-body form {
+    display: flex;
+}
+
+.addTask-body span {
+    font-size: 20px;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.addTask-body input, textarea, select {
+    background-color: white;
+    border-radius: 10px;
+    width: 398px;
+    border: 1px solid #D1D1D1;
+    color: #D1D1D1;
+    font-size: 20px;
+}
+
+.addTask-body input {
+    height: 24px;
+    width: 398px;
+    padding: 12px 21px 12px 21px;
+}
