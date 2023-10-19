@@ -5,3 +5,11 @@
 .bg-lightblue {
     background-color: rgb(41, 171, 226);
 }
+
+.text-lightgrey {
+    color: rgb(209, 209, 209);
+}
+
+.bg-lightgrey {
+    background-color: rgb(209, 209, 209);
+}
