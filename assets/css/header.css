@@ -103,7 +103,7 @@ header {
     align-items: center;
     font-family: 'Inter';
     width: 100%;
-    padding-left: 35%;
+    padding-left: 25%;
     box-sizing: border-box;
 }
 
@@ -113,6 +113,16 @@ header {
 .board:hover {
     background-color: #091931;
     cursor: pointer;
+}
+
+.summary a,
+.add_tasks a,
+.board a,
+.contacs a {
+    display: flex; 
+    align-items: center; 
+    width: 100%; 
+    gap: 16px;
 }
 
 .menu img {
@@ -128,3 +138,8 @@ header {
     gap: 15px;
     cursor: pointer;
 }
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+  }
