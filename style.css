@@ -32,7 +32,7 @@
 }
 
 .btnclr:hover {
-    border:1px solid #29ABE2;
+    border: 1px solid #29ABE2;
     color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
@@ -83,7 +83,7 @@
     margin-bottom: 1.6rem;
 }
 
-.login-main input{
+.login-main input {
     padding: 12px 21px;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
@@ -104,7 +104,7 @@
     background-position: 364px center;
 }
 
-.login-main input::placeholder{
+.login-main input::placeholder {
     color: #D1D1D1;
 }
 
@@ -151,6 +151,7 @@
     font-size: 21px;
     font-weight: 700;
 }
+
 /*********************Login-CSS************************/
 
 /*********************Summary-CSS************************/
@@ -160,6 +161,10 @@
     padding: 32px;
 }
 
+.summary-body h1 {
+    font-size: 61px;
+}
+
 .summary-header {
     display: flex;
     align-items: center;
@@ -167,43 +172,49 @@
 }
 
 .summary-header-line {
-    width: 2px;
-    height: 40px;
-    margin: 24px;
+    width: 3px;
+    height: 59px;
+    margin: 32px;
+    border-radius: 3px;
+}
+
+.summary-header span {
+    font-size: 27px;
 }
 
 .summary-main-section {
     display: flex;
-    gap: 56px;
+    gap: 80px;
     align-items: center;
 }
 
 .summary-main-dashboard {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
 }
 
 .summary-main-dashboard-row {
     display: flex;
-    gap: 16px;
-    max-width: 480px;
+    gap: 32px;
+    width: 560px;
+    height: 168px;
 }
 
 .summary-main-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 18px;
-    padding: 16px 32px 16px 32px;
+    padding: 19px 38px 19px 38px;
     background-color: white !important;
-    border-radius: 18px;
+    border-radius: 30px;
     width: 100%;
 }
 
 .summary-main-container img {
-    width: 56px;
-    height: 56px;
+    width: 69px;
+    height: 69px;
 }
 
 .summary-kpi {
@@ -215,27 +226,30 @@
 }
 
 .summary-kpi p {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: bold;
     margin-block-start: 0;
     margin-block-end: 0;
 }
 
+.summary-kpi span {
+    font-size: 20px;
+}
+
 .summary-main-line {
     width: 2px;
-    height: 60px;
-    margin: 24px;
+    height: 102px;
 }
 
 .summary-urgent-date p {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 21px;
     margin-block-start: 0;
     margin-block-end: 8px;
 }
 
 .summary-urgent-date span {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .summary-main-hello {
@@ -243,14 +257,14 @@
 }
 
 .summary-main-hello p {
-    font-size: 32px;
+    font-size: 47px;
     margin-block-start: 0;
     margin-block-end: 0;
 }
 
 .summary-main-hello span {
     font-weight: bold;
-    font-size: 48px;
+    font-size: 64px;
     margin-block-start: 0;
 }
 
