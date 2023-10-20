@@ -1,0 +1,88 @@
+body {
+    font-family: 'Inter';
+}
+
+
+.add_new_contact_button {
+    width: 325px;
+    height: 56px;
+    border-radius: 10px;
+    gap: 16px;
+    background-color: #2A3647;
+    font-size: 25px;
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 29px;
+
+}
+
+.contact_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts {
+    height: calc(100vh - 92px);
+    width: 456px;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+}
+
+.contact_part {
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 66px;
+}
+
+.contact_letter {
+    font-size: 20px;
+    padding-left: 13px;
+}
+
+.space_line {
+    height: 1px;
+    width: 325px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+    background-color: #D1D1D1;
+
+}
+
+.contact{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 54px;
+    align-items: center;
+}
+
+.contact_initial_image {
+    height: 45px;
+    width: 45px;
+    border: none;
+    background-color: orangered;
+    color: white;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+.contact_name{
+    font-size: 20px;
+    padding-bottom: 8px;
+}
+
+.contact_mail{
+    font-size: 16px;
+    color: #007CEE
+}
+
+.main-content {
+    padding-top: 0px;
+    padding-left: 276px;
+}
