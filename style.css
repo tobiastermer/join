@@ -121,22 +121,6 @@
     flex-direction: column;
 }
 
-.remember-container {
-    width: 422px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    padding-left: 84px;
-    gap: 8px;
-    padding-bottom: 30px;
-    padding-top: 24px;
-}
-
-.remember-container p {
-    font-weight: 400;
-    font-size: 16px;
-}
-
 .login-buttons {
     display: flex;
     width: 322px;
@@ -213,6 +197,41 @@
 .blend-in {
     opacity: 1 !important;
     transition: opacity 0.5s ease-in-out;
+}
+
+.remember-container {
+    width: 422px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    padding-left: 84px;
+    gap: 8px;
+    padding-bottom: 30px;
+    padding-top: 24px;
+}
+
+.custom-checkbox {
+    display: none;
+}
+
+.custom-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.custom-checkbox-label img {
+
+    margin-right: 8px;
+    display: flex;
+}
+
+.custom-checkbox:checked + .custom-checkbox-label img {
+    content: url(img/remember-checked.png);
+}
+
+.custom-checkbox + .custom-checkbox-label img {
+    content: url(img/remember-unchecked.png);
 }
 
 /*********************Login-CSS************************/
