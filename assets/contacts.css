@@ -2,7 +2,9 @@ body {
     font-family: 'Inter';
 }
 
-
+.main_contact{
+    display:flex;
+}
 .add_new_contact_button {
     width: 325px;
     height: 56px;
@@ -80,6 +82,39 @@ body {
 .contact_mail{
     font-size: 16px;
     color: #007CEE
+}
+
+
+.right_side_contact{
+    padding-top: 114px;
+display:flex;
+align-items: flex-start;
+justify-content: center;
+width: 100%;
+box-sizing: border-box;
+
+}
+
+.contact_header{
+    display:flex;
+    align-items: center;
+}
+
+.contact_headline{
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.space_line_contact_header{
+    height: 59px;
+    width: 3px;
+    background-color: #29ABE2;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.contact_slogan{
+    font-size: 27px;
 }
 
 .main-content {
