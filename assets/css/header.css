@@ -2,6 +2,7 @@ body,
 html {
     margin: 0;
     padding: 0;
+    background-color: #F6F7F8;
 }
 
 .design_template {
@@ -15,6 +16,7 @@ html {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-left: 277px;
 }
 
 /* Right Top (header) */
@@ -31,6 +33,7 @@ header {
     font-family: 'Inter';
     font-weight: 400;
     z-index: 1;
+    background-color: white;
 }
 
 .buttons_header {
@@ -66,7 +69,7 @@ header {
     background-color: #F6F7F8;
     height: 100%;
     padding-top: 118px;
-    padding-left: 73px;
+    padding-left: 355px;
     padding-right: 73px;
 }
 
