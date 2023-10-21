@@ -2,9 +2,10 @@ body {
     font-family: 'Inter';
 }
 
-.main_contact{
-    display:flex;
+.main_contact {
+    display: flex;
 }
+
 .add_new_contact_button {
     width: 325px;
     height: 56px;
@@ -56,8 +57,8 @@ body {
 
 }
 
-.contact{
-    display:flex;
+.contact {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 54px;
@@ -68,44 +69,45 @@ body {
     height: 45px;
     width: 45px;
     border: none;
-    background-color: orangered;
+    background-color: #ff7a00;
     color: white;
     font-size: 18px;
     border-radius: 50%;
+    margin-right: 18px;
 }
 
-.contact_name{
+.contact_name {
     font-size: 20px;
     padding-bottom: 8px;
 }
 
-.contact_mail{
+.contact_mail {
     font-size: 16px;
     color: #007CEE
 }
 
 
-.right_side_contact{
+.right_side_contact {
     padding-top: 114px;
-display:flex;
-align-items: flex-start;
-justify-content: center;
-width: 100%;
-box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
 
 }
 
-.contact_header{
-    display:flex;
+.contact_header {
+    display: flex;
     align-items: center;
 }
 
-.contact_headline{
+.contact_headline {
     font-size: 64px;
     font-weight: 700;
 }
 
-.space_line_contact_header{
+.space_line_contact_header {
     height: 59px;
     width: 3px;
     background-color: #29ABE2;
@@ -113,9 +115,74 @@ box-sizing: border-box;
     margin-right: 30px;
 }
 
-.contact_slogan{
+.contact_slogan {
     font-size: 27px;
 }
+
+.big_contact_top {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    margin-top: 32px;
+
+}
+
+.big_contact_name {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.big_contact_settings {
+    display: flex;
+    margin-top: 12px;
+}
+
+.big_contact_settings button {
+    border: none;
+    background-color: transparent;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+
+.big_contact_settings img {
+    height: 24px;
+    width: 24px;
+}
+
+.big_contact_initial_image button {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: #ff7a00;
+    font-size: 47px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.big_contact_info {
+    margin-top: 57px;
+}
+
+.big_contact_headline {
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+.big_contact_mail,
+.big_contact_phone {
+    padding-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
 
 .main-content {
     padding-top: 0px;
