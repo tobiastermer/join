@@ -19,30 +19,66 @@
 
         <div class="form-column">
 
-            <span>Title*</span>
-            <input type="text" id="addTaskTitle" placeholder="Enter a Title">
+            <div class="form-column-child">
+                <span>Title*</span>
+                <input required type="text" id="addTaskTitle" placeholder="Enter a Title">
+            </div>
 
-            <span>Description</span>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <div class="form-column-child">
+                <span>Description</span>
+                <textarea required name="" id="" placeholder="Enter a Description"></textarea>
+            </div>
 
-            <span>Assigned to</span>
-            <select name="" id=""></select>
+            <div class="form-column-child">
+                <span>Assigned to</span>
+                <select required>
+                    <option value="" disabled selected>Select contacts to assign</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+            </div>
 
         </div>
 
+        <div class="form-line bg-lightblue"></div>
+
         <div class="form-column">
-            
-            <span>Due date*</span>
-            <input type="date" id="addTaskTitle">
 
-            <span>Prio</span>
+            <div class="form-column-child">
+                <span>Due date*</span>
+                <input type="date" id="addTaskTitle">
+            </div>
 
-            <span>Category</span>
-            <select name="" id=""></select>
+            <div class="form-column-child">
+                <span>Prio</span>
+                <div class="form-prio">
+                    <div class="form-prio-child">
+                        <span>Urgent</span>
+                        <img src="img/icon-prio-high.png" alt="">
+                    </div>
+                    <div class="form-prio-child">
+                        <span>Medium</span>
+                        <img src="img/icon-prio-med.png" alt="">
+                    </div>
+                    <div class="form-prio-child">
+                        <span>Low</span>
+                        <img src="img/icon-prio-low.png" alt="">
+                    </div>
+                </div>
+            </div>
 
-            <span>Subtasks</span>
-            <select name="" id=""></select>
+            <div class="form-column-child">
+                <select required>
+                    <option value="" disabled selected>Select task category</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+            </div>
 
+            <div class="form-column-child">
+                <span>Subtasks</span>
+                <select name="" id=""></select>
+            </div>
 
         </div>
 
