@@ -7,82 +7,98 @@
     <title>Add Task</title>
     <link rel="icon" type="image/x-icon" href="">
     <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/color.css">
+    <script src="./js/w3c_include.js"></script>
 </head>
 
-<body class="addTask-body">
+<body class="addTask-body" onload="includeHTML()">
 
-    <h1>Add Task</h1>
+    <div w3-include-html="./design_template.html"></div>
 
-    <form action="">
+    <div class="main-content">
 
-        <div class="form-column">
+        <h1>Add Task</h1>
 
-            <div class="form-column-child">
-                <span>Title*</span>
-                <input required type="text" id="addTaskTitle" placeholder="Enter a Title">
-            </div>
+        <form action="">
 
-            <div class="form-column-child">
-                <span>Description</span>
-                <textarea required name="" id="" placeholder="Enter a Description"></textarea>
-            </div>
-
-            <div class="form-column-child">
-                <span>Assigned to</span>
-                <select required>
-                    <option value="" disabled selected>Select contacts to assign</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                </select>
-            </div>
-
-        </div>
-
-        <div class="form-line bg-lightblue"></div>
-
-        <div class="form-column">
-
-            <div class="form-column-child">
-                <span>Due date*</span>
-                <input type="date" id="addTaskTitle">
-            </div>
-
-            <div class="form-column-child">
-                <span>Prio</span>
-                <div class="form-prio">
-                    <div class="form-prio-child">
-                        <span>Urgent</span>
-                        <img src="img/icon-prio-high.png" alt="">
+            <div class="form-upper-half">
+                <div class="form-column">
+                    <div class="form-column-child">
+                        <span>Title*</span>
+                        <input required type="text" id="addTaskTitle" placeholder="Enter a Title">
                     </div>
-                    <div class="form-prio-child">
-                        <span>Medium</span>
-                        <img src="img/icon-prio-med.png" alt="">
+                    <div class="form-column-child">
+                        <span>Description</span>
+                        <textarea name="" id="" placeholder="Enter a Description"></textarea>
                     </div>
-                    <div class="form-prio-child">
-                        <span>Low</span>
-                        <img src="img/icon-prio-low.png" alt="">
+                    <div class="form-column-child">
+                        <span>Assigned to</span>
+                        <select>
+                            <option value="" disabled selected>Select contacts to assign</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-line bg-lightblue"></div>
+                <div class="form-column">
+                    <div class="form-column-child">
+                        <span>Due date*</span>
+                        <input required type="date" id="addTaskTitle">
+                    </div>
+                    <div class="form-column-child">
+                        <span>Prio</span>
+                        <div class="form-prio">
+                            <div class="form-prio-child">
+                                <span>Urgent</span>
+                                <img src="img/icon-prio-high.png" alt="">
+                            </div>
+                            <div class="form-prio-child">
+                                <span>Medium</span>
+                                <img src="img/icon-prio-med.png" alt="">
+                            </div>
+                            <div class="form-prio-child">
+                                <span>Low</span>
+                                <img src="img/icon-prio-low.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-column-child">
+                        <span>Category*</span>
+                        <select required>
+                            <option value="" disabled selected>Select task category</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                        </select>
+                    </div>
+                    <div class="form-column-child">
+                        <span>Subtasks</span>
+                        <div class="form-input-with-img">
+                            <input type="text" id="" placeholder="Add new subtask">
+                            <img src="img/add.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="form-column-child">
-                <select required>
-                    <option value="" disabled selected>Select task category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                </select>
+            <div class="form-lower-half">
+                <p>*This field is required</p>
+                <div class="form-buttons">
+                    <Button>
+                        <p>Clear</p>
+                        <img src="img/Close.png" alt="">
+                    </Button>
+                    <Button>
+                        <p>Create Task</p>
+                        <img src="img/check.png" alt="">
+                    </Button>
+                </div>
             </div>
 
-            <div class="form-column-child">
-                <span>Subtasks</span>
-                <select name="" id=""></select>
-            </div>
-
-        </div>
-
-    </form>
+        </form>
+    </div>
 
 </body>
 
