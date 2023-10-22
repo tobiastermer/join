@@ -67,19 +67,71 @@
                 </div>
             </div>
         </div>
-        <div class="overlay_background">
+
+        <!-- ADD CONTACT OVERLAY -->
+        <div class="overlay_background_add">
             <div class="overlay">
-             <div class="left_panel">
-                <div class="left_panel_content">
-                    <img src="./img/header_logo.png" alt="Join Logo">
-                    <div class="left_panel_header">Add contact</div>
-                    <div class="left_panel_slogan">Tasks are better with a team!</div>
-                    <div class="left_panel_line"></div>
+                <div class="left_panel">
+                    <div class="left_panel_content">
+                        <img src="./img/header_logo.png" alt="Join Logo">
+                        <div class="left_panel_header">Add contact</div>
+                        <div class="left_panel_slogan">Tasks are better with a team!</div>
+                        <div class="left_panel_line"></div>
+                    </div>
                 </div>
-             </div>
-             <div class="right_panel">
-                <div class="close_overlay_button"><img src="./img/Close.png" alt="close button"></div>
-             </div>
+                <div class="right_panel">
+                    <div class="close_overlay_button"><img src="./img/Close.png" alt="close button"></div>
+                    <div class="contact_user_information">
+                        <div class="user_image"><button>MM</button></div>
+                        <div class="user_information_form">
+                            <input type="text" class="input_contact_name" name="Name" id="addContactName"
+                                placeholder="Name" required>
+                            <input type="email" class="input_contact_mail" name="Email" id="addContactEmail"
+                                placeholder="Email" required>
+                            <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone"
+                                placeholder="Phone" required>
+                            <div class="add_contact_buttons">
+                                <button class="cancel_contact_button" type="reset">Cancel <img src="./img/Close.png"
+                                        alt="Cancel"></button><button type="submit" class="create_contact_button">Create
+                                    contact
+                                    <img src="./img/check.png" alt=""></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- EDIT CONTACT OVERLAY -->
+        <div class="overlay_background_edit ">
+            <div class="overlay">
+                <div class="left_panel">
+                    <div class="left_panel_content">
+                        <img src="./img/header_logo.png" alt="Join Logo">
+                        <div class="left_panel_header">Edit contact</div>
+                        <div class="left_panel_line"></div>
+                    </div>
+                </div>
+                <div class="right_panel">
+                    <div class="close_overlay_button"><img src="./img/Close.png" alt="close button"></div>
+                    <div class="contact_user_information">
+                        <div class="user_image"><button>MM</button></div>
+                        <div class="user_information_form">
+                            <input type="text" class="input_contact_name" name="Name" id="addContactName"
+                                placeholder="Name" required>
+                            <input type="email" class="input_contact_mail" name="Email" id="addContactEmail"
+                                placeholder="Email" required>
+                            <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone"
+                                placeholder="Phone" required>
+                            <div class="add_contact_buttons">
+                                <button class="cancel_contact_button" type="reset">Delete </button><button type="submit"
+                                    class="create_contact_button">Save
+                                    <img src="./img/check.png" alt=""></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
