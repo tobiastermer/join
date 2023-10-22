@@ -89,7 +89,7 @@ header {
     padding-left: 0px;
     box-sizing: border-box;
     position: fixed;
-
+    z-index: 100;
 }
 
 .header_logo {
