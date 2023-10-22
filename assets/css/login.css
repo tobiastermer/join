@@ -233,12 +233,12 @@
     display: flex;
 }
 
-.custom-checkbox:checked+.custom-checkbox-label img {
-    content: url(img/remember-checked.png);
+.custom-checkbox:checked + .custom-checkbox-label img {
+    content: url(/img/remember-checked.png);
 }
 
-.custom-checkbox+.custom-checkbox-label img {
-    content: url(img/remember-unchecked.png);
+.custom-checkbox + .custom-checkbox-label img {
+    content: url(/img/remember-unchecked.png);
 }
 
 /*********************Login-CSS************************/
