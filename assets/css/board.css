@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-between;
     width: 1104px;
+    margin-bottom: 32px;
 }
 
 .board-header-search_and_button {
@@ -72,7 +73,6 @@
 .board-main-section {
     display: flex;
     gap: 32px;
-    margin-top: 32px;
     width: 1104px;
 }
 
