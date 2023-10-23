@@ -105,13 +105,13 @@
 }
 
 .login-main input:first-child {
-    background-image: url(img/login-mail.png);
+    background-image: url(/img/login-mail.png);
     background-size: 24px;
     background-position: 360px center;
 }
 
 .login-main input:last-child {
-    background-image: url(img/login-lock.png);
+    background-image: url(/img/login-lock.png);
     background-size: 18px 24px;
     background-position: 364px center;
 }
