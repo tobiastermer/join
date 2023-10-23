@@ -20,8 +20,8 @@
     <div class="main-content">
         <div class="main_contact">
             <div class="contacts">
-                <div class="contact_button"><button class="add_new_contact_button"> Add new contact <img
-                            src="./img/person_add.png" alt="" height="32px" width="32px"></button>
+                <div class="contact_button"><button class="add_new_contact_button" onclick="showAddContactOverlay()">
+                        Add new contact <img src="./img/person_add.png" alt="" height="32px" width="32px"></button>
                 </div>
 
                 <div class="contact_part" id="contactList">
@@ -36,34 +36,12 @@
                     <div class="contact_slogan"> Better with a team</div>
                 </div>
                 <div class="big_contact" id="contactDetails">
-                    <div class="big_contact_top">
-                        <div class="big_contact_initial_image"><button>AS</button></div>
-                        <div class="big_contact_name_settings">
-                            <div class="big_contact_name">Annelise Schmidt</div>
-                            <div class="big_contact_settings"><button><img src="./img/edit.png"
-                                        alt="Edit icon">Edit</button><button><img src="./img/delete_contact.png"
-                                        alt="delete icon">Delete</button></div>
-                        </div>
-                    </div>
-                    <div class="big_contact_info">
-                        <div class="big_contact_headline">Contact Information</div>
-                        <div class="big_contact_mail">
-                            <b>Email</b>
-                            <div class="contact_mail"><a href="mailto:AnneliseSchmidt@placeholder.com">
-                                    AnneliseSchmidt@placeholder.com</a></div> <br>
-                        </div>
-                        <div class="big_contact_phone">
-                            <b>Phone</b>
-                            +49 123 45678
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- ADD CONTACT OVERLAY -->
-        <div class="overlay_background_add">
+        <div class="overlay_background_add" id="addContactOverlay">
             <div class="overlay">
                 <div class="left_panel">
                     <div class="left_panel_content">
@@ -74,7 +52,8 @@
                     </div>
                 </div>
                 <div class="right_panel">
-                    <div class="close_overlay_button"><img src="./img/Close.png" alt="close button"></div>
+                    <div class="close_overlay_button" onclick="hideAddContactOverlay();"><img src="./img/Close.png"
+                            alt="close button"></div>
                     <div class="contact_user_information">
                         <div class="user_image"><button>MM</button></div>
                         <div class="user_information_form">
@@ -109,7 +88,8 @@
                     </div>
                 </div>
                 <div class="right_panel">
-                    <div class="close_overlay_button"><img src="./img/Close.png" alt="close button"></div>
+                    <div class="close_overlay_button" onclick="hideEditContactOverlay();"><img src="./img/Close.png"
+                            alt="close button"></div>
                     <div class="contact_user_information">
                         <div class="user_image"><button>MM</button></div>
                         <div class="user_information_form">

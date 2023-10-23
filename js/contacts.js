@@ -13,6 +13,22 @@ async function loadContacts() {
   }
 }
 
+function showAddContactOverlay() {
+  document.getElementById("addContactOverlay").style.display = "flex";
+}
+
+function hideAddContactOverlay() {
+  document.getElementById("addContactOverlay").style.display = "none";
+}
+
+function showEditContactOverlay() {
+  document.getElementById("editContactOverlay").style.display = "flex";
+}
+
+function hideEditContactOverlay() {
+  document.getElementById("editContactOverlay").style.display = "none";
+}
+
 async function addContact() {
   let name = document.getElementById("addContactName").value;
   let email = document.getElementById("addContactEmail").value;
@@ -79,7 +95,7 @@ function showContactInfo(contactIndex) {
                 <div class="big_contact_name_settings">
                     <div class="big_contact_name">${contact.name}</div>
                     <div class="big_contact_settings">
-                        <button><img src="./img/edit.png" alt="Edit Icon">Edit</button>
+                        <button onclick="showAddContactOverlay()"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
                         <button><img src="./img/delete_contact.png" alt="Delete Icon">Delete</button>
                     </div>
                 </div>
