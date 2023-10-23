@@ -13,8 +13,14 @@
     display: flex;
 }
 
-.form-upper-half span {
+.form-upper-half span,
+label {
     font-size: 20px;
+}
+
+.form-upper-half label p, .form-lower-half label p {
+    display: unset;
+    color: red;
 }
 
 .form-column {
