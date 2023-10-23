@@ -60,7 +60,7 @@ select {
 .addTask-body textarea {
     height: 128px;
     padding: 18px 16px 18px 16px;
-    resize: none;
+    resize: vertical;
 }
 
 .form-prio {
