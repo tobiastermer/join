@@ -67,9 +67,9 @@ body {
 .contact {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     padding-right: 54px;
     align-items: center;
+    margin-bottom: 16px;
 }
 
 /* Style for the contact's initial image */

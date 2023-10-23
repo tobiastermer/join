@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/contacts.css">
     <script src="./js/w3c_include.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/contacts.js"></script>
     <title>Contacts</title>
 
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML();init()">
     <div w3-include-html="./design_template.html"></div>
 
     <div class="main-content">
@@ -22,26 +24,18 @@
                             src="./img/person_add.png" alt="" height="32px" width="32px"></button>
                 </div>
 
-                <div class="contact_part">
-                    <div class="contact_letter">A</div>
-                    <div class="space_line"></div>
-                    <div class="contact"><button class="contact_initial_image">AS</button>
-                        <div class="contact_name_mail">
-                            <div class="contact_name">Annelise Schmidt</div>
-                            <div class="contact_mail"><a href="mailto:AnneliseSchmidt@placeholder.com">
-                                    AnneliseSchmidt@placeholder.com</a></div>
-                        </div>
-                    </div>
+                <div class="contact_part" id="contactList">
+
                 </div>
             </div>
             <div></div>
-            <div class="right_side_contact">
+            <div class="right_side_contact" id="rightSideContactHeader">
                 <div class="contact_header">
                     <div class="contact_headline"> CONTACTS </div>
                     <div class="space_line_contact_header"></div>
                     <div class="contact_slogan"> Better with a team</div>
                 </div>
-                <div class="big_contact">
+                <div class="big_contact" id="contactDetails">
                     <div class="big_contact_top">
                         <div class="big_contact_initial_image"><button>AS</button></div>
                         <div class="big_contact_name_settings">
@@ -92,7 +86,8 @@
                                 placeholder="Phone" required>
                             <div class="add_contact_buttons">
                                 <button class="cancel_contact_button" type="reset">Cancel <img src="./img/Close.png"
-                                        alt="Cancel"></button><button type="submit" class="create_contact_button">Create
+                                        alt="Cancel"></button><button type="submit" class="create_contact_button"
+                                    onclick="addContact()">Create
                                     contact
                                     <img src="./img/check.png" alt=""></button>
                             </div>
@@ -118,11 +113,11 @@
                     <div class="contact_user_information">
                         <div class="user_image"><button>MM</button></div>
                         <div class="user_information_form">
-                            <input type="text" class="input_contact_name" name="Name" id="addContactName"
+                            <input type="text" class="input_contact_name" name="Name" id="editContactName"
                                 placeholder="Name" required>
-                            <input type="email" class="input_contact_mail" name="Email" id="addContactEmail"
+                            <input type="email" class="input_contact_mail" name="Email" id="editContactEmail"
                                 placeholder="Email" required>
-                            <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone"
+                            <input type="tel" class="input_contact_phone" name="Phone" id="editContactPhone"
                                 placeholder="Phone" required>
                             <div class="add_contact_buttons">
                                 <button class="cancel_contact_button" type="reset">Delete </button><button type="submit"
