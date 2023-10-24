@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/color.css">
     <script src="./js/w3c_include.js"></script>
+    <script src="./js/board.js"></script>
 </head>
 
 <body class="board-body" onload="includeHTML()">
@@ -30,7 +31,7 @@
                     <div class="search-line"></div>
                     <img src="img/search.png" alt="">
                 </div>
-                <button>
+                <button onclick="showAddTaskOverlay(); return false">
                     <p>Add task</p>
                     <img src="../../img/add-white.png" alt="">
                 </button>
@@ -42,7 +43,7 @@
             <div class="board-column">
                 <div class="board-column-header">
                     <h3>To do</h3>
-                    <img src="img/add.png" alt="">
+                    <img src="img/add.png" alt="" onclick="showAddTaskOverlay(); return false">
                 </div>
                 <div class="no-todo-card">
                     <p>No tasks To do</p>
@@ -52,7 +53,7 @@
             <div class="board-column">
                 <div class="board-column-header">
                     <h3>In progress</h3>
-                    <img src="img/add.png" alt="">
+                    <img src="img/add.png" alt="" onclick="showAddTaskOverlay(); return false">
                 </div>
                 <div class="todo-card grow">
                     <p class="todo-category bg-blue">User Story</p>
@@ -80,7 +81,7 @@
             <div class="board-column">
                 <div class="board-column-header">
                     <h3>Await feedback</h3>
-                    <img src="img/add.png" alt="">
+                    <img src="img/add.png" alt="" onclick="showAddTaskOverlay(); return false">
                 </div>
                 <div class="todo-card grow">
                     <p class="todo-category bg-lightgreen">Technical Task</p>
@@ -129,7 +130,7 @@
             <div class="board-column">
                 <div class="board-column-header">
                     <h3>Done</h3>
-                    <!-- <img src="img/add.png" alt=""> -->
+                    <img src="img/add.png" alt="" onclick="showAddTaskOverlay(); return false">
                 </div>
                 <div class="todo-card grow">
                     <p class="todo-category bg-lightgreen">Technical Task</p>
@@ -155,7 +156,7 @@
 
         </div>
 
-        <div class="addTask-include-bg">
+        <div class="addTask-include-bg" id="addTaskOverlay">
             <div class="addTask-body addTask-include overlay">
                 <div w3-include-html="./assets/template/addTask_template.html"></div>
             </div>

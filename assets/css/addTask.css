@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-.addTask-close-button {
+#addTask-close-button {
     height: 32px;
     width: 32px;
     display: none;
