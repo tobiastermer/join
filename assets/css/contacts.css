@@ -204,7 +204,7 @@ body {
 }
 
 /* Style for the main content section */
-.main-content {
+.main-content-contacts {
     padding-top: 0px;
     padding-left: 276px;
 }
@@ -244,8 +244,8 @@ body {
 /* Stil für das Formular im Overlay */
 .overlay {
     background-color: white;
-    width: 1212px;
-    height: 592px;
+    /* width: 1212px; */
+    /* height: 592px; */
     border-radius: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -253,7 +253,7 @@ body {
 
 .left_panel {
     width: 467px;
-    height: 100%;
+    /* height: 100%; */
     border-radius: 30px 0px 0px 30px;
     background-color: #2A3647;
     display: flex;
@@ -290,10 +290,11 @@ body {
 
 .right_panel {
     position: relative;
-    height: 100%;
+    /* height: 100%; */
     width: 745px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 109px;
 }
 
 .close_overlay_button {

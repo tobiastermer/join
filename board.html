@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/board.css">
+    <link rel="stylesheet" href="./assets/css/addtask.css">
+    <link rel="stylesheet" href="./assets/css/contacts.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/color.css">
     <script src="./js/w3c_include.js"></script>
@@ -22,7 +24,7 @@
 
         <div class="board-header">
             <h1>Board</h1>
-            <div class="board-header-search_and_button"> 
+            <div class="board-header-search_and_button">
                 <div class="board-header-search">
                     <input type="text" placeholder="Find Task">
                     <div class="search-line"></div>
@@ -152,6 +154,13 @@
             </div>
 
         </div>
+
+        <div class="addTask-include-bg">
+            <div class="addTask-body addTask-include overlay">
+                <div w3-include-html="./assets/template/addTask_template.html"></div>
+            </div>
+        </div>
+
     </div>
 
 </body>
