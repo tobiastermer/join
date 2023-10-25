@@ -17,3 +17,9 @@ function addNewTask() {
     let dueDate = document.getElementById('addTaskDueDate').value
     
 }
+
+function setPrio(prio) {
+
+    document.getElementById(`btn-prio-${prio}`).style.backgroundColor = ''
+
+}
