@@ -51,6 +51,7 @@
                 <a href="legal_notice.html">Legal notice</a>
             </div>
         </div>
+        <div id="msgBox"></div>
     </section>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -66,6 +67,15 @@
                 loginNav.classList.add('blend-in');
             }, 400);
         });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get('msg');
+
+        if (msg) {
+            msgBox.innerHTML = msg;
+        } else {
+            //display none;
+        }
     </script>
 </body>
 
