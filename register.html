@@ -24,8 +24,10 @@
             <div class="register-main">
                 <a href="login.html"><img class="back-arrow" src="img/register-back-arrow.png" alt=""></a>
                 <h1>Sign up</h1>
+                <!-- Div used for put blue underline for the h1 -->
                 <div class="h1-underline"></div>
-                <form onsubmit="addUser()" class="register-input-fields">
+                <!-- Register form -->
+                <form onsubmit="addUser();return false;" class="register-input-fields">
                     <input id="name" required type="text" placeholder="Name">
                     <input id="email" required type="email" placeholder="Email">
                     <input id="password" oninput="togglePasswordEye()" required type="password" placeholder="Password">
@@ -37,7 +39,7 @@
                         <p class="i-accept">I accept the<a class="privacy-policy" href="privacy.html">Privacy policy</a>
                         </p>
                     </label>
-                    <button onclick="window.location.href='summary.html'" class="login-button btnsld">Sign up</button>
+                    <button class="login-button btnsld">Sign up</button>
                 </form>
             </div>
         </main>

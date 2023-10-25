@@ -1,8 +1,10 @@
-let users = [
+let users = [ //Testwise array of users
     {'email': 'pierce@test.de', 'password': 'test123'}
 ];
 
+//Register user
 function addUser() {
+    console.log('TEST')
     let name = document.getElementById('name');
     let email = document.getElementById('email');
     let password = document.getElementById('password');
@@ -11,7 +13,19 @@ function addUser() {
     window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
 }
 
-//Load Users
+//Login user 
+function login() {
+    debugger;
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let user = users.find( u => u.email == email.value && u.password == password.value);
+    console.log(user);
+    if(user) {
+        console.log('User gefunden')
+    }
+}
+
+//Load user
 async function init(){
     loadUsers();
 }

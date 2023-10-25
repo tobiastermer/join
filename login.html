@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/login.css">
     <link rel="stylesheet" href="style.css">
+    <script src="js/login-register.js"></script>
     <title>Join</title>
 </head>
 <!-- Login upper part -->
@@ -26,18 +28,22 @@
             <div class="login-main">
                 <h1>Log in</h1>
                 <div class="h1-underline"></div>
-                <form class="input-fields">
-                    <input required type="email" placeholder="Email">
-                    <input required type="password" placeholder="Password">
+                <form onsubmit="login();return false;" class="input-fields">
+                    <input id="email" type="email" placeholder="Email">
+                    <input id="password" type="password" placeholder="Password">
+                    <!-- </form> -->
+                    <div class="remember-container">
+                        <input type="checkbox" class="custom-checkbox" id="customRememberMe">
+                        <label for="customRememberMe" class="custom-checkbox-label"><img
+                                src="img/remember-unchecked.png" alt="Remember Me">
+                            <p class="nouserselect">Remember me</p>
+                        </label>
+                    </div>
+                    <div class="login-buttons">
+                        <button class="login-button btnsld">Log in</button>
+                        <button class="guest-login-button btnclr">Guest Log in</button>
+                    </div>
                 </form>
-                <div class="remember-container">
-                    <input type="checkbox" class="custom-checkbox" id="customRememberMe">
-                    <label for="customRememberMe" class="custom-checkbox-label"><img src="img/remember-unchecked.png" alt="Remember Me"><p class="nouserselect">Remember me</p></label>
-                </div>
-                <div class="login-buttons">
-                    <button onclick="window.location.href='summary.html'" class="login-button btnsld">Log in</button>
-                    <button onclick="window.location.href='summary.html'" class="guest-login-button btnclr">Guest Log in</button>
-                </div>
             </div>
         </main>
     </section>
@@ -74,7 +80,7 @@
         if (msg) {
             msgBox.innerHTML = msg;
         } else {
-            //display none;
+            msgBox.classList.add('d-none');
         }
     </script>
 </body>
