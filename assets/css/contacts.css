@@ -70,6 +70,7 @@ body {
     padding-right: 54px;
     align-items: center;
     margin-bottom: 16px;
+    cursor: pointer;
 }
 
 /* Style for the contact's initial image */

@@ -1,4 +1,5 @@
 let contacts = [];
+let selectedContactIndex = -1;
 
 async function init() {
   loadContacts();
@@ -19,10 +20,6 @@ function showAddContactOverlay() {
 
 function hideAddContactOverlay() {
   document.getElementById("addContactOverlay").style.display = "none";
-}
-
-function showEditContactOverlay() {
-  document.getElementById("editContactOverlay").style.display = "flex";
 }
 
 function hideEditContactOverlay() {
@@ -56,6 +53,7 @@ function displayContacts() {
   let contactListDiv = document.getElementById("contactList");
   let bigContactDiv = document.getElementById("rightSideContactHeader");
 
+  contactListDiv.innerHTML = "";
   contacts.sort((a, b) => a.name.localeCompare(b.name));
 
   let currentInitial = "";
@@ -71,7 +69,7 @@ function displayContacts() {
     }
 
     contactListDiv.innerHTML += `
-            <div class="contact" onclick="showContactInfo(${index})">
+    <div class="contact" onclick="showContactInfo(${index})">
                 <button class="contact_initial_image">${initials}</button>
                 <div class="contact_name_mail">
                     <div class="contact_name">${contact.name}</div>
@@ -95,7 +93,8 @@ function showContactInfo(contactIndex) {
                 <div class="big_contact_name_settings">
                     <div class="big_contact_name">${contact.name}</div>
                     <div class="big_contact_settings">
-                        <button onclick="showAddContactOverlay()"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
+                    <button onclick="showEditContactOverlay(${contactIndex})"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
+
                         <button><img src="./img/delete_contact.png" alt="Delete Icon">Delete</button>
                     </div>
                 </div>
@@ -113,4 +112,33 @@ function showContactInfo(contactIndex) {
                     ${contact.phone}
                 </div>
         </div>`;
+}
+
+function saveContact() {
+  let editContactName = document.getElementById("editContactName").value;
+  let editContactEmail = document.getElementById("editContactEmail").value;
+  let editContactPhone = document.getElementById("editContactPhone").value;
+
+  contacts[selectedContactIndex].name = editContactName;
+  contacts[selectedContactIndex].email = editContactEmail;
+  contacts[selectedContactIndex].phone = editContactPhone;
+
+  setItem("contacts", JSON.stringify(contacts));
+  displayContacts(selectedContactIndex);
+  showContactInfo(selectedContactIndex);
+  hideEditContactOverlay();
+}
+
+function showEditContactOverlay(contactIndex) {
+  selectedContactIndex = contactIndex; // Setzen Sie den ausgewählten Kontakt-Index
+  document.getElementById("editContactOverlay").style.display = "flex";
+  populateEditFields(contactIndex); // Rufen Sie die Funktion zum Ausfüllen der Felder auf
+}
+
+function populateEditFields(contactIndex) {
+  // Fülle die Edit-Felder mit den Daten des ausgewählten Kontakts
+  let contact = contacts[contactIndex];
+  document.getElementById("editContactName").value = contact.name;
+  document.getElementById("editContactEmail").value = contact.email;
+  document.getElementById("editContactPhone").value = contact.phone;
 }
