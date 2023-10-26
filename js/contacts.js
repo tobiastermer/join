@@ -1,4 +1,26 @@
 /**
+ * Contact Management Application
+ */
+
+// Global variables
+let contacts = [];
+let selectedContactIndex = -1;
+
+// Array with contact colors
+const contactColors = [
+  "#FFB6C1",
+  "#FFD700",
+  "#87CEEB",
+  "#98FB98",
+  "#FFA07A",
+  "#FF69B4",
+  "#9370DB",
+  "#20B2AA",
+  "#87CEFA",
+  "#FF6347"
+];
+
+/**
  * Initialize the application.
  */
 async function init() {
@@ -12,7 +34,7 @@ async function loadContacts() {
   try {
     contacts = JSON.parse(await getItem("contacts"));
     // Check if colors are already saved
-    const savedColors = JSON.parse(localStorage.getItem("contactColors"));
+    let savedColors = JSON.parse(localStorage.getItem("contactColors"));
     if (savedColors) {
       // If saved, assign colors to the contacts
       contacts.forEach((contact, index) => {
@@ -50,6 +72,16 @@ function hideAddContactOverlay() {
 }
 
 /**
+ * Show the overlay for editing a contact.
+ * @param {number} contactIndex - The index of the contact to edit.
+ */
+function showEditContactOverlay(contactIndex) {
+  selectedContactIndex = contactIndex;
+  document.getElementById("editContactOverlay").style.display = "flex";
+  populateEditFields(contactIndex);
+}
+
+/**
  * Hide the overlay for editing a contact.
  */
 function hideEditContactOverlay() {
@@ -67,10 +99,11 @@ async function addContact() {
 
   if (name.length < 3 || email.length < 3 || phone.length < 3) {
     tooFewLettersWarning();
+    return;
   }
 
   // Choose a random color for the contact
-  const randomColor =
+  let randomColor =
     contactColors[Math.floor(Math.random() * contactColors.length)];
 
   contacts.push({
@@ -88,6 +121,7 @@ async function addContact() {
   );
 
   await setItem("contacts", JSON.stringify(contacts));
+  displayContacts();
 }
 
 /**
@@ -178,18 +212,15 @@ function showContactInfo(contactIndex) {
  */
 function deleteContact(contactIndex) {
   if (confirm("Are you sure you want to delete this contact?")) {
-    contacts.splice(contactIndex, 1); // Remove the contact from the array
-    localStorage.setItem("contactColors", JSON.stringify(contacts.map(contact => contact.color)));
-    setItem("contacts", JSON.stringify(contacts)); // Update storage
-    displayContacts(); // Refresh the contact list
-    hideEditContactOverlay(); // Hide the edit overlay if open
-
-    // Clear the "big contact" area
+    contacts.splice(contactIndex, 1);
+    localStorage.setItem("contactColors", JSON.stringify(contacts.map((contact) => contact.color)));
+    setItem("contacts", JSON.stringify(contacts));
+    displayContacts();
+    hideEditContactOverlay();
     let bigContactDiv = document.getElementById("contactDetails");
     bigContactDiv.innerHTML = '';
   }
 }
-
 
 /**
  * Save changes to a contact.
@@ -209,15 +240,6 @@ function saveContact() {
   hideEditContactOverlay();
 }
 
-/**
- * Show the overlay for editing a contact.
- * @param {number} contactIndex - The index of the contact to edit.
- */
-function showEditContactOverlay(contactIndex) {
-  selectedContactIndex = contactIndex;
-  document.getElementById("editContactOverlay").style.display = "flex";
-  populateEditFields(contactIndex);
-}
 
 /**
  * Populate the edit fields with contact information.
@@ -228,7 +250,6 @@ function populateEditFields(contactIndex) {
   document.getElementById("editContactName").value = contact.name;
   document.getElementById("editContactEmail").value = contact.email;
   document.getElementById("editContactPhone").value = contact.phone;
-
   let initialsButton = document.getElementById("editContactInitials");
   initialsButton.innerText = getInitials(contact.name);
   initialsButton.style.backgroundColor = contact.color;
@@ -241,5 +262,4 @@ function tooFewLettersWarning() {
   alert(
     "Please enter at least 3 letters in the name, email address, and phone number."
   );
-  return;
 }
