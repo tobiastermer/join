@@ -64,13 +64,36 @@ body {
 }
 
 /* Style for individual contact */
-.contact {
+.contact{
     display: flex;
     flex-direction: row;
-    padding-right: 54px;
     align-items: center;
     margin-bottom: 16px;
     cursor: pointer;
+    padding-top: 5px;
+    max-width: 286px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    background: none;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+.contact button:focus {
+    outline: none;
+}
+
+.contact:hover {
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+}
+
+.contact:active {
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
 }
 
 /* Style for the contact's initial image */
@@ -83,6 +106,9 @@ body {
     font-size: 18px;
     border-radius: 50%;
     margin-right: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Style for the contact's name */

@@ -159,15 +159,15 @@ function displayContacts() {
     }
 
     contactListDiv.innerHTML += `
-      <div class="contact" onclick="showContactInfo(${index})">
-        <button class="contact_initial_image" style="background-color: ${contact.color}">${initials}</button>
-        <div class="contact_name_mail">
-          <div class="contact_name">${contact.name}</div>
-          <div class="contact_mail">
-            <a a href="mailto:${contact.email}">${contact.email}</a>
-          </div>
+    <button class="contact" onclick="showContactInfo(${index})">
+      <div class="contact_initial_image" style="background-color: ${contact.color}">${initials}</div>
+      <div class="contact_name_mail">
+        <div class="contact_name">${contact.name}</div>
+        <div class="contact_mail">
+          <a a href="mailto:${contact.email}">${contact.email}</a>
         </div>
-      </div>`;
+      </div>
+    </button>`;
   });
 }
 
