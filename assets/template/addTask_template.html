@@ -19,7 +19,7 @@
             </div>
             <div class="form-column-child">
                 <label>Assigned to</label>
-                <select>
+                <select id="addTaskSelectContacts">
                     <option value="" disabled selected>Select contacts to assign</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -51,10 +51,14 @@
             </div>
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-                <select required>
+                <select required id="addTaskCategory">
                     <option value="" disabled selected>Select task category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
+                    <option value="1">Development</option>
+                    <option value="2">Design</option>
+                    <option value="3">Sales</option>
+                    <option value="4">Backoffice</option>
+                    <option value="5">Media</option>
+                    <option value="6">Marketing</option>
                 </select>
             </div>
             <div class="form-column-child">
@@ -72,11 +76,11 @@
             <p>*</p>This field is required
         </label>
         <div class="form-buttons">
-            <Button>
+            <Button onclick="cancelAddTask(); return false">
                 <p>Clear</p>
                 <img src="img/Close.png" alt="">
             </Button>
-            <Button>
+            <Button onclick="addNewTask(); return false">
                 <p>Create Task</p>
                 <img src="img/check.png" alt="">
             </Button>

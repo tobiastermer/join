@@ -210,13 +210,13 @@
 }
 
 .high {
-    background-image: url("../../img/icon-prio-high.png");
+    background-image: url("../../img/prio-high.png");
 }
 
 .med {
-    background-image: url("../../img/icon-prio-med.png");
+    background-image: url("../../img/prio-med.png");
 }
 
 .low {
-    background-image: url("../../img/icon-prio-low.png");
+    background-image: url("../../img/prio-low.png");
 }
