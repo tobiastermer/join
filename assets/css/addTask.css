@@ -109,9 +109,50 @@ select {
     cursor: pointer;
 }
 
-.form-prio-child img {
+.form-prio-img {
     width: 18px;
-    height: fit-content;
+    height: 18px;
+    margin-left: 2px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.prio-high {
+    background-image: url('../../img/prio-high.png');
+}
+
+.prio-high-active {
+    background-image: url('../../img/prio-high-white.png') !important;
+}
+
+.prio-med {
+    background-image: url('../../img/prio-med.png');
+}
+
+.prio-med-active {
+    background-image: url('../../img/prio-med-white.png') !important;
+}
+
+.prio-low {
+    background-image: url('../../img/prio-low.png');
+}
+
+.prio-low-active {
+    background-image: url('../../img/prio-low-white.png') !important;
+}
+
+.bg-prio-high-active {
+    background-color: red;
+    color: white;
+}
+.bg-prio-med-active {
+    background-color: orange;
+    color: white;
+}
+.bg-prio-low-active {
+    background-color: green;
+    color: white;
 }
 
 .form-input-with-img {
