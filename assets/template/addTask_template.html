@@ -2,7 +2,8 @@
 
 <div class="addTask-header">
     <h1>Add Task</h1>
-    <img id="addTask-close-button" src="./img/Close.png" alt="close button" onclick="closeAddTaskOverlay(); return false">
+    <img id="addTask-close-button" src="./img/Close.png" alt="close button"
+        onclick="closeAddTaskOverlay(); return false">
 </div>
 
 <form action="">
@@ -19,11 +20,24 @@
             </div>
             <div class="form-column-child">
                 <label>Assigned to</label>
-                <select id="addTaskSelectContacts">
+                <!-- <select multiple id="addTaskSelectContacts">
                     <option value="" disabled selected>Select contacts to assign</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
-                </select>
+                </select> -->
+                <div class="form-input-with-img">
+                    <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
+                    <img src="../../img/dropdown_down.png" alt="">
+                </div>
+                <div class="form-list">
+                    <ul id="addTaskListContacts" >
+                        <!-- <li>
+                            <div>AT</div>
+                            <span>Axel Test</span>
+                            <img src="../../img/remember-unchecked.png" alt="">
+                        </li> -->
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="form-line bg-lightblue"></div>
