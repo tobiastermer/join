@@ -5,8 +5,10 @@ let users = [];
 async function register() {
     registerBtn.disabled = true;
     users.push({
+        userName: userName.value, 
         email: email.value,
         password: password.value,
+        PWconfirm: PWconfirm.value,
     });
     await setItem('users', JSON.stringify(users));
     resetForm();
@@ -41,8 +43,10 @@ async function loadUsers() {
 }
 
 function resetForm() {
+    userName.value = '';
     email.value = '';
     password.value = '';
+    PWconfirm.value = '';
     registerBtn.disabled = false;
 }
 
@@ -58,10 +62,10 @@ function togglePasswordEye() {
         password.classList.remove('addPasswordEye');
     }
 
-    if (confirm.value) {
-        confirm.classList.add('addPasswordEye');
+    if (PWconfirm.value) {
+        PWconfirm.classList.add('addPasswordEye');
     } else {
-        confirm.classList.remove('addPasswordEye');
+        PWconfirm.classList.remove('addPasswordEye');
     }
 }
 
