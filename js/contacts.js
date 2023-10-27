@@ -33,19 +33,15 @@ async function init() {
 async function loadContacts() {
   try {
     contacts = JSON.parse(await getItem("contacts"));
-    // Check if colors are already saved
     let savedColors = JSON.parse(localStorage.getItem("contactColors"));
     if (savedColors) {
-      // If saved, assign colors to the contacts
       contacts.forEach((contact, index) => {
         contact.color = savedColors[index];
       });
     } else {
-      // If not saved, assign random colors
       contacts.forEach((contact, index) => {
         contact.color = contactColors[index % contactColors.length];
       });
-      // Save colors in localStorage
       localStorage.setItem(
         "contactColors",
         JSON.stringify(contacts.map((contact) => contact.color))
@@ -97,17 +93,10 @@ async function addContact() {
   let phone = document.getElementById("addContactPhone").value;
   let initials = getInitials(fullName);
 
-  if (
-    fullName.length < 3 ||
-    email.length < 3 ||
-    phone.length < 3 ||
-    fullName.split(" ").length < 2
-  ) {
-    tooFewLettersWarning();
+  if (!checkForRightInput(fullName, email, phone)) {
     return;
   }
 
-  // Wählen Sie zufällige Farbe für den Kontakt aus
   let randomColor =
     contactColors[Math.floor(Math.random() * contactColors.length)];
 
@@ -119,7 +108,6 @@ async function addContact() {
     color: randomColor,
   });
 
-  // Aktualisieren Sie Farben in localStorage
   localStorage.setItem(
     "contactColors",
     JSON.stringify(contacts.map((contact) => contact.color))
@@ -127,6 +115,9 @@ async function addContact() {
 
   await setItem("contacts", JSON.stringify(contacts));
   displayContacts();
+  hideAddContactOverlay();
+  init();
+  showSuccessMessage();
 }
 
 /**
@@ -239,13 +230,7 @@ function saveContact() {
   let editContactEmail = document.getElementById("editContactEmail").value;
   let editContactPhone = document.getElementById("editContactPhone").value;
 
-  if (
-    editContactName.length < 3 ||
-    editContactEmail.length < 3 ||
-    editContactPhone.length < 3 ||
-    editContactName.split(" ").length < 2
-  ) {
-    tooFewLettersWarning();
+  if (!checkForRightInput(editContactName, editContactEmail, editContactPhone)) {
     return;
   }
 
@@ -257,6 +242,26 @@ function saveContact() {
   displayContacts(selectedContactIndex);
   showContactInfo(selectedContactIndex);
   hideEditContactOverlay();
+  showSuccessMessage();
+}
+
+/**
+ * Check if the input values are correct.
+ * @param {string} fullName - The full name input.
+ * @param {string} email - The email input.
+ * @param {string} phone - The phone input.
+ */
+function checkForRightInput(fullName, email, phone) {
+  if (
+    fullName.length < 3 ||
+    email.length < 3 ||
+    phone.length < 3 ||
+    fullName.split(" ").length < 2
+  ) {
+    tooFewLettersWarning();
+    return false; 
+  }
+  return true; 
 }
 
 /**
@@ -294,4 +299,24 @@ function setButtonActive(contactIndex) {
 
   let activeContact = document.getElementById(`contact${contactIndex}`);
   activeContact.classList.add("contact_active");
+}
+
+/**
+ * Show the success message when succesfully created or edited contact
+ */
+function showSuccessMessage() {
+  let successMessage = document.getElementById("successmessage");
+
+  successMessage.style.opacity = 0;
+  successMessage.style.display = "flex";
+  setTimeout(() => {
+    successMessage.style.opacity = 1;
+  }, 100);
+
+  setTimeout(() => {
+    successMessage.style.opacity = 0;
+    setTimeout(() => {
+      successMessage.style.display = "none";
+    }, 1000);
+  }, 3000);
 }
