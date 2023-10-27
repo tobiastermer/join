@@ -143,15 +143,15 @@ select {
 }
 
 .bg-prio-high-active {
-    background-color: red;
+    background-color: #FF4005;
     color: white;
 }
 .bg-prio-med-active {
-    background-color: orange;
+    background-color: #FFB72C;
     color: white;
 }
 .bg-prio-low-active {
-    background-color: green;
+    background-color: #7AE229;
     color: white;
 }
 
