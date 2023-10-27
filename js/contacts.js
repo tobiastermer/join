@@ -289,9 +289,9 @@ function tooFewLettersWarning() {
 function setButtonActive(contactIndex) {
   contacts.forEach((_, index) => {
     let contact = document.getElementById(`contact${index}`);
-    contact.classList.remove("active");
+    contact.classList.remove("contact_active");
   });
 
   let activeContact = document.getElementById(`contact${contactIndex}`);
-  activeContact.classList.add("active");
+  activeContact.classList.add("contact_active");
 }
