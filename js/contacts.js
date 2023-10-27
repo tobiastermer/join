@@ -92,29 +92,29 @@ function hideEditContactOverlay() {
  * Add a new contact to the list.
  */
 async function addContact() {
-  let name = document.getElementById("addContactName").value;
+  let fullName = document.getElementById("addContactName").value;
   let email = document.getElementById("addContactEmail").value;
   let phone = document.getElementById("addContactPhone").value;
-  let initials = getInitials(name);
+  let initials = getInitials(fullName);
 
-  if (name.length < 3 || email.length < 3 || phone.length < 3) {
+  if (fullName.length < 3 || email.length < 3 || phone.length < 3 || fullName.split(" ").length < 2) {
     tooFewLettersWarning();
     return;
   }
 
-  // Choose a random color for the contact
+  // Wählen Sie zufällige Farbe für den Kontakt aus
   let randomColor =
     contactColors[Math.floor(Math.random() * contactColors.length)];
 
   contacts.push({
-    name: name,
+    name: fullName,
     email: email,
     phone: phone,
     initials: initials,
     color: randomColor,
   });
 
-  // Update colors in localStorage
+  // Aktualisieren Sie Farben in localStorage
   localStorage.setItem(
     "contactColors",
     JSON.stringify(contacts.map((contact) => contact.color))
@@ -230,6 +230,11 @@ function saveContact() {
   let editContactEmail = document.getElementById("editContactEmail").value;
   let editContactPhone = document.getElementById("editContactPhone").value;
 
+  if (editContactName.length < 3 || editContactEmail.length < 3 || editContactPhone.length < 3 || editContactName.split(" ").length < 2) {
+    tooFewLettersWarning();
+    return;
+  }
+
   contacts[selectedContactIndex].name = editContactName;
   contacts[selectedContactIndex].email = editContactEmail;
   contacts[selectedContactIndex].phone = editContactPhone;
@@ -260,6 +265,6 @@ function populateEditFields(contactIndex) {
  */
 function tooFewLettersWarning() {
   alert(
-    "Please enter at least 3 letters in the name, email address, and phone number."
+    "Please enter at least 3 letters in the name, email address, and phone number. The name must contain your first and last name. "
   );
 }
