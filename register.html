@@ -30,15 +30,16 @@
                     <input id="name" required type="text" placeholder="Name">
                     <input id="email" required type="email" placeholder="Email">
                     <input id="password" oninput="togglePasswordEye()" required type="password" placeholder="Password">
-                    <input id="confirm" oninput="togglePasswordConfirmEye()" required type="password"
+                    <input id="confirm" oninput="togglePasswordEye()" required type="password"
                         placeholder="Confirm Password">
-                    <input type="checkbox" class="custom-checkbox" id="customRememberMe">
+                        <!--Checkbox  -->
+                    <input type="checkbox" name="customRememberMe" class="custom-checkbox" id="customRememberMe" value="yes" required>
                     <label for="customRememberMe" class="custom-checkbox-label"><img src="img/remember-unchecked.png"
                             alt="I accept the Privacy policy">
                         <p class="i-accept">I accept the<a class="privacy-policy" href="privacy.html">Privacy policy</a>
                         </p>
                     </label>
-                    <button id="registerBtn" class="login-button btnsld">Sign up</button>
+                    <button type="submit" type="button" id="registerBtn" class="login-button btnsld">Sign up</button>
                 </form>
             </div>
         </main>
