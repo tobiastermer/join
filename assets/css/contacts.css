@@ -90,7 +90,7 @@ body {
     color: white;
 }
 
-.contact:active {
+.active {
     border-radius: 10px;
     background-color: #2A3647;
     color: white;

@@ -7,7 +7,7 @@ let contacts = [];
 let selectedContactIndex = -1;
 
 // Array with contact colors
-const contactColors = [
+let contactColors = [
   "#FFB6C1",
   "#FFD700",
   "#87CEEB",
@@ -17,7 +17,7 @@ const contactColors = [
   "#9370DB",
   "#20B2AA",
   "#87CEFA",
-  "#FF6347"
+  "#FF6347",
 ];
 
 /**
@@ -97,7 +97,12 @@ async function addContact() {
   let phone = document.getElementById("addContactPhone").value;
   let initials = getInitials(fullName);
 
-  if (fullName.length < 3 || email.length < 3 || phone.length < 3 || fullName.split(" ").length < 2) {
+  if (
+    fullName.length < 3 ||
+    email.length < 3 ||
+    phone.length < 3 ||
+    fullName.split(" ").length < 2
+  ) {
     tooFewLettersWarning();
     return;
   }
@@ -159,7 +164,7 @@ function displayContacts() {
     }
 
     contactListDiv.innerHTML += `
-    <button class="contact" onclick="showContactInfo(${index})">
+    <button class="contact" onclick="showContactInfo(${index}), setButtonActive(${index})" id="contact${index}">
       <div class="contact_initial_image" style="background-color: ${contact.color}">${initials}</div>
       <div class="contact_name_mail">
         <div class="contact_name">${contact.name}</div>
@@ -204,6 +209,7 @@ function showContactInfo(contactIndex) {
         ${contact.phone}
       </div>
     </div>`;
+  setButtonActive(contactIndex);
 }
 
 /**
@@ -213,12 +219,15 @@ function showContactInfo(contactIndex) {
 function deleteContact(contactIndex) {
   if (confirm("Are you sure you want to delete this contact?")) {
     contacts.splice(contactIndex, 1);
-    localStorage.setItem("contactColors", JSON.stringify(contacts.map((contact) => contact.color)));
+    localStorage.setItem(
+      "contactColors",
+      JSON.stringify(contacts.map((contact) => contact.color))
+    );
     setItem("contacts", JSON.stringify(contacts));
     displayContacts();
     hideEditContactOverlay();
     let bigContactDiv = document.getElementById("contactDetails");
-    bigContactDiv.innerHTML = '';
+    bigContactDiv.innerHTML = "";
   }
 }
 
@@ -230,7 +239,12 @@ function saveContact() {
   let editContactEmail = document.getElementById("editContactEmail").value;
   let editContactPhone = document.getElementById("editContactPhone").value;
 
-  if (editContactName.length < 3 || editContactEmail.length < 3 || editContactPhone.length < 3 || editContactName.split(" ").length < 2) {
+  if (
+    editContactName.length < 3 ||
+    editContactEmail.length < 3 ||
+    editContactPhone.length < 3 ||
+    editContactName.split(" ").length < 2
+  ) {
     tooFewLettersWarning();
     return;
   }
@@ -244,7 +258,6 @@ function saveContact() {
   showContactInfo(selectedContactIndex);
   hideEditContactOverlay();
 }
-
 
 /**
  * Populate the edit fields with contact information.
@@ -267,4 +280,18 @@ function tooFewLettersWarning() {
   alert(
     "Please enter at least 3 letters in the name, email address, and phone number. The name must contain your first and last name. "
   );
+}
+/**
+ * Sets the active state for a contact  and removes the active state from all other contacts.
+ *
+ * @param {number} contactIndex - The index of the contact  to set as active.
+ */
+function setButtonActive(contactIndex) {
+  contacts.forEach((_, index) => {
+    let contact = document.getElementById(`contact${index}`);
+    contact.classList.remove("active");
+  });
+
+  let activeContact = document.getElementById(`contact${contactIndex}`);
+  activeContact.classList.add("active");
 }
