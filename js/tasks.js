@@ -1,6 +1,8 @@
 let tasks = [];
 let selectedPrio
 let selectedContacts = [];
+let isAssignToDropdownActive = false;
+let filteredContacts = [];
 
 async function showAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "flex";
@@ -14,27 +16,30 @@ function closeAddTaskOverlay() {
 }
 
 async function initAddTask() {
-    await initContacts();
+    await initContactList();
+
 }
 
-async function initContacts() {
+async function initContactList() {
 
-    // await loadContacts();
-    contacts = JSON.parse(await getItem("contacts"));
-
-
-    let selectContact = document.getElementById('addTaskListContacts');
+    await loadContactsForTasks();
+    // filterContacts();
+    selectedContacts = [];
+    let selectContactList = document.getElementById('addTaskListContacts');
+    selectContactList.innerHTML = '';
 
     if (contacts.length > 0) {
         for (let i = 0; i < contacts.length; i++) {
-            let id = i + 1;
+            let id = i; // let id = i + 1;
             let name = contacts[i].name;
             let initials = contacts[i].initials;
             let color = contacts[i].color;
-            document.getElementById('addTaskListContacts').innerHTML += `
-                <li id="addTaskLi-${id}" onclick="selectContact(${id}); return false">
-                    <div style="background-color: ${color}">${initials}</div>
-                    <span>${name}</span>
+            selectContactList.innerHTML += `
+                <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
+                    <div class="contact-initials-and-name">
+                        <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
+                        <span>${name}</span>
+                    </div>
                     <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
                 </li>
             `;
@@ -45,6 +50,33 @@ async function initContacts() {
 
 }
 
+async function loadContactsForTasks() {
+    contacts = JSON.parse(await getItem("contacts"));
+}
+
+function filterContacts() {
+    let input = document.getElementById('addTaskInputContacts').value.toLowerCase();
+    filteredContacts = [];
+    if (input !== '') {
+        filteredContacts = contacts.filter(contact => {
+            return contact.name.toLowerCase().includes(input);
+        });    
+    } else {
+        filteredContacts = contacts;
+    }
+}
+
+function showContactList() {
+    if(isAssignToDropdownActive) {
+        isAssignToDropdownActive = false;
+        document.getElementById('addTaskListContacts').classList.add('d-none');
+        document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_down.png'
+    } else {
+        isAssignToDropdownActive = true;
+        document.getElementById('addTaskListContacts').classList.remove('d-none');
+        document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_up.png'
+    };
+}
 
 function selectContact(id) {
     if (isIdInSelectedContacts(id)) {
@@ -54,6 +86,7 @@ function selectContact(id) {
         addToSelectedContacts(id);
         setContactLiStyle(id, '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png");
     }
+    showSelectedContacts();
 }
 
 function isIdInSelectedContacts(id) {
@@ -70,12 +103,24 @@ function addToSelectedContacts(id) {
 }
 
 function setContactLiStyle(id, bgColor, textColor, imgSrc) {
-    let liElement = document.getElementById(`addTaskLi-${id}`);
+    let liElement = document.getElementById(`selectContactLi-${id}`);
     let checkboxElement = document.getElementById(`addTaskCheckbox-${id}`);
 
     liElement.style.backgroundColor = bgColor;
     liElement.style.color = textColor;
     checkboxElement.src = imgSrc;
+}
+
+function showSelectedContacts() {
+    let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
+    showContactsContainer.innerHTML = '';
+    for (i = 0; i < selectedContacts.length; i++) {
+        let initials = contacts[selectedContacts[i]].initials;
+        let color = contacts[selectedContacts[i]].color;
+        showContactsContainer.innerHTML += `
+            <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i+1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
+        `;
+    };
 }
 
 function cancelAddTask() {

@@ -27,17 +27,20 @@
                 </select> -->
                 <div class="form-input-with-img">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
-                    <img src="../../img/dropdown_down.png" alt="">
+                    <img id="addTaskImgDropdown" src="../../img/dropdown_down.png" onclick="showContactList(); return false" alt="">
                 </div>
                 <div class="form-list">
-                    <ul id="addTaskListContacts" >
-                        <!-- <li>
-                            <div>AT</div>
-                            <span>Axel Test</span>
-                            <img src="../../img/remember-unchecked.png" alt="">
+                    <ul id="addTaskListContacts" class="d-none">
+                        <!-- <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
+                            <div class="contact-initials-and-name">
+                                <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
+                                <span>${name}</span>
+                            </div>
+                            <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
                         </li> -->
                     </ul>
                 </div>
+                <div class="contact-initials-and-name" style="margin-left: 10px" id="addTaskShowSelectedContacts"></div>
             </div>
         </div>
         <div class="form-line bg-lightblue"></div>
@@ -80,6 +83,11 @@
                 <div class="form-input-with-img">
                     <input type="text" id="" placeholder="Add new subtask">
                     <img src="img/add.png" alt="">
+                </div>
+                <div class="form-list">
+                    <ul id="addTaskListSubtasks" class="d-none">
+                        
+                    </ul>
                 </div>
             </div>
         </div>
