@@ -13,37 +13,59 @@
 </head>
 <!-- Login upper part -->
 
-<body onload="init()" class="login-body">
+<body class="login-body">
     <header class="register-header">
         <img class="register-logo" src="img/login_logo.png" alt="Login Logo Join">
     </header>
+
     <!-- Login main container -->
     <section class="register-main-section">
         <main id="register-maincontainer">
             <div class="register-main">
                 <a href="login.html"><img class="back-arrow" src="img/register-back-arrow.png" alt=""></a>
                 <h1>Sign up</h1>
+
                 <!-- Div used for put blue underline for the h1 -->
                 <div class="h1-underline"></div>
+
                 <!-- Register form -->
                 <form onsubmit="register();return false;" class="register-input-fields">
-                    <input id="userName" required type="text" placeholder="Name">
-                    <input id="email" required type="email" placeholder="Email">
-                    <input id="password" oninput="togglePasswordEye()" required type="password" placeholder="Password">
-                    <input id="PWconfirm" oninput="togglePasswordEye()" required type="password"
-                        placeholder="Confirm Password">
-                        <!--Checkbox  -->
-                    <input type="checkbox" name="customRememberMe" class="custom-checkbox" id="customRememberMe" value="yes" required>
-                    <label for="customRememberMe" class="custom-checkbox-label"><img src="img/remember-unchecked.png"
-                            alt="I accept the Privacy policy">
-                        <p class="i-accept">I accept the<a class="privacy-policy" href="privacy.html">Privacy policy</a>
-                        </p>
-                    </label>
+                    <div class="imgPos">
+                        <input id="userName" required type="text" placeholder="Name">
+                        <img src="/img/register-name.png" alt="">
+                    </div>
+                    <div class="imgPos">
+                        <input id="email" required type="email" placeholder="Email">
+                        <img src="/img/login-mail.png" alt="">
+                    </div>
+                    <div class="imgPos">
+                        <input id="password" oninput="togglePasswordEye()" required type="password"
+                            placeholder="Password">
+                        <img src="/img/login-lock.png" alt="">
+                    </div>
+                    <div class="imgPos">
+                        <input id="PWconfirm" oninput="togglePasswordEye()" required type="password"
+                            placeholder="Confirm Password">
+                        <img src="/img/login-lock.png" alt="">
+                    </div>
+
+                    <!--Checkbox  -->
+                    <div class="CheckPos">
+                        <input type="checkbox" name="customRememberMe" class="custom-checkbox" id="customRememberMe"
+                            value="yes" required>
+                        <label for="customRememberMe" class="custom-checkbox-label"><img
+                                src="img/remember-unchecked.png" alt="I accept the Privacy policy">
+                            <p class="i-accept">I accept the<a class="privacy-policy" href="privacy.html">Privacy
+                                    policy</a>
+                            </p>
+                        </label>
+                    </div>
                     <button type="submit" type="button" id="registerBtn" class="login-button btnsld">Sign up</button>
                 </form>
             </div>
         </main>
     </section>
+
     <!-- Privacy policy and Legal notice bottom -->
     <section>
         <div class="register-bottom-part">
@@ -57,7 +79,7 @@
     </section>
 
     <script src="js/storage.js"></script>
-    <script src="js/login-register.js"></script>
+    <script src="js/register.js"></script>
 </body>
 
 </html>

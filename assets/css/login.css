@@ -302,7 +302,6 @@
 }
 
 .register-main input {
-    width: 380px;
     height: 24px;
     padding: 12px 21px;
     border-radius: 10px;
@@ -317,32 +316,30 @@
     border: 1px solid #29ABE2;
 }
 
-.register-main input[type=text] {
-    background-image: url(/img/register-name.png);
-    background-size: 16px;
-    background-position: 374px center;
-}
-
-.register-main input[type=email] {
-    background-image: url(/img/login-mail.png);
-    background-size: 24px 25px;
-    background-position: 370px center;
-}
-
-.register-main input[type=password] {
-    background-image: url(/img/login-lock.png);
-    background-size: 16px 22px;
-    background-position: 373px center;
-}
-
-.addPasswordEye {
-    background-image: url(/img/register-visibility_off.png) !important;
-    background-size: 24px !important;
-    background-position: 373px center;
-}
-
 .register-main input::placeholder {
     color: #D1D1D1;
+}
+
+.imgPos {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.imgPos img{
+    position: absolute;
+    right: 35px;
+}
+
+.CheckPos {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.CheckPos input {
+    position: absolute;
+    left: -1px;
 }
 
 .register-main-section {
