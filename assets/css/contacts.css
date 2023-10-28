@@ -366,13 +366,21 @@ body {
     border-radius: 50%;
     height: 120px;
     width: 120px;
-    background-color: #FF7A00;
+    background-color: #D1D1D1;
     box-shadow: 0px 0px 4px 0px #0000001A;
     border: 3px solid white;
     font-size: 47px;
     color: white;
     font-weight: 500;
     margin-top: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_image img{
+    height:64px;
+    width: 64px;
 }
 
 .user_information_form {
