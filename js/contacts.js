@@ -252,16 +252,56 @@ function saveContact() {
  * @param {string} phone - The phone input.
  */
 function checkForRightInput(fullName, email, phone) {
-  if (
-    fullName.length < 3 ||
-    email.length < 3 ||
-    phone.length < 3 ||
-    fullName.split(" ").length < 2
-  ) {
-    tooFewLettersWarning();
-    return false; 
+  let errors = [];
+
+  if (fullName.length < 3) {
+    errors.push("Name should have at least 3 characters.");
+    showErrorMessage("Name should have at least 3 characters.");
   }
-  return true; 
+
+  if (email.length < 3) {
+    errors.push("Email should have at least 3 characters.");
+    showErrorMessage("Email should have at least 3 characters.");
+  }
+
+  if (phone.length < 3) {
+    errors.push("Phone should have at least 3 characters.");
+    showErrorMessage("Phone should have at least 3 characters.");
+  }
+
+  if (fullName.split(" ").length < 2) {
+    errors.push("Name should contain both first and last name.");
+    showErrorMessage("Name should contain both first and last name.");
+  }
+
+  if (errors.length > 0) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Show an error message.
+ * @param {string} errorMessage - The error message to display.
+ */
+function showErrorMessage(errorMessage) {
+  let errorDiv = document.getElementById("error_message");
+  errorDiv.style.display = "flex"; // Display error message
+
+  // Set the text dynamically
+  errorDiv.innerHTML = errorMessage;
+
+  setTimeout(() => {
+    errorDiv.style.opacity = 1;
+  }, 100);
+
+  setTimeout(() => {
+    errorDiv.style.opacity = 0;
+    setTimeout(() => {
+      errorDiv.style.display = "none"; // Hide error message
+    }, 1000);
+  }, 3000);
 }
 
 /**
@@ -286,10 +326,11 @@ function tooFewLettersWarning() {
     "Please enter at least 3 letters in the name, email address, and phone number. The name must contain your first and last name. "
   );
 }
+
 /**
- * Sets the active state for a contact  and removes the active state from all other contacts.
+ * Sets the active state for a contact and removes the active state from all other contacts.
  *
- * @param {number} contactIndex - The index of the contact  to set as active.
+ * @param {number} contactIndex - The index of the contact to set as active.
  */
 function setButtonActive(contactIndex) {
   contacts.forEach((_, index) => {
@@ -302,7 +343,7 @@ function setButtonActive(contactIndex) {
 }
 
 /**
- * Show the success message when succesfully created or edited contact
+ * Show the success message when successfully created or edited contact
  */
 function showSuccessMessage() {
   let successMessage = document.getElementById("successmessage");
