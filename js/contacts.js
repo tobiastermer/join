@@ -25,6 +25,16 @@ let contactColors = [
  */
 async function init() {
   loadContacts();
+  initOverlays()
+}
+
+/**
+ * Initializes the display of overlay elements by setting their display property to "flex".
+ * This function makes the "addContactOverlay" and "editContactOverlay" elements visible.
+ * @function
+ * @returns {void}
+ */
+function initOverlays() {
   document.getElementById("addContactOverlay").style.display = "flex";
   document.getElementById("editContactOverlay").style.display = "flex";
 }
@@ -55,12 +65,10 @@ async function loadContacts() {
   }
 }
 
-
 /**
  * Show the overlay for adding a new contact.
  */
 function showAddContactOverlay() {
-
   document.getElementById("addContactOverlay").style.right = "0";
   document.getElementById("addContactOverlay").classList.remove("hidden");
   document.getElementById("overlayBackground").style.display = "flex";
@@ -71,9 +79,8 @@ function showAddContactOverlay() {
  */
 function hideAddContactOverlay() {
   document.getElementById("addContactOverlay").style.right = "-100%";
-  document.getElementById("addContactOverlay").classList.add("hidden"); 
+  document.getElementById("addContactOverlay").classList.add("hidden");
   document.getElementById("overlayBackground").style.display = "none";
-
 }
 
 /**
@@ -94,7 +101,7 @@ function showEditContactOverlay(contactIndex) {
 function hideEditContactOverlay() {
   document.getElementById("overlayBackground").style.display = "none";
   document.getElementById("editContactOverlay").style.right = "-100%";
-  document.getElementById("editContactOverlay").classList.add("hidden"); 
+  document.getElementById("editContactOverlay").classList.add("hidden");
 }
 
 /**
@@ -150,13 +157,12 @@ function getInitials(name) {
  */
 function displayContacts() {
   let contactListDiv = document.getElementById("contactList");
-  let bigContactDiv = document.getElementById("rightSideContactHeader");
-
   contactListDiv.innerHTML = "";
   contacts.sort((a, b) => a.name.localeCompare(b.name));
 
   let currentInitial = "";
   contacts.forEach((contact, index) => {
+    let contactListItemHTML = createContactListItem(contact, index);
     let initials = getInitials(contact.name);
     let firstInitial = initials.charAt(0).toUpperCase();
 
@@ -167,16 +173,7 @@ function displayContacts() {
         <div class="space_line"></div>`;
     }
 
-    contactListDiv.innerHTML += `
-    <button class="contact" onclick="showContactInfo(${index}), setButtonActive(${index})" id="contact${index}">
-      <div class="contact_initial_image" style="background-color: ${contact.color}">${initials}</div>
-      <div class="contact_name_mail">
-        <div class="contact_name">${contact.name}</div>
-        <div class="contact_mail">
-          <a a href="mailto:${contact.email}">${contact.email}</a>
-        </div>
-      </div>
-    </button>`;
+    contactListDiv.innerHTML += contactListItemHTML;
   });
 }
 
@@ -187,44 +184,28 @@ function displayContacts() {
 function showContactInfo(contactIndex) {
   let contact = contacts[contactIndex];
   let bigContactDiv = document.getElementById("contactDetails");
-bigContactSlide();
+  bigContactSlide();
 
-  bigContactDiv.innerHTML = `
-    <div class="big_contact_top">
-      <div class="big_contact_initial_image"><button style="background-color: ${
-        contact.color
-      }">${getInitials(contact.name)}</button></div>
-      <div class="big_contact_name_settings">
-        <div class="big_contact_name">${contact.name}</div>
-        <div class="big_contact_settings">
-          <button onclick="showEditContactOverlay(${contactIndex})"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
-          <button onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
-        </div>
-      </div>
-    </div>
-    <div class="big_contact_info">
-      <div class="big_contact_headline">Contact Information</div>
-      <div class="big_contact_mail">
-        <b>Email</b>
-        <div class="contact_mail"><a href="mailto:${contact.email}">${
-    contact.email
-  }</a></div>
-      </div>
-      <div class="big_contact_phone">
-        <b>Phone</b>
-        ${contact.phone}
-      </div>
-    </div>`;
+  let contactDetailsHTML = createContactDetails(contact, contactIndex);
+  bigContactDiv.innerHTML = contactDetailsHTML;
 
   setButtonActive(contactIndex);
 }
 
-function bigContactSlide(){
+/**
+ * Animates the sliding in and out of a large contact details container.
+ * This function first removes the 'big_contact_slide_in' class, triggers a reflow,
+ * and then adds the class back to create the slide animation effect.
+ * @function
+ * @returns {void}
+ */
+function bigContactSlide() {
   let bigContactDiv = document.getElementById("contactDetails");
-  bigContactDiv.classList.remove('big_contact_slide_in');
+  bigContactDiv.classList.remove("big_contact_slide_in");
   void bigContactDiv.offsetWidth; // Trigger Reflow
-  bigContactDiv.classList.add('big_contact_slide_in');
+  bigContactDiv.classList.add("big_contact_slide_in");
 }
+
 /**
  * Delete a contact.
  * @param {number} contactIndex - The index of the contact to delete.
@@ -252,7 +233,9 @@ function saveContact() {
   let editContactEmail = document.getElementById("editContactEmail").value;
   let editContactPhone = document.getElementById("editContactPhone").value;
 
-  if (!checkForRightInput(editContactName, editContactEmail, editContactPhone)) {
+  if (
+    !checkForRightInput(editContactName, editContactEmail, editContactPhone)
+  ) {
     return;
   }
 
@@ -304,14 +287,12 @@ function checkForRightInput(fullName, email, phone) {
 }
 
 /**
- * Show an error message.
+ * Show an error message div.
  * @param {string} errorMessage - The error message to display.
  */
 function showErrorMessage(errorMessage) {
   let errorDiv = document.getElementById("error_message");
-  errorDiv.style.display = "flex"; // Display error message
-
-  // Set the text dynamically
+  errorDiv.style.display = "flex";
   errorDiv.innerHTML = errorMessage;
 
   setTimeout(() => {
@@ -321,7 +302,7 @@ function showErrorMessage(errorMessage) {
   setTimeout(() => {
     errorDiv.style.opacity = 0;
     setTimeout(() => {
-      errorDiv.style.display = "none"; // Hide error message
+      errorDiv.style.display = "none";
     }, 1000);
   }, 3000);
 }
@@ -385,3 +366,59 @@ function showSuccessMessage() {
 }
 
 
+/* HTML TEMPLATES */
+
+/**
+ * Create the HTML for a contact list item.
+ * @param {Object} contact - The contact object.
+ * @param {number} index - The index of the contact.
+ * @returns {string} - The HTML for the contact list item.
+ */
+function createContactListItem(contact, index) {
+  let initials = getInitials(contact.name);
+  return `
+    <button class="contact" onclick="showContactInfo(${index}), setButtonActive(${index})" id="contact${index}">
+      <div class="contact_initial_image" style="background-color: ${contact.color}">${initials}</div>
+      <div class="contact_name_mail">
+        <div class="contact_name">${contact.name}</div>
+        <div class="contact_mail">
+          <a a href="mailto:${contact.email}">${contact.email}</a>
+        </div>
+      </div>
+    </button>`;
+}
+
+/**
+ * Create the HTML for the contact details.
+ * @param {Object} contact - The contact object.
+ * @param {number} contactIndex - The index of the contact.
+ * @returns {string} - The HTML for the contact details.
+ */
+function createContactDetails(contact, contactIndex) {
+  return `
+    <div class="big_contact_top">
+      <div class="big_contact_initial_image"><button style="background-color: ${
+        contact.color
+      }">${getInitials(contact.name)}</button></div>
+      <div class="big_contact_name_settings">
+        <div class="big_contact_name">${contact.name}</div>
+        <div class="big_contact_settings">
+          <button onclick="showEditContactOverlay(${contactIndex})"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
+          <button onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="big_contact_info">
+      <div class="big_contact_headline">Contact Information</div>
+      <div class="big_contact_mail">
+        <b>Email</b>
+        <div class="contact_mail"><a href="mailto:${contact.email}">${
+    contact.email
+  }</a></div>
+      </div>
+      <div class="big_contact_phone">
+        <b>Phone</b>
+        ${contact.phone}
+      </div>
+    </div>`;
+}
