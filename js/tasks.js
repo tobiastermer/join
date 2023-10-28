@@ -3,6 +3,7 @@ let selectedPrio
 let selectedContacts = [];
 let isAssignToDropdownActive = false;
 let filteredContacts = [];
+let subtasks = [];
 
 async function showAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "flex";
@@ -119,6 +120,48 @@ function showSelectedContacts() {
         let color = contacts[selectedContacts[i]].color;
         showContactsContainer.innerHTML += `
             <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i+1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
+        `;
+    };
+}
+
+function addSubtask() {
+    let subtask = [];
+    let subtaskName = document.getElementById('addTaskSubtaskInput').value;
+    if (subtaskName.length >= 3) {
+        subtasks.push({
+            name: subtaskName,
+            done: false,
+        });
+        renderSubtaskList();
+    }
+    document.getElementById('addTaskSubtaskInput').value = '';  
+}
+
+function deleteSubtask(i) {
+    subtasks.splice(i);
+    renderSubtaskList();
+}
+
+function renderSubtaskList() {
+    let subtaskList = document.getElementById('addTaskSubtaskList');
+    subtaskList.innerHTML = '';
+    for (i = 0; i < subtasks.length; i++) {
+        let subtaskName = subtasks[i].name;
+        let subtaskDone = subtasks[i].done;
+        let checked = '';
+        if (subtaskDone) {
+            checked = 'checked';
+        } else {
+            checked = '';
+        }
+        subtaskList.innerHTML += `
+            <div class="subtask" id="subtask${i}">
+                <div>
+                    <input type="checkbox" ${checked}>
+                    <label>${subtaskName}</label>
+                </div>
+                <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
+            </div>
         `;
     };
 }

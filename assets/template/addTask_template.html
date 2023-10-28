@@ -27,7 +27,8 @@
                 </select> -->
                 <div class="form-input-with-img">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
-                    <img id="addTaskImgDropdown" src="../../img/dropdown_down.png" onclick="showContactList(); return false" alt="">
+                    <img id="addTaskImgDropdown" src="../../img/dropdown_down.png"
+                        onclick="showContactList(); return false" alt="">
                 </div>
                 <div class="form-list">
                     <ul id="addTaskListContacts" class="d-none">
@@ -81,13 +82,17 @@
             <div class="form-column-child">
                 <label>Subtasks</label>
                 <div class="form-input-with-img">
-                    <input type="text" id="" placeholder="Add new subtask">
-                    <img src="img/add.png" alt="">
+                    <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask">
+                    <img src="img/add.png" alt="" onclick="addSubtask(); return false">
                 </div>
-                <div class="form-list">
-                    <ul id="addTaskListSubtasks" class="d-none">
-                        
-                    </ul>
+                <div class="form-list" id="addTaskSubtaskList">
+                    <!-- <div class="subtask">
+                        <div>
+                            <input type="checkbox" value="Subtask1" checked>
+                            <label>Subtask1</label>
+                        </div>
+                        <img src="../../img/delete.png" alt="" onclick="deleteSubtask(id); return false">
+                    </div> -->
                 </div>
             </div>
         </div>

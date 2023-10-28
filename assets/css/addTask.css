@@ -51,7 +51,7 @@ label {
 }
 
 .form-line {
-    height: 440px;
+    display: block;
     width: 2px;
     margin-left: 48px;
     margin-right: 48px;
@@ -182,10 +182,12 @@ select {
     background-color: #FF4005;
     color: white;
 }
+
 .bg-prio-med-active {
     background-color: #FFB72C;
     color: white;
 }
+
 .bg-prio-low-active {
     background-color: #7AE229;
     color: white;
@@ -209,6 +211,27 @@ select {
 }
 
 .form-input-with-img img:hover {
+    cursor: pointer;
+}
+
+.subtask {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subtask div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.subtask img {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.subtask img:hover {
     cursor: pointer;
 }
 

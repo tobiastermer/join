@@ -183,7 +183,7 @@ function showContactInfo(contactIndex) {
         <div class="big_contact_name">${contact.name}</div>
         <div class="big_contact_settings">
           <button onclick="showEditContactOverlay(${contactIndex})"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
-          <button onclick="deleteContact(${contactIndex})"><img src="./img/delete_contact.png" alt="Delete Icon">Delete</button>
+          <button onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
         </div>
       </div>
     </div>
