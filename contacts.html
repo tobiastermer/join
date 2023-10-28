@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="includeHTML();init()">
+<body onload="includeHTML();init();hideAddContactOverlay();hideEditContactOverlay()">
     <div w3-include-html="./design_template.html"></div>
 
     <div class="main-content-contacts">
@@ -110,7 +110,7 @@
             </div>
 
         </div>
-
+<div class="overlay_background" id="overlayBackground"></div>
         <div class="successmessage" id="successmessage">Contact succesfully created</div>
         <div class="error_message" id="error_message">error</div>
     </div>

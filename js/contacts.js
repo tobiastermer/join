@@ -25,6 +25,8 @@ let contactColors = [
  */
 async function init() {
   loadContacts();
+  document.getElementById("addContactOverlay").style.display = "flex";
+  document.getElementById("editContactOverlay").style.display = "flex";
 }
 
 /**
@@ -53,18 +55,25 @@ async function loadContacts() {
   }
 }
 
+
 /**
  * Show the overlay for adding a new contact.
  */
 function showAddContactOverlay() {
-  document.getElementById("addContactOverlay").style.display = "flex";
+
+  document.getElementById("addContactOverlay").style.right = "0";
+  document.getElementById("addContactOverlay").classList.remove("hidden");
+  document.getElementById("overlayBackground").style.display = "flex";
 }
 
 /**
  * Hide the overlay for adding a new contact.
  */
 function hideAddContactOverlay() {
-  document.getElementById("addContactOverlay").style.display = "none";
+  document.getElementById("addContactOverlay").style.right = "-100%";
+  document.getElementById("addContactOverlay").classList.add("hidden"); 
+  document.getElementById("overlayBackground").style.display = "none";
+
 }
 
 /**
@@ -73,7 +82,9 @@ function hideAddContactOverlay() {
  */
 function showEditContactOverlay(contactIndex) {
   selectedContactIndex = contactIndex;
-  document.getElementById("editContactOverlay").style.display = "flex";
+  document.getElementById("editContactOverlay").style.right = "0";
+  document.getElementById("editContactOverlay").classList.remove("hidden");
+  document.getElementById("overlayBackground").style.display = "flex";
   populateEditFields(contactIndex);
 }
 
@@ -81,7 +92,9 @@ function showEditContactOverlay(contactIndex) {
  * Hide the overlay for editing a contact.
  */
 function hideEditContactOverlay() {
-  document.getElementById("editContactOverlay").style.display = "none";
+  document.getElementById("overlayBackground").style.display = "none";
+  document.getElementById("editContactOverlay").style.right = "-100%";
+  document.getElementById("editContactOverlay").classList.add("hidden"); 
 }
 
 /**
