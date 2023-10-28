@@ -159,6 +159,20 @@ body {
     font-size: 27px;
 }
 
+
+.big_contact_slide_in {
+    animation: slide-in 0.5s ease;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(400%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 /* Style for the top section of the large contact */
 .big_contact_top {
     display: flex;

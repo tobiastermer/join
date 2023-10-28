@@ -187,6 +187,8 @@ function displayContacts() {
 function showContactInfo(contactIndex) {
   let contact = contacts[contactIndex];
   let bigContactDiv = document.getElementById("contactDetails");
+bigContactSlide();
+
   bigContactDiv.innerHTML = `
     <div class="big_contact_top">
       <div class="big_contact_initial_image"><button style="background-color: ${
@@ -213,9 +215,16 @@ function showContactInfo(contactIndex) {
         ${contact.phone}
       </div>
     </div>`;
+
   setButtonActive(contactIndex);
 }
 
+function bigContactSlide(){
+  let bigContactDiv = document.getElementById("contactDetails");
+  bigContactDiv.classList.remove('big_contact_slide_in');
+  void bigContactDiv.offsetWidth; // Trigger Reflow
+  bigContactDiv.classList.add('big_contact_slide_in');
+}
 /**
  * Delete a contact.
  * @param {number} contactIndex - The index of the contact to delete.
