@@ -85,10 +85,10 @@
                     <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask">
                     <img src="img/add.png" alt="" onclick="addSubtask(); return false">
                 </div>
-                <div class="form-list" id="addTaskSubtaskList">
+                <div class="form-list" id="addTaskSubtaskList" style="margin-top: 16px">
                     <!-- <div class="subtask">
                         <div>
-                            <input type="checkbox" value="Subtask1" checked>
+                            <input type="checkbox" value="Subtask-1" checked>
                             <label>Subtask1</label>
                         </div>
                         <img src="../../img/delete.png" alt="" onclick="deleteSubtask(id); return false">
@@ -103,7 +103,7 @@
             <p>*</p>This field is required
         </label>
         <div class="form-buttons">
-            <Button onclick="cancelAddTask(); return false">
+            <Button onclick="resetAddTask(); return false">
                 <p>Clear</p>
                 <img src="img/Close.png" alt="">
             </Button>

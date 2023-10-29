@@ -3,7 +3,7 @@ let selectedPrio
 let selectedContacts = [];
 let isAssignToDropdownActive = false;
 let filteredContacts = [];
-let subtasks = [];
+let selectedSubtasks = [];
 
 async function showAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "flex";
@@ -17,18 +17,37 @@ function closeAddTaskOverlay() {
 }
 
 async function initAddTask() {
+    await loadTasks();
     await initContactList();
+}
 
+async function loadTasks() {
+    try {
+        tasks = JSON.parse(await getItem("tasks"));
+    } catch (e) {
+        console.error("Loading error:", e);
+    }
 }
 
 async function initContactList() {
-
     await loadContactsForTasks();
     // filterContacts();
     selectedContacts = [];
+    renderContactList();
+    renderSelectedContacts();
+}
+
+async function loadContactsForTasks() {
+    try {
+        contacts = JSON.parse(await getItem("contacts"));
+    } catch (e) {
+        console.error("Loading error:", e);
+    }
+}
+
+function renderContactList() {
     let selectContactList = document.getElementById('addTaskListContacts');
     selectContactList.innerHTML = '';
-
     if (contacts.length > 0) {
         for (let i = 0; i < contacts.length; i++) {
             let id = i; // let id = i + 1;
@@ -46,13 +65,6 @@ async function initContactList() {
             `;
         };
     };
-
-    // + neuen Kontakt anlegen
-
-}
-
-async function loadContactsForTasks() {
-    contacts = JSON.parse(await getItem("contacts"));
 }
 
 function filterContacts() {
@@ -61,14 +73,14 @@ function filterContacts() {
     if (input !== '') {
         filteredContacts = contacts.filter(contact => {
             return contact.name.toLowerCase().includes(input);
-        });    
+        });
     } else {
         filteredContacts = contacts;
     }
 }
 
 function showContactList() {
-    if(isAssignToDropdownActive) {
+    if (isAssignToDropdownActive) {
         isAssignToDropdownActive = false;
         document.getElementById('addTaskListContacts').classList.add('d-none');
         document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_down.png'
@@ -87,7 +99,7 @@ function selectContact(id) {
         addToSelectedContacts(id);
         setContactLiStyle(id, '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png");
     }
-    showSelectedContacts();
+    renderSelectedContacts();
 }
 
 function isIdInSelectedContacts(id) {
@@ -112,14 +124,14 @@ function setContactLiStyle(id, bgColor, textColor, imgSrc) {
     checkboxElement.src = imgSrc;
 }
 
-function showSelectedContacts() {
+function renderSelectedContacts() {
     let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
     showContactsContainer.innerHTML = '';
     for (i = 0; i < selectedContacts.length; i++) {
         let initials = contacts[selectedContacts[i]].initials;
         let color = contacts[selectedContacts[i]].color;
         showContactsContainer.innerHTML += `
-            <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i+1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
+            <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
         `;
     };
 }
@@ -128,26 +140,27 @@ function addSubtask() {
     let subtask = [];
     let subtaskName = document.getElementById('addTaskSubtaskInput').value;
     if (subtaskName.length >= 3) {
-        subtasks.push({
+        selectedSubtasks.push({
             name: subtaskName,
             done: false,
         });
         renderSubtaskList();
     }
-    document.getElementById('addTaskSubtaskInput').value = '';  
+    document.getElementById('addTaskSubtaskInput').value = '';
 }
 
 function deleteSubtask(i) {
-    subtasks.splice(i);
+    selectedSubtasks.splice(i, 1);
     renderSubtaskList();
 }
 
 function renderSubtaskList() {
     let subtaskList = document.getElementById('addTaskSubtaskList');
+    updateSubtasksCheckedStatus();
     subtaskList.innerHTML = '';
-    for (i = 0; i < subtasks.length; i++) {
-        let subtaskName = subtasks[i].name;
-        let subtaskDone = subtasks[i].done;
+    for (i = 0; i < selectedSubtasks.length; i++) {
+        let subtaskName = selectedSubtasks[i].name;
+        let subtaskDone = selectedSubtasks[i].done;
         let checked = '';
         if (subtaskDone) {
             checked = 'checked';
@@ -155,9 +168,9 @@ function renderSubtaskList() {
             checked = '';
         }
         subtaskList.innerHTML += `
-            <div class="subtask" id="subtask${i}">
+            <div class="subtask" id="subtask-${i}">
                 <div>
-                    <input type="checkbox" ${checked}>
+                    <input type="checkbox" id="subtask-checkbox-${i}" ${checked}>
                     <label>${subtaskName}</label>
                 </div>
                 <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
@@ -166,44 +179,58 @@ function renderSubtaskList() {
     };
 }
 
-function cancelAddTask() {
+// updates Checked Status
+function updateSubtasksCheckedStatus() {
+    for (i = 0; i < selectedSubtasks.length; i++) {
+        try {
+            let subtaskChecked = document.getElementById(`subtask-checkbox-${i}`).checked;
+            if (subtaskChecked) {
+                selectedSubtasks[i].done = true;
+            } else {
+                selectedSubtasks[i].done = false;
+            };
+        } catch {
+
+        };
+    };
+}
+
+function resetAddTask() {
     document.getElementById('addTaskTitle').value = '';
     document.getElementById('addTaskDescription').value = '';
-    // assigned to noch ergänzen
+    selectedContacts = [];
     document.getElementById('addTaskDueDate').value = '';
     resetPrio();
     document.getElementById('addTaskCategory').value = '';
-    // Subtasks to noch ergänzen
-
+    selectedSubtasks = [];
+    renderSubtaskList();
+    initAddTask();
 }
 
-function addNewTask() {
-
-    let subtasks = [];
-    let assignedTo = [];
+async function addNewTask() {
 
     // Plausis ergänzen
 
+    updateSubtasksCheckedStatus();
+
     // Variablen definieren
-    let title = document.getElementById('addTaskTitle').value;
-    let description = document.getElementById('addTaskDescription').value;
-    // assigned to noch ergänzen
-    let dueDate = document.getElementById('addTaskDueDate').value;
-    let prio = selectedPrio;
-    let category = document.getElementById('addTaskCategory').value;
-    // Subtasks to noch ergänzen
+    let assignedTo = selectedContacts;
+    let subtasks = selectedSubtasks;
 
-
+    // Array füllen
     tasks.push({
-        title: title,
-        description: description,
-        dueDate: dueDate,
-        prio: prio,
-        category: category,
+        title: document.getElementById('addTaskTitle').value,
+        description: document.getElementById('addTaskDescription').value,
+        assignedTo: assignedTo,
+        dueDate: document.getElementById('addTaskDueDate').value,
+        prio: selectedPrio,
+        category: document.getElementById('addTaskCategory').value,
+        subtasks: subtasks,
     });
 
     console.log(tasks);
-
+    await setItem('tasks', JSON.stringify(tasks));
+    resetAddTask();
     // hier noch auf den Server laden
 
 }
