@@ -62,6 +62,33 @@ header {
     cursor: pointer;
 }
 
+.menu_header {
+    border-radius: 20px 0px 20px 20px;
+    background-color: #2A3647;
+    padding: 10px;
+    height: 185px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    color: #CDCDCD;
+}
+
+.menu_header a:hover{
+    color: #ffffff;
+}
+.menu_header_container {
+    width: auto;
+    height: auto;
+    right: 11px;
+    top: 96px;
+    position: absolute;
+    z-index: 3;
+    display:none;
+}
+
 
 /* right content */
 

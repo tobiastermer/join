@@ -1,5 +1,6 @@
 <!-- INSERT THIS CODE VIA W3C INCLUDE -->
 
+
 <div class="design_template">
     <div class="nav_bar">
         <div class="left_top_header">
@@ -21,9 +22,16 @@
             <span><a href="./legal_notice.html">Legal notice</a></span>
         </div>
     </div>
+    <div class="menu_header_container" id="headerMenu">
+        <div class="menu_header">
+            <a href="./legal_notice.html">Legal Notice</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="#">Log out</a>
+        </div>
+    </div>
     <div class="header_and_content">
         <header> <span>Kanban Project Management Tool</span>
             <div class="buttons_header"><button class="question_mark"><a href="./help.html"><img
                             src="./img/help_button.png" alt="Go to Help Page"></a>
                 </button>
-                <button class="profile_tag">MM</button>
+                <button class="profile_tag" id="profileButton" onclick="openHeaderMenu()">MM</button>
