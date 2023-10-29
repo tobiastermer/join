@@ -1,6 +1,7 @@
 const STORAGE_TOKEN = 'YDITW3FZPTKXOANID4RLEPARCUN9OMMKIJBM9WO7';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+let users = [];
 
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
@@ -17,3 +18,4 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}".`;
     });
 }
+

@@ -210,22 +210,25 @@
 }
 
 .remember-container {
-    width: 422px;
-    height: 24px;
+    position: relative;
     display: flex;
     align-items: center;
-    padding-left: 84px;
-    gap: 8px;
 }
 
 .custom-checkbox {
+    position: absolute;
+    left: -170px;
+    top: -20px;
     opacity: 0;
 }
 
 .custom-checkbox-label {
+    position: absolute;
     display: flex;
     align-items: center;
     cursor: pointer;
+    left: -170px;
+    top: -20px;
 }
 
 .custom-checkbox-label img {
@@ -326,24 +329,13 @@
     align-items: center;
 }
 
-.imgPos img{
+.imgPos img {
     position: absolute;
     right: 35px;
 }
 
 .crsptr {
     cursor: pointer;
-}
-
-.CheckPos {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.CheckPos input {
-    position: absolute;
-    left: -1px;
 }
 
 .register-main-section {
@@ -379,4 +371,68 @@
     font-weight: 700;
 }
 
+.CheckPos {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: -webkit-fill-available;
+}
+
+.CheckPos input {
+    position: absolute;
+}
+
+.register-checkbox-label {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    left: 100px;
+    gap: 8px;
+    margin-top: 30px;
+    height: 20px;
+}
+
+.sign-up-button {
+    width: 110px;
+    height: 48px;
+    border-radius: 8px;
+    border-style: none;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.register-checkbox {
+    position: absolute;
+    left: 98px;
+    top: -26px;
+    margin-top: 30px;
+    opacity: 0;
+}
+
+.register-checkbox:checked+.register-checkbox-label img {
+    content: url(/img/remember-checked.png);
+}
+
+.register-checkbox+.register-checkbox-label img {
+    content: url(/img/remember-unchecked.png);
+}
+
 /******************Guest-Login-CSS*********************/
+
+#msgBox {
+    position: relative;
+    background-color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04) !important;
+    border-radius: 30px !important;
+    width: auto;
+    padding: 48px 88px;
+}

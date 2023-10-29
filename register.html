@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/login.css">
     <link rel="stylesheet" href="style.css">
-    <script src="./js/openMenu.js"></script>
     <title>Join</title>
 </head>
 <!-- Login upper part -->
 
-<body onload="init()" class="login-body">
+<body onload="initRegister()" class="login-body">
     <header class="register-header">
         <img class="register-logo" src="img/login_logo.png" alt="Login Logo Join">
     </header>
@@ -52,16 +51,16 @@
 
                     <!--Checkbox  -->
                     <div class="CheckPos">
-                        <input type="checkbox" name="customRememberMe" class="custom-checkbox" id="customRememberMe"
+                        <input type="checkbox" name="customRememberMe" class="register-checkbox" id="customRememberMe"
                             value="yes" required>
-                        <label for="customRememberMe" class="custom-checkbox-label"><img
+                        <label for="customRememberMe" class="register-checkbox-label"><img
                                 src="img/remember-unchecked.png" alt="I accept the Privacy policy">
                             <p class="i-accept">I accept the<a class="privacy-policy" href="privacy.html">Privacy
                                     policy</a>
                             </p>
                         </label>
                     </div>
-                    <button type="submit" type="button" id="registerBtn" class="login-button btnsld">Sign up</button>
+                    <button type="submit" type="button" id="registerBtn" class="sign-up-button btnsld">Sign up</button>
                 </form>
             </div>
         </main>

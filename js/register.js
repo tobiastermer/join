@@ -1,7 +1,6 @@
 /**
  * Array to store registered users.
  */
-let users = [];
 let password = document.getElementById("password");
 let PWconfirm = document.getElementById("PWconfirm");
 
@@ -15,7 +14,7 @@ async function register() {
         email: email.value,
         password: password.value,
     });
-    await setItem('usersGroup743', JSON.stringify(users));
+    await setItem('users', JSON.stringify(users));
     resetForm();
     // Redirect to the login page with a success message.
     window.location.href = 'login.html?msg=Registration successful';
@@ -24,7 +23,7 @@ async function register() {
 /**
  * Initializes the user information and checks if already registered.
  */
-async function init() {
+async function initRegister() {
     loadUsers();
 }
 
@@ -33,7 +32,7 @@ async function init() {
  */
 async function loadUsers() {
     try {
-        users = JSON.parse(await getItem('usersGroup743'));
+        users = JSON.parse(await getItem('users'));
     } catch (e) {
         console.error('Loading error:', e);
     }
@@ -57,7 +56,7 @@ function resetForm() {
  */
 function validatePassword() {
     if (password.value !== PWconfirm.value) {
-        PWconfirm.setCustomValidity("Passwords do not match!");
+        PWconfirm.setCustomValidity("Passwörter stimmen nicht überein!");
     } else {
         PWconfirm.setCustomValidity('');
     }

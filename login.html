@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/login.css">
     <link rel="stylesheet" href="style.css">
-    <script src="js/login-register.js"></script>
-    <script src="./js/openMenu.js"></script>
+    <script src="js/login.js" defer></script>
+    <script src="js/storage.js" defer></script>
     <title>Join</title>
 </head>
 <!-- Login upper part -->
 
-<body class="login-body">
+<body onload="initLogin()" class="login-body">
     <header class="login-header">
         <img class="login-logo" id="login-logo" src="img/login_logo.png" alt="Login Logo Join">
         <nav id="login-nav">
@@ -29,9 +29,11 @@
             <div class="login-main">
                 <h1>Log in</h1>
                 <div class="h1-underline"></div>
+
+
                 <form onsubmit="login();return false;" class="input-fields">
-                    <input id="email" type="email" placeholder="Email">
-                    <input id="password" type="password" placeholder="Password">
+                    <input id="email" type="email" placeholder="Email" required>
+                    <input id="password" type="password" placeholder="Password" required>
                     <div class="remember-container">
                         <input type="checkbox" class="custom-checkbox" id="customRememberMe">
                         <label for="customRememberMe" class="custom-checkbox-label"><img
@@ -41,9 +43,11 @@
                     </div>
                     <div class="login-buttons">
                         <button class="login-button btnsld">Log in</button>
-                        <button class="guest-login-button btnclr">Guest Log in</button>
+                        <button onclick="window.location.href='board.html';" type="button" class="guest-login-button btnclr">Guest Log in</button>
                     </div>
                 </form>
+
+
             </div>
         </main>
     </section>
