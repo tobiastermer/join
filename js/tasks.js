@@ -82,11 +82,11 @@ function filterContacts() {
 function showContactList() {
     if (isAssignToDropdownActive) {
         isAssignToDropdownActive = false;
-        document.getElementById('addTaskListContacts').classList.add('d-none');
+        document.getElementById('addTaskListContactsContainer').classList.add('d-none');
         document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_down.png'
     } else {
         isAssignToDropdownActive = true;
-        document.getElementById('addTaskListContacts').classList.remove('d-none');
+        document.getElementById('addTaskListContactsContainer').classList.remove('d-none');
         document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_up.png'
     };
 }
@@ -307,6 +307,7 @@ async function addContactExtra() {
       phone: phone,
       initials: initials,
       color: randomColor,
+      id: generateUniqueId(),
     });
   
     localStorage.setItem(
@@ -315,6 +316,7 @@ async function addContactExtra() {
     );
   
     await setItem("contacts", JSON.stringify(contacts));
+    renderContactList();
     hideAddContactOverlay();
     showSuccessMessage();
   }

@@ -30,8 +30,8 @@
                     <img id="addTaskImgDropdown" src="../../img/dropdown_down.png"
                         onclick="showContactList(); return false" alt="">
                 </div>
-                <div class="form-list form-list-selection">
-                    <ul id="addTaskListContacts" class="d-none">
+                <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
+                    <ul id="addTaskListContacts">
                         <!-- <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
                             <div class="contact-initials-and-name">
                                 <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
@@ -40,6 +40,10 @@
                             <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
                         </li> -->
                     </ul>
+                    <button class="btn btn-primary btn-text-with-icon" onclick="initAddOverlay(); return false">
+                        <span>Add new contact</span>
+                        <img src="../../img/person_add.png" alt="">
+                    </button>
                 </div>
                 <div class="contact-initials-and-name" style="margin-left: 10px; height: 45px;" id="addTaskShowSelectedContacts"></div>
             </div>
