@@ -83,6 +83,14 @@ select {
     resize: vertical;
 }
 
+.form-list-selection {
+    z-index: 10;
+    position: absolute;
+    background-color: white;
+    width: 440px;
+    margin-top: 80px;
+}
+
 .form-list ul {
     list-style-type: none;
     padding: 12px 16px 12px 16px;
