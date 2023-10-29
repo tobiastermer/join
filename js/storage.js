@@ -19,3 +19,21 @@ async function getItem(key) {
     });
 }
 
+//Activ user
+/**
+ * Saves the current active user to local storage.
+ */
+function saveActivUser() {
+    localStorage.setItem('activUserAsText', JSON.stringify(activUser));
+}
+
+/**
+ * Loads the current active user from local storage.
+ */
+function loadActivUser() {
+    let activUserLoad = localStorage.getItem('activUserAsText');
+    if (activUserLoad) {
+        activUser = JSON.parse(activUserLoad);
+    }
+}
+

@@ -1,8 +1,15 @@
+/**
+ * Object to store the active user's information.
+ * @type {Object}
+ */
 let activUser = {
     'name': '',
 };
 
-//Load users to compare logindata to data from server
+/**
+ * Loads user data to compare login data with data from the server.
+ * @async
+ */
 async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
@@ -11,33 +18,59 @@ async function loadUsers() {
     }
 }
 
-//Login user 
+/**
+ * Logs in the user and stores the username in activUser.
+ */
 function login() {
+    /**
+     * Input field for user email.
+     * @type {HTMLInputElement}
+     */
     const emailInput = document.getElementById('email');
+
+    /**
+     * Input field for user password.
+     * @type {HTMLInputElement}
+     */
     const passwordInput = document.getElementById('password');
     
+    /**
+     * The user's entered email.
+     * @type {string}
+     */
     const email = emailInput.value;
+
+    /**
+     * The user's entered password.
+     * @type {string}
+     */
     const password = passwordInput.value;
 
+    /**
+     * The user object found by matching email and password.
+     * @type {Object|undefined}
+     */
     const user = users.find(u => u.email === email && u.password === password);
 
     if (user) {
-        // Anmeldung erfolgreich
-        activUser.name = users.userName; // Den Benutzernamen in activUser speichern
+        // Successful login
+        activUser.name = user.userName; // Store the username in activUser
 
-        // Den aktivierten Benutzer in localStorage speichern
+        // Store the activated user in localStorage
         localStorage.setItem('activUser', JSON.stringify(activUser));
 
-        // Hier wird zur board.html Seite weitergeleitet
+        // Redirect to the board.html page
         // window.location.href = 'summary.html';
     } else {
-        // Anmeldung fehlgeschlagen
-        console.log('Anmeldung fehlgeschlagen');
+        // Login failed
+        console.log('Login failed');
     }
 }
 
-
-//Clear activeUser as a logout event
+/**
+ * Clears the activeUser as part of the logout event.
+ * @async
+ */
 async function initLogin() {
     activUser = {
         'name': '',
@@ -45,19 +78,22 @@ async function initLogin() {
     loadUsers();
 }
 
+/**
+ * Loads the active user's data from localStorage, if available.
+ */
 function loadActiveUser() {
-    // Laden Sie den aktivierten Benutzer aus localStorage, falls vorhanden
+    /**
+     * The JSON string containing the active user's data from localStorage.
+     * @type {string|null}
+     */
     const activUserJSON = localStorage.getItem('activUser');
 
     if (activUserJSON) {
         activUser = JSON.parse(activUserJSON);
-        // Ändere 'name' in 'userName' oder einen anderen geeigneten Bezeichner
+        // Change 'name' to 'userName' or an appropriate identifier
         userName = activUser.name;
     } else {
-        // Der Benutzer ist nicht angemeldet oder die Information wurde gelöscht
-        // Führen Sie entsprechende Aktionen durch
+        // The user is not logged in or the information has been deleted
+        // Perform appropriate actions
     }
 }
-
-
-//Visual functions
