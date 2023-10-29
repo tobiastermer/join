@@ -105,6 +105,18 @@ function hideEditContactOverlay() {
 }
 
 /**
+ * Generates a unique ID for a contact using a combination of timestamp and random string.
+ *
+ * @returns {string} A unique ID.
+ */
+function generateUniqueId() {
+  let timestamp = new Date().getTime().toString();
+  let randomString = Math.random().toString(36).substr(2, 9);
+  return timestamp + randomString;
+}
+
+
+/**
  * Add a new contact to the list.
  */
 async function addContact() {
@@ -126,6 +138,7 @@ async function addContact() {
     phone: phone,
     initials: initials,
     color: randomColor,
+    id: generateUniqueId(),
   });
 
   localStorage.setItem(
