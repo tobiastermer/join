@@ -50,12 +50,12 @@ function renderContactList() {
     selectContactList.innerHTML = '';
     if (contacts.length > 0) {
         for (let i = 0; i < contacts.length; i++) {
-            let id = i; // let id = i + 1;
+            let id = contacts[i].id
             let name = contacts[i].name;
             let initials = contacts[i].initials;
             let color = contacts[i].color;
             selectContactList.innerHTML += `
-                <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
+                <li id="selectContactLi-${id}" onclick="selectContact('${id}'); return false">
                     <div class="contact-initials-and-name">
                         <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
                         <span>${name}</span>
@@ -92,10 +92,11 @@ function showContactList() {
 }
 
 function selectContact(id) {
-    if (isIdInSelectedContacts(id)) {
+    let i = getIndexById(id, selectedContacts);
+    if (i > -1) { // deactivates contact
         removeFromSelectedContacts(id);
         setContactLiStyle(id, '#FFFFFF', '#000000', "../../img/remember-unchecked.png");
-    } else {
+    } else { // activates selected contact
         addToSelectedContacts(id);
         setContactLiStyle(id, '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png");
     }
@@ -107,8 +108,8 @@ function isIdInSelectedContacts(id) {
 }
 
 function removeFromSelectedContacts(id) {
-    let index = selectedContacts.indexOf(id);
-    selectedContacts.splice(index, 1);
+    let i = selectedContacts.indexOf(id);
+    selectedContacts.splice(i, 1);
 }
 
 function addToSelectedContacts(id) {
@@ -116,6 +117,7 @@ function addToSelectedContacts(id) {
 }
 
 function setContactLiStyle(id, bgColor, textColor, imgSrc) {
+    // let i = getIndexById(id, selectedContacts); //ggf. löschen
     let liElement = document.getElementById(`selectContactLi-${id}`);
     let checkboxElement = document.getElementById(`addTaskCheckbox-${id}`);
 
@@ -128,12 +130,27 @@ function renderSelectedContacts() {
     let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
     showContactsContainer.innerHTML = '';
     for (i = 0; i < selectedContacts.length; i++) {
-        let initials = contacts[selectedContacts[i]].initials;
-        let color = contacts[selectedContacts[i]].color;
+        let id = selectedContacts[i];
+        let j = getIndexByIdFromContacts(id);
+        let initials = contacts[j].initials;
+        let color = contacts[j].color;
         showContactsContainer.innerHTML += `
             <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
         `;
     };
+}
+
+function getIndexById(id, array) {
+    return array.indexOf(id);
+}
+
+function getIndexByIdFromContacts(id) {
+    for (j = 0; j < contacts.length; j++) {
+        if (id == contacts[j].id) {
+            return j;
+        };
+    };
+    return -1;
 }
 
 function addSubtask() {
@@ -190,7 +207,7 @@ function updateSubtasksCheckedStatus() {
                 selectedSubtasks[i].done = false;
             };
         } catch {
-
+            // ggf. Fehlermeldung
         };
     };
 }
@@ -208,11 +225,18 @@ function resetAddTask() {
 }
 
 async function addNewTask() {
-
-    // Plausis ergänzen
-
+    checkAddTask(); // noch mit Leben füllen / Plausis ergänzen
     updateSubtasksCheckedStatus();
+    pushNewTaskToArray();
+    await setItem('tasks', JSON.stringify(tasks));
+    resetAddTask();
+}
 
+function checkAddTask() {
+    // noch füllen
+}
+
+function pushNewTaskToArray() {
     // Variablen definieren
     let assignedTo = selectedContacts;
     let subtasks = selectedSubtasks;
@@ -227,12 +251,6 @@ async function addNewTask() {
         category: document.getElementById('addTaskCategory').value,
         subtasks: subtasks,
     });
-
-    console.log(tasks);
-    await setItem('tasks', JSON.stringify(tasks));
-    resetAddTask();
-    // hier noch auf den Server laden
-
 }
 
 function setPrio(prio) {
