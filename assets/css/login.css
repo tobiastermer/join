@@ -331,6 +331,10 @@
     right: 35px;
 }
 
+.crsptr {
+    cursor: pointer;
+}
+
 .CheckPos {
     position: relative;
     display: flex;

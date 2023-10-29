@@ -14,7 +14,7 @@
 </head>
 <!-- Login upper part -->
 
-<body class="login-body">
+<body onload="init()" class="login-body">
     <header class="register-header">
         <img class="register-logo" src="img/login_logo.png" alt="Login Logo Join">
     </header>
@@ -32,22 +32,22 @@
                 <!-- Register form -->
                 <form onsubmit="register();return false;" class="register-input-fields">
                     <div class="imgPos">
-                        <input id="userName" required type="text" placeholder="Name">
+                        <input id="userName" required type="text" placeholder="Name" minlength="4">
                         <img src="/img/register-name.png" alt="">
                     </div>
                     <div class="imgPos">
-                        <input id="email" required type="email" placeholder="Email">
+                        <input id="email" required type="email" placeholder="Email" minlength="4">
                         <img src="/img/login-mail.png" alt="">
                     </div>
                     <div class="imgPos">
                         <input id="password" oninput="togglePasswordEye()" required type="password"
-                            placeholder="Password">
-                        <img src="/img/login-lock.png" alt="">
+                            placeholder="Password" minlength="4">
+                        <img onclick="togglePasswordVisibility('password')" class="crsptr" src="/img/login-lock.png" alt="">
                     </div>
                     <div class="imgPos">
                         <input id="PWconfirm" oninput="togglePasswordEye()" required type="password"
-                            placeholder="Confirm Password">
-                        <img src="/img/login-lock.png" alt="">
+                            placeholder="Confirm Password" minlength="4">
+                        <img onclick="togglePasswordVisibility('PWconfirm')" class="crsptr" src="/img/login-lock.png" alt="">
                     </div>
 
                     <!--Checkbox  -->

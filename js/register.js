@@ -1,22 +1,47 @@
+/**
+ * Array to store registered users.
+ */
 let users = [];
+let password = document.getElementById("password");
+let PWconfirm = document.getElementById("PWconfirm");
 
-//Register user
-
+/**
+ * Registers a user.
+ */
 async function register() {
     registerBtn.disabled = true;
     users.push({
-        userName: userName.value, 
+        userName: userName.value,
         email: email.value,
         password: password.value,
-        PWconfirm: PWconfirm.value,
     });
-    await setItem('users', JSON.stringify(users));
+    await setItem('usersGroup743', JSON.stringify(users));
     resetForm();
-    // Weiterleitung zu Login Seite + Nachricht anzeigen: "Erfolgreiche Registration"
-    //  window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
+    // Redirect to the login page with a success message.
+    window.location.href = 'login.html?msg=Registration successful';
 }
 
-// Reset form after submit
+/**
+ * Initializes the user information and checks if already registered.
+ */
+async function init() {
+    loadUsers();
+}
+
+/**
+ * Loads user data from storage.
+ */
+async function loadUsers() {
+    try {
+        users = JSON.parse(await getItem('usersGroup743'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
+}
+
+/**
+ * Resets the registration form after submission.
+ */
 function resetForm() {
     userName.value = '';
     email.value = '';
@@ -25,24 +50,48 @@ function resetForm() {
     registerBtn.disabled = false;
 }
 
-// Visual Functions
-function togglePasswordEye() {
-    let password = document.getElementById('password');
-    let confirm = document.getElementById('confirm');
+// Password Validation
 
-    if (password.value) {
-        password.classList.add('addPasswordEye');
+/**
+ * Validates password equality.
+ */
+function validatePassword() {
+    if (password.value !== PWconfirm.value) {
+        PWconfirm.setCustomValidity("Passwords do not match!");
     } else {
-        password.classList.remove('addPasswordEye');
-    }
-
-    if (PWconfirm.value) {
-        PWconfirm.classList.add('addPasswordEye');
-    } else {
-        PWconfirm.classList.remove('addPasswordEye');
+        PWconfirm.setCustomValidity('');
     }
 }
 
+password.onchange = validatePassword;
+PWconfirm.onkeyup = validatePassword;
+
+// Visual Functions
+
+/**
+ * Toggles the visibility of the password.
+ */
+function togglePasswordEye() {
+    let password = document.getElementById('password');
+    let PWconfirm = document.getElementById('PWconfirm');
+
+    if (password.value) {
+        password.src = '/img/register-visibility_off.png';
+    } else {
+        password.src = '/img/login-lock.png';
+    }
+
+    if (PWconfirm.value) {
+        PWconfirm.src = '/img/register-visibility_off.png';
+    } else {
+        PWconfirm.src = '/img/login-lock.png';
+    }
+}
+
+/**
+ * Toggles the visibility of a password field.
+ * @param {string} fieldId - The ID of the password field to toggle.
+ */
 function togglePasswordVisibility(fieldId) {
     let passwordField = document.getElementById(fieldId);
 
