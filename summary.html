@@ -17,7 +17,7 @@
     <script src="./js/openMenu.js"></script>
 </head>
 
-<body class="summary-body" onload="includeHTML()">
+<body class="summary-body" onload="includeHTML();initSummary()">
 
     <div w3-include-html="./design_template.html"></div>
 
@@ -88,7 +88,7 @@
 
             <div class="summary-main-hello">
                 <p>Good Morning,</p>
-                <span class="text-lightblue">Sofia Müller</span>
+                <span id="activUserName" class="text-lightblue">Sofia Müller</span>
             </div>
 
         </div>
