@@ -600,7 +600,7 @@ body {
     .left_panel_content img{
         display:none;
     }
-    
+
     .contact_settings_mobile {
         display: none;
     }
@@ -668,7 +668,7 @@ body {
         top: unset;
     }
 
-    .overlay_background_add.hidden .overlay_background_edit.hidden {
+    .overlay_background_add.hidden, .overlay_background_edit.hidden {
         bottom: -500% !important;
         right: 0 !important;
     }
