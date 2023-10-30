@@ -20,7 +20,7 @@
 
     <div class="main-content-contacts">
         <div class="main_contact">
-            <div class="contacts">
+            <div class="contacts" id="contactsDiv">
                 <div class="contact_button"><button class="add_new_contact_button" onclick="showAddContactOverlay()">
                         Add new contact <img src="./img/person_add.png" alt="" height="32px" width="32px"></button>
                 </div>
@@ -35,6 +35,8 @@
                     <div class="contact_headline"> CONTACTS </div>
                     <div class="space_line_contact_header"></div>
                     <div class="contact_slogan"> Better with a team</div>
+                    <div class="space_line_contact_header_mobile"></div>
+                    <div class="mobile_back_arrow"  style="display:none;" onclick="showContactsListHideContactInfo()"> <img src="./img/arrow-left-line.png" alt=""></div>
                 </div>
                 <div class="big_contact" id="contactDetails">
                 </div>
@@ -53,10 +55,12 @@
                     </div>
                 </div>
                 <div class="right_panel">
+                    <div class="close_button_mobile" onclick="hideAddContactOverlay();"><img src="./img/close_white.png" alt=""></div>
                     <div class="close_overlay_button" onclick="hideAddContactOverlay();"><img src="./img/Close.png"
                             alt="close button"></div>
                     <div class="contact_user_information">
-                        <div class="user_image"><button><img src="./img/personwhite.png" alt="Profile Image"></button></div>
+                        <div class="user_image"><button><img src="./img/personwhite.png" alt="Profile Image"></button>
+                        </div>
                         <div class="user_information_form">
                             <input type="text" class="input_contact_name" name="Name" id="addContactName"
                                 placeholder="Name" required>
@@ -89,6 +93,7 @@
                     </div>
                 </div>
                 <div class="right_panel">
+                    <div class="close_button_mobile" onclick="hideEditContactOverlay();"><img src="./img/close_white.png" alt=""></div>
                     <div class="close_overlay_button" onclick="hideEditContactOverlay();"><img src="./img/Close.png"
                             alt="close button"></div>
                     <div class="contact_user_information">
@@ -101,8 +106,8 @@
                             <input type="tel" class="input_contact_phone" name="Phone" id="editContactPhone"
                                 placeholder="Phone" required>
                             <div class="add_contact_buttons">
-                                <button class="cancel_contact_button" type="reset">Delete </button><button onclick="saveContact()" type="submit"
-                                    class="create_contact_button">Save
+                                <button class="cancel_contact_button" type="reset">Delete </button><button
+                                    onclick="saveContact()" type="submit" class="create_contact_button">Save
                                     <img src="./img/check.png" alt=""></button>
                             </div>
                         </div>
@@ -111,9 +116,10 @@
             </div>
 
         </div>
-<div class="overlay_background" id="overlayBackground"></div>
+        <div class="overlay_background" id="overlayBackground"></div>
         <div class="successmessage" id="successmessage">Contact succesfully created</div>
         <div class="error_message" id="error_message">error</div>
+        <div class="add_contact_button_mobile" style="display: none;" onclick="showAddContactOverlay()"><img src="./img/person_add.png" alt="add contact"></div>
     </div>
 
 </body>

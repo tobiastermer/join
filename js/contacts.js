@@ -25,7 +25,7 @@ let contactColors = [
  */
 async function init() {
   loadContacts();
-  initOverlays()
+  initOverlays();
 }
 
 /**
@@ -115,7 +115,6 @@ function generateUniqueId() {
   return timestamp + randomString;
 }
 
-
 /**
  * Add a new contact to the list.
  */
@@ -197,12 +196,33 @@ function displayContacts() {
 function showContactInfo(contactIndex) {
   let contact = contacts[contactIndex];
   let bigContactDiv = document.getElementById("contactDetails");
+
+  if (window.innerWidth < 770) {
+    hideContactsListShowContactInfo();
+  }
+
   bigContactSlide();
 
   let contactDetailsHTML = createContactDetails(contact, contactIndex);
   bigContactDiv.innerHTML = contactDetailsHTML;
 
   setButtonActive(contactIndex);
+}
+
+/**
+ * Function to hide the contact list and show contact information.
+ */
+function hideContactsListShowContactInfo() {
+  document.getElementById("rightSideContactHeader").style.display = "flex";
+  document.getElementById("contactsDiv").style.display = "none";
+}
+
+/**
+ * Function to show the contact list and hide contact information.
+ */
+function showContactsListHideContactInfo() {
+  document.getElementById("rightSideContactHeader").style.display = "none";
+  document.getElementById("contactsDiv").style.display = "flex";
 }
 
 /**
@@ -347,15 +367,18 @@ function tooFewLettersWarning() {
  * Sets the active state for a contact and removes the active state from all other contacts.
  *
  * @param {number} contactIndex - The index of the contact to set as active.
+ * @throws {Error} If the `contactIndex` is out of bounds or invalid.
+ * @see {@link contacts} - An array of contact elements.
  */
 function setButtonActive(contactIndex) {
-  contacts.forEach((_, index) => {
-    let contact = document.getElementById(`contact${index}`);
-    contact.classList.remove("contact_active");
-  });
-
-  let activeContact = document.getElementById(`contact${contactIndex}`);
-  activeContact.classList.add("contact_active");
+  if (window.innerWidth > 770) {
+    contacts.forEach((_, index) => {
+      let contact = document.getElementById(`contact${index}`);
+      contact.classList.remove("contact_active");
+    });
+    let activeContact = document.getElementById(`contact${contactIndex}`);
+    activeContact.classList.add("contact_active");
+  }
 }
 
 /**
@@ -377,7 +400,6 @@ function showSuccessMessage() {
     }, 1000);
   }, 3000);
 }
-
 
 /* HTML TEMPLATES */
 
