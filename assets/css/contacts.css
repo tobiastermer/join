@@ -288,7 +288,7 @@ body {
 
 .overlay_background_add.hidden,
 .overlay_background_edit.hidden {
-    right: -100%;
+    right: -500% !important;
     background-color: rgba(255, 255, 255, 0); 
 }
 
