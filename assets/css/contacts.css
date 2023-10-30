@@ -181,6 +181,7 @@ body {
     0% {
         transform: translateX(400%);
     }
+
     100% {
         transform: translateX(0);
     }
@@ -572,8 +573,50 @@ body {
 
 /* Media Query */
 
-@media(max-width: 1360px){
-    
+@media(max-width: 1360px) {
+    .contact_header {
+        flex-direction: column;
+    }
+
+    .space_line_contact_header {
+        height: 3px;
+        width: 59px;
+    }
+
+    .right_side_contact {
+        align-items: flex-start;
+    }
+
+    .contact_header {
+        align-items: baseline;
+    }
+}
+
+@media(max-width: 1170px) {
+    .big_contact_top {
+        gap: 0;
+        align-items: baseline;
+        flex-direction: column;
+    }
+
+}
+
+@media(max-width: 1100px) {
+    .contact_headline {
+        font-size: 48px;
+    }
+
+    .big_contact_name {
+        font-size: 32px;
+    }
+
+}
+
+@media(max-width: 1000px){
+.main-content-contacts{
+    padding-left: 177px;
+}
+
 }
 
 /* MOBILE VERSION STYLING (Optimized for screens up to 770px width) */
@@ -593,6 +636,13 @@ body {
     /* Hide the larger contact settings */
     .big_contact_settings {
         display: none;
+    }
+
+    /* Set Contact Information Style Back */
+    .big_contact_top {
+        gap: 32px;
+        align-items: center;
+        flex-direction: row;
     }
 
     /* Set contacts width to 100% of viewport width, center items, and add top padding */
@@ -628,6 +678,16 @@ body {
         align-items: center;
         justify-content: center;
         cursor: pointer;
+    }
+
+    /* Set Font Size */
+    .contact_headline {
+        font-size: 64px;
+    }
+
+    /* Set Font Size */
+    .big_contact_name {
+        font-size: 47px;
     }
 
     /* Hide images within the left panel content */
