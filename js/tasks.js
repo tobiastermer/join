@@ -4,6 +4,32 @@ let selectedContacts = [];
 let isAssignToDropdownActive = false;
 let filteredContacts = [];
 let selectedSubtasks = [];
+let categories = [
+    {
+        name: 'Development',
+        color: "#FFB6C1"
+    },
+    {
+        name: 'Design',
+        color: "#FFD700"
+    },
+    {
+        name: 'Sales',
+        color: "#87CEEB"
+    },
+    {
+        name: 'Backoffice',
+        color: "#98FB98"
+    },
+    {
+        name: 'Media',
+        color: "#FFA07A"
+    },
+    {
+        name: 'Marketing',
+        color: "#FF69B4"
+    },
+];
 
 async function showAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "flex";
@@ -277,13 +303,7 @@ function resetPrio() {
     });
 }
 
-/**
- * Add new contact via add task form
- */
 
-function initAddOverlay() {
-    document.getElementById("addContactOverlay").style.display = "flex";
-}
 
 /**
  * Add a new contact to the list.
@@ -293,30 +313,30 @@ async function addContactExtra() {
     let email = document.getElementById("addContactEmail").value;
     let phone = document.getElementById("addContactPhone").value;
     let initials = getInitials(fullName);
-  
+
     if (!checkForRightInput(fullName, email, phone)) {
-      return;
+        return;
     }
-  
+
     let randomColor =
-      contactColors[Math.floor(Math.random() * contactColors.length)];
-  
+        contactColors[Math.floor(Math.random() * contactColors.length)];
+
     contacts.push({
-      name: fullName,
-      email: email,
-      phone: phone,
-      initials: initials,
-      color: randomColor,
-      id: generateUniqueId(),
+        name: fullName,
+        email: email,
+        phone: phone,
+        initials: initials,
+        color: randomColor,
+        id: generateUniqueId(),
     });
-  
+
     localStorage.setItem(
-      "contactColors",
-      JSON.stringify(contacts.map((contact) => contact.color))
+        "contactColors",
+        JSON.stringify(contacts.map((contact) => contact.color))
     );
-  
+
     await setItem("contacts", JSON.stringify(contacts));
     renderContactList();
     hideAddContactOverlay();
     showSuccessMessage();
-  }
+}

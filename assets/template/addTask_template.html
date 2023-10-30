@@ -40,12 +40,13 @@
                             <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
                         </li> -->
                     </ul>
-                    <button class="btn btn-primary btn-text-with-icon" onclick="initAddOverlay(); return false">
+                    <button class="btn btn-primary btn-text-with-icon" onclick="showAddContactOverlay(); return false">
                         <span>Add new contact</span>
                         <img src="../../img/person_add.png" alt="">
                     </button>
                 </div>
-                <div class="contact-initials-and-name" style="margin-left: 10px; height: 45px;" id="addTaskShowSelectedContacts"></div>
+                <div class="contact-initials-and-name" style="margin-left: 10px; height: 45px;"
+                    id="addTaskShowSelectedContacts"></div>
             </div>
         </div>
         <div class="form-line bg-lightblue"></div>
@@ -139,10 +140,10 @@
                 <div class="user_information_form">
                     <input type="text" class="input_contact_name" name="Name" id="addContactName" placeholder="Name"
                         required>
-                    <input type="email" class="input_contact_mail" name="Email" id="addContactEmail"
-                        placeholder="Email" required>
-                    <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone"
-                        placeholder="Phone" required>
+                    <input type="email" class="input_contact_mail" name="Email" id="addContactEmail" placeholder="Email"
+                        required>
+                    <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone" placeholder="Phone"
+                        required>
                     <div class="add_contact_buttons">
                         <button class="cancel_contact_button" type="reset">Cancel <img src="./img/Close.png"
                                 alt="Cancel"></button><button type="submit" class="create_contact_button"
@@ -162,4 +163,4 @@
 
 
 <!-- Wichtig, beim initialisieren deiner seite sollte: initAddContactOverlay() ausgeführt werden
-um dann das Overlay öffnen zu lassen musst du: showAddContactOverlay() ausführen --> 
+um dann das Overlay öffnen zu lassen musst du: showAddContactOverlay() ausführen -->
