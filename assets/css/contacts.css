@@ -591,6 +591,10 @@ body {
     .contact_header {
         align-items: baseline;
     }
+
+    .space_line_contact_header {
+        margin-left: 0px;
+    }
 }
 
 @media(max-width: 1170px) {
@@ -613,10 +617,36 @@ body {
 
 }
 
-@media(max-width: 1000px){
-.main-content-contacts{
-    padding-left: 177px;
+@media(max-width: 1000px) {
+    .main-content-contacts {
+        padding-left: 177px;
+    }
+
 }
+
+@media(max-width: 890px) {
+    .contacts {
+        margin-right: 8px;
+        width: 305px;
+    }
+
+    .contact_part {
+        padding-left: 8px;
+    }
+
+    .contact_button {
+        justify-content: flex-start;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .add_new_contact_button {
+        width: 290px;
+    }
+
+    .space_line {
+        width: 266px;
+    }
 
 }
 
