@@ -9,7 +9,7 @@
 }
 
 .btn {
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .btn:hover {
@@ -20,6 +20,8 @@
     background-color: #2A3647;
     color: white;
     border: 0;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -29,7 +31,6 @@
 }
 
 .btn-text-with-icon {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +40,11 @@
 
 .btn-text-with-icon img {
     width: 24px;
+    height: 24px;
+}
+
+.width-100 {
+    width: 100%;
 }
 
 .grow {

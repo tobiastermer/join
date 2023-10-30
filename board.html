@@ -21,7 +21,7 @@
     <script src="./js/openMenu.js"></script>
 </head>
 
-<body class="board-body" onload="includeHTML()">
+<body class="board-body" onload="includeHTML(); initBoard()">
 
     <div w3-include-html="./design_template.html"></div>
 
@@ -35,9 +35,9 @@
                     <div class="search-line"></div>
                     <img src="img/search.png" alt="">
                 </div>
-                <button onclick="showAddTaskOverlay(); return false">
+                <button class="btn btn-primary btn-text-with-icon" onclick="showAddTaskOverlay(); return false">
                     <p>Add task</p>
-                    <img src="../../img/add-white.png" alt="">
+                    <img src="../../img/add-white.png" alt="" style="height: 18px; width: 18px;">
                 </button>
             </div>
         </div>
