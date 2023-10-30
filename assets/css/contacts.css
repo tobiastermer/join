@@ -39,6 +39,7 @@ body {
     background-color: white;
     flex-direction: column;
     margin-right: 32px;
+    overflow-y: scroll;
 }
 
 /* Style for individual contact sections */
