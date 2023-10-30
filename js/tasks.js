@@ -58,6 +58,9 @@ async function loadTasks() {
     }
 }
 
+// ****************
+// CONTACTS
+
 async function initContactList() {
     await loadContactsForTasks();
     // filterContacts();
@@ -108,16 +111,24 @@ function filterContacts() {
     }
 }
 
-function showContactList() {
+function toggleContactList() {
     if (isAssignToDropdownActive) {
-        isAssignToDropdownActive = false;
-        document.getElementById('addTaskListContactsContainer').classList.add('d-none');
-        document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_down.png'
+        hideContactList();
     } else {
-        isAssignToDropdownActive = true;
-        document.getElementById('addTaskListContactsContainer').classList.remove('d-none');
-        document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_up.png'
+        showContactList();
     };
+}
+
+function hideContactList() {
+    isAssignToDropdownActive = false;
+    document.getElementById('addTaskListContactsContainer').classList.add('d-none');
+    document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_down.png'
+}
+
+function showContactList() {
+    isAssignToDropdownActive = true;
+    document.getElementById('addTaskListContactsContainer').classList.remove('d-none');
+    document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_up.png'
 }
 
 function selectContact(id) {
@@ -183,22 +194,56 @@ function getIndexByIdFromContacts(id) {
 }
 
 // ****************
+// PRIO
+
+function setPrio(prio) {
+
+    // reset active class from ass task form
+    resetPrio();
+
+    // Add 'active' class to the selected button
+    selectedPrio = prio;
+    if (selectedPrio !== '') {
+        document.getElementById(`img-prio-${prio}`).classList.add(`prio-${prio}-active`);
+        document.getElementById(`btn-prio-${prio}`).classList.add(`bg-prio-${prio}-active`);
+    };
+}
+
+function resetPrio() {
+    selectedPrio = '';
+    // Remove 'active' class from all buttons
+    const prios = ['high', 'med', 'low'];
+    prios.forEach(p => {
+        document.getElementById(`img-prio-${p}`).classList.remove(`prio-${p}-active`);
+        document.getElementById(`btn-prio-${p}`).classList.remove(`bg-prio-${p}-active`);
+    });
+}
+
+// ****************
 // CATEGORIES
 
 function initCategories() {
     renderCategoryList();
 }
 
-function showCategoryList() {
+function toggleCategoryList() {
     if (isCategoryDropdownActive) {
-        isCategoryDropdownActive = false;
-        document.getElementById('addTaskListCategoriesContainer').classList.add('d-none');
-        document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_down.png'
+        hideCategoryList();
     } else {
-        isCategoryDropdownActive = true;
-        document.getElementById('addTaskListCategoriesContainer').classList.remove('d-none');
-        document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_up.png'
+        showCategoryList();
     };
+}
+
+function hideCategoryList() {
+    isCategoryDropdownActive = false;
+    document.getElementById('addTaskListCategoriesContainer').classList.add('d-none');
+    document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_down.png'
+}
+
+function showCategoryList() {
+    isCategoryDropdownActive = true;
+    document.getElementById('addTaskListCategoriesContainer').classList.remove('d-none');
+    document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_up.png'
 }
 
 function renderCategoryList() {
@@ -207,12 +252,10 @@ function renderCategoryList() {
     for (let i = 0; i < categories.length; i++) {
         let name = categories[i].name;
         let color = categories[i].color;
+        let template = getTemplateCategory(name, color);
         selectCategoryList.innerHTML += `
             <li id="selectCategoryLi-${i}" onclick="selectCategory('${i}'); return false">
-                <div class="category-color-and-name">
-                    <div class="category_color" style="background-color: ${color}"></div>
-                    <span>${name}</span>
-                </div>
+                ${template}
             </li>
         `;
     };
@@ -220,9 +263,27 @@ function renderCategoryList() {
 
 function selectCategory(i) {
     category = i;
-    let addTaskCategory = document.getElementById('addTaskCategory');
-    addTaskCategory.innerHTML = '';
-    
+    let name = categories[i].name;
+    let color = categories[i].color;
+    let template = getTemplateCategory(name, color);
+    let categoryDisplay = document.getElementById('addTaskCategory');
+    categoryDisplay.innerHTML = '';
+    categoryDisplay.innerHTML += `${template}`;
+    hideCategoryList();
+}
+
+function getTemplateCategory(name, color) {
+    return `
+        <div class="category-color-and-name">
+            <div class="category_color" style="background-color: ${color}"></div>
+            <span>${name}</span>
+        </div>
+    `;
+}
+
+function resetDisplayCategory() {
+    document.getElementById('addTaskCategory').innerHTML = '';
+    document.getElementById('addTaskCategory').innerHTML = 'Select task category';
 }
 
 // ****************
@@ -288,13 +349,19 @@ function updateSubtasksCheckedStatus() {
 }
 
 function resetAddTask() {
+    // Variablen und Arrays zurücksetzen
+    selectedContacts = [];
+    selectedSubtasks = [];
+
+    // Felder zurücksetzen
     document.getElementById('addTaskTitle').value = '';
     document.getElementById('addTaskDescription').value = '';
-    selectedContacts = [];
     document.getElementById('addTaskDueDate').value = '';
     resetPrio();
     document.getElementById('addTaskCategory').value = '';
-    selectedSubtasks = [];
+    hideContactList();
+    hideCategoryList();
+    resetDisplayCategory();
     renderSubtaskList();
     initAddTask();
 }
@@ -308,7 +375,7 @@ async function addNewTask() {
 }
 
 function checkAddTask() {
-    // noch füllen
+    // noch füllen für Plausibilitäten
 }
 
 function pushNewTaskToArray() {
@@ -323,34 +390,12 @@ function pushNewTaskToArray() {
         assignedTo: assignedTo,
         dueDate: document.getElementById('addTaskDueDate').value,
         prio: selectedPrio,
-        category: document.getElementById('addTaskCategory').value,
+        category: category,
         subtasks: subtasks,
     });
 }
 
-function setPrio(prio) {
 
-    // reset active class from ass task form
-    resetPrio();
-
-    // Add 'active' class to the selected button
-    selectedPrio = prio;
-    if (selectedPrio !== '') {
-        document.getElementById(`img-prio-${prio}`).classList.add(`prio-${prio}-active`);
-        document.getElementById(`btn-prio-${prio}`).classList.add(`bg-prio-${prio}-active`);
-    };
-
-}
-
-function resetPrio() {
-    selectedPrio = '';
-    // Remove 'active' class from all buttons
-    const prios = ['high', 'med', 'low'];
-    prios.forEach(p => {
-        document.getElementById(`img-prio-${p}`).classList.remove(`prio-${p}-active`);
-        document.getElementById(`btn-prio-${p}`).classList.remove(`bg-prio-${p}-active`);
-    });
-}
 
 
 

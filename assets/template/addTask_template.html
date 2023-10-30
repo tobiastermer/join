@@ -25,10 +25,9 @@
                     <option value="1">One</option>
                     <option value="2">Two</option>
                 </select> -->
-                <div class="form-input-with-img">
+                <div class="form-input-with-img" onclick="toggleContactList(); return false">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
-                    <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png"
-                        onclick="showContactList(); return false" alt="">
+                    <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png" alt="">
                 </div>
                 <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
                     <ul id="addTaskListContacts">
@@ -45,7 +44,7 @@
                         <img src="../../img/person_add.png" alt="">
                     </button>
                 </div>
-                <div class="contact-initials-and-name" id="addTaskShowSelectedContacts">
+                <div class="contact-initials-and-name" id="addTaskShowSelectedContacts" style="margin-left: 10px;">
                 </div>
             </div>
         </div>
@@ -75,11 +74,10 @@
 
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-                
-                <div class="form-input-with-img">
-                    <div type="text" id="addTaskCategory" placeholder="Select task category" onclick="showCategoryList(); return false">Select category</div>
-                    <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png"
-                         alt="">
+
+                <div class="form-input-with-img" onclick="toggleCategoryList(); return false">
+                    <div type="text" id="addTaskCategory" placeholder="Select task category">Select task category</div>
+                    <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png" alt="">
                 </div>
 
                 <div class="form-list form-list-selection d-none" id="addTaskListCategoriesContainer">
@@ -97,14 +95,14 @@
             </div>
 
 
-            
+
 
             <div class="form-column-child">
                 <label>Subtasks</label>
                 <div class="form-input-with-img">
                     <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask">
-                    <img id="addTaskImgDropdownSubtask" src="../../img/add.png"
-                        onclick="addSubtask(); return false" alt="">
+                    <img id="addTaskImgDropdownSubtask" src="../../img/add.png" onclick="addSubtask(); return false"
+                        alt="">
                 </div>
                 <div class="form-list" id="addTaskSubtaskList" style="margin-top: 16px">
                     <!-- <div class="subtask">
