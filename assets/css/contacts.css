@@ -570,6 +570,12 @@ body {
 }
 
 
+/* Media Query */
+
+@media(max-width: 1360px){
+    
+}
+
 /* MOBILE VERSION STYLING (Optimized for screens up to 770px width) */
 @media (max-width: 770px) {
 
