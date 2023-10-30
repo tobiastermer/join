@@ -36,6 +36,9 @@ header {
     background-color: white;
 }
 
+header img{
+    display:none;
+}
 .buttons_header {
     display: flex;
     align-items: center;
@@ -196,4 +199,108 @@ header {
 a {
     color: inherit;
     text-decoration: inherit;
+}
+
+
+/* MOBILE VERSION 770PX */
+
+@media (max-width: 770px){
+
+    .nav_bar {
+        background-color: #2A3647;
+        height: 80px;
+        width: 100vw;
+        box-shadow: 0px 0px 4px 0px #0000001A;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        box-sizing: border-box;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+}
+
+.header_logo{
+    display: none;
+}
+
+.menu{
+
+    padding-top: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    height: 80px !important;
+    width: 100vw !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+}
+
+.menu img{
+    width: 22px;
+    height: auto;
+
+}
+
+.contacs, .summary, .add_tasks, .board {
+    gap: 0px;
+    margin-top: 0px;
+    width: 76px;
+    padding-left: 0;
+    height: 76px;
+}
+
+.contacs:hover, .summary:hover, .add_tasks:hover, .board:hover {
+border-radius: 16px;
+background-color: #091931;
+}
+
+
+.contacs a, .summary a, .add_tasks a, .board a {
+    flex-direction: column;
+    font-size: 14px;
+    gap: 0px;
+
+}
+
+.legal{
+    display:none;
+}
+
+
+.header_and_content{
+    padding-left: 0;
+}
+
+header{
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 80px;
+    box-sizing: border-box;
+}
+
+.question_mark{
+    display:none;
+    margin-left: 0px;
+}
+
+.profile_tag{
+    height: 40px;
+    width: 40px;
+}
+
+header span{
+    display: none;;
+}
+
+header img{
+    display: flex;
+    width: 32px;
+    height: auto;
+}
+
 }
