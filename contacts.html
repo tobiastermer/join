@@ -30,13 +30,15 @@
                 </div>
             </div>
             <div></div>
-            <div class="right_side_contact" id="rightSideContactHeader">
+            <div class="right_side_contact" id="rightSideContactHeader" onclick="CloseMobileSettingsBox()">
                 <div class="contact_header">
                     <div class="contact_headline"> CONTACTS </div>
                     <div class="space_line_contact_header"></div>
                     <div class="contact_slogan"> Better with a team</div>
                     <div class="space_line_contact_header_mobile"></div>
-                    <div class="mobile_back_arrow"  style="display:none;" onclick="showContactsListHideContactInfo()"> <img src="./img/arrow-left-line.png" alt=""></div>
+                    <div class="mobile_back_arrow" style="display:none;" onclick="showContactsListHideContactInfo()">
+                        <img src="./img/arrow-left-line.png" alt="">
+                    </div>
                 </div>
                 <div class="big_contact" id="contactDetails">
                 </div>
@@ -46,7 +48,8 @@
         <!-- ADD CONTACT OVERLAY -->
         <div class="overlay_background_add" id="addContactOverlay">
             <div class="overlay">
-                <div class="close_button_mobile" onclick="hideAddContactOverlay();"><img src="./img/close_white.png" alt=""></div>
+                <div class="close_button_mobile" onclick="hideAddContactOverlay();"><img src="./img/close_white.png"
+                        alt=""></div>
                 <div class="left_panel">
                     <div class="left_panel_content">
                         <img src="./img/header_logo.png" alt="Join Logo">
@@ -56,7 +59,7 @@
                     </div>
                 </div>
                 <div class="right_panel">
-                    
+
                     <div class="close_overlay_button" onclick="hideAddContactOverlay();"><img src="./img/Close.png"
                             alt="close button"></div>
                     <div class="contact_user_information">
@@ -86,7 +89,8 @@
         <!-- EDIT CONTACT OVERLAY -->
         <div class="overlay_background_edit" id="editContactOverlay">
             <div class="overlay">
-                <div class="close_button_mobile" onclick="hideEditContactOverlay();"><img src="./img/close_white.png" alt=""></div>
+                <div class="close_button_mobile" onclick="hideEditContactOverlay();"><img src="./img/close_white.png"
+                        alt=""></div>
                 <div class="left_panel">
                     <div class="left_panel_content">
                         <img src="./img/header_logo.png" alt="Join Logo">
@@ -95,7 +99,7 @@
                     </div>
                 </div>
                 <div class="right_panel">
-                    
+
                     <div class="close_overlay_button" onclick="hideEditContactOverlay();"><img src="./img/Close.png"
                             alt="close button"></div>
                     <div class="contact_user_information">
@@ -121,7 +125,12 @@
         <div class="overlay_background" id="overlayBackground"></div>
         <div class="successmessage" id="successmessage">Contact succesfully created</div>
         <div class="error_message" id="error_message">error</div>
-        <div class="add_contact_button_mobile" style="display: none;" onclick="showAddContactOverlay()"><img src="./img/person_add.png" alt="add contact"></div>
+        <div class="contact_settings_mobile" id="contactSettingsMobile" onclick="OpenMobileSettingsBox()"><img
+                src="./img/contact_options.png" alt="contact options"></div>
+        <div class="add_contact_button_mobile" id="addContactMobileButton" onclick="showAddContactOverlay()"><img
+                src="./img/person_add.png" alt="add contact"></div>
+
+
     </div>
 
 </body>

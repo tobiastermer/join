@@ -215,6 +215,8 @@ function showContactInfo(contactIndex) {
 function hideContactsListShowContactInfo() {
   document.getElementById("rightSideContactHeader").style.display = "flex";
   document.getElementById("contactsDiv").style.display = "none";
+  document.getElementById("addContactMobileButton").style.display = "none";
+  document.getElementById("contactSettingsMobile").style.display = "flex";
 }
 
 /**
@@ -223,6 +225,8 @@ function hideContactsListShowContactInfo() {
 function showContactsListHideContactInfo() {
   document.getElementById("rightSideContactHeader").style.display = "none";
   document.getElementById("contactsDiv").style.display = "flex";
+  document.getElementById("addContactMobileButton").style.display = "flex";
+  document.getElementById("contactSettingsMobile").style.display = "none";
 }
 
 /**
@@ -455,5 +459,32 @@ function createContactDetails(contact, contactIndex) {
         <b>Phone</b>
         ${contact.phone}
       </div>
-    </div>`;
+    </div>
+
+
+    
+    <div class="mobile_settings_box" id="mobileSettingsBox">
+    <div class="edit_contact_mobile" onclick="showEditContactOverlay(${contactIndex})"><div><img src="./img/edit.png" alt="Edit"></div><div>Edit</div></div>
+    <div class="delete_contact_mobile" onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete"><span>Delete</span></div>
+</div>
+    
+    `;
+}
+
+/**
+ * Opens the mobile settings box.
+ * Displays the mobile settings box by changing its display style to "flex".
+ */
+function openMobileSettingsBox() {
+  document.getElementById("mobileSettingsBox").style.display = "flex";
+}
+
+/**
+ * Closes the mobile settings box.
+ * Hides the mobile settings box by changing its display style to "none".
+ */
+function closeMobileSettingsBox() {
+  if (document.getElementById("mobileSettingsBox").style.display === "flex") {
+    document.getElementById("mobileSettingsBox").style.display = "none";
+  }
 }
