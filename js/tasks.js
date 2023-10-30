@@ -44,13 +44,6 @@ let categories = [
     },
 ];
 
-let progressbar = [
-    "To Do",
-    "In Progress",
-    "Await Feedback",
-    "Done"
-];
-
 // ****************
 // INITIALIZE
 // ****************
