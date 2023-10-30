@@ -597,6 +597,10 @@ body {
         cursor: pointer;
     }
 
+    .left_panel_content img{
+        display:none;
+    }
+    
     .contact_settings_mobile {
         display: none;
     }
