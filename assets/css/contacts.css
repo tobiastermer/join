@@ -390,6 +390,10 @@ body {
     width: 32px;
 }
 
+.close_button_mobile {
+    display: none;
+}
+
 .contact_user_information {
     display: flex;
     align-items: flex-start;
@@ -545,6 +549,10 @@ body {
 
     .right_side_contact {
         display: none;
+        
+    }
+    .big_contact_settings{
+        display:none;
     }
 
     .contacts {
@@ -653,38 +661,45 @@ body {
         width: 100%;
         align-items: center;
     }
-    .contact_user_information{
+
+    .contact_user_information {
         flex-direction: column;
         margin-top: 100px;
     }
-    .user_image{
+
+    .user_image {
         position: absolute;
         top: -119px;
         left: 50%;
         transform: translateX(-50px);
     }
-    .user_information_form{
+
+    .user_information_form {
         align-items: center;
     }
-    .cancel_contact_button{
-        display:none;
+
+    .cancel_contact_button {
+        display: none;
     }
 
-    .create_contact_button{
+    .create_contact_button {
         justify-content: center;
         align-items: center;
     }
-    .close_overlay_button{
-        display:none;
+
+    .close_overlay_button {
+        display: none;
     }
 
-    .close_button_mobile{
-        position: fixed;
+    .close_button_mobile {
+        position: absolute;
         right: 95px;
         top: 150px;
-        cursor:pointer;
+        cursor: pointer;
+        display: block;
     }
-    .cancel_contact_button{
+
+    .cancel_contact_button {
         display: none !important;
     }
 }
