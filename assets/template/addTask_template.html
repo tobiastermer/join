@@ -27,7 +27,7 @@
                 </select> -->
                 <div class="form-input-with-img">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
-                    <img id="addTaskImgDropdown" src="../../img/dropdown_down.png"
+                    <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png"
                         onclick="showContactList(); return false" alt="">
                 </div>
                 <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
@@ -45,8 +45,8 @@
                         <img src="../../img/person_add.png" alt="">
                     </button>
                 </div>
-                <div class="contact-initials-and-name" style="margin-left: 10px; height: 45px;"
-                    id="addTaskShowSelectedContacts"></div>
+                <div class="contact-initials-and-name" id="addTaskShowSelectedContacts">
+                </div>
             </div>
         </div>
         <div class="form-line bg-lightblue"></div>
@@ -56,7 +56,7 @@
                 <input required type="date" id="addTaskDueDate">
             </div>
             <div class="form-column-child">
-                <label>Prio</label>
+                <label>Prio<p>*</p></label>
                 <div class="form-prio">
                     <div class="form-prio-child grow" id="btn-prio-high" onclick="setPrio('high'); return false">
                         <span>Urgent</span>
@@ -72,23 +72,39 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-                <select required id="addTaskCategory">
-                    <option value="" disabled selected>Select task category</option>
-                    <option value="1">Development</option>
-                    <option value="2">Design</option>
-                    <option value="3">Sales</option>
-                    <option value="4">Backoffice</option>
-                    <option value="5">Media</option>
-                    <option value="6">Marketing</option>
-                </select>
+                
+                <div class="form-input-with-img">
+                    <div type="text" id="addTaskCategory" placeholder="Select task category" onclick="showCategoryList(); return false">Select category</div>
+                    <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png"
+                         alt="">
+                </div>
+
+                <div class="form-list form-list-selection d-none" id="addTaskListCategoriesContainer">
+                    <ul id="addTaskListCategories">
+                        <!-- <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
+                            <div class="contact-initials-and-name">
+                                <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
+                                <span>${name}</span>
+                            </div>
+                            <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
+                        </li> -->
+                    </ul>
+                </div>
+
             </div>
+
+
+            
+
             <div class="form-column-child">
                 <label>Subtasks</label>
                 <div class="form-input-with-img">
                     <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask">
-                    <img src="img/add.png" alt="" onclick="addSubtask(); return false">
+                    <img id="addTaskImgDropdownSubtask" src="../../img/add.png"
+                        onclick="addSubtask(); return false" alt="">
                 </div>
                 <div class="form-list" id="addTaskSubtaskList" style="margin-top: 16px">
                     <!-- <div class="subtask">
