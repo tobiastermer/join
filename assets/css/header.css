@@ -202,6 +202,16 @@ a {
 }
 
 
+/* Media Query */
+@media(max-width : 1000px){
+
+.nav_bar{
+    width: 175px;
+}
+
+}
+
+
 /* MOBILE VERSION 770PX */
 
 @media (max-width: 770px){
