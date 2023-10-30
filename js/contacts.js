@@ -72,6 +72,7 @@ function showAddContactOverlay() {
   document.getElementById("addContactOverlay").style.right = "0";
   document.getElementById("addContactOverlay").classList.remove("hidden");
   document.getElementById("overlayBackground").style.display = "flex";
+  document.getElementById("addContactOverlay").style.opacity = "100"
 }
 
 /**
@@ -92,6 +93,7 @@ function showEditContactOverlay(contactIndex) {
   document.getElementById("editContactOverlay").style.right = "0";
   document.getElementById("editContactOverlay").classList.remove("hidden");
   document.getElementById("overlayBackground").style.display = "flex";
+  document.getElementById("editContactOverlay").style.opacity = "100"
   populateEditFields(contactIndex);
 }
 

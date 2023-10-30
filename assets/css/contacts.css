@@ -295,6 +295,7 @@ body {
     align-items: center;
     z-index: 999;
     transition: right 0.3s ease-in-out;
+    opacity: 0;
 }
 
 .overlay_background_add.hidden,
@@ -304,11 +305,8 @@ body {
 }
 
 
-/* Stil für das Formular im Overlay */
 .overlay {
     background-color: white;
-    /* width: 1212px; */
-    /* height: 592px; */
     border-radius: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -597,8 +595,8 @@ body {
         cursor: pointer;
     }
 
-    .left_panel_content img{
-        display:none;
+    .left_panel_content img {
+        display: none;
     }
 
     .contact_settings_mobile {
@@ -668,7 +666,8 @@ body {
         top: unset;
     }
 
-    .overlay_background_add.hidden, .overlay_background_edit.hidden {
+    .overlay_background_add.hidden,
+    .overlay_background_edit.hidden {
         bottom: -500% !important;
         right: 0 !important;
     }
