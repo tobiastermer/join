@@ -2,6 +2,7 @@ let tasks = [];
 let selectedPrio
 let selectedContacts = [];
 let isAssignToDropdownActive = false;
+let isCategoryDropdownActive = false;
 let filteredContacts = [];
 let selectedSubtasks = [];
 let categories = [
@@ -30,6 +31,7 @@ let categories = [
         color: "#FF69B4"
     },
 ];
+let category;
 
 async function showAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "flex";
@@ -45,6 +47,7 @@ function closeAddTaskOverlay() {
 async function initAddTask() {
     await loadTasks();
     await initContactList();
+    initCategories();
 }
 
 async function loadTasks() {
@@ -109,11 +112,11 @@ function showContactList() {
     if (isAssignToDropdownActive) {
         isAssignToDropdownActive = false;
         document.getElementById('addTaskListContactsContainer').classList.add('d-none');
-        document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_down.png'
+        document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_down.png'
     } else {
         isAssignToDropdownActive = true;
         document.getElementById('addTaskListContactsContainer').classList.remove('d-none');
-        document.getElementById('addTaskImgDropdown').src = '../../img/dropdown_up.png'
+        document.getElementById('addTaskImgDropdownContacts').src = '../../img/dropdown_up.png'
     };
 }
 
@@ -179,6 +182,52 @@ function getIndexByIdFromContacts(id) {
     return -1;
 }
 
+// ****************
+// CATEGORIES
+
+function initCategories() {
+    renderCategoryList();
+}
+
+function showCategoryList() {
+    if (isCategoryDropdownActive) {
+        isCategoryDropdownActive = false;
+        document.getElementById('addTaskListCategoriesContainer').classList.add('d-none');
+        document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_down.png'
+    } else {
+        isCategoryDropdownActive = true;
+        document.getElementById('addTaskListCategoriesContainer').classList.remove('d-none');
+        document.getElementById('addTaskImgDropdownCategory').src = '../../img/dropdown_up.png'
+    };
+}
+
+function renderCategoryList() {
+    let selectCategoryList = document.getElementById('addTaskListCategories');
+    selectCategoryList.innerHTML = '';
+    for (let i = 0; i < categories.length; i++) {
+        let name = categories[i].name;
+        let color = categories[i].color;
+        selectCategoryList.innerHTML += `
+            <li id="selectCategoryLi-${i}" onclick="selectCategory('${i}'); return false">
+                <div class="category-color-and-name">
+                    <div class="category_color" style="background-color: ${color}"></div>
+                    <span>${name}</span>
+                </div>
+            </li>
+        `;
+    };
+}
+
+function selectCategory(i) {
+    category = i;
+    let addTaskCategory = document.getElementById('addTaskCategory');
+    addTaskCategory.innerHTML = '';
+    
+}
+
+// ****************
+// SUBTASKS
+
 function addSubtask() {
     let subtask = [];
     let subtaskName = document.getElementById('addTaskSubtaskInput').value;
@@ -214,7 +263,7 @@ function renderSubtaskList() {
             <div class="subtask" id="subtask-${i}">
                 <div>
                     <input type="checkbox" id="subtask-checkbox-${i}" ${checked}>
-                    <label>${subtaskName}</label>
+                    <span>${subtaskName}</span>
                 </div>
                 <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
             </div>
