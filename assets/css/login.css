@@ -106,18 +106,6 @@
     color: #D1D1D1;
 }
 
-.login-main input[type=email] {
-    background-image: url(/img/login-mail.png);
-    background-size: 24px;
-    background-position: 370px center;
-}
-
-.login-main input[type=password] {
-    background-image: url(/img/login-lock.png);
-    background-size: 18px 24px;
-    background-position: 374px center;
-}
-
 .login-main input::placeholder {
     color: #D1D1D1;
 }
@@ -422,17 +410,29 @@
 }
 
 /******************Guest-Login-CSS*********************/
+/*******************JS Based CSS***********************/
 
 #msgBox {
-    position: relative;
-    background-color: var(--text-white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04) !important;
-    border-radius: 30px !important;
-    width: auto;
-    padding: 48px 88px;
+    position: absolute;
+    left: 37%;
+    top: -100px;
+    z-index: 1;
+    color: #FFFFFF;
+    background-color: #29ABE2;
+    border-radius: 30px;
+    padding: 30px 78px;
+    font-size: 20px;
+}
+
+/* CSS für die Einblendungsanimation */
+.slide-in {
+    transform: translateY(850px);
+    transition: transform 0.5s ease-in-out;
+}
+
+/* CSS für die Ausblendungsanimation */
+.slide-out {
+    transform: translateY(-850px);
+    transition: transform 0.5s ease-in-out;
+    transition-delay: 1s; /* Ein 1-sekündiges Delay hinzufügen */
 }

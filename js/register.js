@@ -17,7 +17,7 @@ async function register() {
     await setItem('users', JSON.stringify(users));
     resetForm();
     // Redirect to the login page with a success message.
-    window.location.href = 'login.html?msg=Registration successful';
+    window.location.href = 'login.html?msg=Registration successful!';
 }
 
 /**

@@ -32,8 +32,15 @@
 
 
                 <form onsubmit="login();return false;" class="input-fields">
-                    <input id="email" type="email" placeholder="Email" required>
-                    <input id="password" type="password" placeholder="Password" required>
+                    <div class="imgPos">
+                        <input id="email" type="email" placeholder="Email" required>
+                        <img src="/img/login-mail.png" alt="">
+                    </div>
+                    <div class="imgPos">
+                        <input id="password" type="password" placeholder="Password" required>
+                        <img onclick="togglePasswordVisibility('password')" class="crsptr" src="/img/login-lock.png"
+                            alt="">
+                    </div>
                     <div class="remember-container">
                         <input type="checkbox" class="custom-checkbox" id="customRememberMe">
                         <label for="customRememberMe" class="custom-checkbox-label"><img
@@ -43,7 +50,8 @@
                     </div>
                     <div class="login-buttons">
                         <button class="login-button btnsld">Log in</button>
-                        <button onclick="guestLogin()" type="button" class="guest-login-button btnclr">Guest Log in</button>
+                        <button onclick="guestLogin()" type="button" class="guest-login-button btnclr">Guest Log
+                            in</button>
                     </div>
                 </form>
 
@@ -63,30 +71,6 @@
         </div>
         <div id="msgBox"></div>
     </section>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const loginLogo = document.getElementById("login-logo");
-            const loginMainContainer = document.getElementById("login-maincontainer");
-            const loginNav = document.getElementById("login-nav");
-
-            setTimeout(() => {
-                loginLogo.classList.add("move-to-top-left");
-            }, 300);
-            setTimeout(() => {
-                loginMainContainer.classList.add('blend-in');
-                loginNav.classList.add('blend-in');
-            }, 400);
-        });
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const msg = urlParams.get('msg');
-
-        if (msg) {
-            msgBox.innerHTML = msg;
-        } else {
-            msgBox.classList.add('d-none');
-        }
-    </script>
 </body>
 
 </html>
