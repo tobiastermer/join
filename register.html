@@ -41,14 +41,14 @@
                         <img src="/img/login-mail.png" alt="">
                     </div>
                     <div class="imgPos">
-                        <input id="password" oninput="togglePasswordEye()" required type="password"
+                        <input id="password" required type="password"
                             placeholder="Password" minlength="4">
-                        <img onclick="togglePasswordVisibility('password')" class="crsptr" src="/img/login-lock.png" alt="">
+                        <img onclick="togglePasswordVisibility('password', 'passwordToggle')" id="passwordToggle" class="crsptr" src="/img/login-lock.png" alt="">
                     </div>
                     <div class="imgPos">
-                        <input id="PWconfirm" oninput="togglePasswordEye()" required type="password"
+                        <input id="PWconfirm" required type="password"
                             placeholder="Confirm Password" minlength="4">
-                        <img onclick="togglePasswordVisibility('PWconfirm')" class="crsptr" src="/img/login-lock.png" alt="">
+                        <img onclick="togglePasswordVisibility('PWconfirm', 'confirmToggle')" id="confirmToggle" class="crsptr" src="/img/login-lock.png" alt="">
                     </div>
 
                     <!--Checkbox  -->

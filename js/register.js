@@ -8,6 +8,8 @@ const msg = urlParams.get('msg');
 async function initRegister() {
     loadUsers();
     validatePassword();
+    setPasswordVisibilityListener('password', 'passwordToggle');
+    setPasswordVisibilityListener('PWconfirm', 'confirmToggle');
     loadMsgBox();
 }
 
@@ -69,37 +71,44 @@ function validatePassword() {
 // Visual Functions ///////////////////////////////////////////////////////
 
 /**
- * Toggles the visibility of the password.
+ * Toggles the visibility of a password field and updates the associated icon.
+ * @param {string} fieldId - The ID of the password field to toggle.
+ * @param {string} imgId - The ID of the associated icon to update.
  */
-function togglePasswordEye() {
-    let password = document.getElementById('password');
-    let PWconfirm = document.getElementById('PWconfirm');
+function togglePasswordVisibility(fieldId, imgId) {
+    let passwordField = document.getElementById(fieldId);
+    let eyeIcon = document.getElementById(imgId);
 
-    if (password.value) {
-        password.src = '/img/register-visibility_off.png';
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        eyeIcon.src = '/img/register-visibility.png'; // Change the icon to "visibility.png"
     } else {
-        password.src = '/img/login-lock.png';
-    }
-
-    if (PWconfirm.value) {
-        PWconfirm.src = '/img/register-visibility_off.png';
-    } else {
-        PWconfirm.src = '/img/login-lock.png';
+        passwordField.type = 'password';
+        if (passwordField.value) {
+            eyeIcon.src = '/img/register-visibility_off.png'; // Change the icon to "visibility-off.png"
+        } else {
+            eyeIcon.src = '/img/login-lock.png'; // Change the icon to "lock.png"
+        }
     }
 }
 
 /**
- * Toggles the visibility of a password field.
- * @param {string} fieldId - The ID of the password field to toggle.
+ * Initializes the password visibility toggle listener to update the icon based on user input.
  */
-function togglePasswordVisibility(fieldId) {
-    let passwordField = document.getElementById(fieldId);
-
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-    } else {
-        passwordField.type = 'password';
-    }
+function setPasswordVisibilityListener(fieldId, imgId) {
+    // Monitor the input field for changes
+    document.getElementById(fieldId).addEventListener('input', function() {
+        let passwordField = document.getElementById(fieldId);
+        let eyeIcon = document.getElementById(imgId);
+        
+        if (passwordField.type === 'password' && passwordField.value) {
+            eyeIcon.src = '/img/register-visibility_off.png';
+        } else if (passwordField.type === 'password' || 'text' && !passwordField.value) {
+            eyeIcon.src = '/img/login-lock.png';
+        } else if (passwordField.type === 'text' && passwordField.value) {
+            eyeIcon.src = '/img/register-visibility.png';
+        }
+    });
 }
 
 function loadMsgBox() {
