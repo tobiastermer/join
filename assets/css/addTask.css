@@ -14,17 +14,17 @@ body {
 
 /* Chrome, Edge, and Safari */
 body::-webkit-scrollbar,
-.big_contact::-webkit-scrollbar {
+.form-list ul::-webkit-scrollbar {
     width: 13px;
 }
 
 body::-webkit-scrollbar-track,
-.big_contact::-webkit-scrollbar-track {
+.form-list ul::-webkit-scrollbar-track {
     background: #ffffff;
 }
 
 body::-webkit-scrollbar-thumb,
-.big_contact::-webkit-scrollbar-thumb {
+.form-list ul::-webkit-scrollbar-thumb {
     background-color: #a8a8a8;
     border-radius: 8px;
     border: 3px solid #ffffff;
