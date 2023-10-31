@@ -20,26 +20,17 @@
             </div>
             <div class="form-column-child">
                 <label>Assigned to</label>
-                <!-- <select multiple id="addTaskSelectContacts">
-                    <option value="" disabled selected>Select contacts to assign</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                </select> -->
+                <!-- wird dynamisch gefüllt -->
                 <div class="form-input-with-img" onclick="toggleContactList(); return false">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
                     <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png" alt="">
                 </div>
                 <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
                     <ul id="addTaskListContacts">
-                        <!-- <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
-                            <div class="contact-initials-and-name">
-                                <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                                <span>${name}</span>
-                            </div>
-                            <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
-                        </li> -->
+                        <!-- wird dynamisch gefüllt -->
                     </ul>
-                    <button class="btn btn-primary btn-text-with-icon width-100" onclick="showAddContactOverlay(); return false">
+                    <button class="btn btn-primary btn-text-with-icon width-100"
+                        onclick="showAddContactOverlay(); return false">
                         <span>Add new contact</span>
                         <img src="../../img/person_add.png" alt="">
                     </button>
@@ -74,28 +65,16 @@
 
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-
                 <div class="form-input-with-img" onclick="toggleCategoryList(); return false">
                     <div type="text" id="addTaskCategory" placeholder="Select task category">Select task category</div>
                     <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png" alt="">
                 </div>
-
                 <div class="form-list form-list-selection d-none" id="addTaskListCategoriesContainer">
                     <ul id="addTaskListCategories">
-                        <!-- <li id="selectContactLi-${id}" onclick="selectContact(${id}); return false">
-                            <div class="contact-initials-and-name">
-                                <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                                <span>${name}</span>
-                            </div>
-                            <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
-                        </li> -->
+                        <!-- wird dynamisch gefüllt -->
                     </ul>
                 </div>
-
             </div>
-
-
-
 
             <div class="form-column-child">
                 <label>Subtasks</label>
@@ -105,13 +84,7 @@
                         alt="">
                 </div>
                 <div class="form-list" id="addTaskSubtaskList" style="margin-top: 16px">
-                    <!-- <div class="subtask">
-                        <div>
-                            <input type="checkbox" value="Subtask-1" checked>
-                            <label>Subtask1</label>
-                        </div>
-                        <img src="../../img/delete.png" alt="" onclick="deleteSubtask(id); return false">
-                    </div> -->
+                    <!-- wird dynamisch gefüllt -->
                 </div>
             </div>
         </div>
@@ -174,7 +147,3 @@
 <div class="successmessage" id="successmessage">Contact succesfully created</div>
 <div class="error_message" id="error_message">error</div>
 <div class="overlay_background" id="overlayBackground"></div>
-
-
-<!-- Wichtig, beim initialisieren deiner seite sollte: initAddContactOverlay() ausgeführt werden
-um dann das Overlay öffnen zu lassen musst du: showAddContactOverlay() ausführen -->

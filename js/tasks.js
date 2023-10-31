@@ -437,6 +437,22 @@ function addSubtask() {
     }
     document.getElementById('addTaskSubtaskInput').value = '';
 }
+// function addSubtask(ev) {
+//     const input = document.getElementById("subtasks-input");
+//     if (ev.type === "keypress" && ev.key === "Enter") {
+//       ev.preventDefault();
+//     }
+//     if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
+//       subtasks.push({ text: input.value, status: "todo" });
+//       input.value = "";
+//       input.focus();
+//       if (ev.type === 'click') {
+//         toggleSubtaskIcons();
+//       }
+//       renderSubtasksInForm();
+//     }
+//   }
+
 
 /**
  * Deletes subtask from array and list.
