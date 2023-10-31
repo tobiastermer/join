@@ -28,6 +28,12 @@ async function loadUsers() {
  * Registers a user.
  */
 async function register() {
+    validatePassword(); // Führen Sie die Validierung durch
+    const errorElement = document.getElementById("passwordMismatchError");
+
+    if (errorElement.textContent) {
+        return; // Beenden Sie die Registrierung, wenn ein Fehler vorliegt
+    }
     registerBtn.disabled = true;
     users.push({
         userName: userName.value,
@@ -57,16 +63,19 @@ function resetForm() {
  * Validates password equality.
  */
 function validatePassword() {
-    let password = document.getElementById("password");
-    let PWconfirm = document.getElementById("PWconfirm");
-    password.onchange = validatePassword;
-    PWconfirm.onkeyup = validatePassword;
+    const password = document.getElementById("password");
+    const PWconfirm = document.getElementById("PWconfirm");
+    const errorElement = document.getElementById("passwordMismatchError");
+
     if (password.value !== PWconfirm.value) {
-        PWconfirm.setCustomValidity("Passwörter stimmen nicht überein!");
+        errorElement.textContent = "Ups! your password don’t match";
+        PWconfirm.classList.add("error-border");
     } else {
-        PWconfirm.setCustomValidity('');
+        errorElement.textContent = "";
+        PWconfirm.classList.remove("error-border");
     }
 }
+
 
 // Visual Functions ///////////////////////////////////////////////////////
 

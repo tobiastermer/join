@@ -41,15 +41,19 @@
                         <img src="/img/login-mail.png" alt="">
                     </div>
                     <div class="imgPos">
-                        <input id="password" required type="password"
-                            placeholder="Password" minlength="4">
-                        <img onclick="togglePasswordVisibility('password', 'passwordToggle')" id="passwordToggle" class="crsptr" src="/img/login-lock.png" alt="">
+                        <input id="password" required type="password" placeholder="Password" minlength="4">
+                        <img onclick="togglePasswordVisibility('password', 'passwordToggle')" id="passwordToggle"
+                            class="crsptr" src="/img/login-lock.png" alt="">
                     </div>
-                    <div class="imgPos">
-                        <input id="PWconfirm" required type="password"
-                            placeholder="Confirm Password" minlength="4">
-                        <img onclick="togglePasswordVisibility('PWconfirm', 'confirmToggle')" id="confirmToggle" class="crsptr" src="/img/login-lock.png" alt="">
+                    <div class="Error-Container">
+                        <div class="imgPos">
+                            <input id="PWconfirm" required type="password" placeholder="Confirm Password" minlength="4">
+                            <img onclick="togglePasswordVisibility('PWconfirm', 'confirmToggle')" id="confirmToggle"
+                                class="crsptr" src="/img/login-lock.png" alt="">
+                        </div>
+                        <div id="passwordMismatchError" class="error-message"></div>
                     </div>
+
 
                     <!--Checkbox  -->
                     <div class="CheckPos">
@@ -81,4 +85,5 @@
     </section>
     <div id="msgBox"></div>
 </body>
+
 </html>
