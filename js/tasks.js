@@ -290,7 +290,7 @@ async function addContactExtra() {
     await setItem("contacts", JSON.stringify(contacts));
     renderContactList();
     hideAddContactOverlay();
-    showSuccessMessage();
+    showSuccessMessage('Contact succesfully created');
 }
 
 // ****************
@@ -501,11 +501,22 @@ function updateSubtasksCheckedStatus() {
  * Coordinates creating a new task and stores it to storage.
  */
 async function addNewTask() {
-    checkAddTask(); // noch mit Leben füllen / Plausis ergänzen
-    updateSubtasksCheckedStatus();
-    pushNewTaskToArray();
-    await saveTasks();
-    resetAddTask();
+    // Deaktiviere den Button zu Beginn der Funktion
+    const createTaskButton = document.querySelector('.btn-primary[type="submit"]');
+    createTaskButton.disabled = true;
+
+    try {
+        checkAddTask();
+        updateSubtasksCheckedStatus();
+        pushNewTaskToArray();
+        await saveTasks();
+        showSuccessMessage('Task succesfully created');
+        resetAddTask();
+    } catch (error) {
+        console.error("Ein Fehler ist aufgetreten:", error);
+        // Aktiviere den Button wieder, falls ein Fehler aufgetreten ist
+        createTaskButton.disabled = false;
+    }
 }
 
 async function saveTasks() {
@@ -557,11 +568,11 @@ function resetAddTask() {
     document.getElementById('addTaskDescription').value = '';
     document.getElementById('addTaskDueDate').value = '';
     document.getElementById('addTaskCategory').value = '';
-    
+
     // Reset Variables and colors
     resetPrio();
     resetDisplayCategory();
-    
+
     // Clear Lists and Dropdowns
     hideContactList();
     hideCategoryList();

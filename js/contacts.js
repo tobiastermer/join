@@ -151,7 +151,7 @@ async function addContact() {
   displayContacts();
   hideAddContactOverlay();
   init();
-  showSuccessMessage();
+  showSuccessMessage('Contact succesfully created');
 }
 
 /**
@@ -286,7 +286,7 @@ function saveContact() {
   displayContacts(selectedContactIndex);
   showContactInfo(selectedContactIndex);
   hideEditContactOverlay();
-  showSuccessMessage();
+  showSuccessMessage('Contact succesfully edited');
 }
 
 /**
@@ -385,26 +385,6 @@ function setButtonActive(contactIndex) {
     let activeContact = document.getElementById(`contact${contactIndex}`);
     activeContact.classList.add("contact_active");
   }
-}
-
-/**
- * Show the success message when successfully created or edited contact
- */
-function showSuccessMessage() {
-  let successMessage = document.getElementById("successmessage");
-
-  successMessage.style.opacity = 0;
-  successMessage.style.display = "flex";
-  setTimeout(() => {
-    successMessage.style.opacity = 1;
-  }, 100);
-
-  setTimeout(() => {
-    successMessage.style.opacity = 0;
-    setTimeout(() => {
-      successMessage.style.display = "none";
-    }, 1000);
-  }, 3000);
 }
 
 /* HTML TEMPLATES */
