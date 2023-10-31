@@ -12,17 +12,19 @@
         <div class="form-column">
             <div class="form-column-child">
                 <label>Title<p>*</p></label>
-                <input required type="text" id="addTaskTitle" placeholder="Enter a Title">
+                <input required type="text" id="addTaskTitle" placeholder="Enter a Title" autocomplete="off">
             </div>
             <div class="form-column-child">
                 <label>Description</label>
-                <textarea name="" id="addTaskDescription" placeholder="Enter a Description"></textarea>
+                <textarea name="" id="addTaskDescription" placeholder="Enter a Description"
+                    autocomplete="off"></textarea>
             </div>
             <div class="form-column-child">
                 <label>Assigned to</label>
                 <!-- wird dynamisch gefüllt -->
                 <div class="form-input-with-img" onclick="toggleContactList(); return false">
-                    <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign">
+                    <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign"
+                        autocomplete="off">
                     <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png" alt="">
                 </div>
                 <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
@@ -43,7 +45,7 @@
         <div class="form-column">
             <div class="form-column-child">
                 <label>Due date<p>*</p></label>
-                <input required type="date" id="addTaskDueDate">
+                <input required type="date" id="addTaskDueDate" autocomplete="off">
             </div>
             <div class="form-column-child">
                 <label>Prio<p>*</p></label>
@@ -79,7 +81,7 @@
             <div class="form-column-child">
                 <label>Subtasks</label>
                 <div class="form-input-with-img">
-                    <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask">
+                    <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask" autocomplete="off">
                     <img id="addTaskImgDropdownSubtask" src="../../img/add.png" onclick="addSubtask(); return false"
                         alt="">
                 </div>
