@@ -21,7 +21,7 @@ async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
         // Verbesserter code
-        if (res.data) { 
+        if (res.data) {
             return res.data.value;
         } throw `Could not find data with key "${key}".`;
     });
@@ -57,4 +57,24 @@ function displayUserName() {
         console.log('User name nicht gefunden');
     }
 }
+
+async function hideMenuIfNotActiveUser() {
+    // Überprüfe, ob die includeHTML-Funktion existiert, bevor du sie aufrufst.
+    if (typeof includeHTML === 'function') {
+        await includeHTML();
+        await includeHTML();
+    } else {
+        return;
+    }
+
+    // Jetzt kannst du den restlichen Code ausführen.
+    let dnMenu = document.getElementById("menu");
+    if (activUser.name == '') {
+        dnMenu.style.display = 'none';
+    }
+}
+
+// Rufe die Funktion auf, um das gewünschte Verhalten auszulösen.
+hideMenuIfNotActiveUser();
+
 
