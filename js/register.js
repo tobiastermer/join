@@ -1,7 +1,3 @@
-// msgBox for success registration message
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-
 /**
  * Initializes the user information and checks if already registered.
  */
@@ -55,8 +51,11 @@ async function register() {
     await setItem('users', JSON.stringify(users));
     resetForm();
 
-    // Redirect to the login page with a success message.
-    window.location.href = 'login.html?msg=Registration successful!';
+    window.location.href = 'register.html?msg=You Signed Up successfully';
+    // Delay the redirection to the login page after showing the success message
+    setTimeout(function () {
+        window.location.href = 'login.html';
+    }, 2000); // Adjust the delay time as needed
 }
 
 
@@ -68,8 +67,13 @@ function resetForm() {
     email.value = '';
     password.value = '';
     PWconfirm.value = '';
-    registerBtn.disabled = false;
+
+    // Add a delay before re-enabling the button
+    setTimeout(function () {
+        registerBtn.disabled = false;
+    }, 2000); // Adjust the delay time as needed
 }
+
 
 // Password Validation
 
@@ -120,10 +124,10 @@ function togglePasswordVisibility(fieldId, imgId) {
  */
 function setPasswordVisibilityListener(fieldId, imgId) {
     // Monitor the input field for changes
-    document.getElementById(fieldId).addEventListener('input', function() {
+    document.getElementById(fieldId).addEventListener('input', function () {
         let passwordField = document.getElementById(fieldId);
         let eyeIcon = document.getElementById(imgId);
-        
+
         if (passwordField.type === 'password' && passwordField.value) {
             eyeIcon.src = '/img/register-visibility_off.png';
         } else if (passwordField.type === 'password' || 'text' && !passwordField.value) {
@@ -135,19 +139,23 @@ function setPasswordVisibilityListener(fieldId, imgId) {
 }
 
 function loadMsgBox() {
+    // msgBox for success registration message
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
     const msgBox = document.getElementById('msgBox');
-    const loginBody = document.getElementById('login-body');
+    const overlay = document.getElementById('login-body');
 
     if (msg) {
         msgBox.innerHTML = msg;
-        loginBody.classList.add('overlay');
+        overlay.classList.add('active'); // Activate the overlay
         msgBox.classList.remove('d-none');
         msgBox.classList.add('slide-in');
-            // Nach weiteren 1 Sekunde zur Login-Seite weiterleiten
-            setTimeout(function () {
-                window.location.href = 'login.html';
-            }, 2500);
+        // Nach weiteren 1 Sekunde zur Login-Seite weiterleiten
+        setTimeout(function () {
+            window.location.href = 'login.html';
+        }, 1000);
     } else {
         msgBox.classList.add('d-none');
     }
 }
+

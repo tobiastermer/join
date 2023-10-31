@@ -418,12 +418,12 @@
     transform: translate(-50%, -50%);
     z-index: 2;
     color: #FFFFFF;
-    background-color: #29ABE2;
-    border-radius: 30px;
-    padding: 30px 78px;
+    background-color: #2A3647;
+    border-radius: 20px;
+    padding: 20px 30px;
     font-size: 20px;
     opacity: 0; /* Hinzugefügt, um die Meldung zu Beginn auszublenden */
-    transition: 0.5s ease-in-out;
+    transition: 250ms ease-in-out;
 }
 
 /* CSS für die Einblendungsanimation */
@@ -432,7 +432,7 @@
     top: 50% !important;
     transform: translate(-50%, -50%);
     opacity: 1 !important;
-    transition: 0.5s ease-in-out;
+    transition: 0.1s ease-in-out;
 }
 
 
@@ -452,13 +452,21 @@
     min-height: 70px;
 }
 
-.overlay {
+.overlay::before {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5) ; /* Hintergrundfarbe für das Overlay mit Transparenz */
-    z-index: 4;
+    background: rgba(0, 0, 0, 0.2); /* Hintergrundfarbe für das Overlay mit Transparenz */
+    z-index: 1;
+    opacity: 0; /* Set the initial opacity to 0 */
+    pointer-events: none; /* Prevent clicks on the overlay */
     transition: 0.5s ease-in-out;
+}
+
+.overlay.active::before {
+    opacity: 1; /* Set opacity to 1 when active */
+    pointer-events: auto; /* Enable clicks on the overlay */
 }
