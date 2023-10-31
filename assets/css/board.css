@@ -222,6 +222,6 @@
 }
 
 .drag-highlight {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(148, 148, 148, 0.1);
     border: 1px dotted black;
 }
