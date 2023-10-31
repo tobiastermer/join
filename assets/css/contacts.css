@@ -4,6 +4,28 @@ body {
     overflow: hidden;
 }
 
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .contacts::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  .contacts:-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  .contacts::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+  }
+
 /* Style for the main contact section */
 .main_contact {
     display: flex;
@@ -39,6 +61,9 @@ body {
     background-color: white;
     flex-direction: column;
     margin-right: 32px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-shrink: 0;
 }
 
 /* Style for individual contact sections */
@@ -683,6 +708,8 @@ body {
         align-items: center;
         padding-top: 80px;
     }
+
+
 
     /* Remove left padding for individual contact parts */
     .contact_part {
