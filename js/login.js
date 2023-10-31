@@ -9,6 +9,19 @@ async function initLogin() {
     loadUsers();
     initLogoAnimation();
     setPasswordVisibilityListener();
+    
+    // Check if remembered credentials are available in localStorage
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    const rememberedPassword = localStorage.getItem('rememberedPassword');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    
+    if (rememberedEmail && rememberedPassword) {
+        // If remembered credentials are available, fill in the form fields
+        emailInput.value = rememberedEmail;
+        passwordInput.value = rememberedPassword;
+        document.getElementById("customRememberMe").checked = true;
+    }
 }
 
 /**
@@ -24,7 +37,7 @@ async function loadUsers() {
 }
 
 /**
- * Logs in the user and stores the username in activUser.
+ * Logs in the user and stores the username and credentials in activUser.
  */
 function login() {
     const emailInput = document.getElementById('email');
@@ -37,18 +50,26 @@ function login() {
     if (user) {
         // Successful login
         activUser.name = user.userName; // Store the username in activUser
+        localStorage.setItem('activUser', JSON.stringify(activUser));// Store the activated user in localStorage
 
-        // Store the activated user in localStorage
-        localStorage.setItem('activUser', JSON.stringify(activUser));
+        if (document.getElementById("customRememberMe").checked) {
+            // If "Remember Me" is checked, store the login credentials in localStorage
+            localStorage.setItem('rememberedEmail', email);
+            localStorage.setItem('rememberedPassword', password);
+        } else {
+            // If "Remember Me" is not checked, clear any remembered credentials
+            localStorage.removeItem('rememberedEmail');
+            localStorage.removeItem('rememberedPassword');
+        }
 
         // Redirect to the board.html page
         window.location.href = 'summary.html';
     } else {
         // Login failed
-        passwordInput.classList.add('error-border');
-        errorElement.textContent = "Wrong password Ups! Try again.";
+        errorElement.textContent = "Wrong password. Please try again.";
     }
 }
+
 
 
 /**
