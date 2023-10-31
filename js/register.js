@@ -1,8 +1,26 @@
 // msgBox for success registration message
 const urlParams = new URLSearchParams(window.location.search);
 const msg = urlParams.get('msg');
-let password = document.getElementById("password");
-let PWconfirm = document.getElementById("PWconfirm");
+
+/**
+ * Initializes the user information and checks if already registered.
+ */
+async function initRegister() {
+    loadUsers();
+    validatePassword();
+    loadMsgBox();
+}
+
+/**
+ * Loads user data from storage.
+ */
+async function loadUsers() {
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch (e) {
+        console.error('Loading error:', e);
+    }
+}
 
 /**
  * Registers a user.
@@ -18,25 +36,6 @@ async function register() {
     resetForm();
     // Redirect to the login page with a success message.
     window.location.href = 'login.html?msg=Registration successful!';
-}
-
-/**
- * Initializes the user information and checks if already registered.
- */
-async function initRegister() {
-    loadUsers();
-    loadMsgBox();
-}
-
-/**
- * Loads user data from storage.
- */
-async function loadUsers() {
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch (e) {
-        console.error('Loading error:', e);
-    }
 }
 
 /**
@@ -56,6 +55,10 @@ function resetForm() {
  * Validates password equality.
  */
 function validatePassword() {
+    let password = document.getElementById("password");
+    let PWconfirm = document.getElementById("PWconfirm");
+    password.onchange = validatePassword;
+    PWconfirm.onkeyup = validatePassword;
     if (password.value !== PWconfirm.value) {
         PWconfirm.setCustomValidity("Passwörter stimmen nicht überein!");
     } else {
@@ -63,10 +66,7 @@ function validatePassword() {
     }
 }
 
-password.onchange = validatePassword;
-PWconfirm.onkeyup = validatePassword;
-
-// Visual Functions
+// Visual Functions ///////////////////////////////////////////////////////
 
 /**
  * Toggles the visibility of the password.

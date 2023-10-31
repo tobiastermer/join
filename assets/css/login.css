@@ -414,8 +414,9 @@
 
 #msgBox {
     position: absolute;
-    left: 37%;
-    top: -100px;
+    left: 50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     color: #FFFFFF;
     background-color: #29ABE2;
@@ -426,13 +427,14 @@
 
 /* CSS für die Einblendungsanimation */
 .slide-in {
-    transform: translateY(850px);
+    transform: translate(-50%, -50%) !important;
+    /* transform: translate(-50%, -1000px) !important; */
     transition: transform 0.5s ease-in-out;
 }
 
 /* CSS für die Ausblendungsanimation */
 .slide-out {
-    transform: translateY(-850px);
+    transform: translate(-50%, 1000px) !important;
     transition: transform 0.5s ease-in-out;
-    transition-delay: 1s; /* Ein 1-sekündiges Delay hinzufügen */
+    transition-delay: 0.1s; /* Ein 1-sekündiges Delay hinzufügen */
 }

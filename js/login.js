@@ -8,7 +8,6 @@ async function initLogin() {
     };
     loadUsers();
     initLogoAnimation();
-    // Initialize the password visibility toggle functionality
     setPasswordVisibilityListener();
 }
 
@@ -58,6 +57,8 @@ function guestLogin() {
     window.location.href = "./summary.html";
 }
 
+// Visual Functions ///////////////////////////////////////////////////////
+
 /**
  * Toggles the visibility of a password field and updates the associated icon.
  * @param {string} fieldId - The ID of the password field to toggle.
@@ -91,8 +92,10 @@ function setPasswordVisibilityListener() {
         
         if (passwordField.type === 'password' && passwordField.value) {
             eyeIcon.src = '/img/register-visibility_off.png';
-        } else if (passwordField.type === 'password' && !passwordField.value) {
+        } else if (passwordField.type === 'password' || 'text' && !passwordField.value) {
             eyeIcon.src = '/img/login-lock.png';
+        } else if (passwordField.type === 'text' && passwordField.value) {
+            eyeIcon.src = '/img/register-visibility.png';
         }
     });
 }
