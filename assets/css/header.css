@@ -36,9 +36,10 @@ header {
     background-color: white;
 }
 
-header img{
-    display:none;
+header img {
+    display: none;
 }
+
 .buttons_header {
     display: flex;
     align-items: center;
@@ -79,9 +80,10 @@ header img{
     color: #CDCDCD;
 }
 
-.menu_header a:hover{
+.menu_header a:hover {
     color: #ffffff;
 }
+
 .menu_header_container {
     width: auto;
     height: auto;
@@ -89,7 +91,7 @@ header img{
     top: 96px;
     position: absolute;
     z-index: 3;
-    display:none;
+    display: none;
 }
 
 
@@ -101,6 +103,7 @@ header img{
     padding-top: 85px;
     padding-left: 355px;
     padding-right: 73px;
+    padding-bottom: 85px;
 }
 
 /* Left side of Template */
@@ -203,22 +206,26 @@ a {
 
 
 /* Media Query */
-@media(max-width : 1000px){
+@media(max-width : 1000px) {
 
-.nav_bar{
-    width: 175px;
-}
+    .nav_bar {
+        width: 175px;
+    }
 
-.header_and_content{
-    padding-left: 174px;
-}
+    .header_and_content {
+        padding-left: 174px;
+    }
+
+    .main-content {
+        padding-left: 254px;
+    }
 
 }
 
 
 /* MOBILE VERSION 770PX */
 
-@media (max-width: 770px){
+@media (max-width: 770px) {
 
     .nav_bar {
         background-color: #2A3647;
@@ -237,84 +244,112 @@ a {
         position: fixed;
         z-index: 100;
         bottom: 0;
+    }
+
+    .main-content {
+        padding-left: 73px;
+        padding-bottom: 32px;
+        margin-bottom: 80px;
+        padding-top: 56px;
+    }
+
+    .header_logo {
+        display: none;
+    }
+
+    .menu {
+
+        padding-top: 0;
+        display: flex !important;
+        flex-direction: row !important;
+        height: 80px !important;
+        width: 100vw !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+    }
+
+    .menu img {
+        width: 22px;
+        height: auto;
+
+    }
+
+    .contacs,
+    .summary,
+    .add_tasks,
+    .board {
+        gap: 0px;
+        margin-top: 0px;
+        width: 76px;
+        padding-left: 0;
+        height: 76px;
+    }
+
+    .contacs:hover,
+    .summary:hover,
+    .add_tasks:hover,
+    .board:hover {
+        border-radius: 16px;
+        background-color: #091931;
+    }
+
+
+    .contacs a,
+    .summary a,
+    .add_tasks a,
+    .board a {
+        flex-direction: column;
+        font-size: 14px;
+        gap: 0px;
+
+    }
+
+    .legal {
+        display: none;
+    }
+
+
+    .header_and_content {
+        padding-left: 0;
+    }
+
+    header {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 80px;
+        box-sizing: border-box;
+    }
+
+    .question_mark {
+        display: none;
+        margin-left: 0px;
+    }
+
+    .profile_tag {
+        height: 40px;
+        width: 40px;
+    }
+
+    header span {
+        display: none;
+        ;
+    }
+
+    header img {
+        display: flex;
+        width: 32px;
+        height: auto;
+    }
+
 }
 
-.header_logo{
-    display: none;
-}
+/* MOBILE VERSION 480PX */
 
-.menu{
+@media (max-width: 480px) {
 
-    padding-top: 0;
-    display: flex !important;
-    flex-direction: row !important;
-    height: 80px !important;
-    width: 100vw !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-}
-
-.menu img{
-    width: 22px;
-    height: auto;
-
-}
-
-.contacs, .summary, .add_tasks, .board {
-    gap: 0px;
-    margin-top: 0px;
-    width: 76px;
-    padding-left: 0;
-    height: 76px;
-}
-
-.contacs:hover, .summary:hover, .add_tasks:hover, .board:hover {
-border-radius: 16px;
-background-color: #091931;
-}
-
-
-.contacs a, .summary a, .add_tasks a, .board a {
-    flex-direction: column;
-    font-size: 14px;
-    gap: 0px;
-
-}
-
-.legal{
-    display:none;
-}
-
-
-.header_and_content{
-    padding-left: 0;
-}
-
-header{
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 80px;
-    box-sizing: border-box;
-}
-
-.question_mark{
-    display:none;
-    margin-left: 0px;
-}
-
-.profile_tag{
-    height: 40px;
-    width: 40px;
-}
-
-header span{
-    display: none;;
-}
-
-header img{
-    display: flex;
-    width: 32px;
-    height: auto;
-}
+    .main-content {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
 
 }

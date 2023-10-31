@@ -1,3 +1,38 @@
+/* General styling for the entire page */
+
+body {
+    font-family: 'Inter';
+    overflow: auto !important;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+body::-webkit-scrollbar,
+.big_contact::-webkit-scrollbar {
+    width: 13px;
+}
+
+body::-webkit-scrollbar-track,
+.big_contact::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+body::-webkit-scrollbar-thumb,
+.big_contact::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+}
+
+
+
+
 .addTask-header {
     margin-bottom: 32px;
     display: flex;
@@ -137,18 +172,17 @@ select {
 }
 
 .form-prio-child {
-    width: 136px;
+    min-width: 114px;
+    width: 100%;
     padding: 16px 10px 16px 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
     background-color: white;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     font-size: 20px;
-    padding: 12px 16px 12px 16px;
-    display: flex;
-    align-items: center;
 }
 
 .form-prio-child:hover {
@@ -312,4 +346,88 @@ select {
 
 .addTask-include {
     padding: 32px 80px 32px 80px;
+}
+
+
+/* Media Query */
+
+@media(max-width: 1360px) {
+    .form-upper-half {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .addTask-body form {
+        gap: 32px;
+        width: 100%;
+    }
+
+    .form-column {
+        width: 100%;
+        gap: 20px;
+    }
+
+    .contact-initials-and-name {
+        height: unset;
+    }
+
+    .form-line {
+        display: none;
+    }
+
+}
+
+
+/* MOBILE VERSION 600PX */
+
+@media (max-width: 600px) {
+
+    .form-prio-child {
+        min-width: unset;
+        padding: 16px 0px 16px 0px;
+        font-size: 16px;
+    }
+
+    .form-lower-half {
+        flex-direction: column;
+    }
+
+    .form-upper-half span,
+    label {
+        font-size: 16px;
+    }
+
+    .addTask-body input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
+
+    .form-input-with-img {
+        font-size: 16px;
+    }
+
+    .category_color {
+        font-size: 16px;
+    }
+}
+
+
+/* MOBILE VERSION 400PX */
+
+@media (max-width: 400px) {
+    .form-prio {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .form-lower-half {
+        gap: 8px;
+    }
 }

@@ -56,6 +56,10 @@
     height: 24px;
 }
 
+.btn-text-with-icon span {
+    text-wrap: nowrap;
+}
+
 .width-100 {
     width: 100%;
 }
@@ -91,4 +95,20 @@
     box-shadow: 0px 0px 4px 0px #00000026;
     transition: opacity 1s ease-in-out;
     z-index: 9999;
+}
+
+/* MOBILE VERSION 600PX */
+
+@media (max-width: 600px) {
+    .main-content h1 {
+        font-size: 47px;
+    }
+}
+
+/* MOBILE VERSION 400PX */
+
+@media (max-width: 400px) {
+    .btn {
+        width: 100%;
+    }
 }
