@@ -34,17 +34,31 @@ async function register() {
     if (errorElement.textContent) {
         return; // Beenden Sie die Registrierung, wenn ein Fehler vorliegt
     }
+
+    const newUserName = userName.value;
+    const existingUser = users.find((user) => user.userName === newUserName);
+
+    if (existingUser) {
+        // Display an error message if the user is already registered.
+        errorElement.textContent = "User already registered";
+        return;
+    }
+
     registerBtn.disabled = true;
+
     users.push({
-        userName: userName.value,
+        userName: newUserName,
         email: email.value,
         password: password.value,
     });
+
     await setItem('users', JSON.stringify(users));
     resetForm();
+
     // Redirect to the login page with a success message.
     window.location.href = 'login.html?msg=Registration successful!';
 }
+
 
 /**
  * Resets the registration form after submission.
@@ -121,17 +135,18 @@ function setPasswordVisibilityListener(fieldId, imgId) {
 }
 
 function loadMsgBox() {
-    // msgBox for success registration message
     const msgBox = document.getElementById('msgBox');
+    const loginBody = document.getElementById('login-body');
 
     if (msg) {
         msgBox.innerHTML = msg;
-        // Add a CSS class to activate the slide-in animation
+        loginBody.classList.add('overlay');
+        msgBox.classList.remove('d-none');
         msgBox.classList.add('slide-in');
-        // Activate the slide-out animation after 1 second
-        setTimeout(() => {
-            msgBox.classList.add('slide-out');
-        }, 1000);
+            // Nach weiteren 1 Sekunde zur Login-Seite weiterleiten
+            setTimeout(function () {
+                window.location.href = 'login.html';
+            }, 2500);
     } else {
         msgBox.classList.add('d-none');
     }

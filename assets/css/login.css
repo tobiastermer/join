@@ -414,29 +414,27 @@
 #msgBox {
     position: absolute;
     left: 50%;
-    top: -50%;
+    top: 100%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 2;
     color: #FFFFFF;
     background-color: #29ABE2;
     border-radius: 30px;
     padding: 30px 78px;
     font-size: 20px;
+    opacity: 0; /* Hinzugefügt, um die Meldung zu Beginn auszublenden */
+    transition: 0.5s ease-in-out;
 }
 
 /* CSS für die Einblendungsanimation */
 .slide-in {
-    transform: translate(-50%, -50%) !important;
-    /* transform: translate(-50%, -1000px) !important; */
-    transition: transform 0.5s ease-in-out;
+    left: 50%;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    opacity: 1 !important;
+    transition: 0.5s ease-in-out;
 }
 
-/* CSS für die Ausblendungsanimation */
-.slide-out {
-    transform: translate(-50%, 1000px) !important;
-    transition: transform 0.5s ease-in-out;
-    transition-delay: 0.1s; /* Ein 1-sekündiges Delay hinzufügen */
-}
 
 .error-message {
     color: red;
@@ -454,3 +452,13 @@
     min-height: 70px;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5) ; /* Hintergrundfarbe für das Overlay mit Transparenz */
+    z-index: 4;
+    transition: 0.5s ease-in-out;
+}

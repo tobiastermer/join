@@ -32,6 +32,7 @@ function login() {
     const email = emailInput.value;
     const password = passwordInput.value;
     const user = users.find(u => u.email === email && u.password === password);
+    const errorElement = document.getElementById("passwordMismatchError");
 
     if (user) {
         // Successful login
@@ -44,9 +45,11 @@ function login() {
         window.location.href = 'summary.html';
     } else {
         // Login failed
-        console.log('Login failed');
+        passwordInput.classList.add('error-border');
+        errorElement.textContent = "Wrong password Ups! Try again.";
     }
 }
+
 
 /**
  * Logs in a user as a guest and fills default data arrays.

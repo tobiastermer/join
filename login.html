@@ -36,10 +36,13 @@
                         <input id="email" type="email" placeholder="Email" required>
                         <img src="/img/login-mail.png" alt="">
                     </div>
-                    <div class="imgPos">
-                        <input id="password" type="password" placeholder="Password" required>
-                        <img onclick="togglePasswordVisibility('password', 'passwordToggle')" class="crsptr" src="/img/login-lock.png"
-                            alt="" id="passwordToggle">
+                    <div class="Error-Container">
+                        <div class="imgPos">
+                            <input id="password" type="password" placeholder="Password" required>
+                            <img onclick="togglePasswordVisibility('password', 'passwordToggle')" class="crsptr"
+                                src="/img/login-lock.png" alt="" id="passwordToggle">
+                        </div>
+                        <div id="passwordMismatchError" class="error-message"></div>
                     </div>
                     <div class="remember-container">
                         <input type="checkbox" class="custom-checkbox" id="customRememberMe">
