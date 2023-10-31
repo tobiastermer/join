@@ -134,7 +134,7 @@ select {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0;
-    max-height: 100px;
+    max-height: 180px;
     overflow: auto;
 }
 

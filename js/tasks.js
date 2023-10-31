@@ -245,16 +245,21 @@ function setContactLiStyle(id, bgColor, textColor, imgSrc) {
  */
 function renderSelectedContacts() {
     let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
-    showContactsContainer.innerHTML = '';
-    for (i = 0; i < selectedContacts.length; i++) {
-        let id = selectedContacts[i];
-        let j = getIndexByIdFromContacts(id);
-        let initials = contacts[j].initials;
-        let color = contacts[j].color;
-        showContactsContainer.innerHTML += `
-            <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
-        `;
-    };
+    if(selectedContacts.length > 0) {
+        showContactsContainer.classList.remove('d-none');
+        showContactsContainer.innerHTML = '';
+        for (i = 0; i < selectedContacts.length; i++) {
+            let id = selectedContacts[i];
+            let j = getIndexByIdFromContacts(id);
+            let initials = contacts[j].initials;
+            let color = contacts[j].color;
+            showContactsContainer.innerHTML += `
+                <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
+            `;
+        };
+    } else {
+        showContactsContainer.classList.add('d-none');
+    };   
 }
 
 /**
@@ -468,27 +473,32 @@ function deleteSubtask(i) {
  */
 function renderSubtaskList() {
     let subtaskList = document.getElementById('addTaskSubtaskList');
-    updateSubtasksCheckedStatus();
-    subtaskList.innerHTML = '';
-    for (i = 0; i < selectedSubtasks.length; i++) {
-        let subtaskName = selectedSubtasks[i].name;
-        let subtaskDone = selectedSubtasks[i].done;
-        let checked = '';
-        if (subtaskDone) {
-            checked = 'checked';
-        } else {
-            checked = '';
-        }
-        subtaskList.innerHTML += `
-            <div class="subtask" id="subtask-${i}">
-                <div>
-                    <input type="checkbox" id="subtask-checkbox-${i}" ${checked}>
-                    <span>${subtaskName}</span>
+    if (selectedSubtasks.length > 0) {
+        updateSubtasksCheckedStatus();
+        subtaskList.classList.remove('d-none');
+        subtaskList.innerHTML = '';
+        for (i = 0; i < selectedSubtasks.length; i++) {
+            let subtaskName = selectedSubtasks[i].name;
+            let subtaskDone = selectedSubtasks[i].done;
+            let checked = '';
+            if (subtaskDone) {
+                checked = 'checked';
+            } else {
+                checked = '';
+            }
+            subtaskList.innerHTML += `
+                <div class="subtask" id="subtask-${i}">
+                    <div>
+                        <input type="checkbox" id="subtask-checkbox-${i}" ${checked}>
+                        <span>${subtaskName}</span>
+                    </div>
+                    <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
                 </div>
-                <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
-            </div>
-        `;
-    };
+            `;
+        };
+    } else {
+        subtaskList.classList.add('d-none');
+    };    
 }
 
 /**
