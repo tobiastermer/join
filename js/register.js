@@ -1,6 +1,6 @@
-/**
- * Array to store registered users.
- */
+// msgBox for success registration message
+const urlParams = new URLSearchParams(window.location.search);
+const msg = urlParams.get('msg');
 let password = document.getElementById("password");
 let PWconfirm = document.getElementById("PWconfirm");
 
@@ -25,6 +25,7 @@ async function register() {
  */
 async function initRegister() {
     loadUsers();
+    loadMsgBox();
 }
 
 /**
@@ -98,5 +99,22 @@ function togglePasswordVisibility(fieldId) {
         passwordField.type = 'text';
     } else {
         passwordField.type = 'password';
+    }
+}
+
+function loadMsgBox() {
+    // msgBox for success registration message
+    const msgBox = document.getElementById('msgBox');
+
+    if (msg) {
+        msgBox.innerHTML = msg;
+        // Add a CSS class to activate the slide-in animation
+        msgBox.classList.add('slide-in');
+        // Activate the slide-out animation after 1 second
+        setTimeout(() => {
+            msgBox.classList.add('slide-out');
+        }, 1000);
+    } else {
+        msgBox.classList.add('d-none');
     }
 }

@@ -1,44 +1,19 @@
-// msgBox for success registration message
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
-
+/**
+ * Initializes the login page.
+ * Loads user data, handles animations, and displays success messages.
+ */
 async function initLogin() {
     activUser = {
         'name': '',
     };
     loadUsers();
-
-    // Load logo animation
-    const loginLogo = document.getElementById("login-logo");
-    const loginMainContainer = document.getElementById("login-maincontainer");
-    const loginNav = document.getElementById("login-nav");
-
-    setTimeout(() => {
-        loginLogo.classList.add("move-to-top-left");
-    }, 300);
-    setTimeout(() => {
-        loginMainContainer.classList.add('blend-in');
-        loginNav.classList.add('blend-in');
-    }, 400);
-
-    // msgBox for success registration message
-    const msgBox = document.getElementById('msgBox');
-
-    if (msg) {
-        msgBox.innerHTML = msg;
-        // Fügen Sie eine CSS-Klasse hinzu, um die Einblendungsanimation zu aktivieren
-        msgBox.classList.add('slide-in');
-        // Nach 1 Sekunde die Ausblendungsanimation aktivieren
-        setTimeout(() => {
-            msgBox.classList.add('slide-out');
-        }, 1000);
-    } else {
-        msgBox.classList.add('d-none');
-    }
+    initLogoAnimation();
+    // Initialize the password visibility toggle functionality
+    setPasswordVisibilityListener();
 }
 
 /**
- * Loads user data to compare login data with data from the server.
+ * Loads user data from the server for login comparisons.
  * @async
  */
 async function loadUsers() {
@@ -84,15 +59,56 @@ function guestLogin() {
 }
 
 /**
- * Toggles the visibility of a password field.
+ * Toggles the visibility of a password field and updates the associated icon.
  * @param {string} fieldId - The ID of the password field to toggle.
+ * @param {string} imgId - The ID of the associated icon to update.
  */
-function togglePasswordVisibility(fieldId) {
+function togglePasswordVisibility(fieldId, imgId) {
     let passwordField = document.getElementById(fieldId);
+    let eyeIcon = document.getElementById(imgId);
 
     if (passwordField.type === 'password') {
         passwordField.type = 'text';
+        eyeIcon.src = '/img/register-visibility.png'; // Change the icon to "visibility.png"
     } else {
         passwordField.type = 'password';
+        if (passwordField.value) {
+            eyeIcon.src = '/img/register-visibility_off.png'; // Change the icon to "visibility-off.png"
+        } else {
+            eyeIcon.src = '/img/login-lock.png'; // Change the icon to "lock.png"
+        }
     }
+}
+
+/**
+ * Initializes the password visibility toggle listener to update the icon based on user input.
+ */
+function setPasswordVisibilityListener() {
+    // Monitor the input field for changes
+    document.getElementById('password').addEventListener('input', function() {
+        let passwordField = document.getElementById('password');
+        let eyeIcon = document.getElementById('passwordToggle');
+        
+        if (passwordField.type === 'password' && passwordField.value) {
+            eyeIcon.src = '/img/register-visibility_off.png';
+        } else if (passwordField.type === 'password' && !passwordField.value) {
+            eyeIcon.src = '/img/login-lock.png';
+        }
+    });
+}
+
+function initLogoAnimation(){
+        // Load logo animation
+        const loginLogo = document.getElementById("login-logo");
+        const loginMainContainer = document.getElementById("login-maincontainer");
+        const loginNav = document.getElementById("login-nav");
+    
+        // Apply logo animation with a delay
+        setTimeout(() => {
+            loginLogo.classList.add("move-to-top-left");
+        }, 300);
+        setTimeout(() => {
+            loginMainContainer.classList.add('blend-in');
+            loginNav.classList.add('blend-in');
+        }, 400);
 }
