@@ -58,7 +58,7 @@
 
 .board-main-section {
     display: flex;
-    gap: 12px;
+    gap: 26px;
     width: 1104px;
 }
 
@@ -67,8 +67,17 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 16px;
     border-radius: 10px;
+}
+
+.board-column-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 10px;
+    height: 100%;
+    padding-bottom: 48px;
 }
 
 .board-column-header {

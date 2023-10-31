@@ -57,9 +57,7 @@ function createColumns() {
 
     for (i = 0; i < progresses.length; i++) {
         document.getElementById('board').innerHTML += `
-            <div ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-${i}')" 
-                ondragleave="removeHighlight('board-column-${i}')" 
-                class="board-column" id="board-column-${i}">
+            <div class="board-column" id="board-column-${i}">
             </div>
             `;
     }
@@ -77,6 +75,10 @@ function createHeaders() {
                 <h3>${progressName}</h3>
                 <img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}); return false">
             </div>
+            <div class="board-column-content" id="board-column-content-${i}" 
+                ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-content-${i}')" 
+                ondragleave="removeHighlight('board-column-content-${i}')">
+            </div>
         `;
     };
 }
@@ -86,7 +88,7 @@ function createHeaders() {
  */
 function createCards() {
     for (i = 0; i < progresses.length; i++) {
-        let column = document.getElementById(`board-column-${i}`);
+        let column = document.getElementById(`board-column-content-${i}`);
         let hasTask = false;
         // if there is an task with fitted progress then create card
         for (j = 0; j < tasks.length; j++) {
@@ -99,7 +101,7 @@ function createCards() {
         if (!hasTask) {
             column.innerHTML += `
                 <div class="no-todo-card">
-                    <p>No tasks To do</p>
+                    <p>No tasks ${progresses[i]}</p>
                 </div>`;
         };
     };
