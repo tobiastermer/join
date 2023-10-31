@@ -58,7 +58,7 @@
 
 .board-main-section {
     display: flex;
-    gap: 32px;
+    gap: 12px;
     width: 1104px;
 }
 
@@ -67,6 +67,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 16px;
+    border-radius: 10px;
 }
 
 .board-column-header {
@@ -208,4 +210,9 @@
 
 .low {
     background-image: url("../../img/prio-low.png");
+}
+
+.drag-highlight {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px dotted black;
 }

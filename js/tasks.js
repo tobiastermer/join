@@ -15,6 +15,7 @@ let isAssignToDropdownActive = false;
 let isCategoryDropdownActive = false;
 let filteredContacts = [];
 let selectedSubtasks = [];
+let progress;
 
 // Array with categories and colors
 let categories = [
@@ -51,10 +52,11 @@ let categories = [
 /**
  * Initialize the application.
  */
-async function initAddTask() {
+async function initAddTask(progressIndex) {
     await loadTasks();
     await initContactList();
     initCategories();
+    progress = progressIndex;
 }
 
 /**
@@ -71,10 +73,10 @@ async function loadTasks() {
 /**
  * Show the overlay for adding a new task.
  */
-async function showAddTaskOverlay() {
+async function showAddTaskOverlay(progressIndex) {
     document.getElementById("addTaskOverlay").style.display = "flex";
     document.getElementById("addTask-close-button").style.display = "flex";
-    await initAddTask();
+    await initAddTask(progressIndex);
 }
 
 /**
@@ -502,8 +504,12 @@ async function addNewTask() {
     checkAddTask(); // noch mit Leben füllen / Plausis ergänzen
     updateSubtasksCheckedStatus();
     pushNewTaskToArray();
-    await setItem('tasks', JSON.stringify(tasks));
+    await saveTasks();
     resetAddTask();
+}
+
+async function saveTasks() {
+    await setItem('tasks', JSON.stringify(tasks));
 }
 
 /**
@@ -530,7 +536,7 @@ function pushNewTaskToArray() {
         prio: selectedPrio,
         category: category,
         subtasks: subtasks,
-        progress: 0,
+        progress: progress,
     });
 }
 

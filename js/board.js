@@ -8,6 +8,7 @@
 
 // Global variables
 let board;
+let currentDraggedElement;
 
 
 // Array for different progress levels
@@ -55,7 +56,12 @@ function renderTasksToBoard() {
 function createColumns() {
 
     for (i = 0; i < progresses.length; i++) {
-        document.getElementById('board').innerHTML += `<div class="board-column" id="board-column-${i}"></div>`;
+        document.getElementById('board').innerHTML += `
+            <div ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-${i}')" 
+                ondragleave="removeHighlight('board-column-${i}')" 
+                class="board-column" id="board-column-${i}">
+            </div>
+            `;
     }
 }
 
@@ -86,7 +92,7 @@ function createCards() {
         for (j = 0; j < tasks.length; j++) {
             if (tasks[j].progress == i) {
                 hasTask = true;
-                column.innerHTML += `<div class="todo-card grow" id="todo-card-${j}"></div>`;
+                column.innerHTML += `<div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}"></div>`;
             };
         };
         // if there is no ToDo-Card, then add a no-todo-card
@@ -165,6 +171,32 @@ function getTemplateAssignedTo(assignedToArray) {
     return compoundTemplate;
 }
 
+// ****************
+// DRAG AND DROP
+// ****************
+
+function startDragging(i) {
+    currentDraggedElement = i;
+    console.log(currentDraggedElement);
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+async function moveTo(i) {
+    tasks[currentDraggedElement].progress = i;
+    await saveTasks();
+    renderTasksToBoard();
+}
+
+function addHighlight(element) {
+    document.getElementById(element).classList.add('drag-highlight');
+}
+
+function removeHighlight(element) {
+    document.getElementById(element).classList.remove('drag-highlight');
+}
 
 // ****************
 // HELPING FUNCTIONS
