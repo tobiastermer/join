@@ -24,19 +24,28 @@ async function loadUsers() {
  * Registers a user.
  */
 async function register() {
-    validatePassword(); // Führen Sie die Validierung durch
+    validatePassword(); // Perform validation
     const errorElement = document.getElementById("passwordMismatchError");
 
     if (errorElement.textContent) {
-        return; // Beenden Sie die Registrierung, wenn ein Fehler vorliegt
+        return; // Abort registration if there's an error
     }
 
     const newUserName = userName.value;
+    const newEmail = email.value;
+    // Check if the username or email already exists
     const existingUser = users.find((user) => user.userName === newUserName);
+    const existingEmail = users.find((user) => user.email === newEmail);
 
     if (existingUser) {
         // Display an error message if the user is already registered.
-        errorElement.textContent = "User already registered";
+        errorElement.textContent = "User with this username already registered";
+        return;
+    }
+
+    if (existingEmail) {
+        // Display an error message if the email already exists.
+        errorElement.textContent = "User with this email already registered";
         return;
     }
 
@@ -58,7 +67,6 @@ async function register() {
     }, 2000); // Adjust the delay time as needed
 }
 
-
 /**
  * Resets the registration form after submission.
  */
@@ -74,7 +82,6 @@ function resetForm() {
     }, 2000); // Adjust the delay time as needed
 }
 
-
 // Password Validation
 
 /**
@@ -86,14 +93,13 @@ function validatePassword() {
     const errorElement = document.getElementById("passwordMismatchError");
 
     if (password.value !== PWconfirm.value) {
-        errorElement.textContent = "Ups! your password don’t match";
+        errorElement.textContent = "Ups! your password doesn’t match";
         PWconfirm.classList.add("error-border");
     } else {
         errorElement.textContent = "";
         PWconfirm.classList.remove("error-border");
     }
 }
-
 
 // Visual Functions ///////////////////////////////////////////////////////
 
@@ -138,8 +144,10 @@ function setPasswordVisibilityListener(fieldId, imgId) {
     });
 }
 
+/**
+ * Loads a message box for success registration message.
+ */
 function loadMsgBox() {
-    // msgBox for success registration message
     const urlParams = new URLSearchParams(window.location.search);
     const msg = urlParams.get('msg');
     const msgBox = document.getElementById('msgBox');
@@ -150,7 +158,7 @@ function loadMsgBox() {
         overlay.classList.add('active'); // Activate the overlay
         msgBox.classList.remove('d-none');
         msgBox.classList.add('slide-in');
-        // Nach weiteren 1 Sekunde zur Login-Seite weiterleiten
+        // Redirect to the login page after a 1-second delay
         setTimeout(function () {
             window.location.href = 'login.html';
         }, 1000);
@@ -158,4 +166,3 @@ function loadMsgBox() {
         msgBox.classList.add('d-none');
     }
 }
-

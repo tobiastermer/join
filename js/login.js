@@ -9,13 +9,13 @@ async function initLogin() {
     loadUsers();
     initLogoAnimation();
     setPasswordVisibilityListener();
-    
+
     // Check if remembered credentials are available in localStorage
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     const rememberedPassword = localStorage.getItem('rememberedPassword');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    
+
     if (rememberedEmail && rememberedPassword) {
         // If remembered credentials are available, fill in the form fields
         emailInput.value = rememberedEmail;
@@ -50,7 +50,7 @@ function login() {
     if (user) {
         // Successful login
         activUser.name = user.userName; // Store the username in activUser
-        localStorage.setItem('activUser', JSON.stringify(activUser));// Store the activated user in localStorage
+        localStorage.setItem('activUser', JSON.stringify(activUser)); // Store the activated user in localStorage
 
         if (document.getElementById("customRememberMe").checked) {
             // If "Remember Me" is checked, store the login credentials in localStorage
@@ -70,13 +70,11 @@ function login() {
     }
 }
 
-
-
 /**
  * Logs in a user as a guest and fills default data arrays.
  */
 function guestLogin() {
-    activUser.name = 'Guest743';
+    activUser.name = 'Guest 743';
     localStorage.setItem('activUser', JSON.stringify(activUser));
     window.location.href = "./summary.html";
 }
@@ -113,7 +111,7 @@ function setPasswordVisibilityListener() {
     document.getElementById('password').addEventListener('input', function() {
         let passwordField = document.getElementById('password');
         let eyeIcon = document.getElementById('passwordToggle');
-        
+
         if (passwordField.type === 'password' && passwordField.value) {
             eyeIcon.src = '/img/register-visibility_off.png';
         } else if (passwordField.type === 'password' || 'text' && !passwordField.value) {
@@ -124,18 +122,21 @@ function setPasswordVisibilityListener() {
     });
 }
 
+/**
+ * Initializes the logo animation for the login page.
+ */
 function initLogoAnimation(){
-        // Load logo animation
-        const loginLogo = document.getElementById("login-logo");
-        const loginMainContainer = document.getElementById("login-maincontainer");
-        const loginNav = document.getElementById("login-nav");
-    
-        // Apply logo animation with a delay
-        setTimeout(() => {
-            loginLogo.classList.add("move-to-top-left");
-        }, 300);
-        setTimeout(() => {
-            loginMainContainer.classList.add('blend-in');
-            loginNav.classList.add('blend-in');
-        }, 400);
+    // Load logo animation
+    const loginLogo = document.getElementById("login-logo");
+    const loginMainContainer = document.getElementById("login-maincontainer");
+    const loginNav = document.getElementById("login-nav");
+
+    // Apply logo animation with a delay
+    setTimeout(() => {
+        loginLogo.classList.add("move-to-top-left");
+    }, 300);
+    setTimeout(() => {
+        loginMainContainer.classList.add('blend-in');
+        loginNav.classList.add('blend-in');
+    }, 400);
 }
