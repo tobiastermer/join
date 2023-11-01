@@ -58,6 +58,7 @@ async function getItem(key) {
  */
 async function initUserName() {
     loadActiveUser();
+    // hideMenuIfNoActiveUser();
     displayUserName();
 }
 
@@ -92,14 +93,14 @@ async function displayUserName() {
     // Continue with the rest of the code.
     const userNameElement = document.getElementById('activUserName');
     const userProfileElement = document.getElementById('profileButton');
-    if (activUser.name) {
-        userNameElement.textContent = activUser.name;
 
-        // Call getInitialsOf with the user's name and set the result as the text of userProfileElement.
-        userProfileElement.firstChild.data = getInitialsOf(activUser.name);
-    } else {
-        console.log('User name not found');
+    // Check if userNameElement exists and if activUser.name is defined.
+    if (userNameElement && activUser.name) {
+        userNameElement.textContent = activUser.name;
     }
+
+    // Set userProfileElement.innerHTML to the user's initials, regardless of whether userNameElement exists.
+    userProfileElement.innerHTML = getInitialsOf(activUser.name || "");
 }
 
 /**
@@ -117,10 +118,9 @@ function getInitialsOf(name) {
 /**
  * Asynchronously hide the menu if the user is not active.
  */
-async function hideMenuIfNotActiveUser() {
+async function hideMenuIfNoActiveUser() {
     // Check if the includeHTML function exists before calling it.
     if (typeof includeHTML === 'function') {
-        await includeHTML();
         await includeHTML();
     } else {
         return;
@@ -133,5 +133,3 @@ async function hideMenuIfNotActiveUser() {
     }
 }
 
-// Call the function to trigger the desired behavior.
-hideMenuIfNotActiveUser();
