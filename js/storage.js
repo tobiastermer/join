@@ -47,16 +47,39 @@ function loadActiveUser() {
     }
 }
 
-function displayUserName() {
+async function displayUserName() {
+    // Überprüfe, ob die includeHTML-Funktion existiert, bevor du sie aufrufst.
+    if (typeof includeHTML === 'function') {
+        await includeHTML();
+        await includeHTML();
+    } else {
+        console.log('No includeHTML function found');
+    }
+
+    // Jetzt kannst du den restlichen Code ausführen.
     const userNameElement = document.getElementById('activUserName');
     const userProfileElement = document.getElementById('profileButton');
     if (activUser.name) {
         userNameElement.textContent = activUser.name;
-        // userProfileElement.firstChild.data = activUser.name;
+
+        // Rufe getInitials mit dem Benutzernamen auf und setze das Ergebnis als Text des userProfileElement.
+        userProfileElement.firstChild.data = getInitialsOf(activUser.name);
     } else {
         console.log('User name nicht gefunden');
     }
 }
+
+/**
+ * Get the initials from a name.
+ * @param {string} name - The name to extract initials from.
+ * @returns {string} The initials.
+ */
+function getInitialsOf(name) {
+    return name
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  }
 
 async function hideMenuIfNotActiveUser() {
     // Überprüfe, ob die includeHTML-Funktion existiert, bevor du sie aufrufst.
