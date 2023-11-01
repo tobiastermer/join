@@ -22,7 +22,7 @@
     <script src="./js/openMenu.js"></script>
 </head>
 
-<body class="board-body" onload="includeHTML(); initBoard();initUserName()">
+<body class="board-body" onload="includeHTML(); initBoard(); initUserName()">
 
     <div w3-include-html="./design_template.html"></div>
 
@@ -161,11 +161,91 @@
 
         </div>
 
-        <div class="addTask-include-bg" id="addTaskOverlay">
+        <div class="overlay_background" id="addTaskOverlay">
             <div class="addTask-body addTask-include overlay">
                 <div w3-include-html="./assets/template/addTask_template.html"></div>
             </div>
         </div>
+
+
+        <!-- SHOW TASK OVERLAY -->
+        <div class="overlay_background_add" id="showTaskOverlay">
+            <div class="overlay">
+                <div class="close_button_mobile" onclick="hideTaskOverlay();">
+                    <img src="./img/close_white.png" alt="">
+                </div>
+                <div class="todo-card-detailed">
+                    <div class="todo-card-detailed-header">
+                        <p class="todo-category bg-blue">User Story</p>
+                        <img class="" src="./img/Close.png" alt="close button" onclick="hideTaskOverlay();">
+                    </div>
+                    <h1 class="todo-title">Kochwelt Page & Recipe Recommender</h1>
+                    <h2 class="todo-description">Build start page with recipe recommendation...</h2>
+                    <div class="todo-card-detailed-row">
+                        <label for="">Due date:</label>
+                        <p>10/05/2023</p>
+                    </div>
+                    <div class="todo-card-detailed-row">
+                        <label for="">Priority:</label>
+                        <p>Medium</p>
+                        <div class="todo-prio med"></div>
+                    </div>
+                    <div class="todo-card-detailed-list-container">
+                        <label for="">Assigned To:</label>
+                        <div class="form-list form-list-selection" id="addTaskListContactsContainer">
+                            <ul id="addTaskListContacts">
+                                <!-- wird dynamisch gefüllt -->
+                                <li id="selectContactLi-${id}" onclick="selectContact(id); return false">
+                                    <div class="contact-initials-and-name">
+                                        <div class="contact_initial_image" style="background-color: #2A3647">HW</div>
+                                        <span>Hans Wurst</span>
+                                    </div>
+                                </li>
+                                <li id="selectContactLi-${id}" onclick="selectContact(id); return false">
+                                    <div class="contact-initials-and-name">
+                                        <div class="contact_initial_image" style="background-color: #2A3647">HW</div>
+                                        <span>Hans Wurst</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="todo-card-detailed-list-container">
+                        <label for="">Subtasks:</label>
+                        <div class="form-list" id="addTaskSubtaskList" style="margin-top: 16px">
+                            <div class="subtask" id="subtask-${i}">
+                                <div>
+                                    <input type="checkbox" id="subtask-checkbox-${i}" checked>
+                                    <span>subtaskName</span>
+                                </div>
+                            </div>
+                            <div class="subtask" id="subtask-${i}">
+                                <div>
+                                    <input type="checkbox" id="subtask-checkbox-${i}" checked>
+                                    <span>subtaskName</span>
+                                </div>
+                            </div>
+                            <div class="subtask" id="subtask-${i}">
+                                <div>
+                                    <input type="checkbox" id="subtask-checkbox-${i}" checked>
+                                    <span>subtaskName</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay_background" id="overlayBackground"></div>
+    <div class="successmessage" id="successmessage">Contact succesfully created</div>
+    <div class="error_message" id="error_message">error</div>
+    <div class="contact_settings_mobile" id="contactSettingsMobile" onclick="openMobileSettingsBox()"><img
+            src="./img/contact_options.png" alt="contact options"></div>
+    <div class="add_contact_button_mobile" id="addContactMobileButton" onclick="showAddContactOverlay()"><img
+            src="./img/person_add.png" alt="add contact"></div>
 
     </div>
 

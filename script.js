@@ -22,15 +22,15 @@ function showSuccessMessage(text) {
   }, 3000);
 }
 
-function initializeListeners() {
-  document.getElementById('addTaskSubtaskInput').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      addSubtask();
-    }
-  });
+// function initializeListeners() {
+//   document.getElementById('addTaskSubtaskInput').addEventListener('keydown', function (event) {
+//     if (event.key === 'Enter') {
+//       event.preventDefault();
+//       addSubtask();
+//     }
+//   });
   // Andere Initialisierungscodes oder Event-Listener können hier hinzugefügt werden
-}
+// }
 
 // Rufen Sie die Initialisierungsfunktion auf, wenn das Dokument geladen ist
-document.addEventListener('DOMContentLoaded', initializeListeners);
+// document.addEventListener('DOMContentLoaded', initializeListeners);

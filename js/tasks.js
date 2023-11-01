@@ -57,6 +57,7 @@ async function initAddTask(progressIndex) {
     await initContactList();
     initCategories();
     progress = progressIndex;
+    hideAddContactOverlay();
 }
 
 /**

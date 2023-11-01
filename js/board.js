@@ -30,6 +30,7 @@ async function initBoard() {
     await loadTasks();
     await loadContactsForTasks();
     renderTasksToBoard();
+    hideTaskOverlay();
 }
 
 /**
@@ -94,7 +95,7 @@ function createCards() {
         for (j = 0; j < tasks.length; j++) {
             if (tasks[j].progress == i) {
                 hasTask = true;
-                column.innerHTML += `<div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}"></div>`;
+                column.innerHTML += `<div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}" onclick="showTaskOverlay(${j}); return false"></div>`;
             };
         };
         // if there is no ToDo-Card, then add a no-todo-card
@@ -199,6 +200,52 @@ function addHighlight(element) {
 function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
+
+
+// ****************
+// OVERLAY
+// ****************
+
+/**
+ * Show the overlay for adding a new contact.
+ */
+function showAddContactOverlay() {
+    document.getElementById("addContactOverlay").style.right = "0";
+    document.getElementById("addContactOverlay").classList.remove("hidden");
+    document.getElementById("overlayBackground").style.display = "flex";
+    document.getElementById("addContactOverlay").style.opacity = "100"
+  }
+  
+  /**
+   * Hide the overlay for adding a new contact.
+   */
+  function hideAddContactOverlay() {
+    document.getElementById("addContactOverlay").style.right = "-100%";
+    document.getElementById("addContactOverlay").classList.add("hidden");
+    document.getElementById("overlayBackground").style.display = "none";
+  }
+
+/**
+ * Show the overlay for editing a contact.
+ * @param {number} contactIndex - The index of the contact to edit.
+ */
+function showTaskOverlay(i) {
+    // selectedContactIndex = contactIndex;
+    document.getElementById("showTaskOverlay").style.right = "0";
+    document.getElementById("showTaskOverlay").classList.remove("hidden");
+    document.getElementById("overlayBackground").style.display = "flex";
+    document.getElementById("showTaskOverlay").style.opacity = "100"
+    // populateEditFields(contactIndex);
+  }
+  
+  /**
+   * Hide the overlay for editing a contact.
+   */
+  function hideTaskOverlay() {
+    document.getElementById("overlayBackground").style.display = "none";
+    document.getElementById("showTaskOverlay").style.right = "-100%";
+    document.getElementById("showTaskOverlay").classList.add("hidden");
+  }
 
 // ****************
 // HELPING FUNCTIONS
