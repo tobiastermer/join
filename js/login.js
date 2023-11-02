@@ -134,9 +134,9 @@ function initLogoAnimation(){
     // Apply logo animation with a delay
     setTimeout(() => {
         loginLogo.classList.add("move-to-top-left");
-    }, 300);
+    }, 800);
     setTimeout(() => {
         loginMainContainer.classList.add('blend-in');
         loginNav.classList.add('blend-in');
-    }, 400);
+    }, 800);
 }

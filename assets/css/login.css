@@ -218,6 +218,7 @@
     cursor: pointer;
     left: -170px;
     top: -20px;
+    height: 20px;
 }
 
 .custom-checkbox-label img {
@@ -320,7 +321,7 @@
 
 .imgPos img {
     position: absolute;
-    right: 35px;
+    right: 20px;
 }
 
 .crsptr {
@@ -469,4 +470,75 @@
 .overlay.active::before {
     opacity: 1; /* Set opacity to 1 when active */
     pointer-events: auto; /* Enable clicks on the overlay */
+}
+
+@media(max-width: 770px) {
+    #login-nav {
+        position: absolute;
+        top: 780px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+    }
+
+    #login-nav button {
+        width: 104px;
+    }
+
+    .login-header {
+        margin: 70px;
+    }
+
+    .login-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 21px;
+        padding-top: 18px;
+    }
+
+    .login-button {
+        width: 180px;
+        font-size: 16px;
+    }
+
+    .guest-login-button {
+        width: 180px;
+        font-size: 16px;
+    }
+
+    #login-maincontainer {
+        width: 396px;
+        height: 515px;
+    }
+
+    .login-main input {
+        width: 322px;
+    }
+
+    .custom-checkbox-label {
+        top: unset;
+    }
+    
+    .login-main h1 {
+        margin-block-start: 26px;
+        font-size: 47px;
+    }
+
+    .h1-underline {
+        width: 88px;
+        margin-bottom: 32px;
+    }
+    
+    .login-logo {
+        width: 64px;
+    }
+
+    .move-to-top-left {
+        top: 30px !important;
+        left: 30px !important;
+    }
+
+    .login-bottom-part {
+        padding-bottom: 0px;
+    }
 }
