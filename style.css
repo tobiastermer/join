@@ -82,6 +82,10 @@
     width: 16px;
 }
 
+.flex-end {
+    justify-content: flex-end;
+}
+
 /* Styling for success message popups */
 .successmessage {
     position: fixed;

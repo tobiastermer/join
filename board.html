@@ -176,14 +176,14 @@
                 </div>
                 <div class="todo-card-detailed">
                     <div class="todo-card-detailed-header">
-                        <p class="todo-category bg-blue">User Story</p>
+                        <p class="todo-category bg-blue" id="todo-card-detailed-category">User Story</p>
                         <img class="" src="./img/Close.png" alt="close button" onclick="hideTaskOverlay();">
                     </div>
-                    <h1 class="todo-title">Kochwelt Page & Recipe Recommender</h1>
-                    <h2 class="todo-description">Build start page with recipe recommendation...</h2>
+                    <h1 class="todo-title" id="todo-card-detailed-title">Kochwelt Page & Recipe Recommender</h1>
+                    <h2 class="todo-description" id="todo-card-detailed-description">Build start page with recipe recommendation...</h2>
                     <div class="todo-card-detailed-row">
                         <label for="">Due date:</label>
-                        <p>10/05/2023</p>
+                        <p id="todo-card-detailed-dueDate">10/05/2023</p>
                     </div>
                     <div class="todo-card-detailed-row">
                         <label for="">Priority:</label>
@@ -232,6 +232,12 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="todo-card-detailed-row flex-end">
+                        <button onclick="showEditContactOverlay(i)"><img src="./img/edit.png"
+                                alt="Edit Icon">Edit</button>
+                        <button onclick="deleteContact(i)"><img src="./img/delete.png"
+                                alt="Delete Icon">Delete</button>
                     </div>
                 </div>
             </div>
