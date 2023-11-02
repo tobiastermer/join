@@ -77,6 +77,11 @@
     display: none;
 }
 
+.largerCheckbox {
+    height: 16px;
+    width: 16px;
+}
+
 /* Styling for success message popups */
 .successmessage {
     position: fixed;

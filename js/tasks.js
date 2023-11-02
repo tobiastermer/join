@@ -490,7 +490,7 @@ function renderSubtaskList() {
             subtaskList.innerHTML += `
                 <div class="subtask" id="subtask-${i}">
                     <div>
-                        <input type="checkbox" id="subtask-checkbox-${i}" ${checked}>
+                        <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox" ${checked}>
                         <span>${subtaskName}</span>
                     </div>
                     <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">

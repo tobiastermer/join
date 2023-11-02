@@ -304,6 +304,19 @@
     font-size: 12px;
 }
 
+.todo-card-detailed .contact-initials-and-name span {
+    font-size: 19px;
+}
+
+.todo-card-detailed .subtask span {
+    font-size: 16px;
+}
+
+.todo-card-detailed .subtask input {
+    font-size: 16px;
+}
+
+
 /* Media Query */
 
 @media(max-width: 1360px) {

@@ -308,7 +308,9 @@ select {
 .subtask div {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
+    padding: 6px 16px 6px 16px;
+
 }
 
 .subtask img {
