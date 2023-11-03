@@ -321,21 +321,41 @@ async function editTask(i) {
     renderEditTaskForm(i);
 }
 
-function renderEditTaskForm(i) {
+async function renderEditTaskForm(i) {
     document.getElementById('addTask-header-h1').innerHTML = 'Edit Task';
+    document.getElementById('addTaskBtnSubmit').innerHTML = 'Save Task';
+    document.getElementById('addTaskBtnClear').setAttribute('onclick', `renderEditTaskForm(${i}); return false`);
     document.getElementById('addTaskTitle').value = tasks[i].title;
     document.getElementById('addTaskDescription').value = tasks[i].description;
-
-    let assignedToArray = tasks[i].assignedTo;
-    for (let j = 0; j < assignedToArray.length; j++) {
-        selectContact(assignedToArray[j]);
-    }
-
     document.getElementById('addTaskDueDate').value = new Date(tasks[i].dueDate).toLocaleDateString('af-ZA');
+    document.getElementById('addTaskSubtaskInput').value = '';
     setPrio(tasks[i].prio);
     selectCategory(tasks[i].category);
+    renderEditTaskFormAssignedContacts(i);
+    renderEditTaskFormSubtasks(i);
+    hideContactList();
+    hideCategoryList();
+}
 
-    selectedSubtasks = tasks[i].subtasks;
+function renderEditTaskFormAssignedContacts(i) {
+    selectedContacts = [];
+    renderContactList();
+    let assignedToArray = tasks[i].assignedTo;
+    for (let j = 0; j < assignedToArray.length; j++) {
+        addToSelectedContacts(assignedToArray[j]);
+    };
+    renderSelectedContacts();
+}
+
+function renderEditTaskFormSubtasks(i) {
+    for (let k = 0; k < selectedContacts.length; k++) {
+        deleteSubtask(0);
+    };
+    let tempSubtaskArray = [];
+    for (let j = 0; j < tasks[i].subtasks.length; j++) {
+        tempSubtaskArray.push(tasks[i].subtasks[j]);
+    };
+    selectedSubtasks = tempSubtaskArray;
     renderSubtaskList();
 }
 

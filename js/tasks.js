@@ -193,10 +193,8 @@ function selectContact(id) {
     let i = getIndexById(id, selectedContacts);
     if (i > -1) { // deactivates contact
         removeFromSelectedContacts(id);
-        setContactLiStyle(id, '#FFFFFF', '#000000', "../../img/remember-unchecked.png");
     } else { // activates selected contact
         addToSelectedContacts(id);
-        setContactLiStyle(id, '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png");
     }
     renderSelectedContacts();
 }
@@ -216,6 +214,7 @@ function isIdInSelectedContacts(id) {
 function removeFromSelectedContacts(id) {
     let i = selectedContacts.indexOf(id);
     selectedContacts.splice(i, 1);
+    setContactLiStyle(id, '#FFFFFF', '#000000', "../../img/remember-unchecked.png");
 }
 
 /**
@@ -223,7 +222,11 @@ function removeFromSelectedContacts(id) {
  * @param {string} id - The unique ID of the contact to select.
  */
 function addToSelectedContacts(id) {
-    selectedContacts.push(id);
+    let i = getIndexById(id, selectedContacts);
+    if (i < 0) {
+        selectedContacts.push(id);
+    };
+    setContactLiStyle(id, '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png");
 }
 
 /**
@@ -448,21 +451,22 @@ function addSubtask() {
     }
     document.getElementById('addTaskSubtaskInput').value = '';
 }
-function addSubtask(ev) {
-    const input = document.getElementById("subtasks-input");
-    if (ev.type === "keypress" && ev.key === "Enter") {
-        ev.preventDefault();
-    }
-    if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
-        subtasks.push({ text: input.value, status: "todo" });
-        input.value = "";
-        input.focus();
-        if (ev.type === 'click') {
-            toggleSubtaskIcons();
-        }
-        renderSubtasksInForm();
-    }
-}
+
+// function addSubtask(ev) {
+//     const input = document.getElementById("subtasks-input");
+//     if (ev.type === "keypress" && ev.key === "Enter") {
+//         ev.preventDefault();
+//     }
+//     if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
+//         subtasks.push({ text: input.value, status: "todo" });
+//         input.value = "";
+//         input.focus();
+//         if (ev.type === 'click') {
+//             toggleSubtaskIcons();
+//         }
+//         renderSubtasksInForm();
+//     }
+// }
 
 
 /**
@@ -594,6 +598,11 @@ function resetAddTask() {
     // Reset arrays
     selectedContacts = [];
     selectedSubtasks = [];
+
+    // Reset header and buttons
+    document.getElementById('addTask-header-h1').innerHTML = 'Add Task';
+    document.getElementById('addTaskBtnSubmit').innerHTML = 'Create Task';
+    document.getElementById('addTaskBtnClear').setAttribute('onclick', 'resetAddTask(); return false');
 
     // Reset field values
     document.getElementById('addTaskTitle').value = '';

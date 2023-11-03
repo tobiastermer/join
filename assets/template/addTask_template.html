@@ -99,12 +99,12 @@
             <p>*</p>This field is required
         </label>
         <div class="form-buttons">
-            <Button class="btn btn-secondary btn-text-with-icon grow" onclick="resetAddTask(); return false">
+            <Button class="btn btn-secondary btn-text-with-icon grow" id="addTaskBtnClear" onclick="resetAddTask(); return false">
                 <span>Clear</span>
                 <img src="img/Close.png" alt="">
             </Button>
             <Button class="btn btn-primary btn-text-with-icon grow" type="submit">
-                <span>Create Task</span>
+                <span id="addTaskBtnSubmit">Create Task</span>
                 <img src="img/check.png" alt="">
             </Button>
         </div>
@@ -138,9 +138,7 @@
                     <div class="add_contact_buttons">
                         <button class="cancel_contact_button" type="reset">Cancel <img src="./img/Close.png"
                                 alt="Cancel"></button><button type="submit" class="create_contact_button"
-                            onclick="addContactExtra()">Create
-                            contact
-                            <img src="./img/check.png" alt=""></button>
+                            onclick="addContactExtra()">Create contact<img src="./img/check.png" alt=""></button>
                     </div>
                 </div>
             </div>
