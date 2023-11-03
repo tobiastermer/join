@@ -153,20 +153,17 @@ function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
     for (let j = 0; j < assignedToArray.length; j++) {
         let k = getIndexByIdFromContacts(assignedToArray[j]);
-        let initials = contacts[k].initials;
-        let color = contacts[k].color;
-        if (!color) {
-            color = '#87CEFA';
+        if (k >= 0) {
+            let initials = contacts[k].initials;
+            let color = contacts[k].color;
+            let style = `background-color: ${color};`
+            if (j > 0) {
+                style += ` z-index: ${j}; margin-left: -10px;`;
+            } else {
+                style += '';
+            }
+            compoundTemplate += `<div class="" style="${style}">${initials}</div>`;
         };
-        let style = `background-color: ${color};`
-        if (j > 0) {
-            style += ` z-index: ${j}; margin-left: -10px;`;
-        } else {
-            style += '';
-        }
-        compoundTemplate += `
-            <div class="" style="${style}">${initials}</div>
-        `;
     }
     return compoundTemplate;
 }
@@ -220,6 +217,7 @@ function showTaskOverlay() {
  * Hide the overlay for editing a contact.
  */
 function hideTaskOverlay() {
+    resetAddTask();
     document.getElementById("overlayBackground").style.display = "none";
     document.getElementById("showTaskOverlay").style.right = "-100%";
     document.getElementById("showTaskOverlay").classList.add("hidden");
@@ -241,8 +239,8 @@ function renderDetailedCard(i) {
     document.getElementById('todo-card-detailed-prioImg').src = `img/prio-${tasks[i].prio}.png`;
     document.getElementById('todo-card-detailed-assignedToList').innerHTML = getTemplateAssignedToContacts(i);
     document.getElementById('todo-card-detailed-subtasks').innerHTML = getTemplateSubtasks(i);
-    document.getElementById('todo-card-detailed-btnTaskDelete').setAttribute('onclick',`deleteTask(${i}); return false`)
-    document.getElementById('todo-card-detailed-btnTaskEdit').setAttribute('onclick',`editTask(${i}); return false`)
+    document.getElementById('todo-card-detailed-btnTaskDelete').setAttribute('onclick', `deleteTask(${i}); return false`)
+    document.getElementById('todo-card-detailed-btnTaskEdit').setAttribute('onclick', `editTask(${i}); return false`)
 }
 
 function capitalizePrio(i) {
@@ -260,17 +258,19 @@ function getTemplateAssignedToContacts(i) {
     for (let j = 0; j < assignedToContacts.length; j++) {
         let id = assignedToContacts[j];
         let contactIndex = getIndexByIdFromContacts(id);
-        let initials = contacts[contactIndex].initials;
-        let name = contacts[contactIndex].name;
-        let color = contacts[contactIndex].color;
-        template = template + `
-            <li>
-                <div class="contact-initials-and-name">
-                    <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                    <span>${name}</span>
-                </div>
-            </li>
-        `;
+        if (contactIndex >= 0) {
+            let initials = contacts[contactIndex].initials;
+            let name = contacts[contactIndex].name;
+            let color = contacts[contactIndex].color;
+            template = template + `
+                <li>
+                    <div class="contact-initials-and-name">
+                        <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
+                        <span>${name}</span>
+                    </div>
+                </li>
+            `;
+        }
     };
     return template;
 }
@@ -316,26 +316,27 @@ async function deleteTask(i) {
     showSuccessMessage('Task successfully deleted');
 }
 
-function editTask(i) {
-    selectedContacts = tasks[i].assignedTo;
-    showAddTaskOverlay(0);
-    renderTaskForm(i);
+async function editTask(i) {
+    await showAddTaskOverlay(0);
+    renderEditTaskForm(i);
 }
 
-function renderTaskForm(i) {
+function renderEditTaskForm(i) {
     document.getElementById('addTask-header-h1').innerHTML = 'Edit Task';
     document.getElementById('addTaskTitle').value = tasks[i].title;
     document.getElementById('addTaskDescription').value = tasks[i].description;
 
-    document.getElementById('addTaskShowSelectedContacts').innerHTML = '';
-
-    selectedContacts = tasks[i].assignedTo;
-    for (let j = 0; j < selectedContacts; j++) {
-        let id = selectedContacts[j];
-        selectContact(id);
+    let assignedToArray = tasks[i].assignedTo;
+    for (let j = 0; j < assignedToArray.length; j++) {
+        selectContact(assignedToArray[j]);
     }
-    // renderSelectedContacts();
 
+    document.getElementById('addTaskDueDate').value = new Date(tasks[i].dueDate).toLocaleDateString('af-ZA');
+    setPrio(tasks[i].prio);
+    selectCategory(tasks[i].category);
+
+    selectedSubtasks = tasks[i].subtasks;
+    renderSubtaskList();
 }
 
 

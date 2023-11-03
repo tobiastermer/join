@@ -237,10 +237,11 @@ function setContactLiStyle(id, bgColor, textColor, imgSrc) {
     // let i = getIndexById(id, selectedContacts); //ggf. löschen
     let liElement = document.getElementById(`selectContactLi-${id}`);
     let checkboxElement = document.getElementById(`addTaskCheckbox-${id}`);
-
-    liElement.style.backgroundColor = bgColor;
-    liElement.style.color = textColor;
-    checkboxElement.src = imgSrc;
+    try {
+        liElement.style.backgroundColor = bgColor;
+        liElement.style.color = textColor;
+        checkboxElement.src = imgSrc;
+    } catch { };
 }
 
 /**
@@ -248,21 +249,23 @@ function setContactLiStyle(id, bgColor, textColor, imgSrc) {
  */
 function renderSelectedContacts() {
     let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
-    if(selectedContacts.length > 0) {
+    if (selectedContacts.length > 0) {
         showContactsContainer.classList.remove('d-none');
         showContactsContainer.innerHTML = '';
         for (i = 0; i < selectedContacts.length; i++) {
             let id = selectedContacts[i];
             let j = getIndexByIdFromContacts(id);
-            let initials = contacts[j].initials;
-            let color = contacts[j].color;
-            showContactsContainer.innerHTML += `
-                <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
-            `;
+            if (j >= 0) {
+                let initials = contacts[j].initials;
+                let color = contacts[j].color;
+                showContactsContainer.innerHTML += `
+                    <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
+                `;
+            };
         };
     } else {
         showContactsContainer.classList.add('d-none');
-    };   
+    };
 }
 
 /**
@@ -445,21 +448,21 @@ function addSubtask() {
     }
     document.getElementById('addTaskSubtaskInput').value = '';
 }
-// function addSubtask(ev) {
-//     const input = document.getElementById("subtasks-input");
-//     if (ev.type === "keypress" && ev.key === "Enter") {
-//       ev.preventDefault();
-//     }
-//     if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
-//       subtasks.push({ text: input.value, status: "todo" });
-//       input.value = "";
-//       input.focus();
-//       if (ev.type === 'click') {
-//         toggleSubtaskIcons();
-//       }
-//       renderSubtasksInForm();
-//     }
-//   }
+function addSubtask(ev) {
+    const input = document.getElementById("subtasks-input");
+    if (ev.type === "keypress" && ev.key === "Enter") {
+        ev.preventDefault();
+    }
+    if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
+        subtasks.push({ text: input.value, status: "todo" });
+        input.value = "";
+        input.focus();
+        if (ev.type === 'click') {
+            toggleSubtaskIcons();
+        }
+        renderSubtasksInForm();
+    }
+}
 
 
 /**
@@ -501,7 +504,7 @@ function renderSubtaskList() {
         };
     } else {
         subtaskList.classList.add('d-none');
-    };    
+    };
 }
 
 /**
@@ -597,6 +600,7 @@ function resetAddTask() {
     document.getElementById('addTaskDescription').value = '';
     document.getElementById('addTaskDueDate').value = '';
     document.getElementById('addTaskCategory').value = '';
+    document.getElementById('addTaskSubtaskInput').value = '';
 
     // Reset Variables and colors
     resetPrio();
