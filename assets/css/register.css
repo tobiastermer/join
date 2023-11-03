@@ -242,6 +242,22 @@
 }
 
 /*********************Login-CSS************************/
+/******************Guest-Login-CSS*********************/
+
+#register-maincontainer {
+    width: 652px;
+    height: 630px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+}
+
+.register-input-fields {
+    width: 422px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .i-accept {
     color: #A8A8A8;
@@ -266,6 +282,52 @@
     padding-top: 20px;
 }
 
+.h1-underline-reg {
+    width: 150px;
+    height: 3px;
+    border-radius: 1.5px;
+    background-color: #29ABE2;
+    margin-bottom: 1.6rem;
+}
+
+.back-arrow {
+    position: relative;
+    top: 52px;
+    left: -250px;
+    cursor: pointer;
+}
+
+.register-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.register-main h1 {
+    font-size: 61px;
+    font-weight: 700;
+    margin-block-end: 0.23em;
+}
+
+.register-main input {
+    height: 24px;
+    padding: 12px 21px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    color: #000000;
+}
+
+.register-main input:focus {
+    outline-style: none;
+    border: 1px solid #29ABE2;
+}
+
+.register-main input::placeholder {
+    color: #D1D1D1;
+}
+
 .imgPos {
     position: relative;
     display: flex;
@@ -281,6 +343,39 @@
     cursor: pointer;
 }
 
+.register-main-section {
+    display: flex;
+    justify-content: center;
+}
+
+.register-header {
+    margin: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-bottom-part {
+    display: flex;
+    justify-content: center;
+    padding-top: 90px;
+    padding-bottom: 30px;
+    gap: 8px;
+}
+
+.register-bottom-part a {
+    text-decoration: none;
+    padding: 8px;
+    color: #A8A8A8;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.register-bottom-part a:hover {
+    color: #29ABE2;
+    font-size: 16px;
+    font-weight: 700;
+}
+
 .CheckPos {
     position: relative;
     display: flex;
@@ -290,6 +385,16 @@
 
 .CheckPos input {
     position: absolute;
+}
+
+.register-checkbox-label {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    left: 100px;
+    gap: 8px;
+    height: 20px;
 }
 
 .sign-up-button {
@@ -304,7 +409,20 @@
     margin-top: 10px;
 }
 
+.register-checkbox {
+    position: absolute;
+    left: 98px;
+    top: -26px;
+    opacity: 0;
+}
 
+.register-checkbox:checked+.register-checkbox-label img {
+    content: url(/img/remember-checked.png);
+}
+
+.register-checkbox+.register-checkbox-label img {
+    content: url(/img/remember-unchecked.png);
+}
 
 /******************Guest-Login-CSS*********************/
 /*******************JS Based CSS***********************/
@@ -408,7 +526,16 @@
         height: 515px;
     }
 
+    #register-maincontainer {
+        width: 396px;
+        height: 595px;
+    }
+
     .login-main input {
+        width: 322px;
+    }
+
+    .register-main input {
         width: 322px;
     }
 
@@ -416,14 +543,14 @@
         top: unset;
     }
     
-    .login-main h1 {
-        margin-block-start: 26px;
+    .register-main h1 {
+        margin-block-start: 0px;
         font-size: 47px;
     }
 
-    .h1-underline {
+    .h1-underline-reg {
         width: 88px;
-        margin-bottom: 32px;
+        margin-bottom: 22px;
     }
     
     .login-logo {

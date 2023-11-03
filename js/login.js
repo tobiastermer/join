@@ -130,6 +130,7 @@ function initLogoAnimation(){
     const loginLogo = document.getElementById("login-logo");
     const loginMainContainer = document.getElementById("login-maincontainer");
     const loginNav = document.getElementById("login-nav");
+    const loginBottom = document.getElementById("login-bottom-part");
 
     // Apply logo animation with a delay
     setTimeout(() => {
@@ -138,5 +139,6 @@ function initLogoAnimation(){
     setTimeout(() => {
         loginMainContainer.classList.add('blend-in');
         loginNav.classList.add('blend-in');
+        loginBottom.classList.add('blend-in');
     }, 800);
 }
