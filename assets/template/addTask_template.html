@@ -1,7 +1,7 @@
 <!-- INSERT THIS CODE VIA W3C INCLUDE -->
 
 <div class="addTask-header">
-    <h1>Add Task</h1>
+    <h1 id="addTask-header-h1">Add Task</h1>
     <img id="addTask-close-button" src="./img/Close.png" alt="close button"
         onclick="closeAddTaskOverlay(); return false">
 </div>
@@ -31,13 +31,15 @@
                     <ul id="addTaskListContacts">
                         <!-- wird dynamisch gefüllt -->
                     </ul>
-                    <button class="btn btn-primary btn-text-with-icon width-100"
+                    <button class="btn btn-primary btn-text-with-icon width-100" type="button"
                         onclick="showAddContactOverlay(); return false">
                         <span>Add new contact</span>
                         <img src="../../img/person_add.png" alt="">
                     </button>
                 </div>
-                <div class="contact-initials-and-name d-none" id="addTaskShowSelectedContacts" style="margin-left: 10px;">
+                <div class="contact-initials-and-name d-none" id="addTaskShowSelectedContacts"
+                    style="margin-left: 10px;">
+                    <!-- wird dynamisch gefüllt -->
                 </div>
             </div>
         </div>

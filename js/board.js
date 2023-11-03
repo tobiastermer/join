@@ -39,12 +39,10 @@ async function initBoard() {
 function renderTasksToBoard() {
     let board = document.getElementById('board');
     board.innerHTML = '';
-
     createColumns();
     createHeaders();
     createCards();
     renderCards();
-
 }
 
 // ****************
@@ -319,7 +317,25 @@ async function deleteTask(i) {
 }
 
 function editTask(i) {
+    selectedContacts = tasks[i].assignedTo;
     showAddTaskOverlay(0);
+    renderTaskForm(i);
+}
+
+function renderTaskForm(i) {
+    document.getElementById('addTask-header-h1').innerHTML = 'Edit Task';
+    document.getElementById('addTaskTitle').value = tasks[i].title;
+    document.getElementById('addTaskDescription').value = tasks[i].description;
+
+    document.getElementById('addTaskShowSelectedContacts').innerHTML = '';
+
+    selectedContacts = tasks[i].assignedTo;
+    for (let j = 0; j < selectedContacts; j++) {
+        let id = selectedContacts[j];
+        selectContact(id);
+    }
+    // renderSelectedContacts();
+
 }
 
 
