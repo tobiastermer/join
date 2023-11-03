@@ -63,7 +63,7 @@ async function register() {
     window.location.href = 'register.html?msg=You Signed Up successfully';
     // Delay the redirection to the login page after showing the success message
     setTimeout(function () {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }, 2000); // Adjust the delay time as needed
 }
 
@@ -151,7 +151,7 @@ function loadMsgBox() {
     const urlParams = new URLSearchParams(window.location.search);
     const msg = urlParams.get('msg');
     const msgBox = document.getElementById('msgBox');
-    const overlay = document.getElementById('login-body');
+    const overlay = document.getElementById('register-body');
 
     if (msg) {
         msgBox.innerHTML = msg;
@@ -160,7 +160,7 @@ function loadMsgBox() {
         msgBox.classList.add('slide-in');
         // Redirect to the login page after a 1-second delay
         setTimeout(function () {
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         }, 1000);
     } else {
         msgBox.classList.add('d-none');
