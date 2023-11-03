@@ -29,7 +29,7 @@
 }
 
 .login-header {
-    margin: 80px;
+    margin: 110px;
     display: flex;
     justify-content: space-between;
 }
@@ -44,6 +44,7 @@
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    transition: 125ms ease-in-out;
 }
 
 #login-nav {
@@ -142,6 +143,7 @@
     color: white;
     font-size: 21px;
     font-weight: 700;
+    transition: 125ms ease-in-out;
 }
 
 .guest-login-button {
@@ -153,6 +155,7 @@
     color: #2A3647;
     font-size: 21px;
     font-weight: 700;
+    transition: 125ms ease-in-out;
 }
 
 .login-bottom-part {
