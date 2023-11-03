@@ -57,6 +57,7 @@ async function initAddTask(progressIndex) {
     await initContactList();
     initCategories();
     progress = progressIndex;
+    selectedSubtasks = [];
     hideAddContactOverlay();
 }
 
@@ -76,6 +77,7 @@ async function loadTasks() {
  */
 async function showAddTaskOverlay(progressIndex) {
     document.getElementById("addTaskOverlay").style.display = "flex";
+    document.getElementById("addTaskOverlay").style.zIndex = "1000";
     document.getElementById("addTask-close-button").style.display = "flex";
     await initAddTask(progressIndex);
 }

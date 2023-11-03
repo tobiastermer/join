@@ -205,6 +205,28 @@ function removeHighlight(element) {
 // OVERLAY
 // ****************
 
+/**
+ * Show the overlay for editing a contact.
+ * @param {number} contactIndex - The index of the contact to edit.
+ */
+function showTaskOverlay() {
+    // selectedContactIndex = contactIndex;
+    document.getElementById("showTaskOverlay").style.right = "0";
+    document.getElementById("showTaskOverlay").classList.remove("hidden");
+    document.getElementById("overlayBackground").style.display = "flex";
+    document.getElementById("showTaskOverlay").style.opacity = "100"
+    // populateEditFields(contactIndex);
+}
+
+/**
+ * Hide the overlay for editing a contact.
+ */
+function hideTaskOverlay() {
+    document.getElementById("overlayBackground").style.display = "none";
+    document.getElementById("showTaskOverlay").style.right = "-100%";
+    document.getElementById("showTaskOverlay").classList.add("hidden");
+}
+
 function initDetailedCard(i) {
     showTaskOverlay();
     renderDetailedCard(i);
@@ -212,7 +234,6 @@ function initDetailedCard(i) {
 
 
 function renderDetailedCard(i) {
-
     document.getElementById('todo-card-detailed-category').innerHTML = categories[tasks[i].category].name;
     document.getElementById('todo-card-detailed-category').style.backgroundColor = categories[tasks[i].category].color;
     document.getElementById('todo-card-detailed-title').innerHTML = tasks[i].title;
@@ -222,7 +243,8 @@ function renderDetailedCard(i) {
     document.getElementById('todo-card-detailed-prioImg').src = `img/prio-${tasks[i].prio}.png`;
     document.getElementById('todo-card-detailed-assignedToList').innerHTML = getTemplateAssignedToContacts(i);
     document.getElementById('todo-card-detailed-subtasks').innerHTML = getTemplateSubtasks(i);
-    
+    document.getElementById('todo-card-detailed-btnTaskDelete').setAttribute('onclick',`deleteTask(${i}); return false`)
+    document.getElementById('todo-card-detailed-btnTaskEdit').setAttribute('onclick',`editTask(${i}); return false`)
 }
 
 function capitalizePrio(i) {
@@ -288,27 +310,18 @@ async function updateCheckedStatus(i) {
     selectedSubtasks = [];
 }
 
-/**
- * Show the overlay for editing a contact.
- * @param {number} contactIndex - The index of the contact to edit.
- */
-function showTaskOverlay() {
-    // selectedContactIndex = contactIndex;
-    document.getElementById("showTaskOverlay").style.right = "0";
-    document.getElementById("showTaskOverlay").classList.remove("hidden");
-    document.getElementById("overlayBackground").style.display = "flex";
-    document.getElementById("showTaskOverlay").style.opacity = "100"
-    // populateEditFields(contactIndex);
+async function deleteTask(i) {
+    tasks.splice(i, 1);
+    await saveTasks();
+    hideTaskOverlay();
+    renderTasksToBoard();
+    showSuccessMessage('Task successfully deleted');
 }
 
-/**
- * Hide the overlay for editing a contact.
- */
-function hideTaskOverlay() {
-    document.getElementById("overlayBackground").style.display = "none";
-    document.getElementById("showTaskOverlay").style.right = "-100%";
-    document.getElementById("showTaskOverlay").classList.add("hidden");
+function editTask(i) {
+    showAddTaskOverlay(0);
 }
+
 
 // ****************
 // HELPING FUNCTIONS
