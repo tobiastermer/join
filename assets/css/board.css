@@ -234,6 +234,10 @@
     gap: 24px;
 }
 
+.todo-card-detailed .todo-category {
+    padding: 4px 24px 4px 24px !important;
+}
+
 .todo-card-detailed-header {
     display: flex;
     width: 100%;

@@ -210,32 +210,74 @@ function initDetailedCard(i) {
     showTaskOverlay();
     renderDetailedCard(i);
 }
-/**
- * Show the overlay for adding a new contact.
- */
-function showAddContactOverlay() {
-    document.getElementById("addContactOverlay").style.right = "0";
-    document.getElementById("addContactOverlay").classList.remove("hidden");
-    document.getElementById("overlayBackground").style.display = "flex";
-    document.getElementById("addContactOverlay").style.opacity = "100"
-}
 
-/**
- * Hide the overlay for adding a new contact.
- */
-function hideAddContactOverlay() {
-    document.getElementById("addContactOverlay").style.right = "-100%";
-    document.getElementById("addContactOverlay").classList.add("hidden");
-    document.getElementById("overlayBackground").style.display = "none";
-}
 
 function renderDetailedCard(i) {
 
-    document.getElementById('todo-card-detailed-category').innerHTML = tasks[i].category;
+    document.getElementById('todo-card-detailed-category').innerHTML = categories[tasks[i].category].name;
+    document.getElementById('todo-card-detailed-category').style.backgroundColor = categories[tasks[i].category].color;
     document.getElementById('todo-card-detailed-title').innerHTML = tasks[i].title;
     document.getElementById('todo-card-detailed-description').innerHTML = tasks[i].description;
-    document.getElementById('todo-card-detailed-dueDate').innerHTML = tasks[i].dueDate;
+    document.getElementById('todo-card-detailed-dueDate').innerHTML = new Date(tasks[i].dueDate).toLocaleDateString('en-GB');
+    document.getElementById('todo-card-detailed-prioName').innerHTML = capitalizePrio(i);
+    document.getElementById('todo-card-detailed-prioImg').src = `img/prio-${tasks[i].prio}.png`;
+    document.getElementById('todo-card-detailed-assignedToList').innerHTML = getTemplateAssignedToContacts(i);
+    document.getElementById('todo-card-detailed-subtasks').innerHTML = getTemplateSubtasks(i);
     
+}
+
+function capitalizePrio(i) {
+    let string = tasks[i].prio;
+    if (string == 'med') {
+        return string[0].toUpperCase() + string.slice(1) + 'ium';
+    } else {
+        return string[0].toUpperCase() + string.slice(1);
+    };
+}
+
+function getTemplateAssignedToContacts(i) {
+    let assignedToContacts = tasks[i].assignedTo;
+    let template = '';
+    for (j = 0; j < assignedToContacts.length; j++) {
+        let id = assignedToContacts[j];
+        let contactIndex = getIndexByIdFromContacts(id);
+        let initials = contacts[contactIndex].initials;
+        let name = contacts[contactIndex].name;
+        let color = contacts[contactIndex].color;
+        template = template + `
+            <li>
+                <div class="contact-initials-and-name">
+                    <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
+                    <span>${name}</span>
+                </div>
+            </li>
+        `;
+    };
+    return template;
+}
+
+function getTemplateSubtasks(i) {
+    let subtasks = tasks[i].subtasks;
+    let template = '';
+    for (j = 0; j < subtasks.length; j++) {
+        let subtaskName = subtasks[j].name;
+        let subtaskDone = subtasks[j].done;
+        let checked = '';
+        if (subtaskDone) {
+            checked = 'checked';
+        } else {
+            checked = '';
+        }
+        template = template + `
+            <div class="subtask" id="subtask-${j}">
+                <div>
+                    <input type="checkbox" id="subtask-checkbox-${j}" class="largerCheckbox" ${checked}>
+                    <span>${subtaskName}</span>
+                </div>
+            </div>
+        `;
+    };
+    return template;
 }
 
 /**
@@ -272,3 +314,4 @@ function divideAndRound(a, b) {
     }
     return Math.round(a / b * 100);
 }
+

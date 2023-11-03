@@ -176,24 +176,34 @@
                 </div>
                 <div class="todo-card-detailed">
                     <div class="todo-card-detailed-header">
-                        <p class="todo-category bg-blue" id="todo-card-detailed-category">User Story</p>
+                        <p class="todo-category bg-blue" id="todo-card-detailed-category">
+                            <!-- wird dynamisch gefüllt -->
+                        </p>
                         <img class="" src="./img/Close.png" alt="close button" onclick="hideTaskOverlay();">
                     </div>
-                    <h1 class="todo-title" id="todo-card-detailed-title">Kochwelt Page & Recipe Recommender</h1>
-                    <h2 class="todo-description" id="todo-card-detailed-description">Build start page with recipe recommendation...</h2>
+                    <h1 class="todo-title" id="todo-card-detailed-title">
+                        <!-- wird dynamisch gefüllt -->
+                    </h1>
+                    <h2 class="todo-description" id="todo-card-detailed-description">
+                        <!-- wird dynamisch gefüllt -->
+                    </h2>
                     <div class="todo-card-detailed-row">
                         <label for="">Due date:</label>
-                        <p id="todo-card-detailed-dueDate">10/05/2023</p>
+                        <p id="todo-card-detailed-dueDate">
+                            <!-- wird dynamisch gefüllt -->
+                        </p>
                     </div>
                     <div class="todo-card-detailed-row">
                         <label for="">Priority:</label>
-                        <p>Medium</p>
-                        <div class="todo-prio med"></div>
+                        <p id="todo-card-detailed-prioName">
+                            <!-- wird dynamisch gefüllt -->
+                        </p>
+                        <img class="" id="todo-card-detailed-prioImg" src="img/prio-med.png">
                     </div>
                     <div class="todo-card-detailed-list-container">
                         <label for="">Assigned To:</label>
-                        <div class="form-list form-list-selection" id="addTaskListContactsContainer">
-                            <ul id="addTaskListContacts">
+                        <div class="form-list form-list-selection">
+                            <ul id="todo-card-detailed-assignedToList">
                                 <!-- wird dynamisch gefüllt -->
                                 <li id="selectContactLi-${id}" onclick="selectContact(id); return false">
                                     <div class="contact-initials-and-name">
@@ -212,7 +222,7 @@
                     </div>
                     <div class="todo-card-detailed-list-container">
                         <label for="">Subtasks:</label>
-                        <div class="form-list" id="addTaskSubtaskList">
+                        <div class="form-list" id="todo-card-detailed-subtasks">
                             <div class="subtask" id="subtask-${i}">
                                 <div>
                                     <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox" checked>
@@ -236,8 +246,7 @@
                     <div class="todo-card-detailed-row flex-end">
                         <button onclick="showEditContactOverlay(i)"><img src="./img/edit.png"
                                 alt="Edit Icon">Edit</button>
-                        <button onclick="deleteContact(i)"><img src="./img/delete.png"
-                                alt="Delete Icon">Delete</button>
+                        <button onclick="deleteContact(i)"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
                     </div>
                 </div>
             </div>
