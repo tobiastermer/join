@@ -55,8 +55,7 @@ function renderTasksToBoard() {
  * Creates columns for the board.
  */
 function createColumns() {
-
-    for (i = 0; i < progresses.length; i++) {
+    for (let i = 0; i < progresses.length; i++) {
         document.getElementById('board').innerHTML += `
             <div class="board-column" id="board-column-${i}">
             </div>
@@ -68,7 +67,7 @@ function createColumns() {
  * Creates headers for the board columns.
  */
 function createHeaders() {
-    for (i = 0; i < progresses.length; i++) {
+    for (let i = 0; i < progresses.length; i++) {
         let progressName = progresses[i];
         let column = document.getElementById(`board-column-${i}`);
         column.innerHTML += `
@@ -88,7 +87,7 @@ function createHeaders() {
  * Creates cards for tasks.
  */
 function createCards() {
-    for (i = 0; i < progresses.length; i++) {
+    for (let i = 0; i < progresses.length; i++) {
         let column = document.getElementById(`board-column-content-${i}`);
         let hasTask = false;
         // if there is an task with fitted progress then create card
@@ -112,7 +111,7 @@ function createCards() {
  * Renders the content of the cards.
  */
 function renderCards() {
-    for (i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
         let card = document.getElementById(`todo-card-${i}`);
         let title = tasks[i].title;
         let description = tasks[i].description;
@@ -154,7 +153,7 @@ function renderCards() {
  */
 function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
-    for (j = 0; j < assignedToArray.length; j++) {
+    for (let j = 0; j < assignedToArray.length; j++) {
         let k = getIndexByIdFromContacts(assignedToArray[j]);
         let initials = contacts[k].initials;
         let color = contacts[k].color;
@@ -238,7 +237,7 @@ function capitalizePrio(i) {
 function getTemplateAssignedToContacts(i) {
     let assignedToContacts = tasks[i].assignedTo;
     let template = '';
-    for (j = 0; j < assignedToContacts.length; j++) {
+    for (let j = 0; j < assignedToContacts.length; j++) {
         let id = assignedToContacts[j];
         let contactIndex = getIndexByIdFromContacts(id);
         let initials = contacts[contactIndex].initials;
@@ -259,7 +258,7 @@ function getTemplateAssignedToContacts(i) {
 function getTemplateSubtasks(i) {
     selectedSubtasks = tasks[i].subtasks;
     let template = '';
-    for (j = 0; j < selectedSubtasks.length; j++) {
+    for (let j = 0; j < selectedSubtasks.length; j++) {
         let subtaskName = selectedSubtasks[j].name;
         let subtaskDone = selectedSubtasks[j].done;
         let checked = '';
