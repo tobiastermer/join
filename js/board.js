@@ -124,7 +124,7 @@ function renderCards() {
         let assignedToTemplate = getTemplateAssignedTo(tasks[i].assignedTo);
         let taskprio = tasks[i].prio;
 
-        card.innerHTML += `
+        card.innerHTML = `
             <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
             <div class="todo-title-and-description">
                 <p class="todo-title">${title}</h3>
@@ -257,11 +257,11 @@ function getTemplateAssignedToContacts(i) {
 }
 
 function getTemplateSubtasks(i) {
-    let subtasks = tasks[i].subtasks;
+    selectedSubtasks = tasks[i].subtasks;
     let template = '';
-    for (j = 0; j < subtasks.length; j++) {
-        let subtaskName = subtasks[j].name;
-        let subtaskDone = subtasks[j].done;
+    for (j = 0; j < selectedSubtasks.length; j++) {
+        let subtaskName = selectedSubtasks[j].name;
+        let subtaskDone = selectedSubtasks[j].done;
         let checked = '';
         if (subtaskDone) {
             checked = 'checked';
@@ -271,13 +271,22 @@ function getTemplateSubtasks(i) {
         template = template + `
             <div class="subtask" id="subtask-${j}">
                 <div>
-                    <input type="checkbox" id="subtask-checkbox-${j}" class="largerCheckbox" ${checked}>
+                    <input type="checkbox" id="subtask-checkbox-${j}" class="largerCheckbox" onclick="updateCheckedStatus(${i})" ${checked}>
                     <span>${subtaskName}</span>
                 </div>
             </div>
         `;
     };
     return template;
+}
+
+async function updateCheckedStatus(i) {
+    selectedSubtasks = tasks[i].subtasks;
+    updateSubtasksCheckedStatus();
+    tasks[i].subtasks = selectedSubtasks;
+    await saveTasks();
+    renderCards();
+    selectedSubtasks = [];
 }
 
 /**

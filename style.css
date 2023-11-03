@@ -86,6 +86,11 @@
     justify-content: flex-end;
 }
 
+.no-scroll {
+    max-height: unset !important;
+    overflow: auto !important;
+}
+
 /* Styling for success message popups */
 .successmessage {
     position: fixed;
