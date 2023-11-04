@@ -231,6 +231,12 @@
 .custom-checkbox-label img {
     margin-right: 8px;
     display: flex;
+    transition: 125ms ease-in-out;
+}
+
+.custom-checkbox-label img:hover {
+    background-color: #EDF2FA;
+    scale: 1.1;
 }
 
 .custom-checkbox:checked+.custom-checkbox-label img {
@@ -372,7 +378,7 @@
 
     #login-nav {
         position: absolute;
-        top: 600px;
+        top: 640px; /*top: 600px;*/
         left: 50%;
         transform: translate(-50%, -50%);
         width: max-content;

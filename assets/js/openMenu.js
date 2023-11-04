@@ -1,4 +1,9 @@
 /**
+ * @module OpenHeader_Module
+ * @description The Open Header Module of the page
+ */
+
+/**
  * Opens the header menu by setting its display property to "flex".
  */
 function openHeaderMenu() {

@@ -1,4 +1,10 @@
 /**
+ * @module Login_Module
+ * @description The Login area of the page
+ */
+
+
+/**
  * Initializes the login page.
  * Loads user data, handles animations, and displays success messages.
  */
@@ -6,6 +12,8 @@ async function initLogin() {
     activUser = {
         'name': '',
     };
+    // Setze den 'activUser' in localStorage auf einen leeren Wert
+    localStorage.setItem('activUser', JSON.stringify(activUser));
     loadUsers();
     initLogoAnimation();
     setPasswordVisibilityListener();

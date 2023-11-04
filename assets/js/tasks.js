@@ -1,4 +1,9 @@
 /**
+ * @module TaskManagement_Module
+ * @description The TaskManagement area of the page
+ */
+
+/**
  * Task Management Application
  */
 

@@ -1,5 +1,6 @@
 /**
- * Contact Management Application
+ * @module Contacts_Module
+ * @description The contact area of the page
  */
 
 // Global variables

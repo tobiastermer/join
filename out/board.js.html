@@ -1,5 +1,34 @@
-/**
- * Task Management Application
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module Tasks_Module
+ * @description The tasks area of the page
  */
 
 // ****************
@@ -54,10 +83,10 @@ function renderTasksToBoard() {
  * Creates columns for the board.
  */
 function createColumns() {
-    for (let i = 0; i < progresses.length; i++) {
+    for (let i = 0; i &lt; progresses.length; i++) {
         document.getElementById('board').innerHTML += `
-            <div class="board-column" id="board-column-${i}">
-            </div>
+            &lt;div class="board-column" id="board-column-${i}">
+            &lt;/div>
             `;
     }
 }
@@ -66,18 +95,18 @@ function createColumns() {
  * Creates headers for the board columns.
  */
 function createHeaders() {
-    for (let i = 0; i < progresses.length; i++) {
+    for (let i = 0; i &lt; progresses.length; i++) {
         let progressName = progresses[i];
         let column = document.getElementById(`board-column-${i}`);
         column.innerHTML += `
-            <div class="board-column-header">
-                <h3>${progressName}</h3>
-                <img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}, 'add'); return false">
-            </div>
-            <div class="board-column-content" id="board-column-content-${i}" 
+            &lt;div class="board-column-header">
+                &lt;h3>${progressName}&lt;/h3>
+                &lt;img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}); return false">
+            &lt;/div>
+            &lt;div class="board-column-content" id="board-column-content-${i}" 
                 ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-content-${i}')" 
                 ondragleave="removeHighlight('board-column-content-${i}')">
-            </div>
+            &lt;/div>
         `;
     };
 }
@@ -86,22 +115,22 @@ function createHeaders() {
  * Creates cards for tasks.
  */
 function createCards() {
-    for (let i = 0; i < progresses.length; i++) {
+    for (let i = 0; i &lt; progresses.length; i++) {
         let column = document.getElementById(`board-column-content-${i}`);
         let hasTask = false;
         // if there is an task with fitted progress then create card
-        for (j = 0; j < tasks.length; j++) {
+        for (j = 0; j &lt; tasks.length; j++) {
             if (tasks[j].progress == i) {
                 hasTask = true;
-                column.innerHTML += `<div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}" onclick="initDetailedCard(${j}); return false"></div>`;
+                column.innerHTML += `&lt;div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}" onclick="initDetailedCard(${j}); return false">&lt;/div>`;
             };
         };
         // if there is no ToDo-Card, then add a no-todo-card
         if (!hasTask) {
             column.innerHTML += `
-                <div class="no-todo-card">
-                    <p>No tasks ${progresses[i]}</p>
-                </div>`;
+                &lt;div class="no-todo-card">
+                    &lt;p>No tasks ${progresses[i]}&lt;/p>
+                &lt;/div>`;
         };
     };
 }
@@ -110,7 +139,7 @@ function createCards() {
  * Renders the content of the cards.
  */
 function renderCards() {
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i &lt; tasks.length; i++) {
         let card = document.getElementById(`todo-card-${i}`);
         let title = tasks[i].title;
         let description = tasks[i].description;
@@ -123,23 +152,23 @@ function renderCards() {
         let taskprio = tasks[i].prio;
 
         card.innerHTML = `
-            <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
-            <div class="todo-title-and-description">
-                <p class="todo-title">${title}</h3>
-                <p class="todo-description">${description}</p>
-            </div>
-            <div class="todo-progress-and-subtasks">
-                <div class="todo-progress-100">
-                    <div class="todo-progress" style="width: ${progressInPercent}%"></div>
-                </div>
-                <p>${subtasksDone}/${subtasksLength} Subtasks</p>
-            </div>
-            <div class="todo-persons-and-prio">
-                <div class="todo-persons">
+            &lt;p class="todo-category" style="background-color: ${categoryColor}">${categoryName}&lt;/p>
+            &lt;div class="todo-title-and-description">
+                &lt;p class="todo-title">${title}&lt;/h3>
+                &lt;p class="todo-description">${description}&lt;/p>
+            &lt;/div>
+            &lt;div class="todo-progress-and-subtasks">
+                &lt;div class="todo-progress-100">
+                    &lt;div class="todo-progress" style="width: ${progressInPercent}%">&lt;/div>
+                &lt;/div>
+                &lt;p>${subtasksDone}/${subtasksLength} Subtasks&lt;/p>
+            &lt;/div>
+            &lt;div class="todo-persons-and-prio">
+                &lt;div class="todo-persons">
                     ${assignedToTemplate}
-                </div>
-                <div class="todo-prio ${taskprio}"></div>
-            </div>
+                &lt;/div>
+                &lt;div class="todo-prio ${taskprio}">&lt;/div>
+            &lt;/div>
         `;
     };
 
@@ -152,7 +181,7 @@ function renderCards() {
  */
 function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
-    for (let j = 0; j < assignedToArray.length; j++) {
+    for (let j = 0; j &lt; assignedToArray.length; j++) {
         let k = getIndexByIdFromContacts(assignedToArray[j]);
         if (k >= 0) {
             let initials = contacts[k].initials;
@@ -163,7 +192,7 @@ function getTemplateAssignedTo(assignedToArray) {
             } else {
                 style += '';
             }
-            compoundTemplate += `<div class="" style="${style}">${initials}</div>`;
+            compoundTemplate += `&lt;div class="" style="${style}">${initials}&lt;/div>`;
         };
     }
     return compoundTemplate;
@@ -175,6 +204,7 @@ function getTemplateAssignedTo(assignedToArray) {
 
 function startDragging(i) {
     currentDraggedElement = i;
+    console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -195,6 +225,7 @@ function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
 
+
 // ****************
 // OVERLAY
 // ****************
@@ -204,10 +235,12 @@ function removeHighlight(element) {
  * @param {number} contactIndex - The index of the contact to edit.
  */
 function showTaskOverlay() {
+    // selectedContactIndex = contactIndex;
     document.getElementById("showTaskOverlay").style.right = "0";
     document.getElementById("showTaskOverlay").classList.remove("hidden");
     document.getElementById("overlayBackground").style.display = "flex";
     document.getElementById("showTaskOverlay").style.opacity = "100"
+    // populateEditFields(contactIndex);
 }
 
 /**
@@ -252,7 +285,7 @@ function capitalizePrio(i) {
 function getTemplateAssignedToContacts(i) {
     let assignedToContacts = tasks[i].assignedTo;
     let template = '';
-    for (let j = 0; j < assignedToContacts.length; j++) {
+    for (let j = 0; j &lt; assignedToContacts.length; j++) {
         let id = assignedToContacts[j];
         let contactIndex = getIndexByIdFromContacts(id);
         if (contactIndex >= 0) {
@@ -260,12 +293,12 @@ function getTemplateAssignedToContacts(i) {
             let name = contacts[contactIndex].name;
             let color = contacts[contactIndex].color;
             template = template + `
-                <li>
-                    <div class="contact-initials-and-name">
-                        <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                        <span>${name}</span>
-                    </div>
-                </li>
+                &lt;li>
+                    &lt;div class="contact-initials-and-name">
+                        &lt;div class="contact_initial_image" style="background-color: ${color}">${initials}&lt;/div>
+                        &lt;span>${name}&lt;/span>
+                    &lt;/div>
+                &lt;/li>
             `;
         }
     };
@@ -273,11 +306,11 @@ function getTemplateAssignedToContacts(i) {
 }
 
 function getTemplateSubtasks(i) {
-    let subtasks = tasks[i].subtasks;
+    selectedSubtasks = tasks[i].subtasks;
     let template = '';
-    for (let j = 0; j < subtasks.length; j++) {
-        let subtaskName = subtasks[j].name;
-        let subtaskDone = subtasks[j].done;
+    for (let j = 0; j &lt; selectedSubtasks.length; j++) {
+        let subtaskName = selectedSubtasks[j].name;
+        let subtaskDone = selectedSubtasks[j].done;
         let checked = '';
         if (subtaskDone) {
             checked = 'checked';
@@ -285,21 +318,24 @@ function getTemplateSubtasks(i) {
             checked = '';
         }
         template = template + `
-            <div class="subtask" id="subtask-${j}">
-                <div>
-                    <input type="checkbox" id="subtask-checkbox-showCard-${j}" class="largerCheckbox" onclick="updateCheckedStatusShowCard(${i})" ${checked}>
-                    <span>${subtaskName}</span>
-                </div>
-            </div>
+            &lt;div class="subtask" id="subtask-${j}">
+                &lt;div>
+                    &lt;input type="checkbox" id="subtask-checkbox-${j}" class="largerCheckbox" onclick="updateCheckedStatus(${i})" ${checked}>
+                    &lt;span>${subtaskName}&lt;/span>
+                &lt;/div>
+            &lt;/div>
         `;
     };
     return template;
 }
 
-async function updateCheckedStatusShowCard(i) {
-    tasks[i].subtasks = updatedArrayCheckedStatus(tasks[i].subtasks, "showCard");
+async function updateCheckedStatus(i) {
+    selectedSubtasks = tasks[i].subtasks;
+    updateSubtasksCheckedStatus();
+    tasks[i].subtasks = selectedSubtasks;
     await saveTasks();
     renderCards();
+    selectedSubtasks = [];
 }
 
 async function deleteTask(i) {
@@ -311,7 +347,7 @@ async function deleteTask(i) {
 }
 
 async function editTask(i) {
-    await showAddTaskOverlay(tasks[i].progress, 'edit');
+    await showAddTaskOverlay(tasks[i].progress);
     renderEditTaskForm(i);
     taskIndex = i;
 }
@@ -336,23 +372,30 @@ function renderEditTaskFormAssignedContacts(i) {
     selectedContacts = [];
     renderContactList();
     let assignedToArray = tasks[i].assignedTo;
-    for (let j = 0; j < assignedToArray.length; j++) {
+    for (let j = 0; j &lt; assignedToArray.length; j++) {
         addToSelectedContacts(assignedToArray[j]);
     };
     renderSelectedContacts();
 }
 
 function renderEditTaskFormSubtasks(i) {
-    for (let k = 0; k < selectedSubtasks.length; k++) {
-         deleteSubtask(0);
-     };
-     selectedSubtasks = JSON.parse(JSON.stringify(tasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
-     renderSubtaskList();
+    for (let k = 0; k &lt; selectedContacts.length; k++) {
+        deleteSubtask(0);
+    };
+    let tempSubtaskArray = [];
+    for (let j = 0; j &lt; tasks[i].subtasks.length; j++) {
+        tempSubtaskArray.push(tasks[i].subtasks[j]);
+    };
+    selectedSubtasks = tempSubtaskArray;
+    renderSubtaskList();
 }
+
 
 // ****************
 // HELPING FUNCTIONS
 // ****************
+
+
 
 function divideAndRound(a, b) {
     if (a === 0 || b === 0) {
@@ -361,3 +404,26 @@ function divideAndRound(a, b) {
     return Math.round(a / b * 100);
 }
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Contacts_Module.html">Contacts_Module</a></li><li><a href="module-GoBack_Module.html">GoBack_Module</a></li><li><a href="module-Login_Module.html">Login_Module</a></li><li><a href="module-OpenHeader_Module.html">OpenHeader_Module</a></li><li><a href="module-Register_Module.html">Register_Module</a></li><li><a href="module-Storage_Module.html">Storage_Module</a></li><li><a href="module-TaskManagement_Module.html">TaskManagement_Module</a></li><li><a href="module-Tasks_Module.html">Tasks_Module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#showSuccessMessage">showSuccessMessage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Nov 04 2023 16:09:24 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
