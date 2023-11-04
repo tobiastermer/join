@@ -1,4 +1,9 @@
 /**
+ * @module Storage_Module
+ * @description The Storage Load and Save  of the page
+ */
+
+/**
  * Constant to store the storage token.
  * @type {string}
  */
