@@ -463,23 +463,6 @@ function addSubtask() {
     document.getElementById('addTaskSubtaskInput').value = '';
 }
 
-// function addSubtask(ev) {
-//     const input = document.getElementById("subtasks-input");
-//     if (ev.type === "keypress" && ev.key === "Enter") {
-//         ev.preventDefault();
-//     }
-//     if (input.value && (ev.type === "click" || (ev.type === "keypress" && ev.key === "Enter"))) {
-//         subtasks.push({ text: input.value, status: "todo" });
-//         input.value = "";
-//         input.focus();
-//         if (ev.type === 'click') {
-//             toggleSubtaskIcons();
-//         }
-//         renderSubtasksInForm();
-//     }
-// }
-
-
 /**
  * Deletes subtask from array and list.
  * @param {int} i - The Index number of subtask in list.
@@ -720,3 +703,12 @@ function getIndexByIdFromContacts(id) {
     };
     return -1;
 }
+
+document.querySelector('addTaskSubtaskInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        // code for enter
+        e.preventDefault(); // Verhindert das standardmäßige Verhalten des Browsers (z.B. das Absenden eines Formulars)
+        addSubtask();
+    }
+});
+

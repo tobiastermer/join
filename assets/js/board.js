@@ -48,6 +48,41 @@ function renderTasksToBoard() {
 }
 
 // ****************
+// FILTER
+// ****************
+
+/**
+ * Filter tasks based on a search query.
+ * @param {string} search - The search query.
+ * @returns {Array} - An array of tasks that match the query.
+ */
+function filterTasksBySearch(search) {
+    return tasks.filter(task => task.title.toLowerCase().includes(search.toLowerCase()));
+}
+
+/**
+ * Update the board based on the search query.
+ */
+function updateBoardBySearch() {
+    // Get the value from the search input
+    let search = document.getElementById("board-search").value;
+
+    // Get the filtered tasks
+    let filteredTasks = filterTasksBySearch(search);
+
+    // Temporarily set the global tasks to the filtered tasks
+    let originalTasks = JSON.parse(JSON.stringify(tasks)); // Store the original tasks
+    tasks = JSON.parse(JSON.stringify(filteredTasks));
+
+    // Render the tasks on the board
+    renderTasksToBoard();
+
+    // Restore the original tasks
+    tasks = JSON.parse(JSON.stringify(originalTasks));
+}
+
+
+// ****************
 // BOARD CONTENT
 // ****************
 
@@ -345,10 +380,10 @@ function renderEditTaskFormAssignedContacts(i) {
 
 function renderEditTaskFormSubtasks(i) {
     for (let k = 0; k < selectedSubtasks.length; k++) {
-         deleteSubtask(0);
-     };
-     selectedSubtasks = JSON.parse(JSON.stringify(tasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
-     renderSubtaskList();
+        deleteSubtask(0);
+    };
+    selectedSubtasks = JSON.parse(JSON.stringify(tasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
+    renderSubtaskList();
 }
 
 // ****************

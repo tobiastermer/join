@@ -32,7 +32,7 @@
             <h1>Board</h1>
             <div class="board-header-search_and_button">
                 <div class="board-header-search">
-                    <input type="text" placeholder="Find Task">
+                    <input type="text" placeholder="Find Task" id="board-search">
                     <div class="search-line"></div>
                     <img src="img/search.png" alt="">
                 </div>
@@ -132,7 +132,8 @@
                     <div class="todo-card-detailed-row flex-end">
                         <button onclick="editTask(i)" id="todo-card-detailed-btnTaskEdit"><img src="./img/edit.png"
                                 alt="Edit Icon">Edit</button>
-                        <button onclick="deleteContact(i)" id="todo-card-detailed-btnTaskDelete"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
+                        <button onclick="deleteContact(i)" id="todo-card-detailed-btnTaskDelete"><img
+                                src="./img/delete.png" alt="Delete Icon">Delete</button>
                     </div>
                 </div>
             </div>
@@ -150,6 +151,9 @@
 
     </div>
 
+    <script>
+        document.getElementById("board-search").addEventListener("input", updateBoardBySearch);
+    </script>
 </body>
 
 </html>
