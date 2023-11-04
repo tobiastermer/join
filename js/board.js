@@ -9,6 +9,7 @@
 // Global variables
 let board;
 let currentDraggedElement;
+let taskIndex;
 
 
 // Array for different progress levels
@@ -317,8 +318,9 @@ async function deleteTask(i) {
 }
 
 async function editTask(i) {
-    await showAddTaskOverlay(0);
+    await showAddTaskOverlay(tasks[i].progress);
     renderEditTaskForm(i);
+    taskIndex = i;
 }
 
 async function renderEditTaskForm(i) {

@@ -59,6 +59,8 @@ async function initAddTask(progressIndex) {
     progress = progressIndex;
     selectedSubtasks = [];
     hideAddContactOverlay();
+    disableTaskSubmitButton(false);
+    taskIndex = '';
 }
 
 /**
@@ -536,46 +538,90 @@ function updateSubtasksCheckedStatus() {
 /**
  * Coordinates creating a new task and stores it to storage.
  */
-async function addNewTask() {
-    // Deaktiviere den Button zu Beginn der Funktion
-    const createTaskButton = document.querySelector('.btn-primary[type="submit"]');
-    createTaskButton.disabled = true;
-
+async function submitTask() {
+    disableTaskSubmitButton(true);
     try {
-        checkAddTask();
-        updateSubtasksCheckedStatus();
-        pushNewTaskToArray();
-        await saveTasks();
-        showSuccessMessage('Task succesfully created');
-        resetAddTask();
+        if (isTaskFormFilledCorrectly()) {
+            updateSubtasksCheckedStatus();
+            pushTaskToArray();
+            await saveTasks();
+            resetAddTask();
+            goToBoard();
+            showSuccessMessage('Task succesfully created');
+        } else {
+            disableTaskSubmitButton(false);
+        }
     } catch (error) {
         console.error("Ein Fehler ist aufgetreten:", error);
-        // Aktiviere den Button wieder, falls ein Fehler aufgetreten ist
-        createTaskButton.disabled = false;
+        disableTaskSubmitButton(false);
     }
+}
+
+function disableTaskSubmitButton(trueOrFalse) {
+    const createTaskButton = document.querySelector('.btn-primary[type="submit"]');
+    if (trueOrFalse == true) {
+        createTaskButton.disabled = true;
+    } else {
+        createTaskButton.disabled = false;
+    };
 }
 
 async function saveTasks() {
     await setItem('tasks', JSON.stringify(tasks));
 }
 
+function goToBoard() {
+    if (window.location.href.indexOf("board.html") > -1) {
+        if (taskIndex === undefined || taskIndex === null) { //add new task mode
+            hideTaskOverlay(); 
+            closeAddTaskOverlay();
+            initBoard();
+        } else { //edit mode
+            closeAddTaskOverlay();
+            renderTasksToBoard();
+            renderDetailedCard(taskIndex);
+        };
+    } else {
+        window.location.href = 'board.html';
+    };
+}
+
 /**
  * Checks whether all required fields are filled in completely and plausibly.
  */
-function checkAddTask() {
-    // noch füllen für Plausibilitäten
+function isTaskFormFilledCorrectly() {
+    let errors = [];
+
+    // Category
+    if (category === undefined || category === null) {
+        errors.push("Please select a category.");
+        showErrorMessage("Please select a category.");
+    }
+
+    if (errors.length > 0) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
  * Pushes new task to task array.
  */
-function pushNewTaskToArray() {
+function pushTaskToArray() {
+    let array = buildTaskArray();
+    if (taskIndex === undefined || taskIndex === null) {
+        tasks.push(array);
+    } else {
+        tasks[taskIndex] = array;
+    };
+}
+
+function buildTaskArray() {
     // Variablen definieren
     let assignedTo = selectedContacts;
     let subtasks = selectedSubtasks;
-
-    // Array füllen
-    tasks.push({
+    return {
         title: document.getElementById('addTaskTitle').value,
         description: document.getElementById('addTaskDescription').value,
         assignedTo: assignedTo,
@@ -584,7 +630,7 @@ function pushNewTaskToArray() {
         category: category,
         subtasks: subtasks,
         progress: progress,
-    });
+    };
 }
 
 // ****************
