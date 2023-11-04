@@ -2,7 +2,7 @@ body,
 html {
     margin: 0;
     padding: 0;
-    background-color: #F6F7F8;
+    background-color: #F6F7F8 !important;
 }
 
 .design_template {
