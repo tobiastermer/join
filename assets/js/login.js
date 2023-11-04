@@ -1,4 +1,10 @@
 /**
+ * @module Login_Module
+ * @description The Login area of the page
+ */
+
+
+/**
  * Initializes the login page.
  * Loads user data, handles animations, and displays success messages.
  */

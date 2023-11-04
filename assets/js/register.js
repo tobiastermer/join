@@ -1,4 +1,9 @@
 /**
+ * @module Register_Module
+ * @description The register area of the page
+ */
+
+/**
  * Initializes the user information and checks if already registered.
  */
 async function initRegister() {

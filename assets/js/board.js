@@ -1,5 +1,6 @@
 /**
- * Task Management Application
+ * @module Tasks_Module
+ * @description The tasks area of the page
  */
 
 // ****************
