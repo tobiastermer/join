@@ -22,6 +22,10 @@ body {
     font-family: 'Inter';
 }
 
+.d-none {
+    display: none !important;
+}
+
 @media (max-width: 770px){
 
     .main-content{

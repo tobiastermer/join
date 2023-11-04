@@ -6,6 +6,8 @@ async function initLogin() {
     activUser = {
         'name': '',
     };
+    // Setze den 'activUser' in localStorage auf einen leeren Wert
+    localStorage.setItem('activUser', JSON.stringify(activUser));
     loadUsers();
     initLogoAnimation();
     setPasswordVisibilityListener();

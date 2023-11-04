@@ -56,10 +56,9 @@ async function getItem(key) {
 /**
  * Initialize user-related summary information.
  */
-async function initUserName() {
+async function initUserName() {       
     loadActiveUser();
-    // hideMenuIfNoActiveUser();
-    displayUserName();
+    hideMenuIfNoActiveUser();
 }
 
 /**
@@ -83,24 +82,22 @@ function loadActiveUser() {
  * Asynchronously display the user's name and initials.
  */
 async function displayUserName() {
-    // Check if the includeHTML function exists before calling it.
-    if (typeof includeHTML === 'function') {
-        await includeHTML();
+    if (activUser.name == "") {
+        return;
     } else {
-        console.log('No includeHTML function found');
+
+        // Continue with the rest of the code.
+        const userNameElement = document.getElementById('activUserName');
+        const userProfileElement = document.getElementById('profileButton');
+
+        // Check if userNameElement exists and if activUser.name is defined.
+        if (userNameElement && activUser.name) {
+            userNameElement.textContent = activUser.name;
+        }
+
+        // Set userProfileElement.innerHTML to the user's initials, regardless of whether userNameElement exists.
+        userProfileElement.innerHTML = getInitialsOf(activUser.name || "");
     }
-
-    // Continue with the rest of the code.
-    const userNameElement = document.getElementById('activUserName');
-    const userProfileElement = document.getElementById('profileButton');
-
-    // Check if userNameElement exists and if activUser.name is defined.
-    if (userNameElement && activUser.name) {
-        userNameElement.textContent = activUser.name;
-    }
-
-    // Set userProfileElement.innerHTML to the user's initials, regardless of whether userNameElement exists.
-    userProfileElement.innerHTML = getInitialsOf(activUser.name || "");
 }
 
 /**
@@ -110,10 +107,10 @@ async function displayUserName() {
  */
 function getInitialsOf(name) {
     return name
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase())
-      .join("");
-  }
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase())
+        .join("");
+}
 
 /**
  * Asynchronously hide the menu if the user is not active.
@@ -128,8 +125,11 @@ async function hideMenuIfNoActiveUser() {
 
     // Continue with the rest of the code.
     let dnMenu = document.getElementById("menu");
-    if (activUser.name == '') {
+    let profileButton = document.getElementById("profileButton");
+    if (activUser.name == "") {
         dnMenu.style.display = 'none';
+        profileButton.style.display = 'none';
     }
+    displayUserName();
 }
 
