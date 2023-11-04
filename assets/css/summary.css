@@ -147,3 +147,35 @@
     font-size: 64px;
     margin-block-start: 0;
 }
+
+@media(max-width: 1330px) {
+    .summary-main-section {
+        gap: 6%;
+    }
+
+    .summary-main-hello {
+        text-wrap: wrap;
+    }
+}
+
+@media(max-width: 1150px) {
+    .summary-main-section {
+        gap: 6%;
+    }
+
+    .summary-main-hello {
+        display: none;
+    }
+}
+
+@media(max-width: 850px) {
+    .main-content{
+        padding-left: 200px
+    }
+}
+
+@media(max-width: 770px) {
+    .main-content{
+        padding-left: 8%
+    }
+}
