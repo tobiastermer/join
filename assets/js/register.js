@@ -12,7 +12,6 @@ async function initRegister() {
     setPasswordVisibilityListener('password', 'passwordToggle');
     setPasswordVisibilityListener('PWconfirm', 'confirmToggle');
     loadMsgBox();
-    buttonIfChecked();
 }
 
 /**
@@ -106,20 +105,6 @@ function validatePassword() {
         PWconfirm.classList.remove("error-border");
     }
 }
-
-// function buttonIfChecked() {
-//     // Get references to the checkbox and the "Sign up" button
-//     const customRememberMe = document.getElementById("customRememberMe");
-//     const registerBtn = document.getElementById("registerBtn");
-
-//     // Add an event listener to the checkbox to enable/disable the button
-//     customRememberMe.addEventListener("change", function () {
-//         registerBtn.disabled = !customRememberMe.checked;
-//     });
-
-//     // Initialisierung, um den Button entsprechend dem ursprünglichen Status der Checkbox festzulegen
-//     registerBtn.disabled = !customRememberMe.checked;
-// }
 
 // Visual Functions ///////////////////////////////////////////////////////
 
