@@ -9,13 +9,14 @@
 // Global variables
 let tasks = [];
 let selectedPrio;
-let category;
+let selectedCategory;
 let selectedContacts = [];
 let isAssignToDropdownActive = false;
 let isCategoryDropdownActive = false;
 let filteredContacts = [];
 let selectedSubtasks = [];
 let progress;
+let mode;
 
 // Array with categories and colors
 let categories = [
@@ -52,7 +53,7 @@ let categories = [
 /**
  * Initialize the application.
  */
-async function initAddTask(progressIndex) {
+async function initAddTask(progressIndex, inputMode) {
     await loadTasks();
     await initContactList();
     initCategories();
@@ -61,6 +62,7 @@ async function initAddTask(progressIndex) {
     hideAddContactOverlay();
     disableTaskSubmitButton(false);
     taskIndex = '';
+    mode = inputMode;
 }
 
 /**
@@ -77,11 +79,11 @@ async function loadTasks() {
 /**
  * Show the overlay for adding a new task.
  */
-async function showAddTaskOverlay(progressIndex) {
+async function showAddTaskOverlay(progressIndex, mode) {
     document.getElementById("addTaskOverlay").style.display = "flex";
     document.getElementById("addTaskOverlay").style.zIndex = "1000";
     document.getElementById("addTask-close-button").style.display = "flex";
-    await initAddTask(progressIndex);
+    await initAddTask(progressIndex, mode);
 }
 
 /**
@@ -90,6 +92,7 @@ async function showAddTaskOverlay(progressIndex) {
 function closeAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "none";
     document.getElementById("addTask-close-button").style.display = "none";
+
 }
 
 // ****************
@@ -402,7 +405,7 @@ function renderCategoryList() {
  * @param {int} i - The index of category in categories array.
  */
 function selectCategory(i) {
-    category = i;
+    selectedCategory = i;
     let name = categories[i].name;
     let color = categories[i].color;
     let template = getTemplateCategory(name, color);
@@ -429,9 +432,10 @@ function getTemplateCategory(name, color) {
 /**
  * Resets the selected prio from task.
  */
-function resetDisplayCategory() {
+function resetCategory() {
     document.getElementById('addTaskCategory').innerHTML = '';
     document.getElementById('addTaskCategory').innerHTML = 'Select task category';
+    selectedPrio = '';
 }
 
 // ****************
@@ -486,7 +490,8 @@ function deleteSubtask(i) {
 function renderSubtaskList() {
     let subtaskList = document.getElementById('addTaskSubtaskList');
     if (selectedSubtasks.length > 0) {
-        updateSubtasksCheckedStatus();
+        // updateSubtasksCheckedStatus('addForm');
+        // selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm');
         subtaskList.classList.remove('d-none');
         subtaskList.innerHTML = '';
         for (i = 0; i < selectedSubtasks.length; i++) {
@@ -501,7 +506,7 @@ function renderSubtaskList() {
             subtaskList.innerHTML += `
                 <div class="subtask" id="subtask-${i}">
                     <div>
-                        <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox" ${checked}>
+                        <input type="checkbox" id="subtask-checkbox-addForm-${i}" class="largerCheckbox" onclick="updateCheckedStatusAddForm()" ${checked}>
                         <span>${subtaskName}</span>
                     </div>
                     <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
@@ -513,22 +518,29 @@ function renderSubtaskList() {
     };
 }
 
+function updateCheckedStatusAddForm() {
+    selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm')
+}
+
 /**
  * Checks, if there are any new Checks or Unchecks of subtasks and saving them to array.
+ * card can be showCard oder addForm
  */
-function updateSubtasksCheckedStatus() {
-    for (i = 0; i < selectedSubtasks.length; i++) {
+// needs to work both for stored and temporary subtasks
+function updatedArrayCheckedStatus(subtaskArray, card) {
+    for (let i = 0; i < subtaskArray.length; i++) {
         try {
-            let subtaskChecked = document.getElementById(`subtask-checkbox-${i}`).checked;
+            let subtaskChecked = document.getElementById(`subtask-checkbox-${card}-${i}`).checked;
             if (subtaskChecked) {
-                selectedSubtasks[i].done = true;
+                subtaskArray[i].done = true;
             } else {
-                selectedSubtasks[i].done = false;
+                subtaskArray[i].done = false;
             };
         } catch {
             // ggf. Fehlermeldung
         };
     };
+    return subtaskArray;
 }
 
 // ****************
@@ -542,12 +554,12 @@ async function submitTask() {
     disableTaskSubmitButton(true);
     try {
         if (isTaskFormFilledCorrectly()) {
-            updateSubtasksCheckedStatus();
+            // updateSubtasksCheckedStatus('addForm');
+            selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm');
             pushTaskToArray();
             await saveTasks();
             resetAddTask();
             goToBoard();
-            showSuccessMessage('Task succesfully created');
         } else {
             disableTaskSubmitButton(false);
         }
@@ -572,14 +584,16 @@ async function saveTasks() {
 
 function goToBoard() {
     if (window.location.href.indexOf("board.html") > -1) {
-        if (taskIndex === undefined || taskIndex === null || taskIndex == '') { //add new task mode
+        if (mode == 'add') { //add new task mode
             hideTaskOverlay();
             closeAddTaskOverlay();
             initBoard();
+            showSuccessMessage('Task succesfully created');
         } else { //edit mode
             closeAddTaskOverlay();
             renderTasksToBoard();
             renderDetailedCard(taskIndex);
+            showSuccessMessage('Task succesfully edited');
         };
     } else {
         window.location.href = 'board.html';
@@ -593,16 +607,22 @@ function isTaskFormFilledCorrectly() {
     let errors = [];
 
     // Category
-    if (category === undefined || category === null) {
+    if (selectedCategory === undefined || selectedCategory === null || selectedCategory == '') {
         errors.push("Please select a category.");
         showErrorMessage("Please select a category.");
     }
 
-    if (errors.length > 0) {
-        return false;
+    // Prio
+    if (selectedPrio === undefined || selectedPrio === null || selectedPrio == '') {
+        errors.push("Please select a prio.");
+        showErrorMessage("Please select a prio.");
     }
 
-    return true;
+    if (errors.length > 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**
@@ -610,9 +630,9 @@ function isTaskFormFilledCorrectly() {
  */
 function pushTaskToArray() {
     let array = buildTaskArray();
-    if (taskIndex === undefined || taskIndex === null || taskIndex == '') {
+    if (mode == 'add') { // add mode
         tasks.push(array);
-    } else {
+    } else { // edit mode
         tasks[taskIndex] = array;
     };
 }
@@ -620,14 +640,14 @@ function pushTaskToArray() {
 function buildTaskArray() {
     // Variablen definieren
     let assignedTo = selectedContacts;
-    let subtasks = selectedSubtasks;
+    let subtasks = selectedSubtasks.slice();
     return {
         title: document.getElementById('addTaskTitle').value,
         description: document.getElementById('addTaskDescription').value,
         assignedTo: assignedTo,
         dueDate: document.getElementById('addTaskDueDate').value,
         prio: selectedPrio,
-        category: category,
+        category: selectedCategory,
         subtasks: subtasks,
         progress: progress,
     };
@@ -656,10 +676,11 @@ function resetAddTask() {
     document.getElementById('addTaskDueDate').value = '';
     document.getElementById('addTaskCategory').value = '';
     document.getElementById('addTaskSubtaskInput').value = '';
+    document.getElementById('addTaskSubtaskList').innerHTML = '';
 
     // Reset Variables and colors
     resetPrio();
-    resetDisplayCategory();
+    resetCategory();
 
     // Clear Lists and Dropdowns
     hideContactList();

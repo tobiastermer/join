@@ -72,7 +72,7 @@ function createHeaders() {
         column.innerHTML += `
             <div class="board-column-header">
                 <h3>${progressName}</h3>
-                <img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}); return false">
+                <img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}, 'add'); return false">
             </div>
             <div class="board-column-content" id="board-column-content-${i}" 
                 ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-content-${i}')" 
@@ -175,7 +175,6 @@ function getTemplateAssignedTo(assignedToArray) {
 
 function startDragging(i) {
     currentDraggedElement = i;
-    console.log(currentDraggedElement);
 }
 
 function allowDrop(ev) {
@@ -196,7 +195,6 @@ function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
 
-
 // ****************
 // OVERLAY
 // ****************
@@ -206,12 +204,10 @@ function removeHighlight(element) {
  * @param {number} contactIndex - The index of the contact to edit.
  */
 function showTaskOverlay() {
-    // selectedContactIndex = contactIndex;
     document.getElementById("showTaskOverlay").style.right = "0";
     document.getElementById("showTaskOverlay").classList.remove("hidden");
     document.getElementById("overlayBackground").style.display = "flex";
     document.getElementById("showTaskOverlay").style.opacity = "100"
-    // populateEditFields(contactIndex);
 }
 
 /**
@@ -277,11 +273,11 @@ function getTemplateAssignedToContacts(i) {
 }
 
 function getTemplateSubtasks(i) {
-    selectedSubtasks = tasks[i].subtasks;
+    let subtasks = tasks[i].subtasks;
     let template = '';
-    for (let j = 0; j < selectedSubtasks.length; j++) {
-        let subtaskName = selectedSubtasks[j].name;
-        let subtaskDone = selectedSubtasks[j].done;
+    for (let j = 0; j < subtasks.length; j++) {
+        let subtaskName = subtasks[j].name;
+        let subtaskDone = subtasks[j].done;
         let checked = '';
         if (subtaskDone) {
             checked = 'checked';
@@ -291,7 +287,7 @@ function getTemplateSubtasks(i) {
         template = template + `
             <div class="subtask" id="subtask-${j}">
                 <div>
-                    <input type="checkbox" id="subtask-checkbox-${j}" class="largerCheckbox" onclick="updateCheckedStatus(${i})" ${checked}>
+                    <input type="checkbox" id="subtask-checkbox-showCard-${j}" class="largerCheckbox" onclick="updateCheckedStatusShowCard(${i})" ${checked}>
                     <span>${subtaskName}</span>
                 </div>
             </div>
@@ -300,13 +296,10 @@ function getTemplateSubtasks(i) {
     return template;
 }
 
-async function updateCheckedStatus(i) {
-    selectedSubtasks = tasks[i].subtasks;
-    updateSubtasksCheckedStatus();
-    tasks[i].subtasks = selectedSubtasks;
+async function updateCheckedStatusShowCard(i) {
+    tasks[i].subtasks = updatedArrayCheckedStatus(tasks[i].subtasks, "showCard");
     await saveTasks();
     renderCards();
-    selectedSubtasks = [];
 }
 
 async function deleteTask(i) {
@@ -318,7 +311,7 @@ async function deleteTask(i) {
 }
 
 async function editTask(i) {
-    await showAddTaskOverlay(tasks[i].progress);
+    await showAddTaskOverlay(tasks[i].progress, 'edit');
     renderEditTaskForm(i);
     taskIndex = i;
 }
@@ -350,23 +343,16 @@ function renderEditTaskFormAssignedContacts(i) {
 }
 
 function renderEditTaskFormSubtasks(i) {
-    for (let k = 0; k < selectedContacts.length; k++) {
-        deleteSubtask(0);
-    };
-    let tempSubtaskArray = [];
-    for (let j = 0; j < tasks[i].subtasks.length; j++) {
-        tempSubtaskArray.push(tasks[i].subtasks[j]);
-    };
-    selectedSubtasks = tempSubtaskArray;
-    renderSubtaskList();
+    for (let k = 0; k < selectedSubtasks.length; k++) {
+         deleteSubtask(0);
+     };
+     selectedSubtasks = JSON.parse(JSON.stringify(tasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
+     renderSubtaskList();
 }
-
 
 // ****************
 // HELPING FUNCTIONS
 // ****************
-
-
 
 function divideAndRound(a, b) {
     if (a === 0 || b === 0) {
