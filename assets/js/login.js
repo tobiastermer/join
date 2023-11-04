@@ -76,6 +76,7 @@ function login() {
         window.location.href = 'summary.html';
     } else {
         // Login failed
+        passwordInput.classList.add("error-border");
         errorElement.textContent = "Wrong password. Please try again.";
     }
 }

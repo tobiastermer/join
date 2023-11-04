@@ -32,7 +32,7 @@ async function loadUsers() {
  * Registers a user.
  */
 async function register() {
-    validatePassword(); // Perform validation
+    validateInputFields();
     const errorElement = document.getElementById("passwordMismatchError");
 
     if (errorElement.textContent) {
@@ -98,19 +98,38 @@ function resetForm() {
 /**
  * Validates password equality.
  */
-function validatePassword() {
+function validateInputFields() {
     const password = document.getElementById("password");
     const PWconfirm = document.getElementById("PWconfirm");
+    const email = document.getElementById("email");
+    const userName = document.getElementById("userName");
     const errorElement = document.getElementById("passwordMismatchError");
 
     if (password.value !== PWconfirm.value) {
-        errorElement.textContent = "Ups! your password doesn’t match";
+        errorElement.textContent = "Ups! Your password doesn’t match";
         PWconfirm.classList.add("error-border");
     } else {
         errorElement.textContent = "";
         PWconfirm.classList.remove("error-border");
     }
+
+    const existingEmail = users.find((user) => user.email === email.value);
+    if (existingEmail) {
+        errorElement.textContent = "User with this email already registered";
+        email.classList.add("error-border");
+    } else {
+        email.classList.remove("error-border");
+    }
+
+    const existingUser = users.find((user) => user.userName === userName.value);
+    if (existingUser) {
+        errorElement.textContent = "User with this username already registered";
+        userName.classList.add("error-border");
+    } else {
+        userName.classList.remove("error-border");
+    }
 }
+
 
 
 // Visual Functions ///////////////////////////////////////////////////////

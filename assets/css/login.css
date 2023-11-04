@@ -197,9 +197,9 @@
 }
 
 .move-to-top-left {
-    width: 100px;
-    top: 50px !important;
-    left: 80px !important;
+    width: unset;
+    top: 80px !important;
+    left: 77px !important;
     transform: none;
     z-index: 1;
 }

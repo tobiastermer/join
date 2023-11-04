@@ -97,6 +97,13 @@ body {
     top: 68px;
     left: -234px;
     cursor: pointer;
+    padding: 4px;
+    border-radius: 16px;
+    transition: 125ms;
+}
+
+.back-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .register-main {
@@ -390,13 +397,11 @@ body {
         margin-bottom: 20px;
     }
 
-    .register-logo {
-        width: 56px;
-    }
-
     .back-arrow {
         top: 40px;
         left: -124px;
+        border-radius: 12px;
+        padding: 2px;
     }
 
     .sign-up-button {
