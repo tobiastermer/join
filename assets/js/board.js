@@ -350,6 +350,7 @@ async function editTask(i) {
     await showAddTaskOverlay(tasks[i].progress, 'edit');
     renderEditTaskForm(i);
     taskIndex = i;
+    // currentTaskID
 }
 
 async function renderEditTaskForm(i) {
