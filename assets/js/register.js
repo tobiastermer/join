@@ -3,6 +3,7 @@
  * @description The register area of the page
  */
 
+
 /**
  * Initializes the user information and checks if already registered.
  */
@@ -14,6 +15,7 @@ async function initRegister() {
     loadMsgBox();
 }
 
+
 /**
  * Loads user data from storage.
  */
@@ -24,6 +26,7 @@ async function loadUsers() {
         console.error('Loading error:', e);
     }
 }
+
 
 /**
  * Registers a user.
@@ -72,6 +75,7 @@ async function register() {
     }, 2000); // Adjust the delay time as needed
 }
 
+
 /**
  * Resets the registration form after submission.
  */
@@ -87,7 +91,9 @@ function resetForm() {
     }, 2000); // Adjust the delay time as needed
 }
 
+
 // Password Validation ///////////////////////////////////////////////
+
 
 /**
  * Validates password equality.
@@ -106,7 +112,9 @@ function validatePassword() {
     }
 }
 
+
 // Visual Functions ///////////////////////////////////////////////////////
+
 
 /**
  * Toggles the visibility of a password field and updates the associated icon.
@@ -130,6 +138,7 @@ function togglePasswordVisibility(fieldId, imgId) {
     }
 }
 
+
 /**
  * Initializes the password visibility toggle listener to update the icon based on user input.
  */
@@ -148,6 +157,7 @@ function setPasswordVisibilityListener(fieldId, imgId) {
         }
     });
 }
+
 
 /**
  * Loads a message box for success registration message.

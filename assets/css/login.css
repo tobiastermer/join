@@ -211,6 +211,20 @@
     align-items: center;
 }
 
+.forgot-password {
+    padding-left: 50px;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    transition: 25ms ease-in-out;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #29ABE2;
+    font-weight: 500;
+}
+
 .custom-checkbox {
     position: absolute;
     left: -170px;
@@ -226,6 +240,7 @@
     left: -170px;
     top: -20px;
     height: 20px;
+    width: max-content;
 }
 
 .custom-checkbox-label img {

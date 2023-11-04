@@ -32,6 +32,7 @@ async function initLogin() {
     }
 }
 
+
 /**
  * Loads user data from the server for login comparisons.
  * @async
@@ -43,6 +44,7 @@ async function loadUsers() {
         console.error('Loading error:', e);
     }
 }
+
 
 /**
  * Logs in the user and stores the username and credentials in activUser.
@@ -78,6 +80,7 @@ function login() {
     }
 }
 
+
 /**
  * Logs in a user as a guest and fills default data arrays.
  */
@@ -87,7 +90,9 @@ function guestLogin() {
     window.location.href = "./summary.html";
 }
 
+
 // Visual Functions ///////////////////////////////////////////////////////
+
 
 /**
  * Toggles the visibility of a password field and updates the associated icon.
@@ -111,6 +116,7 @@ function togglePasswordVisibility(fieldId, imgId) {
     }
 }
 
+
 /**
  * Initializes the password visibility toggle listener to update the icon based on user input.
  */
@@ -129,6 +135,7 @@ function setPasswordVisibilityListener() {
         }
     });
 }
+
 
 /**
  * Initializes the logo animation for the login page.
