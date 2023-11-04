@@ -572,8 +572,8 @@ async function saveTasks() {
 
 function goToBoard() {
     if (window.location.href.indexOf("board.html") > -1) {
-        if (taskIndex === undefined || taskIndex === null) { //add new task mode
-            hideTaskOverlay(); 
+        if (taskIndex === undefined || taskIndex === null || taskIndex == '') { //add new task mode
+            hideTaskOverlay();
             closeAddTaskOverlay();
             initBoard();
         } else { //edit mode
@@ -610,7 +610,7 @@ function isTaskFormFilledCorrectly() {
  */
 function pushTaskToArray() {
     let array = buildTaskArray();
-    if (taskIndex === undefined || taskIndex === null) {
+    if (taskIndex === undefined || taskIndex === null || taskIndex == '') {
         tasks.push(array);
     } else {
         tasks[taskIndex] = array;
