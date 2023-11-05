@@ -13,14 +13,6 @@ let currentDraggedElementId;
 let currentDraggedElementIndex
 let currentTaskId;
 
-// Array for different progress levels
-let progresses = [
-    "To Do",
-    "In Progress",
-    "Await Feedback",
-    "Done"
-];
-
 // ****************
 // INITIALIZE
 // ****************

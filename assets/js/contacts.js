@@ -7,20 +7,6 @@
 let contacts = [];
 let selectedContactIndex = -1;
 
-// Array with contact colors
-let contactColors = [
-  "#FFB6C1",
-  "#FFD700",
-  "#87CEEB",
-  "#98FB98",
-  "#FFA07A",
-  "#FF69B4",
-  "#9370DB",
-  "#20B2AA",
-  "#87CEFA",
-  "#FF6347",
-];
-
 /**
  * Initialize the application.
  */
