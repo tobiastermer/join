@@ -66,7 +66,7 @@ async function initAddTask(progressIndex, inputMode) {
     selectedSubtasks = [];
     hideAddContactOverlay();
     disableTaskSubmitButton(false);
-    taskIndex = '';
+    currentTaskId = '';
     mode = inputMode;
 }
 
@@ -267,7 +267,7 @@ function renderSelectedContacts() {
         showContactsContainer.innerHTML = '';
         for (i = 0; i < selectedContacts.length; i++) {
             let id = selectedContacts[i];
-            let j = getIndexByIdFromContacts(id);
+            let j = getIndexByIdFromComplexArray(id, contacts);
             if (j >= 0) {
                 let initials = contacts[j].initials;
                 let color = contacts[j].color;
@@ -580,7 +580,7 @@ function goToBoard() {
         } else { //edit mode
             closeAddTaskOverlay();
             renderTasksToBoard();
-            renderDetailedCard(taskIndex);
+            renderDetailedCard(currentTaskId);
             showSuccessMessage('Task succesfully edited');
         };
     } else {
@@ -621,7 +621,7 @@ function pushTaskToArray() {
     if (mode == 'add') { // add mode
         tasks.push(array);
     } else { // edit mode
-        tasks[taskIndex] = array;
+        tasks[currentTaskId] = array;
     };
 }
 
@@ -630,6 +630,7 @@ function buildTaskArray() {
     let assignedTo = selectedContacts;
     let subtasks = selectedSubtasks.slice();
     return {
+        id: getTaskID(),
         title: document.getElementById('addTaskTitle').value,
         description: document.getElementById('addTaskDescription').value,
         assignedTo: assignedTo,
@@ -638,6 +639,14 @@ function buildTaskArray() {
         category: selectedCategory,
         subtasks: subtasks,
         progress: progress,
+    };
+}
+
+function getTaskID() {
+    if (mode == 'add') {
+        return generateUniqueId();
+    } else {
+        return currentTaskId;
     };
 }
 
@@ -695,10 +704,10 @@ function getIndexById(id, array) {
  * Looks for the index of an contact-ID inside the contact-array.
  * @param {string} id - The ID to search for in the array.
  */
-function getIndexByIdFromContacts(id) {
-    for (j = 0; j < contacts.length; j++) {
-        if (id == contacts[j].id) {
-            return j;
+function getIndexByIdFromComplexArray(id, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (id == array[i].id) {
+            return i;
         };
     };
     return -1;

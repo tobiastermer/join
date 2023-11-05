@@ -9,9 +9,9 @@
 
 // Global variables
 let board;
-let currentDraggedElement;
-let taskIndex;
-
+let currentDraggedElementId;
+let currentDraggedElementIndex
+let currentTaskId;
 
 // Array for different progress levels
 let progresses = [
@@ -128,8 +128,9 @@ function createCards() {
         // if there is an task with fitted progress then create card
         for (j = 0; j < tasks.length; j++) {
             if (tasks[j].progress == i) {
+                let id = tasks[j].id;
                 hasTask = true;
-                column.innerHTML += `<div draggable="true" ondragstart="startDragging(${j})" class="todo-card grow" id="todo-card-${j}" onclick="initDetailedCard(${j}); return false"></div>`;
+                column.innerHTML += `<div draggable="true" ondragstart="startDragging('${id}')" class="todo-card grow" id="todo-card-${id}" onclick="initDetailedCard('${id}'); return false"></div>`;
             };
         };
         // if there is no ToDo-Card, then add a no-todo-card
@@ -147,7 +148,8 @@ function createCards() {
  */
 function renderCards() {
     for (let i = 0; i < tasks.length; i++) {
-        let card = document.getElementById(`todo-card-${i}`);
+        let id = tasks[i].id;
+        let card = document.getElementById(`todo-card-${id}`);
         let title = tasks[i].title;
         let description = tasks[i].description;
         let categoryName = categories[tasks[i].category].name;
@@ -189,7 +191,7 @@ function renderCards() {
 function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
     for (let j = 0; j < assignedToArray.length; j++) {
-        let k = getIndexByIdFromContacts(assignedToArray[j]);
+        let k = getIndexByIdFromComplexArray(assignedToArray[j], contacts);
         if (k >= 0) {
             let initials = contacts[k].initials;
             let color = contacts[k].color;
@@ -209,16 +211,18 @@ function getTemplateAssignedTo(assignedToArray) {
 // DRAG AND DROP
 // ****************
 
-function startDragging(i) {
-    currentDraggedElement = i;
+function startDragging(id) {
+    currentDraggedElementId = id;
+    currentDraggedElementIndex = getIndexByIdFromComplexArray(currentDraggedElementId, tasks);
 }
 
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+// i is for category/column
 async function moveTo(i) {
-    tasks[currentDraggedElement].progress = i;
+    tasks[currentDraggedElementIndex].progress = i;
     await saveTasks();
     renderTasksToBoard();
 }
@@ -256,9 +260,10 @@ function hideTaskOverlay() {
     document.getElementById("showTaskOverlay").classList.add("hidden");
 }
 
-function initDetailedCard(i) {
+function initDetailedCard(id) {
+    currentTaskIndex = getIndexByIdFromComplexArray(id, tasks);
     showTaskOverlay();
-    renderDetailedCard(i);
+    renderDetailedCard(currentTaskIndex);
 }
 
 
@@ -290,7 +295,7 @@ function getTemplateAssignedToContacts(i) {
     let template = '';
     for (let j = 0; j < assignedToContacts.length; j++) {
         let id = assignedToContacts[j];
-        let contactIndex = getIndexByIdFromContacts(id);
+        let contactIndex = getIndexByIdFromComplexArray(id, contacts);
         if (contactIndex >= 0) {
             let initials = contacts[contactIndex].initials;
             let name = contacts[contactIndex].name;
@@ -349,8 +354,7 @@ async function deleteTask(i) {
 async function editTask(i) {
     await showAddTaskOverlay(tasks[i].progress, 'edit');
     renderEditTaskForm(i);
-    taskIndex = i;
-    // currentTaskID
+    currentTaskId = i;
 }
 
 async function renderEditTaskForm(i) {
