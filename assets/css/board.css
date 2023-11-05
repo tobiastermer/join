@@ -1,10 +1,44 @@
 .board-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-header-title-and-button {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.board-header-search {
+    margin-left: auto;
+    /* Diese Regel sorgt dafür, dass das Suchfeld und der Button am rechten Rand platziert werden. */
+}
+
+/* 
+
+.board-header h1 {
+    order: 1;
+}
+
+.board-header-title-and-button {
+    order: 2;
+}
+
+.board-header .btn {
+    order: 3;
+} */
+
+.board-header {
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 1104px;
+    width: 100%;
+    max-width: 1104px;
     margin-bottom: 32px;
 }
+
+
 
 .board-header-search_and_button {
     display: flex;
@@ -27,6 +61,7 @@
 .board-header-search input {
     border: 0;
     font-size: 20px;
+    width: 100%;
 }
 
 .board-header-search input:focus {
@@ -59,7 +94,8 @@
 .board-main-section {
     display: flex;
     gap: 26px;
-    width: 1104px;
+    /* width: 1104px; */
+    width: 100%;
 }
 
 .board-column {
@@ -71,7 +107,7 @@
 }
 
 .board-column-content {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -331,14 +367,102 @@
     cursor: pointer;
 }
 
+.desktop-hidden {
+    display: none !important;
+}
+
 
 /* Media Query */
 
 @media(max-width: 1360px) {
 
-    .todo-card-detailed {
+    .desktop-hidden {
+        display: flex !important;
+    }
+
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    .board-header {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+
+    .board-header-search_and_button {
+        margin-right: 0;
         width: 100%;
+    }
+
+    .board-header-title-and-button {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .board-header h1 {
+        order: 1;
+    }
+
+    .board-header .btn {
+        order: 2;
+    }
+
+    .board-header-search {
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        /* Setzen Sie den linken Rand zurück auf den Standardwert. */
+    }
+
+
+
+
+    .board-main-section {
+        flex-direction: column;
+    }
+
+    .board-header {
+        flex-direction: column;
+    }
+
+    .board-header-mobile {
+        display: flex;
+    }
+
+    .board-header-desktop {
+        display: none;
+    }
+
+    .board-column {
+        width: 100%
+    }
+
+    .board-column-content {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 16px;
+    }
+
+    .todo-card {
+        width: 220px;
+        max-width: 220px;
+        min-width: 220px;
+    }
+
+    .no-todo-card {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    .todo-card-detailed {
         max-width: unset;
     }
+
+
+
 
 }
