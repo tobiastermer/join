@@ -376,6 +376,10 @@
 
 @media(max-width: 1360px) {
 
+    .board-main-section {
+        flex-direction: column;
+    }
+
     .desktop-hidden {
         display: flex !important;
     }
@@ -401,38 +405,9 @@
         width: 100%;
     }
 
-    .board-header h1 {
-        order: 1;
-    }
-
-    .board-header .btn {
-        order: 2;
-    }
-
     .board-header-search {
-        order: 3;
         width: 100%;
         margin-left: 0;
-        /* Setzen Sie den linken Rand zurück auf den Standardwert. */
-    }
-
-
-
-
-    .board-main-section {
-        flex-direction: column;
-    }
-
-    .board-header {
-        flex-direction: column;
-    }
-
-    .board-header-mobile {
-        display: flex;
-    }
-
-    .board-header-desktop {
-        display: none;
     }
 
     .board-column {
@@ -464,5 +439,14 @@
 
 
 
+
+}
+
+
+
+/* MOBILE VERSION 600PX */
+
+@media (max-width: 600px) {
+   
 
 }

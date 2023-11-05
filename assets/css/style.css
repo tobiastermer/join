@@ -2,6 +2,37 @@
     font-family: 'Inter';
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.main-content::-webkit-scrollbar,
+.form-list ul::-webkit-scrollbar,
+.overlay::-webkit-scrollbar,
+.board-column-content::-webkit-scrollbar {
+    width: 13px;
+}
+
+/* .main-content::-webkit-scrollbar-track,
+.form-list ul::-webkit-scrollbar-track,
+.overlay::-webkit-scrollbar-track,
+.board-column-content::-webkit-scrollbar-track {
+    background: #ffffff;
+} */
+
+.main-content::-webkit-scrollbar-thumb,
+.form-list ul::-webkit-scrollbar-thumb,
+.overlay::-webkit-scrollbar-thumb,
+.board-column-content::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+}
+
 .main-content h1 {
     font-size: 71px;
     margin-block-start: 0;

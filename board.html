@@ -31,7 +31,8 @@
         <div class="board-header">
             <div class="board-header-title-and-button">
                 <h1>Board</h1>
-                <button class="btn btn-primary btn-text-with-icon desktop-hidden" onclick="showAddTaskOverlay(0, 'add'); return false">
+                <button class="btn btn-primary btn-text-with-icon desktop-hidden"
+                    onclick="showAddTaskOverlay(0, 'add'); return false" style="width: unset;">
                     <!-- <p>Add task</p> -->
                     <img src="../../img/add-white.png" alt="" style="height: 18px; width: 18px;">
                 </button>
@@ -42,7 +43,8 @@
                     <div class="search-line"></div>
                     <img src="img/search.png" alt="">
                 </div>
-                <button class="btn btn-primary btn-text-with-icon mobile-hidden" onclick="showAddTaskOverlay(0, 'add'); return false">
+                <button class="btn btn-primary btn-text-with-icon mobile-hidden"
+                    onclick="showAddTaskOverlay(0, 'add'); return false">
                     <p>Add task</p>
                     <img src="../../img/add-white.png" alt="" style="height: 18px; width: 18px;">
                 </button>
@@ -136,10 +138,10 @@
                         </div>
                     </div>
                     <div class="todo-card-detailed-row flex-end">
-                        <button onclick="editTask(i)" id="todo-card-detailed-btnTaskEdit"><img src="./img/edit.png"
-                                alt="Edit Icon">Edit</button>
                         <button onclick="deleteContact(i)" id="todo-card-detailed-btnTaskDelete"><img
                                 src="./img/delete.png" alt="Delete Icon">Delete</button>
+                        <button onclick="editTask(i)" id="todo-card-detailed-btnTaskEdit"><img src="./img/edit.png"
+                                alt="Edit Icon">Edit</button>
                     </div>
                 </div>
             </div>

@@ -2,36 +2,8 @@
 
 body {
     font-family: 'Inter';
-    overflow: auto !important;
+    /* overflow: auto !important; */
 }
-
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #a8a8a8 #ffffff;
-}
-
-/* Chrome, Edge, and Safari */
-body::-webkit-scrollbar,
-.form-list ul::-webkit-scrollbar {
-    width: 13px;
-}
-
-body::-webkit-scrollbar-track,
-.form-list ul::-webkit-scrollbar-track {
-    background: #ffffff;
-}
-
-body::-webkit-scrollbar-thumb,
-.form-list ul::-webkit-scrollbar-thumb {
-    background-color: #a8a8a8;
-    border-radius: 8px;
-    border: 3px solid #ffffff;
-}
-
-
-
 
 .addTask-header {
     margin-bottom: 32px;
@@ -332,6 +304,7 @@ select {
     display: flex;
     gap: 16px;
 }
+
 /* 
 .addTask-include-bg {
     position: fixed;
@@ -411,6 +384,10 @@ select {
 
     .category_color {
         font-size: 16px;
+    }
+
+    .addTask-include {
+        padding: 32px 32px 32px 32px;
     }
 }
 

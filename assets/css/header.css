@@ -104,6 +104,12 @@ header img {
     padding-left: 355px;
     padding-right: 73px;
     padding-bottom: 85px;
+    /* overflow-y: auto !important; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-shrink: 0;
+    height: calc(100vh - 243px);
+
 }
 
 /* Left side of Template */
