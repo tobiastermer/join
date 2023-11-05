@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/color.css">
     <script src="./assets/js/storage.js"></script>
+    <script src="./assets/js/tasks.js"></script>
+    <script src="./assets/js/summary.js"></script>
     <script src="./assets/js/w3c_include.js"></script>
     <script src="./assets/js/openMenu.js"></script>
 </head>
 
-<body class="summary-body" onload="includeHTML();initUserName()">
+<body class="summary-body" onload="includeHTML();initSummary();initUserName()">
 
     <div w3-include-html="./assets/template/design_template.html"></div>
 
@@ -36,14 +38,14 @@
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-icon" id="summary-icon-todo"></div>
                         <div class="summary-kpi">
-                            <p>1</p>
+                            <p id="summary-kpi-todo">1</p>
                             <span>To-do</span>
                         </div>
                     </a>
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-icon" id="summary-icon-check"></div>
                         <div class="summary-kpi">
-                            <p>1</p>
+                            <p id="summary-kpi-done">1</p>
                             <span>Done</span>
                         </div>
                     </a>
@@ -53,12 +55,12 @@
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-icon" id="summary-icon-urgent"></div>
                         <div class="summary-kpi">
-                            <p>1</p>
+                            <p id="summary-kpi-urgent">1</p>
                             <span>Urgent</span>
                         </div>
                         <div class="summary-main-line bg-lightgrey"></div>
                         <div class="summary-urgent-date">
-                            <p>October 16, 2022</p>
+                            <p id="summary-kpi-deadline">October 16, 2022</p>
                             <span>Upcoming Deadline</span>
                         </div>
                     </a>
@@ -67,19 +69,19 @@
                 <div class="summary-main-dashboard-row">
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-kpi">
-                            <p>5</p>
+                            <p id="summary-kpi-tasksInBoard">5</p>
                             <span>Tasks in <br>Board</span>
                         </div>
                     </a>
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-kpi">
-                            <p>2</p>
+                            <p  id="summary-kpi-progress">2</p>
                             <span>Tasks in Progress</span>
                         </div>
                     </a>
                     <a href="board.html" class="summary-main-container grow">
                         <div class="summary-kpi">
-                            <p>2</p>
+                            <p id="summary-kpi-feedback">2</p>
                             <span>Awaiting Feedback</span>
                         </div>
                     </a>
