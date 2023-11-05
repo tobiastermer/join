@@ -532,7 +532,10 @@ function goToBoard() {
             returnToBoardAfterEditTask();
         };
     } else {
-        window.location.href = 'board.html';
+        showSuccessMessage('Task succesfully created');
+        setTimeout(function() {
+            window.location.href = 'board.html';
+        }, 750); // 750 Millisekunden = 0,75 Sekunde
     };
 }
 
