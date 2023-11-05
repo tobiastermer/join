@@ -86,11 +86,11 @@
 .board-main-section {
     display: flex;
     gap: 26px;
-    /* width: 1104px; */
     width: 100%;
 }
 
 .board-column {
+    min-width: 190px;
     width: 252px;
     display: flex;
     flex-direction: column;
@@ -208,6 +208,8 @@
 
 .todo-progress-and-subtasks p {
     font-size: 12px;
+    width: 150px;
+    margin-left: 12px;
 }
 
 .todo-persons-and-prio {
