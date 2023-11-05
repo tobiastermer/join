@@ -157,6 +157,13 @@
     margin-block-start: 0;
 }
 
+.main-content {
+    padding-top: 85px;
+    padding-left: 355px;
+    padding-right: 73px;
+    padding-bottom: unset;
+}
+
 @media(max-width: 1330px) {
     .summary-main-section {
         gap: 6%;
