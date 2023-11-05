@@ -10,25 +10,6 @@
     gap: 32px;
 }
 
-.board-header-search {
-    margin-left: auto;
-    /* Diese Regel sorgt dafür, dass das Suchfeld und der Button am rechten Rand platziert werden. */
-}
-
-/* 
-
-.board-header h1 {
-    order: 1;
-}
-
-.board-header-title-and-button {
-    order: 2;
-}
-
-.board-header .btn {
-    order: 3;
-} */
-
 .board-header {
     display: flex;
     align-items: center;
@@ -37,8 +18,6 @@
     max-width: 1104px;
     margin-bottom: 32px;
 }
-
-
 
 .board-header-search_and_button {
     display: flex;
@@ -64,12 +43,12 @@
     width: 100%;
 }
 
-.board-header-search input:focus {
-    outline: none;
+.board-header-search:focus-within {
+    border: 2px solid #29abe2;
 }
 
-.board-header-search img:hover {
-    cursor: pointer;
+.board-header-search input:focus {
+    outline: none;
 }
 
 .search-line {
@@ -87,8 +66,21 @@
     margin-block-end: 0;
 }
 
-.board-header img {
-    height: 18px;
+.img-add {
+    background-image: url('../../img/add.png');
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.img-add:hover {
+    cursor: pointer;
+    background-image: url('../../img/add-blue.png');
+    border: 1px solid #29abe2;
 }
 
 .board-main-section {
@@ -446,7 +438,4 @@
 
 /* MOBILE VERSION 600PX */
 
-@media (max-width: 600px) {
-   
-
-}
+@media (max-width: 600px) {}

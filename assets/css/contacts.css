@@ -592,6 +592,11 @@ html {
 /* Media Query */
 
 @media(max-width: 1360px) {
+    
+    .overlay_background {
+        align-items: unset;
+    }
+
     .contact_header {
         flex-direction: column;
     }
@@ -612,9 +617,14 @@ html {
     .space_line_contact_header {
         margin-left: 0px;
     }
+
 }
 
 @media(max-width: 1250px) {
+
+    .overlay_background {
+        align-items: center;
+    }
 
     /* Adjust the position and display of the overlay backgrounds for "add" and "edit" */
     .overlay_background_add,
@@ -639,6 +649,8 @@ html {
         height: 80vh;
         flex-direction: column;
         position: relative;
+        align-items: unset;
+
     }
 
     .user_information_form {

@@ -108,7 +108,7 @@ function createHeaders() {
         column.innerHTML += `
             <div class="board-column-header">
                 <h3>${progressName}</h3>
-                <img src="img/add.png" alt="" onclick="showAddTaskOverlay(${i}, 'add'); return false">
+                <div class="img-add" onclick="showAddTaskOverlay(${i}, 'add'); return false"></div>
             </div>
             <div class="board-column-content" id="board-column-content-${i}" 
                 ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-content-${i}')" 

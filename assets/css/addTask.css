@@ -300,6 +300,10 @@ select {
     align-items: flex-end;
 }
 
+.addTask-include .form-lower-half {
+    margin-bottom: 48px;
+}
+
 .form-buttons {
     display: flex;
     gap: 16px;
