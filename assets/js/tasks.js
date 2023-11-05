@@ -12,7 +12,8 @@
 // ****************
 
 // Global variables
-let tasks = [];
+let globalTasks = [];
+let filteredTaskIDs = [];
 let selectedPrio;
 let selectedCategory;
 let selectedContacts = [];
@@ -67,6 +68,7 @@ async function initAddTask(progressIndex, inputMode) {
     hideAddContactOverlay();
     disableTaskSubmitButton(false);
     currentTaskId = '';
+    currentTaskIndex = '';
     mode = inputMode;
 }
 
@@ -75,7 +77,7 @@ async function initAddTask(progressIndex, inputMode) {
  */
 async function loadTasks() {
     try {
-        tasks = JSON.parse(await getItem("tasks"));
+        globalTasks = JSON.parse(await getItem("tasks"));
     } catch (e) {
         console.error("Loading error:", e);
     }
@@ -567,7 +569,7 @@ function disableTaskSubmitButton(trueOrFalse) {
 }
 
 async function saveTasks() {
-    await setItem('tasks', JSON.stringify(tasks));
+    await setItem('tasks', JSON.stringify(globalTasks));
 }
 
 function goToBoard() {
@@ -578,9 +580,10 @@ function goToBoard() {
             initBoard();
             showSuccessMessage('Task succesfully created');
         } else { //edit mode
+            let storedTaskIndex = currentTaskIndex; // renderTasksToBoard will overwrite currentTaskIndex
             closeAddTaskOverlay();
             renderTasksToBoard();
-            renderDetailedCard(currentTaskId);
+            renderDetailedCard(storedTaskIndex);
             showSuccessMessage('Task succesfully edited');
         };
     } else {
@@ -619,9 +622,9 @@ function isTaskFormFilledCorrectly() {
 function pushTaskToArray() {
     let array = buildTaskArray();
     if (mode == 'add') { // add mode
-        tasks.push(array);
+        globalTasks.push(array);
     } else { // edit mode
-        tasks[currentTaskId] = array;
+        globalTasks[currentTaskIndex] = array;
     };
 }
 
