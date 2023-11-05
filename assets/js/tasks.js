@@ -723,4 +723,3 @@ document.querySelector('addTaskSubtaskInput').addEventListener('keypress', funct
         addSubtask();
     }
 });
-

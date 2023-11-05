@@ -157,8 +157,40 @@
     </div>
 
     <script>
+
+        // filter tasks by input in search field
         document.getElementById("board-search").addEventListener("input", updateBoardBySearch);
+
+        // hide contact dropdwon on click outside the div
+        document.addEventListener('mousedown', function (event) {
+            let container = document.getElementById('addTaskListContactsContainer');
+
+            // check if click was outside the container
+            if (!container.contains(event.target)) {
+                // check if container is actually visible
+                if (isAssignToDropdownActive) {
+                    // hide the container
+                    hideContactList();
+                }
+            }
+        });
+
+        // hide category dropdwon on click outside the div
+        document.addEventListener('mousedown', function (event) {
+            let container = document.getElementById('addTaskListCategoriesContainer');
+
+            // check if click was outside the container
+            if (!container.contains(event.target)) {
+                // check if container is actually visible
+                if (isCategoryDropdownActive) {
+                    // hide the container
+                    hideCategoryList();
+                }
+            }
+        });
+
     </script>
+
 </body>
 
 </html>
