@@ -3,17 +3,20 @@
  * @description The Storage Load and Save  of the page
  */
 
+
 /**
  * Constant to store the storage token.
  * @type {string}
  */
 const STORAGE_TOKEN = 'YDITW3FZPTKXOANID4RLEPARCUN9OMMKIJBM9WO8';
 
+
 /**
  * Base URL for remote storage.
  * @type {string}
  */
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+
 
 /**
  * Object to store the active user's information.
@@ -23,11 +26,13 @@ let activUser = {
     'name': '',
 };
 
+
 /**
  * Array to store user information.
  * @type {Array}
  */
 let users = [];
+
 
 /**
  * Asynchronously set an item in remote storage.
@@ -40,6 +45,7 @@ async function setItem(key, value) {
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json());
 }
+
 
 /**
  * Asynchronously get an item from remote storage.
@@ -58,6 +64,7 @@ async function getItem(key) {
         });
 }
 
+
 /**
  * Initialize user-related summary information.
  */
@@ -65,6 +72,7 @@ async function initUserName() {
     loadActiveUser();
     hideMenuIfNoActiveUser();
 }
+
 
 /**
  * Load the active user's information from localStorage.
@@ -82,6 +90,7 @@ function loadActiveUser() {
         // Perform appropriate actions.
     }
 }
+
 
 /**
  * Asynchronously display the user's name and initials.
@@ -105,6 +114,7 @@ async function displayUserName() {
     }
 }
 
+
 /**
  * Get the initials from a full name.
  * @param {string} name - The name to extract initials from.
@@ -116,6 +126,7 @@ function getInitialsOf(name) {
         .map((word) => word.charAt(0).toUpperCase())
         .join("");
 }
+
 
 /**
  * Asynchronously hide the menu if the user is not active.

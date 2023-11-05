@@ -1,10 +1,4 @@
 /**
- * @module Login_Module
- * @description The Login area of the page
- */
-
-
-/**
  * Initializes the login page.
  * Loads user data, handles animations, and displays success messages.
  */
@@ -143,6 +137,7 @@ function setPasswordVisibilityListener() {
  */
 function initLogoAnimation(){
     // Load logo animation
+    const loginDark = document.getElementById('overlay');
     const loginLogo = document.getElementById("login-logo");
     const loginMainContainer = document.getElementById("login-maincontainer");
     const loginNav = document.getElementById("login-nav");
@@ -151,6 +146,7 @@ function initLogoAnimation(){
     // Apply logo animation with a delay
     setTimeout(() => {
         loginLogo.classList.add("move-to-top-left");
+        loginDark.style.display = 'none';
     }, 800);
     setTimeout(() => {
         loginMainContainer.classList.add('blend-in');

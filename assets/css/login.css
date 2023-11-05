@@ -1,4 +1,19 @@
 /*************************Global*****************************/
+body {
+    margin: 0px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #2A3647;
+    z-index: 999;
+    background-image: url(/img/logo-dark.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 
 .crsptr {
     cursor: pointer;
@@ -187,23 +202,6 @@
     justify-content: center;
 }
 
-.login-logo {
-    width: 274px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s ease;
-}
-
-.move-to-top-left {
-    width: unset;
-    top: 80px !important;
-    left: 77px !important;
-    transform: none;
-    z-index: 1;
-}
-
 .remember-container {
     position: relative;
     display: flex;
@@ -286,6 +284,23 @@
 
 /****************************JS Based CSS****************************/
 
+.login-logo {
+    width: 274px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.move-to-top-left {
+    width: unset;
+    top: 80px !important;
+    left: 77px !important;
+    transform: none;
+    z-index: 1;
+}
+
 .blend-in {
     opacity: 1 !important;
     transition: opacity 0.5s ease-in-out;
@@ -312,6 +327,10 @@
 }
 
 @media(max-width: 770px) {
+
+    #overlay {
+        display: unset;
+    }
 
     #login-nav {
         position: absolute;
