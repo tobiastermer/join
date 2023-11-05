@@ -1,8 +1,20 @@
+/**
+ * @module Template_Module
+ * @description Contains template functions for rendering HTML Code.
+ */
 
 // ****************
 // USED IN TASKS.JS
 // ****************
 
+/**
+ * Generates an HTML template for rendering a contact in a list.
+ * @param {string} id - The ID of the contact.
+ * @param {string} color - The background color for the contact's initials.
+ * @param {string} name - The name of the contact.
+ * @param {string} initials - The initials of the contact.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateRenderContactForList(id, color, name, initials) {
     return `
         <li id="selectContactLi-${id}" onclick="selectContact('${id}'); return false">
@@ -15,6 +27,13 @@ function getHTMLTemplateRenderContactForList(id, color, name, initials) {
     `;
 }
 
+/**
+ * Generates an HTML template for rendering a contact assigned to a task.
+ * @param {string} color - The background color for the contact's initials.
+ * @param {number} zindex - The z-index for the contact's initials.
+ * @param {string} initials - The initials of the contact.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateRenderContactAssignedTo(color, zindex, initials) {
    return `
         <div class="contact_initial_image" style="background-color: ${color}; z-index: ${zindex}; 
@@ -36,6 +55,12 @@ function getTemplateCategory(name, color) {
     `;
 }
 
+/**
+ * Generates an HTML template for rendering a category in a list.
+ * @param {number} i - The index of the category.
+ * @param {string} template - The HTML template for the category.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateRenderCategoryForList(i, template) {
     return `
         <li id="selectCategoryLi-${i}" onclick="selectCategory('${i}'); return false">
@@ -44,6 +69,13 @@ function getHTMLTemplateRenderCategoryForList(i, template) {
     `;
 }
 
+/**
+ * Generates an HTML template for rendering a subtask in the "Add Task" form.
+ * @param {number} i - The index of the subtask.
+ * @param {string} checked - Whether the subtask checkbox should be checked or not.
+ * @param {string} subtaskName - The name of the subtask.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName) {
     return `
         <div class="subtask" id="subtask-${i}">
@@ -56,11 +88,15 @@ function getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName) {
     `;
 }
 
-
 // ****************
 // USED IN BOARD.JS
 // ****************
 
+/**
+ * Generates an HTML template for creating a column on the board.
+ * @param {number} i - The index of the column / progress level.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateCreateColumn(i) {
     return `
         <div class="board-column" id="board-column-${i}">
@@ -68,6 +104,12 @@ function getHTMLTemplateCreateColumn(i) {
     `;
 }
 
+/**
+ * Generates an HTML template for creating a column header.
+ * @param {number} i - The index of the column.
+ * @param {string} progressName - The name of the progress status (e.g., "In Progress", "Done").
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateCreateHeader(i, progressName) {
     return `
         <div class="board-column-header">
@@ -81,6 +123,11 @@ function getHTMLTemplateCreateHeader(i, progressName) {
     `;
 }
 
+/**
+ * Generates an HTML template for creating a To-Do card.
+ * @param {string} currentTaskId - The ID of the current task.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateCreateToDoCard(currentTaskId) {
     return `
         <div draggable="true" ondragstart="startDragging('${currentTaskId}')" 
@@ -89,6 +136,11 @@ function getHTMLTemplateCreateToDoCard(currentTaskId) {
     `;
 }
 
+/**
+ * Generates an HTML template for displaying a message when there are no To-Do cards.
+ * @param {string} progress - The current progress status.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateCreateNoToDoCard(progress) {
     return `
         <div class="no-todo-card">
@@ -97,7 +149,19 @@ function getHTMLTemplateCreateNoToDoCard(progress) {
     `;
 }
 
-
+/**
+ * Generates an HTML template for rendering a task card.
+ * @param {string} categoryColor - The color of the task's category.
+ * @param {string} categoryName - The name of the task's category.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {number} progressInPercent - The progress of the task in percentage.
+ * @param {number} subtasksDone - The number of completed subtasks.
+ * @param {number} subtasksLength - The total number of subtasks.
+ * @param {string} assignedToTemplate - The HTML template for the users assigned to the task.
+ * @param {string} taskprio - The priority of the task.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateRenderCard(categoryColor, categoryName, title, description, progressInPercent, subtasksDone, subtasksLength, assignedToTemplate, taskprio) {
     return `
         <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
@@ -141,6 +205,13 @@ function getTemplateAssignedToContacts(i) {
     return template;
 }
 
+/**
+ * Generates an HTML template for displaying an assigned contact in the detailed card view.
+ * @param {string} color - The background color for the contact's initials.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} name - The name of the contact.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateDetailedCardAssignedToContacts(color, initials, name) {
     return `
         <li>
@@ -174,6 +245,14 @@ function getTemplateSubtasks(i) {
     return template;
 }
 
+/**
+ * Generates an HTML template for displaying a subtask in the detailed card view.
+ * @param {number} i - The index of the task.
+ * @param {number} j - The index of the subtask.
+ * @param {string} checked - Whether the subtask checkbox should be checked or not.
+ * @param {string} subtaskName - The name of the subtask.
+ * @returns {string} - The HTML template.
+ */
 function getHTMLTemplateDetailedCardSubtasks(i, j, checked, subtaskName) {
     return `
         <div class="subtask" id="subtask-${j}">
