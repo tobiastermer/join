@@ -22,7 +22,7 @@
             <div class="form-column-child">
                 <label>Assigned to</label>
                 <!-- wird dynamisch gefüllt -->
-                <div class="form-input-with-img" onclick="toggleContactList(); return false">
+                <div class="form-input-with-img" id="addTaskDropdownContactContainer" onclick="toggleContactList(); return false">
                     <input type="text" id="addTaskInputContacts" placeholder="Select contacts to assign"
                         autocomplete="off">
                     <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png" alt="">
@@ -69,7 +69,7 @@
 
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-                <div class="form-input-with-img" onclick="toggleCategoryList(); return false">
+                <div class="form-input-with-img" id="addTaskDropdownCategoryContainer" onclick="toggleCategoryList(); return false">
                     <div type="text" id="addTaskCategory" placeholder="Select task category">Select task category</div>
                     <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png" alt="">
                 </div>

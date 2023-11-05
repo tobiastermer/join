@@ -1,17 +1,41 @@
 /**
- * @module Tasks_Module
- * @description The tasks area of the page
+ * @module Board_Module
+ * @description Manages the tasks displayed on the board. Provides functionality for filtering, drag-and-drop, task overlays, and more.
  */
 
 // ****************
 // OVERHEAD
 // ****************
 
-// Global variables
+/**
+ * The main board DOM reference.
+ * @type {HTMLElement}
+ */
 let board;
+
+/**
+ * The ID of the currently dragged element.
+ * @type {string}
+ */
 let currentDraggedElementId;
+
+/**
+ * The index of the currently dragged element.
+ * @type {number}
+ */
 let currentDraggedElementIndex
+
+/**
+ * The current task ID being used.
+ * @type {string}
+ */
 let currentTaskId;
+
+/**
+ * The Index of task being used in globalTasks Array.
+ * @type {string}
+ */
+let currentTaskIndex
 
 // ****************
 // INITIALIZE
@@ -19,17 +43,17 @@ let currentTaskId;
 
 /**
  * Initialize the application.
+ * @async
  */
 async function initBoard() {
     await loadTasks();
     await loadContactsForTasks();
-    // setFilteredTasksBySearch();
     renderTasksToBoard();
     hideTaskOverlay();
 }
 
 /**
- * Initialize the board content.
+ * Initializes the board content.
  */
 function renderTasksToBoard() {
     let board = document.getElementById('board');
@@ -46,18 +70,17 @@ function renderTasksToBoard() {
 // ****************
 
 /**
-* Filtert die Task-IDs basierend auf dem eingegebenen Suchbegriff im "board-search" Eingabefeld.
-* 
-* @returns {number[]} Ein Array von gefilterten Task-IDs.
-*/
+ * Filters task IDs based on a search term in the "board-search" input field.
+ * @returns {number[]} An array of filtered task IDs.
+ */
 function setFilteredTasksBySearch() {
     let searchQuery = document.getElementById('board-search').value.toLowerCase();
 
-    // Wenn der Suchbegriff leer ist, gibt alle Task-IDs zurück
+    // When no tasks is found give all tasks back
     if (!searchQuery.trim()) {
         filteredTaskIDs = globalTasks.map(task => task.id);
     } else {
-        // Filtert die Tasks und extrahiert nur die IDs
+        // filters tasks and gives IDs back
         filteredTaskIDs = globalTasks.filter(task => {
             return task.title.toLowerCase().includes(searchQuery) ||
                 task.description.toLowerCase().includes(searchQuery);
@@ -66,52 +89,40 @@ function setFilteredTasksBySearch() {
 }
 
 /**
- * Update the board based on the search query.
+ * Update the board content according to the search query.
  */
 function updateBoardBySearch() {
     // setFilteredTasksBySearch();
     renderTasksToBoard();
 }
 
-
 // ****************
 // BOARD CONTENT
 // ****************
 
 /**
- * Creates columns for the board.
+ * Creates columns for the tasks board.
  */
 function createColumns() {
+    let board = document.getElementById('board');
     for (let i = 0; i < progresses.length; i++) {
-        document.getElementById('board').innerHTML += `
-            <div class="board-column" id="board-column-${i}">
-            </div>
-            `;
+        board.innerHTML += getHTMLTemplateCreateColumn(i);
     }
 }
 
 /**
- * Creates headers for the board columns.
+ * Creates headers for each column on the board.
  */
 function createHeaders() {
     for (let i = 0; i < progresses.length; i++) {
         let progressName = progresses[i];
         let column = document.getElementById(`board-column-${i}`);
-        column.innerHTML += `
-            <div class="board-column-header">
-                <h3>${progressName}</h3>
-                <div class="img-add" onclick="showAddTaskOverlay(${i}, 'add'); return false"></div>
-            </div>
-            <div class="board-column-content" id="board-column-content-${i}" 
-                ondrop="moveTo(${i})" ondragover="allowDrop(event); addHighlight('board-column-content-${i}')" 
-                ondragleave="removeHighlight('board-column-content-${i}')">
-            </div>
-        `;
+        column.innerHTML += getHTMLTemplateCreateHeader(i, progressName);
     };
 }
 
 /**
- * Creates cards for tasks.
+ * Creates cards for each task.
  */
 function createCards() {
     for (let i = 0; i < progresses.length; i++) {
@@ -121,27 +132,22 @@ function createCards() {
         for (let j = 0; j < filteredTaskIDs.length; j++) {
             setCurrentTaskIdAndIndex(filteredTaskIDs[j]);
             if (globalTasks[currentTaskIndex].progress == i) {
-                // let id = filteredTasks[j].id;
                 hasTask = true;
-                column.innerHTML += `<div draggable="true" ondragstart="startDragging('${currentTaskId}')" class="todo-card grow" id="todo-card-${currentTaskId}" onclick="initDetailedCard('${currentTaskId}'); return false"></div>`;
+                column.innerHTML += getHTMLTemplateCreateToDoCard(currentTaskId);
             };
         };
         // if there is no ToDo-Card, then add a no-todo-card
         if (!hasTask) {
-            column.innerHTML += `
-                <div class="no-todo-card">
-                    <p>No tasks ${progresses[i]}</p>
-                </div>`;
+            column.innerHTML += getHTMLTemplateCreateNoToDoCard(progresses[i]);
         };
     };
 }
 
 /**
- * Renders the content of the cards.
+ * Renders the content of each card.
  */
 function renderCards() {
     for (let i = 0; i < filteredTaskIDs.length; i++) {
-        // let id = filteredTasks[i].id;
         setCurrentTaskIdAndIndex(filteredTaskIDs[i]);
         let card = document.getElementById(`todo-card-${currentTaskId}`);
         let title = globalTasks[currentTaskIndex].title;
@@ -153,34 +159,14 @@ function renderCards() {
         let progressInPercent = divideAndRound(subtasksDone, subtasksLength);
         let assignedToTemplate = getTemplateAssignedTo(globalTasks[currentTaskIndex].assignedTo);
         let taskprio = globalTasks[currentTaskIndex].prio;
-
-        card.innerHTML = `
-            <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
-            <div class="todo-title-and-description">
-                <p class="todo-title">${title}</h3>
-                <p class="todo-description">${description}</p>
-            </div>
-            <div class="todo-progress-and-subtasks">
-                <div class="todo-progress-100">
-                    <div class="todo-progress" style="width: ${progressInPercent}%"></div>
-                </div>
-                <p>${subtasksDone}/${subtasksLength} Subtasks</p>
-            </div>
-            <div class="todo-persons-and-prio">
-                <div class="todo-persons">
-                    ${assignedToTemplate}
-                </div>
-                <div class="todo-prio ${taskprio}"></div>
-            </div>
-        `;
+        card.innerHTML = getHTMLTemplateRenderCard(categoryColor, categoryName, title, description, progressInPercent, subtasksDone, subtasksLength, assignedToTemplate, taskprio);
     };
-
 }
 
 /**
- * Generates the template for assigned contacts.
+ * Generates a template for displaying assigned contacts.
  * @param {string[]} assignedToArray - Array of assigned contact IDs.
- * @returns {string} - The generated template.
+ * @returns {string} The generated HTML template.
  */
 function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
@@ -205,26 +191,46 @@ function getTemplateAssignedTo(assignedToArray) {
 // DRAG AND DROP
 // ****************
 
+/**
+ * Initializes dragging for an element with a specified ID.
+ * @param {string} id - The ID of the draggable element.
+ */
 function startDragging(id) {
     currentDraggedElementId = id;
     currentDraggedElementIndex = getIndexByIdFromComplexArray(currentDraggedElementId, globalTasks);
 }
 
+/**
+ * Allows dropping of elements.
+ * @param {Event} ev - The drag event.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// i is for category/column
+/**
+ * Moves a dragged element to a specified category/column.
+ * @param {number} i - The index of the destination column.
+ * @async
+ */
 async function moveTo(i) {
     globalTasks[currentDraggedElementIndex].progress = i;
     await saveTasks();
     renderTasksToBoard();
 }
 
+/**
+ * Adds the 'drag-highlight' class to an element.
+ * @param {string} element - The ID of the DOM element to be highlighted.
+ */
 function addHighlight(element) {
     document.getElementById(element).classList.add('drag-highlight');
 }
 
+/**
+ * Removes the 'drag-highlight' class from an element.
+ * @param {string} element - The ID of the DOM element to remove the highlight from.
+ */
 function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
@@ -248,24 +254,25 @@ function showTaskOverlay() {
  * Hide the overlay for editing a contact.
  */
 function hideTaskOverlay() {
-    // resetAddTask();
     document.getElementById("overlayBackground").style.display = "none";
     document.getElementById("showTaskOverlay").style.right = "-100%";
     document.getElementById("showTaskOverlay").classList.add("hidden");
 }
 
-// function hideTaskOverlayAndReset() {
-//     resetAddTask();
-//     hideTaskOverlay();
-// }
-
+/**
+ * Initializes the detailed view for a task.
+ * @param {string} id - The ID of the task.
+ */
 function initDetailedCard(id) {
     setCurrentTaskIdAndIndex(id);
     showTaskOverlay();
     renderDetailedCard(currentTaskIndex);
 }
 
-// expects task index in global Tasks
+/**
+ * Renders the detailed view of a task card based on its index.
+ * @param {number} i - The index of the task in the globalTasks array.
+ */
 function renderDetailedCard(i) {
     document.getElementById('todo-card-detailed-category').innerHTML = categories[globalTasks[i].category].name;
     document.getElementById('todo-card-detailed-category').style.backgroundColor = categories[globalTasks[i].category].color;
@@ -280,6 +287,11 @@ function renderDetailedCard(i) {
     document.getElementById('todo-card-detailed-btnTaskEdit').setAttribute('onclick', `editTask('${globalTasks[i].id}'); return false`)
 }
 
+/**
+ * Capitalizes the priority string. 'med' will be changed to 'Medium'.
+ * @param {number} i - The index of the task in the globalTasks array.
+ * @returns {string} - Capitalized priority string.
+ */
 function capitalizePrio(i) {
     let string = globalTasks[i].prio;
     if (string == 'med') {
@@ -289,59 +301,21 @@ function capitalizePrio(i) {
     };
 }
 
-function getTemplateAssignedToContacts(i) {
-    let assignedToContacts = globalTasks[i].assignedTo;
-    let template = '';
-    for (let j = 0; j < assignedToContacts.length; j++) {
-        let id = assignedToContacts[j];
-        let contactIndex = getIndexByIdFromComplexArray(id, contacts);
-        if (contactIndex >= 0) {
-            let initials = contacts[contactIndex].initials;
-            let name = contacts[contactIndex].name;
-            let color = contacts[contactIndex].color;
-            template = template + `
-                <li>
-                    <div class="contact-initials-and-name">
-                        <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                        <span>${name}</span>
-                    </div>
-                </li>
-            `;
-        }
-    };
-    return template;
-}
-
-function getTemplateSubtasks(i) {
-    let subtasks = globalTasks[i].subtasks;
-    let template = '';
-    for (let j = 0; j < subtasks.length; j++) {
-        let subtaskName = subtasks[j].name;
-        let subtaskDone = subtasks[j].done;
-        let checked = '';
-        if (subtaskDone) {
-            checked = 'checked';
-        } else {
-            checked = '';
-        }
-        template = template + `
-            <div class="subtask" id="subtask-${j}">
-                <div>
-                    <input type="checkbox" id="subtask-checkbox-showCard-${j}" class="largerCheckbox" onclick="updateCheckedStatusShowCard(${i})" ${checked}>
-                    <span>${subtaskName}</span>
-                </div>
-            </div>
-        `;
-    };
-    return template;
-}
-
+/**
+ * Updates the checked status of subtasks in a card.
+ * @param {number} i - The index of the task in the globalTasks array.
+ * @async
+ */
 async function updateCheckedStatusShowCard(i) {
     globalTasks[i].subtasks = updatedArrayCheckedStatus(globalTasks[i].subtasks, "showCard");
     await saveTasks();
     renderCards();
 }
 
+/**
+ * Deletes a task based on its ID.
+ * @param {string} id - The ID of the task in globalTasks Array.
+ */
 async function deleteTask(id) {
     setCurrentTaskIdAndIndex(id);
     globalTasks.splice(currentTaskIndex, 1);
@@ -351,22 +325,23 @@ async function deleteTask(id) {
     showSuccessMessage('Task successfully deleted');
 }
 
+/**
+ * Initiates the task edit mode for a given task ID.
+ * @param {string} id - The ID of the task.
+ */
 async function editTask(id) {
     setCurrentTaskIdAndIndex(id);
     await showAddTaskOverlay(globalTasks[currentTaskIndex].progress, 'edit');
     setCurrentTaskIdAndIndex(id); // necessary again, because init add task overwrite currentTask Status
     renderEditTaskForm(currentTaskIndex);
-    // currentTaskId = i;
 }
 
-async function renderEditTaskForm(i) {
-    document.getElementById('addTask-header-h1').innerHTML = 'Edit Task';
-    document.getElementById('addTaskBtnSubmit').innerHTML = 'Save Task';
-    document.getElementById('addTaskBtnClear').setAttribute('onclick', `renderEditTaskForm(${i}); return false`);
-    document.getElementById('addTaskTitle').value = globalTasks[i].title;
-    document.getElementById('addTaskDescription').value = globalTasks[i].description;
-    document.getElementById('addTaskDueDate').value = new Date(globalTasks[i].dueDate).toLocaleDateString('af-ZA');
-    document.getElementById('addTaskSubtaskInput').value = '';
+/**
+ * Renders the edit task form based on a task index.
+ * @param {number} i - The index of the task in the globalTasks array.
+ */
+function renderEditTaskForm(i) {
+    renderEditTaskFormFieldValues(i);
     setPrio(globalTasks[i].prio);
     selectCategory(globalTasks[i].category);
     renderEditTaskFormAssignedContacts(i);
@@ -375,6 +350,24 @@ async function renderEditTaskForm(i) {
     hideCategoryList();
 }
 
+/**
+ * Sets the values in the edit task form fields based on a task index.
+ * @param {number} i - The index of the task in the globalTasks array.
+ */
+function renderEditTaskFormFieldValues(i) {
+    document.getElementById('addTask-header-h1').innerHTML = 'Edit Task';
+    document.getElementById('addTaskBtnSubmit').innerHTML = 'Save Task';
+    document.getElementById('addTaskBtnClear').setAttribute('onclick', `renderEditTaskForm(${i}); return false`);
+    document.getElementById('addTaskTitle').value = globalTasks[i].title;
+    document.getElementById('addTaskDescription').value = globalTasks[i].description;
+    document.getElementById('addTaskDueDate').value = new Date(globalTasks[i].dueDate).toLocaleDateString('af-ZA');
+    document.getElementById('addTaskSubtaskInput').value = '';
+}
+
+/**
+ * Renders the assigned contacts in the edit task form based on a task index.
+ * @param {number} i - The index of the task in the globalTasks array.
+ */
 function renderEditTaskFormAssignedContacts(i) {
     selectedContacts = [];
     renderContactList();
@@ -385,6 +378,10 @@ function renderEditTaskFormAssignedContacts(i) {
     renderSelectedContacts();
 }
 
+/**
+ * Renders the subtasks in the edit task form based on a task index.
+ * @param {number} i - The index of the task in the globalTasks array.
+ */
 function renderEditTaskFormSubtasks(i) {
     for (let k = 0; k < selectedSubtasks.length; k++) {
         deleteSubtask(0);
@@ -397,6 +394,12 @@ function renderEditTaskFormSubtasks(i) {
 // HELPING FUNCTIONS
 // ****************
 
+/**
+ * Calculates the quotient of two numbers and rounds it. If one of the numbers is zero, it returns zero.
+ * @param {number} a - The dividend.
+ * @param {number} b - The divisor.
+ * @returns {number} The rounded quotient.
+ */
 function divideAndRound(a, b) {
     if (a === 0 || b === 0) {
         return 0; // Verhindert Division durch Null und gibt 0 zurück, wenn einer der Werte 0 ist
@@ -404,8 +407,11 @@ function divideAndRound(a, b) {
     return Math.round(a / b * 100);
 }
 
+/**
+ * Sets the current task ID and its index based on the given ID.
+ * @param {string} id - The ID of the task.
+ */
 function setCurrentTaskIdAndIndex(id) {
     currentTaskId = id;
     currentTaskIndex = getIndexByIdFromComplexArray(currentTaskId, globalTasks);
 }
-

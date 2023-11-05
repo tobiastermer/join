@@ -1,5 +1,11 @@
+/**
+ * @fileoverview Contains constants for managing task metadata including progress levels, categories, and contact colors.
+ */
 
-// Array for different progress levels
+/**
+ * An array representing different task progress levels.
+ * @type {string[]}
+ */
 let progresses = [
     "To Do",
     "In Progress",
@@ -7,7 +13,14 @@ let progresses = [
     "Done"
 ];
 
-// Array with categories and colors
+/**
+ * An array of category objects each with a name and associated color.
+ * @typedef {Object} Category
+ * @property {string} name - The name of the category.
+ * @property {string} color - The color associated with the category.
+ *
+ * @type {Category[]}
+ */
 let categories = [
     {
         name: 'Development',
@@ -35,7 +48,10 @@ let categories = [
     },
 ];
 
-// Array with contact colors
+/**
+ * An array representing the colors to be associated with contacts.
+ * @type {string[]}
+ */
 let contactColors = [
     "#FFB6C1",
     "#FFD700",

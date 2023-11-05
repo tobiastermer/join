@@ -112,15 +112,7 @@ function renderContactList() {
             let name = contacts[i].name;
             let initials = contacts[i].initials;
             let color = contacts[i].color;
-            selectContactList.innerHTML += `
-                <li id="selectContactLi-${id}" onclick="selectContact('${id}'); return false">
-                    <div class="contact-initials-and-name">
-                        <div class="contact_initial_image" style="background-color: ${color}">${initials}</div>
-                        <span>${name}</span>
-                    </div>
-                    <img id="addTaskCheckbox-${id}" src="../../img/remember-unchecked.png" alt="">
-                </li>
-            `;
+            selectContactList.innerHTML += getHTMLTemplateRenderContactForList(id, color, name, initials);
         };
     };
 }
@@ -245,9 +237,8 @@ function renderSelectedContacts() {
             if (j >= 0) {
                 let initials = contacts[j].initials;
                 let color = contacts[j].color;
-                showContactsContainer.innerHTML += `
-                    <div class="contact_initial_image" style="background-color: ${color}; z-index: ${i + 1}; margin-left: -10px; margin-right: 0px;">${initials}</div>
-                `;
+                let zindex = i + 1;
+                showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo(color, zindex, initials);
             };
         };
     } else {
@@ -371,11 +362,7 @@ function renderCategoryList() {
         let name = categories[i].name;
         let color = categories[i].color;
         let template = getTemplateCategory(name, color);
-        selectCategoryList.innerHTML += `
-            <li id="selectCategoryLi-${i}" onclick="selectCategory('${i}'); return false">
-                ${template}
-            </li>
-        `;
+        selectCategoryList.innerHTML += getHTMLTemplateRenderCategoryForList(i, template);
     };
 }
 
@@ -392,20 +379,6 @@ function selectCategory(i) {
     categoryDisplay.innerHTML = '';
     categoryDisplay.innerHTML += `${template}`;
     hideCategoryList();
-}
-
-/**
- * Returns the HTML Template for rendering category name and color.
- * @param {string} name - The name of the category.
- * @param {string} color - The color of the category as '000000'.
- */
-function getTemplateCategory(name, color) {
-    return `
-        <div class="category-color-and-name">
-            <div class="category_color" style="background-color: ${color}"></div>
-            <span>${name}</span>
-        </div>
-    `;
 }
 
 /**
@@ -465,15 +438,7 @@ function renderSubtaskList() {
             } else {
                 checked = '';
             }
-            subtaskList.innerHTML += `
-                <div class="subtask" id="subtask-${i}">
-                    <div>
-                        <input type="checkbox" id="subtask-checkbox-addForm-${i}" class="largerCheckbox" onclick="updateCheckedStatusAddForm()" ${checked}>
-                        <span>${subtaskName}</span>
-                    </div>
-                    <img src="../../img/delete.png" alt="" onclick="deleteSubtask(${i}); return false">
-                </div>
-            `;
+            subtaskList.innerHTML += getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName);
         };
     } else {
         subtaskList.classList.add('d-none');
