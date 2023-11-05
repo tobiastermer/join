@@ -18,7 +18,6 @@ let progresses = [
  * @typedef {Object} Category
  * @property {string} name - The name of the category.
  * @property {string} color - The color associated with the category.
- *
  * @type {Category[]}
  */
 let categories = [

@@ -29,16 +29,23 @@ let mode;
 // ****************
 
 /**
- * Initialize the application.
+ * Initializes the application.
  */
 async function initAddTask(progressIndex, inputMode) {
     await loadTasks();
     await initContactList();
+    initAddTaskVariables(progressIndex, inputMode);
     initCategories();
-    progress = progressIndex;
-    selectedSubtasks = [];
     hideAddContactOverlay();
     disableTaskSubmitButton(false);
+}
+
+/**
+ * Initializes some fundamental variables and arrays.
+ */
+function initAddTaskVariables(progressIndex, inputMode) {
+    progress = progressIndex;
+    selectedSubtasks = [];
     currentTaskId = '';
     currentTaskIndex = '';
     mode = inputMode;
@@ -378,6 +385,7 @@ function selectCategory(i) {
     let categoryDisplay = document.getElementById('addTaskCategory');
     categoryDisplay.innerHTML = '';
     categoryDisplay.innerHTML += `${template}`;
+    categoryDisplay.style.color = '#000000';
     hideCategoryList();
 }
 
@@ -387,6 +395,7 @@ function selectCategory(i) {
 function resetCategory() {
     document.getElementById('addTaskCategory').innerHTML = '';
     document.getElementById('addTaskCategory').innerHTML = 'Select task category';
+    document.getElementById('addTaskCategory').style.color = '#D1D1D1';
     selectedPrio = '';
 }
 
@@ -533,7 +542,7 @@ function goToBoard() {
         };
     } else {
         showSuccessMessage('Task succesfully created');
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.href = 'board.html';
         }, 750); // 750 Millisekunden = 0,75 Sekunde
     };
@@ -697,15 +706,3 @@ function getIndexByIdFromComplexArray(id, array) {
     };
     return -1;
 }
-
-/**
- * Adds an event listener to the 'addTaskSubtaskInput' element.
- * When the 'Enter' key is pressed, the default behavior of the browser (e.g., form submission) is prevented,
- * and the `addSubtask` function is called to add a new subtask.
- */
-document.querySelector('addTaskSubtaskInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Verhindert das standardmäßige Verhalten des Browsers (z.B. das Absenden eines Formulars)
-        addSubtask();
-    }
-});

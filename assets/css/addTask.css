@@ -229,7 +229,7 @@ select {
 }
 
 .form-input-with-img:focus-within {
-    border: 2px solid #000;
+    border: 2px solid #000000;
 }
 
 .form-input-with-img img {
@@ -244,13 +244,11 @@ select {
 #addTaskAssignContact {
     width: 100%;
     padding: 12px 16px 12px 16px;
-}
-
-#addTaskAssignContact {
     color: #D1D1D1;
 }
 
-#addTaskCategory:hover {
+#addTaskCategory:hover,
+#addTaskAssignContact:hover {
     cursor: pointer;
 }
 
