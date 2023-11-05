@@ -255,9 +255,6 @@
     }
 
     .summary-icon {
-        width: 69px;
-        height: 69px;
-        border-radius: 50%;
-        background-repeat: no-repeat;
+        scale: 0.7;
     }
 }
