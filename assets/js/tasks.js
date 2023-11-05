@@ -425,8 +425,6 @@ function deleteSubtask(i) {
 function renderSubtaskList() {
     let subtaskList = document.getElementById('addTaskSubtaskList');
     if (selectedSubtasks.length > 0) {
-        // updateSubtasksCheckedStatus('addForm');
-        // selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm');
         subtaskList.classList.remove('d-none');
         subtaskList.innerHTML = '';
         for (i = 0; i < selectedSubtasks.length; i++) {
@@ -445,6 +443,9 @@ function renderSubtaskList() {
     };
 }
 
+/**
+ * Updates selectedSubtasks Array with checked Status from checked-boxes.
+ */
 function updateCheckedStatusAddForm() {
     selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm')
 }
@@ -496,6 +497,10 @@ async function submitTask() {
     }
 }
 
+/**
+ * Enables or disables the task submit button based on the provided boolean value.
+ * @param {boolean} trueOrFalse - If true, the button will be disabled, otherwise it will be enabled.
+ */
 function disableTaskSubmitButton(trueOrFalse) {
     const createTaskButton = document.querySelector('.btn-primary[type="submit"]');
     if (trueOrFalse == true) {
@@ -505,27 +510,55 @@ function disableTaskSubmitButton(trueOrFalse) {
     };
 }
 
+/**
+ * Saves the global tasks to local storage.
+ * @returns {Promise<void>} A promise that resolves when the tasks are saved.
+ * @async
+ */
 async function saveTasks() {
     await setItem('tasks', JSON.stringify(globalTasks));
 }
 
+/**
+ * Navigates to the board page or updates the current board view based on the current mode and URL.
+ * If the current page is 'board.html', it will either add a new task or edit an existing task.
+ * If the current page is not 'board.html', it will navigate to 'board.html'.
+ */
 function goToBoard() {
     if (window.location.href.indexOf("board.html") > -1) {
         if (mode == 'add') { //add new task mode
-            hideTaskOverlay();
-            closeAddTaskOverlay();
-            initBoard();
-            showSuccessMessage('Task succesfully created');
+            returnToBoardAfterAddTask();
         } else { //edit mode
-            let storedTaskIndex = currentTaskIndex; // renderTasksToBoard will overwrite currentTaskIndex
-            closeAddTaskOverlay();
-            renderTasksToBoard();
-            renderDetailedCard(storedTaskIndex);
-            showSuccessMessage('Task succesfully edited');
+            returnToBoardAfterEditTask();
         };
     } else {
         window.location.href = 'board.html';
     };
+}
+
+/**
+ * Updates the board view after adding a new task.
+ * It hides the task overlay, closes the add task overlay, initializes the board, 
+ * and then displays a success message.
+ */
+function returnToBoardAfterAddTask() {
+    hideTaskOverlay();
+    closeAddTaskOverlay();
+    initBoard();
+    showSuccessMessage('Task succesfully created');
+}
+
+/**
+ * Updates the board view after editing an existing task.
+ * It closes the add task overlay, renders the tasks to the board, displays the details of the edited task,
+ * and then displays a success message.
+ */
+function returnToBoardAfterEditTask() {
+    let storedTaskIndex = currentTaskIndex; // renderTasksToBoard will overwrite currentTaskIndex
+    closeAddTaskOverlay();
+    renderTasksToBoard();
+    renderDetailedCard(storedTaskIndex);
+    showSuccessMessage('Task succesfully edited');
 }
 
 /**
@@ -565,6 +598,9 @@ function pushTaskToArray() {
     };
 }
 
+/**
+ * Builds the task array before pushing it into the global tasks array.
+ */
 function buildTaskArray() {
     // Variablen definieren
     let assignedTo = selectedContacts;
@@ -582,6 +618,10 @@ function buildTaskArray() {
     };
 }
 
+/**
+ * Returns a new unique id in case of adding a new task 
+ * or returns the id of an existing task in case of edit mode.
+ */
 function getTaskID() {
     if (mode == 'add') {
         return generateUniqueId();
@@ -595,9 +635,22 @@ function getTaskID() {
 // ****************
 
 /**
- * Clears all inputs in add task form as well as temporary variables and arrays.
+ * Clears all inputs in add task form.
  */
 function resetAddTask() {
+    resetAddTaskFieldValues();
+    resetPrio();
+    resetCategory();
+    hideContactList();
+    hideCategoryList();
+    renderSubtaskList();
+    initAddTask();
+}
+
+/**
+ * Clears all inputs in add task form as well as temporary variables and arrays.
+ */
+function resetAddTaskFieldValues() {
     // Reset arrays
     selectedContacts = [];
     selectedSubtasks = [];
@@ -614,17 +667,6 @@ function resetAddTask() {
     document.getElementById('addTaskCategory').value = '';
     document.getElementById('addTaskSubtaskInput').value = '';
     document.getElementById('addTaskSubtaskList').innerHTML = '';
-
-    // Reset Variables and colors
-    resetPrio();
-    resetCategory();
-
-    // Clear Lists and Dropdowns
-    hideContactList();
-    hideCategoryList();
-    renderSubtaskList();
-
-    initAddTask();
 }
 
 // ****************
@@ -653,9 +695,13 @@ function getIndexByIdFromComplexArray(id, array) {
     return -1;
 }
 
+/**
+ * Adds an event listener to the 'addTaskSubtaskInput' element.
+ * When the 'Enter' key is pressed, the default behavior of the browser (e.g., form submission) is prevented,
+ * and the `addSubtask` function is called to add a new subtask.
+ */
 document.querySelector('addTaskSubtaskInput').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        // code for enter
         e.preventDefault(); // Verhindert das standardmäßige Verhalten des Browsers (z.B. das Absenden eines Formulars)
         addSubtask();
     }
