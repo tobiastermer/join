@@ -234,7 +234,7 @@
     .summary-main-container {
         justify-content: space-around;
         gap: unset;
-        padding: 12px 28px;
+        padding: 20px 20px;
         width: -webkit-fill-available;
     }
 
