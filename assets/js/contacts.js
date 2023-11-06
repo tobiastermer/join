@@ -104,16 +104,29 @@ function generateUniqueId() {
   return timestamp + randomString;
 }
 
+
+/**
+ * Check if the provided string is a valid email address.
+ *
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} True if the email is valid, false otherwise.
+ */
+function isValidEmail(email) {
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+
 /**
  * Add a new contact to the list.
  */
-async function addContact() {
+async function addContact(event) {
   let fullName = document.getElementById("addContactName").value;
   let email = document.getElementById("addContactEmail").value;
   let phone = document.getElementById("addContactPhone").value;
   let initials = getInitials(fullName);
 
-  if (!checkForRightInput(fullName, email, phone)) {
+  if (!checkForRightInput(fullName, email, phone) || !isValidEmail(email)) {
     return;
   }
 
@@ -303,6 +316,11 @@ function checkForRightInput(fullName, email, phone) {
   if (fullName.split(" ").length < 2) {
     errors.push("Name should contain both first and last name.");
     showErrorMessage("Name should contain both first and last name.");
+  }
+
+  if(!isValidEmail(email)){
+    errors.push("Please enter a valid mail adress.");
+    showErrorMessage("Please enter a valid mail adress.");
   }
 
   if (errors.length > 0) {
