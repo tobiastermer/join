@@ -158,8 +158,14 @@ function getTemplateAssignedTo(assignedToArray) {
                 style += ` z-index: ${j}; margin-left: -10px;`;
             } else {
                 style += '';
-            }
-            compoundTemplate += `<div class="" style="${style}">${initials}</div>`;
+            };
+            if (j < 3) {
+                compoundTemplate += `<div class="" style="${style}">${initials}</div>`;
+            } else {
+                let numberFurtherContacts = assignedToArray.length - j;
+                compoundTemplate += `<div class="" style="${style}">+${numberFurtherContacts}</div>`;
+                return compoundTemplate;
+            };
         };
     }
     return compoundTemplate;

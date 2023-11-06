@@ -107,21 +107,6 @@ function renderContactList() {
 }
 
 /**
- * Filtering contacts for contact search function.
- */
-function filterContacts() {
-    let input = document.getElementById('addTaskInputContacts').value.toLowerCase();
-    filteredContacts = [];
-    if (input !== '') {
-        filteredContacts = contacts.filter(contact => {
-            return contact.name.toLowerCase().includes(input);
-        });
-    } else {
-        filteredContacts = contacts;
-    }
-}
-
-/**
  * Switch between Display and Hidden of the dropdown contact list.
  */
 function toggleContactList() {
