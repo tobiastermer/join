@@ -156,14 +156,15 @@ function getTemplateAssignedTo(assignedToArray) {
             let color = contacts[j].color;
             if (k == 0) {
                 compoundTemplate += `<div class="" style="background-color: ${color};">${initials}</div>`;
+                k = k + 1;
             } else if (k > 0 && k < 3) {
                 compoundTemplate += `<div class="" style="background-color: ${color};z-index: ${i}; margin-left: -10px;">${initials}</div>`;
+                k = k + 1;
             } else {
                 let numberFurtherContacts = assignedToArray.length - i;
                 compoundTemplate += `<div class="" style="background-color: ${color};z-index: ${i}; margin-left: -10px;">+${numberFurtherContacts}</div>`;
                 return compoundTemplate;
             };
-            k = k + 1;
         };
     }
     return compoundTemplate;

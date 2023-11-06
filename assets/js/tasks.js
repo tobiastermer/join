@@ -214,12 +214,12 @@ function renderSelectedContacts() {
                 let initials = contacts[j].initials;
                 let color = contacts[j].color;
                 showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo(color, zindex, initials);
+                k = k + 1;
             } else if (j >= 0 && k >= 3) {
                 let numberFurtherContacts = selectedContacts.length - i;
                 showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo('#D1D1D1', zindex, `+${numberFurtherContacts}`);
                 return;
             };
-            k = k + 1;
         };
     };
     if (selectedContacts.length == 0 || k == 0) {
