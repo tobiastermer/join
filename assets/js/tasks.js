@@ -91,7 +91,7 @@ async function loadContactsForTasks() {
  */
 function renderContactList() {
     let selectContactList = document.getElementById('addTaskListContacts');
-    selectContactList.innerHTML = '';
+    // selectContactList.innerHTML = '';
     if (contacts.length > 0) {
         for (let i = 0; i < contacts.length; i++) {
             let id = contacts[i].id
