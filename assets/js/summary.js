@@ -14,7 +14,7 @@ function renderSummary() {
     document.getElementById('summary-kpi-todo').innerHTML = getAmountTasksPerProgress(0);
     document.getElementById('summary-kpi-done').innerHTML = getAmountTasksPerProgress(3);
     document.getElementById('summary-kpi-urgent').innerHTML = getAmountTasksPerPrio('high');
-    document.getElementById('summary-kpi-deadline').innerHTML = getEarliestDueDate();
+    document.getElementById('summary-kpi-deadline').innerHTML = getEarliestDueDateWithPriority();
     document.getElementById('summary-kpi-tasksInBoard').innerHTML = getAmountTasksPerProgress(0) + getAmountTasksPerProgress(1) + getAmountTasksPerProgress(2);
     document.getElementById('summary-kpi-progress').innerHTML = getAmountTasksPerProgress(1);
     document.getElementById('summary-kpi-feedback').innerHTML = getAmountTasksPerProgress(2);
@@ -42,20 +42,28 @@ function getAmountTasksPerPrio(prio) {
  * Gets the earliest due date among tasks with a progress of 0, 1, or 2.
  * @returns {string} The earliest due date in formatted string or 'No task found' if no tasks match the criteria.
  */
-function getEarliestDueDate() {
+function getEarliestDueDateWithPriority() {
     let filteredTasks = globalTasks.filter(task => [0, 1, 2].includes(task.progress));
 
     if (filteredTasks.length === 0) {
         return 'No task found';
     }
 
-    let earliestDate = filteredTasks.reduce((earliestDate, currentTask) => {
-        return currentTask.dueDate < earliestDate ? currentTask.dueDate : earliestDate;
-    }, filteredTasks[0].dueDate);
+    filteredTasks.sort((task1, task2) => {
+        if (task1.prio === 'high' && task2.prio !== 'high') {
+            return -1;
+        } else if (task1.prio !== 'high' && task2.prio === 'high') {
+            return 1;
+        }
 
-    let formattedDate = changeDateFormat(earliestDate);
+        return task1.dueDate.localeCompare(task2.dueDate);
+    });
+
+    let earliestTask = filteredTasks[0];
+    let formattedDate = changeDateFormat(earliestTask.dueDate);
     return formattedDate;
 }
+
 
 /**
  * Converts a date string into the format "Month Day, Year".
