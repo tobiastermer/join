@@ -35,14 +35,14 @@
     <div class="overlay_background" id="overlayBackground"></div>
     <div class="successmessage" id="successmessage">Contact succesfully created</div>
     <div class="error_message" id="error_message">error</div>
-    
+
     <script>
 
         // hide contact dropdwon on click outside the div
         document.addEventListener('mousedown', function (event) {
             let list = document.getElementById('addTaskListContactsContainer');
             let container = document.getElementById('addTaskDropdownContactContainer');
-            
+
             // check if click was outside the container
             if (!container.contains(event.target) && !list.contains(event.target)) {
                 // check if container is actually visible
@@ -65,6 +65,18 @@
                     // hide the container
                     hideCategoryList();
                 }
+            }
+        });
+
+        /**
+         * Adds an event listener to the 'addTaskSubtaskInput' element.
+         * When the 'Enter' key is pressed, the default behavior of the browser (e.g., form submission) is prevented,
+         * and the `addSubtask` function is called to add a new subtask.
+         */
+        document.getElementById('addTaskSubtaskInput').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                addSubtask();
             }
         });
 

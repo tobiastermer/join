@@ -592,7 +592,7 @@ html {
 /* Media Query */
 
 @media(max-width: 1360px) {
-    
+
     .overlay_background {
         align-items: unset;
     }
@@ -996,6 +996,13 @@ html {
     .big_contact_initial_image button {
         height: 100px;
         width: 100px;
+    }
+
+    .form-column .contact_initial_image {
+        margin-right: 12px;
+        font-size: 12px;
+        height: 32px;
+        width: 32px;
     }
 
 

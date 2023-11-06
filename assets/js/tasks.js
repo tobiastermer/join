@@ -29,16 +29,23 @@ let mode;
 // ****************
 
 /**
- * Initialize the application.
+ * Initializes the application.
  */
 async function initAddTask(progressIndex, inputMode) {
     await loadTasks();
     await initContactList();
+    initAddTaskVariables(progressIndex, inputMode);
     initCategories();
-    progress = progressIndex;
-    selectedSubtasks = [];
     hideAddContactOverlay();
     disableTaskSubmitButton(false);
+}
+
+/**
+ * Initializes some fundamental variables and arrays.
+ */
+function initAddTaskVariables(progressIndex, inputMode) {
+    progress = progressIndex;
+    selectedSubtasks = [];
     currentTaskId = '';
     currentTaskIndex = '';
     mode = inputMode;
@@ -378,6 +385,7 @@ function selectCategory(i) {
     let categoryDisplay = document.getElementById('addTaskCategory');
     categoryDisplay.innerHTML = '';
     categoryDisplay.innerHTML += `${template}`;
+    categoryDisplay.style.color = '#000000';
     hideCategoryList();
 }
 
@@ -387,6 +395,7 @@ function selectCategory(i) {
 function resetCategory() {
     document.getElementById('addTaskCategory').innerHTML = '';
     document.getElementById('addTaskCategory').innerHTML = 'Select task category';
+    document.getElementById('addTaskCategory').style.color = '#D1D1D1';
     selectedPrio = '';
 }
 
@@ -533,7 +542,7 @@ function goToBoard() {
         };
     } else {
         showSuccessMessage('Task succesfully created');
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.href = 'board.html';
         }, 750); // 750 Millisekunden = 0,75 Sekunde
     };
@@ -696,6 +705,7 @@ function getIndexByIdFromComplexArray(id, array) {
         };
     };
     return -1;
+<<<<<<< HEAD
 }
 
 /**
@@ -709,3 +719,6 @@ document.querySelector('addTaskSubtaskInput').addEventListener('keypress', funct
         addSubtask();
     }
 });
+=======
+}
+>>>>>>> db296a380b0da98937857e0024ff1923c173952e

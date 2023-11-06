@@ -1,3 +1,8 @@
+body {
+    font-family: 'Inter';
+    overflow: hidden;
+}
+
 .summary-body {
     background-color: rgb(246, 247, 248);
 }

@@ -6,7 +6,7 @@
         onclick="closeAddTaskOverlay(); return false">
 </div>
 
-<form onsubmit="submitTask(); return false">
+<form onkeydown="return event.key !='Enter';" onsubmit="submitTask(); return false">
 
     <div class="form-upper-half">
         <div class="form-column">
@@ -21,8 +21,10 @@
             </div>
             <div class="form-column-child">
                 <label>Assigned to</label>
-                <div class="form-input-with-img" id="addTaskDropdownContactContainer" onclick="toggleContactList(); return false">
-                    <div type="text" id="addTaskAssignContact" placeholder="Select contacts to assign">Select contacts to assign</div>
+                <div class="form-input-with-img no-linebreak" id="addTaskDropdownContactContainer"
+                    onclick="toggleContactList(); return false">
+                    <div type="text" id="addTaskAssignContact" placeholder="Select contacts to assign">Select contacts
+                        to assign</div>
                     <img id="addTaskImgDropdownContacts" src="../../img/dropdown_down.png" alt="">
                 </div>
                 <div class="form-list form-list-selection d-none" id="addTaskListContactsContainer">
@@ -67,7 +69,8 @@
 
             <div class="form-column-child">
                 <label>Category<p>*</p></label>
-                <div class="form-input-with-img" id="addTaskDropdownCategoryContainer" onclick="toggleCategoryList(); return false">
+                <div class="form-input-with-img no-linebreak" id="addTaskDropdownCategoryContainer"
+                    onclick="toggleCategoryList(); return false">
                     <div type="text" id="addTaskCategory" placeholder="Select task category">Select task category</div>
                     <img id="addTaskImgDropdownCategory" src="../../img/dropdown_down.png" alt="">
                 </div>
@@ -97,7 +100,8 @@
             <p>*</p>This field is required
         </label>
         <div class="form-buttons">
-            <Button class="btn btn-secondary btn-text-with-icon grow" id="addTaskBtnClear" onclick="resetAddTask(); return false">
+            <Button class="btn btn-secondary btn-text-with-icon grow" id="addTaskBtnClear"
+                onclick="resetAddTask(); return false">
                 <span>Clear</span>
                 <img src="img/Close.png" alt="">
             </Button>
@@ -144,3 +148,4 @@
     </div>
 
 </div>
+
