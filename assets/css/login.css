@@ -427,6 +427,7 @@ body {
     .login-buttons {
         gap: 8px;
         padding-top: 0px;
+        width: 222px;
     }
 
     .login-button {
@@ -447,7 +448,7 @@ body {
     }
 
     .login-main input {
-        width: fit-content;
+        width: 220px;
     }
 
     .custom-checkbox-label {
