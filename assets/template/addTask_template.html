@@ -84,7 +84,7 @@
             <div class="form-column-child">
                 <label>Subtasks</label>
                 <div class="form-input-with-img">
-                    <input type="text" id="addTaskSubtaskInput" placeholder="Add new subtask" autocomplete="off">
+                    <input onkeydown="subtaskKeylistener(event)" type="text" id="addTaskSubtaskInput" placeholder="Add new subtask" autocomplete="off">
                     <img id="addTaskImgDropdownSubtask" src="../../img/add.png" onclick="addSubtask(); return false"
                         alt="">
                 </div>

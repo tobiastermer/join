@@ -68,18 +68,6 @@
             }
         });
 
-        /**
-         * Adds an event listener to the 'addTaskSubtaskInput' element.
-         * When the 'Enter' key is pressed, the default behavior of the browser (e.g., form submission) is prevented,
-         * and the `addSubtask` function is called to add a new subtask.
-         */
-        document.getElementById('addTaskSubtaskInput').addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                addSubtask();
-            }
-        });
-
     </script>
 </body>
 
