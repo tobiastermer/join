@@ -6,20 +6,18 @@ async function initLogin() {
     activUser = {
         'name': '',
     };
-    // Setze den 'activUser' in localStorage auf einen leeren Wert
+
     localStorage.setItem('activUser', JSON.stringify(activUser));
     loadUsers();
     initLogoAnimation();
     setPasswordVisibilityListener();
 
-    // Check if remembered credentials are available in localStorage
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     const rememberedPassword = localStorage.getItem('rememberedPassword');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
 
     if (rememberedEmail && rememberedPassword) {
-        // If remembered credentials are available, fill in the form fields
         emailInput.value = rememberedEmail;
         passwordInput.value = rememberedPassword;
         document.getElementById("customRememberMe").checked = true;
@@ -53,23 +51,19 @@ function login() {
 
     if (user) {
         // Successful login
-        activUser.name = user.userName; // Store the username in activUser
-        localStorage.setItem('activUser', JSON.stringify(activUser)); // Store the activated user in localStorage
+        activUser.name = user.userName;
+        localStorage.setItem('activUser', JSON.stringify(activUser));
 
         if (document.getElementById("customRememberMe").checked) {
-            // If "Remember Me" is checked, store the login credentials in localStorage
             localStorage.setItem('rememberedEmail', email);
             localStorage.setItem('rememberedPassword', password);
         } else {
-            // If "Remember Me" is not checked, clear any remembered credentials
             localStorage.removeItem('rememberedEmail');
             localStorage.removeItem('rememberedPassword');
         }
 
-        // Redirect to the board.html page
         window.location.href = 'summary.html';
     } else {
-        // Login failed
         passwordInput.classList.add("error-border");
         errorElement.textContent = "Wrong password. Please try again.";
     }
@@ -86,9 +80,6 @@ function guestLogin() {
 }
 
 
-// Visual Functions ///////////////////////////////////////////////////////
-
-
 /**
  * Toggles the visibility of a password field and updates the associated icon.
  * @param {string} fieldId - The ID of the password field to toggle.
@@ -100,13 +91,13 @@ function togglePasswordVisibility(fieldId, imgId) {
 
     if (passwordField.type === 'password') {
         passwordField.type = 'text';
-        eyeIcon.src = '/img/register-visibility.png'; // Change the icon to "visibility.png"
+        eyeIcon.src = '/img/register-visibility.png'; 
     } else {
         passwordField.type = 'password';
         if (passwordField.value) {
-            eyeIcon.src = '/img/register-visibility_off.png'; // Change the icon to "visibility-off.png"
+            eyeIcon.src = '/img/register-visibility_off.png';
         } else {
-            eyeIcon.src = '/img/login-lock.png'; // Change the icon to "lock.png"
+            eyeIcon.src = '/img/login-lock.png';
         }
     }
 }
@@ -116,8 +107,7 @@ function togglePasswordVisibility(fieldId, imgId) {
  * Initializes the password visibility toggle listener to update the icon based on user input.
  */
 function setPasswordVisibilityListener() {
-    // Monitor the input field for changes
-    document.getElementById('password').addEventListener('input', function() {
+    document.getElementById('password').addEventListener('input', function () {
         let passwordField = document.getElementById('password');
         let eyeIcon = document.getElementById('passwordToggle');
 
@@ -135,15 +125,13 @@ function setPasswordVisibilityListener() {
 /**
  * Initializes the logo animation for the login page.
  */
-function initLogoAnimation(){
-    // Load logo animation
+function initLogoAnimation() {
     const loginDark = document.getElementById('overlay');
     const loginLogo = document.getElementById("login-logo");
     const loginMainContainer = document.getElementById("login-maincontainer");
     const loginNav = document.getElementById("login-nav");
     const loginBottom = document.getElementById("login-bottom-part");
 
-    // Apply logo animation with a delay
     setTimeout(() => {
         loginLogo.classList.add("move-to-top-left");
         loginDark.style.display = 'none';

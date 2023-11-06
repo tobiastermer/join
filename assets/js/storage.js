@@ -1,10 +1,4 @@
 /**
- * @module Storage_Module
- * @description The Storage Load and Save  of the page
- */
-
-
-/**
  * Constant to store the storage token.
  * @type {string}
  */
@@ -78,16 +72,11 @@ async function initUserName() {
  * Load the active user's information from localStorage.
  */
 function loadActiveUser() {
-    // Load the active user from localStorage if available.
     const activUserJSON = localStorage.getItem('activUser');
 
     if (activUserJSON) {
         activUser = JSON.parse(activUserJSON);
-        // Modify 'name' to 'userName' or another appropriate identifier.
         userName = activUser.name;
-    } else {
-        // The user is not logged in, or the information has been deleted.
-        // Perform appropriate actions.
     }
 }
 
@@ -99,17 +88,12 @@ async function displayUserName() {
     if (activUser.name == "") {
         return;
     } else {
-
-        // Continue with the rest of the code.
         const userNameElement = document.getElementById('activUserName');
         const userProfileElement = document.getElementById('profileButton');
 
-        // Check if userNameElement exists and if activUser.name is defined.
         if (userNameElement && activUser.name) {
             userNameElement.textContent = activUser.name;
         }
-
-        // Set userProfileElement.innerHTML to the user's initials, regardless of whether userNameElement exists.
         userProfileElement.innerHTML = getInitialsOf(activUser.name || "");
     }
 }
@@ -132,14 +116,12 @@ function getInitialsOf(name) {
  * Asynchronously hide the menu if the user is not active.
  */
 async function hideMenuIfNoActiveUser() {
-    // Check if the includeHTML function exists before calling it.
     if (typeof includeHTML === 'function') {
         await includeHTML();
     } else {
         return;
     }
 
-    // Continue with the rest of the code.
     let dnMenu = document.getElementById("menu");
     let profileButton = document.getElementById("profileButton");
     if (activUser.name == "") {

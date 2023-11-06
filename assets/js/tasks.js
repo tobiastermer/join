@@ -705,7 +705,6 @@ function getIndexByIdFromComplexArray(id, array) {
         };
     };
     return -1;
-<<<<<<< HEAD
 }
 
 /**
@@ -719,6 +718,3 @@ document.querySelector('addTaskSubtaskInput').addEventListener('keypress', funct
         addSubtask();
     }
 });
-=======
-}
->>>>>>> db296a380b0da98937857e0024ff1923c173952e

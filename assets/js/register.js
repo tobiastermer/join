@@ -1,10 +1,4 @@
 /**
- * @module Register_Module
- * @description The register area of the page
- */
-
-
-/**
  * Initializes the user information and checks if already registered.
  */
 async function initRegister() {
@@ -36,23 +30,20 @@ async function register() {
     const errorElement = document.getElementById("passwordMismatchError");
 
     if (errorElement.textContent) {
-        return; // Abort registration if there's an error
+        return;
     }
 
     const newUserName = userName.value;
     const newEmail = email.value;
-    // Check if the username or email already exists
     const existingUser = users.find((user) => user.userName === newUserName);
     const existingEmail = users.find((user) => user.email === newEmail);
 
     if (existingUser) {
-        // Display an error message if the user is already registered.
         errorElement.textContent = "User with this username already registered";
         return;
     }
 
     if (existingEmail) {
-        // Display an error message if the email already exists.
         errorElement.textContent = "User with this email already registered";
         return;
     }
@@ -67,12 +58,10 @@ async function register() {
 
     await setItem('users', JSON.stringify(users));
     resetForm();
-
     window.location.href = 'register.html?msg=You Signed Up successfully';
-    // Delay the redirection to the login page after showing the success message
     setTimeout(function () {
         window.location.href = 'index.html';
-    }, 2000); // Adjust the delay time as needed
+    }, 2000);
 }
 
 
@@ -85,14 +74,10 @@ function resetForm() {
     password.value = '';
     PWconfirm.value = '';
 
-    // Add a delay before re-enabling the button
     setTimeout(function () {
         registerBtn.disabled = false;
-    }, 2000); // Adjust the delay time as needed
+    }, 2000);
 }
-
-
-// Password Validation ///////////////////////////////////////////////
 
 
 /**
@@ -131,10 +116,6 @@ function validateInputFields() {
 }
 
 
-
-// Visual Functions ///////////////////////////////////////////////////////
-
-
 /**
  * Toggles the visibility of a password field and updates the associated icon.
  * @param {string} fieldId - The ID of the password field to toggle.
@@ -146,13 +127,13 @@ function togglePasswordVisibility(fieldId, imgId) {
 
     if (passwordField.type === 'password') {
         passwordField.type = 'text';
-        eyeIcon.src = '/img/register-visibility.png'; // Change the icon to "visibility.png"
+        eyeIcon.src = '/img/register-visibility.png';
     } else {
         passwordField.type = 'password';
         if (passwordField.value) {
-            eyeIcon.src = '/img/register-visibility_off.png'; // Change the icon to "visibility-off.png"
+            eyeIcon.src = '/img/register-visibility_off.png';
         } else {
-            eyeIcon.src = '/img/login-lock.png'; // Change the icon to "lock.png"
+            eyeIcon.src = '/img/login-lock.png';
         }
     }
 }
@@ -162,7 +143,6 @@ function togglePasswordVisibility(fieldId, imgId) {
  * Initializes the password visibility toggle listener to update the icon based on user input.
  */
 function setPasswordVisibilityListener(fieldId, imgId) {
-    // Monitor the input field for changes
     document.getElementById(fieldId).addEventListener('input', function () {
         let passwordField = document.getElementById(fieldId);
         let eyeIcon = document.getElementById(imgId);
@@ -189,10 +169,10 @@ function loadMsgBox() {
 
     if (msg) {
         msgBox.innerHTML = msg;
-        overlay.classList.add('active'); // Activate the overlay
+        overlay.classList.add('active');
         msgBox.classList.remove('d-none');
         msgBox.classList.add('slide-in');
-        // Redirect to the login page after a 1-second delay
+
         setTimeout(function () {
             window.location.href = 'index.html';
         }, 1000);
