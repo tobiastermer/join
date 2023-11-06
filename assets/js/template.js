@@ -1,13 +1,4 @@
 /**
- * @module Template_Module
- * @description Contains template functions for rendering HTML Code.
- */
-
-// ****************
-// USED IN TASKS.JS
-// ****************
-
-/**
  * Generates an HTML template for rendering a contact in a list.
  * @param {string} id - The ID of the contact.
  * @param {string} color - The background color for the contact's initials.
@@ -87,11 +78,6 @@ function getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName) {
         </div>
     `;
 }
-
-// ****************
-// USED IN BOARD.JS
-// ****************
-
 /**
  * Generates an HTML template for creating a column on the board.
  * @param {number} i - The index of the column / progress level.

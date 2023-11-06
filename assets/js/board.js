@@ -1,13 +1,4 @@
 /**
- * @module Board_Module
- * @description Manages the tasks displayed on the board. Provides functionality for filtering, drag-and-drop, task overlays, and more.
- */
-
-// ****************
-// OVERHEAD
-// ****************
-
-/**
  * The main board DOM reference.
  * @type {HTMLElement}
  */
@@ -37,10 +28,6 @@ let currentTaskId;
  */
 let currentTaskIndex
 
-// ****************
-// INITIALIZE
-// ****************
-
 /**
  * Initialize the application.
  * @async
@@ -65,9 +52,6 @@ function renderTasksToBoard() {
     renderCards();
 }
 
-// ****************
-// FILTER
-// ****************
 
 /**
  * Filters task IDs based on a search term in the "board-search" input field.
@@ -95,10 +79,6 @@ function updateBoardBySearch() {
     // setFilteredTasksBySearch();
     renderTasksToBoard();
 }
-
-// ****************
-// BOARD CONTENT
-// ****************
 
 /**
  * Creates columns for the tasks board.
@@ -128,7 +108,6 @@ function createCards() {
     for (let i = 0; i < progresses.length; i++) {
         let column = document.getElementById(`board-column-content-${i}`);
         let hasTask = false;
-        // if there is an task with fitted progress then create card
         for (let j = 0; j < filteredTaskIDs.length; j++) {
             setCurrentTaskIdAndIndex(filteredTaskIDs[j]);
             if (globalTasks[currentTaskIndex].progress == i) {
@@ -136,7 +115,6 @@ function createCards() {
                 column.innerHTML += getHTMLTemplateCreateToDoCard(currentTaskId);
             };
         };
-        // if there is no ToDo-Card, then add a no-todo-card
         if (!hasTask) {
             column.innerHTML += getHTMLTemplateCreateNoToDoCard(progresses[i]);
         };
@@ -187,10 +165,6 @@ function getTemplateAssignedTo(assignedToArray) {
     return compoundTemplate;
 }
 
-// ****************
-// DRAG AND DROP
-// ****************
-
 /**
  * Initializes dragging for an element with a specified ID.
  * @param {string} id - The ID of the draggable element.
@@ -234,10 +208,6 @@ function addHighlight(element) {
 function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
-
-// ****************
-// OVERLAY
-// ****************
 
 /**
  * Show the overlay for editing a contact.
@@ -389,10 +359,6 @@ function renderEditTaskFormSubtasks(i) {
     selectedSubtasks = JSON.parse(JSON.stringify(globalTasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
     renderSubtaskList();
 }
-
-// ****************
-// HELPING FUNCTIONS
-// ****************
 
 /**
  * Calculates the quotient of two numbers and rounds it. If one of the numbers is zero, it returns zero.

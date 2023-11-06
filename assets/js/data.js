@@ -1,8 +1,4 @@
 /**
- * @fileoverview Contains constants for managing task metadata including progress levels, categories, and contact colors.
- */
-
-/**
  * An array representing different task progress levels.
  * @type {string[]}
  */

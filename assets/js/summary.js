@@ -1,9 +1,4 @@
 /**
- * @module Summary_Module
- * @description The summary / dashboard area of the page
- */
-
-/**
  * Initializes the summary/dashboard area by loading tasks and rendering the summary.
  * @async
  */

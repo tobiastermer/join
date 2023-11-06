@@ -1,8 +1,3 @@
-/**
- * @module Contacts_Module
- * @description The contact area of the page
- */
-
 // Global variables
 let contacts = [];
 let selectedContactIndex = -1;

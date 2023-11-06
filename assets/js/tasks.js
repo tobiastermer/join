@@ -1,16 +1,3 @@
-/**
- * @module TaskManagement_Module
- * @description The TaskManagement area of the page
- */
-
-/**
- * Task Management Application
- */
-
-// ****************
-// OVERHEAD
-// ****************
-
 // Global variables
 let globalTasks = [];
 let filteredTaskIDs = [];
@@ -23,10 +10,6 @@ let filteredContacts = [];
 let selectedSubtasks = [];
 let progress;
 let mode;
-
-// ****************
-// INITIALIZE
-// ****************
 
 /**
  * Initializes the application.
@@ -80,10 +63,6 @@ function closeAddTaskOverlay() {
     document.getElementById("addTask-close-button").style.display = "none";
 
 }
-
-// ****************
-// CONTACTS
-// ****************
 
 /**
  * Initialize the contact list inside the add task form.
@@ -174,9 +153,9 @@ function showContactList() {
  */
 function selectContact(id) {
     let i = getIndexById(id, selectedContacts);
-    if (i > -1) { // deactivates contact
+    if (i > -1) {
         removeFromSelectedContacts(id);
-    } else { // activates selected contact
+    } else {
         addToSelectedContacts(id);
     }
     renderSelectedContacts();
@@ -289,10 +268,6 @@ async function addContactExtra() {
     showSuccessMessage('Contact succesfully created');
 }
 
-// ****************
-// PRIORITIES
-// ****************
-
 /**
  * Adds color to prio-button after clicking on it.
  * @param {string} prio - high, med or low prio.
@@ -311,17 +286,12 @@ function setPrio(prio) {
  */
 function resetPrio() {
     selectedPrio = '';
-    // Remove 'active' class from all buttons
     const prios = ['high', 'med', 'low'];
     prios.forEach(p => {
         document.getElementById(`img-prio-${p}`).classList.remove(`prio-${p}-active`);
         document.getElementById(`btn-prio-${p}`).classList.remove(`bg-prio-${p}-active`);
     });
 }
-
-// ****************
-// CATEGORIES
-// ****************
 
 /**
  * Initialize the category list inside the add task form.
@@ -399,10 +369,6 @@ function resetCategory() {
     selectedPrio = '';
 }
 
-// ****************
-// SUBTASKS
-// ****************
-
 /**
  * Adds the entered subtask to the array.
  */
@@ -479,10 +445,6 @@ function updatedArrayCheckedStatus(subtaskArray, card) {
     };
     return subtaskArray;
 }
-
-// ****************
-// SUBMIT
-// ****************
 
 /**
  * Coordinates creating a new task and stores it to storage.
@@ -566,7 +528,7 @@ function returnToBoardAfterAddTask() {
  * and then displays a success message.
  */
 function returnToBoardAfterEditTask() {
-    let storedTaskIndex = currentTaskIndex; // renderTasksToBoard will overwrite currentTaskIndex
+    let storedTaskIndex = currentTaskIndex;
     closeAddTaskOverlay();
     renderTasksToBoard();
     renderDetailedCard(storedTaskIndex);
@@ -579,13 +541,11 @@ function returnToBoardAfterEditTask() {
 function isTaskFormFilledCorrectly() {
     let errors = [];
 
-    // Category
     if (selectedCategory === undefined || selectedCategory === null || selectedCategory == '') {
         errors.push("Please select a category.");
         showErrorMessage("Please select a category.");
     }
 
-    // Prio
     if (selectedPrio === undefined || selectedPrio === null || selectedPrio == '') {
         errors.push("Please select a prio.");
         showErrorMessage("Please select a prio.");
@@ -603,9 +563,9 @@ function isTaskFormFilledCorrectly() {
  */
 function pushTaskToArray() {
     let array = buildTaskArray();
-    if (mode == 'add') { // add mode
+    if (mode == 'add') {
         globalTasks.push(array);
-    } else { // edit mode
+    } else {
         globalTasks[currentTaskIndex] = array;
     };
 }
@@ -642,10 +602,6 @@ function getTaskID() {
     };
 }
 
-// ****************
-// CANCEL
-// ****************
-
 /**
  * Clears all inputs in add task form.
  */
@@ -663,16 +619,13 @@ function resetAddTask() {
  * Clears all inputs in add task form as well as temporary variables and arrays.
  */
 function resetAddTaskFieldValues() {
-    // Reset arrays
     selectedContacts = [];
     selectedSubtasks = [];
 
-    // Reset header and buttons
     document.getElementById('addTask-header-h1').innerHTML = 'Add Task';
     document.getElementById('addTaskBtnSubmit').innerHTML = 'Create Task';
     document.getElementById('addTaskBtnClear').setAttribute('onclick', 'resetAddTask(); return false');
 
-    // Reset field values
     document.getElementById('addTaskTitle').value = '';
     document.getElementById('addTaskDescription').value = '';
     document.getElementById('addTaskDueDate').value = '';
@@ -680,10 +633,6 @@ function resetAddTaskFieldValues() {
     document.getElementById('addTaskSubtaskInput').value = '';
     document.getElementById('addTaskSubtaskList').innerHTML = '';
 }
-
-// ****************
-// HELPING FUNCTIONS
-// ****************
 
 /**
  * Looks for the index of an ID inside an array.
