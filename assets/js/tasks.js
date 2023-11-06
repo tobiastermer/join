@@ -671,9 +671,9 @@ function getIndexByIdFromComplexArray(id, array) {
  * When the 'Enter' key is pressed, the default behavior of the browser (e.g., form submission) is prevented,
  * and the `addSubtask` function is called to add a new subtask.
  */
-document.querySelector('addTaskSubtaskInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Verhindert das standardmäßige Verhalten des Browsers (z.B. das Absenden eines Formulars)
+function subtaskKeylistener(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Verhindert das standardmäßige Verhalten des Browsers (z.B. das Absenden eines Formulars)
         addSubtask();
     }
-});
+}
