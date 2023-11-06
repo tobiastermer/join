@@ -12,7 +12,7 @@ function showSuccessMessage(text) {
   successMessage.innerHTML = text;
   setTimeout(() => {
     successMessage.style.opacity = 1;
-  }, 100);
+  }, 1000);
 
   setTimeout(() => {
     successMessage.style.opacity = 0;
