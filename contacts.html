@@ -66,10 +66,10 @@
                     <div class="contact_user_information">
                         <div class="user_image"><button><img src="./img/personwhite.png" alt="Profile Image"></button>
                         </div>
-                        <div class="user_information_form">
+                        <form id ="contactForm" class="user_information_form">
                             <input type="text" class="input_contact_name" name="Name" id="addContactName"
                                 placeholder="Name" required>
-                            <input type="email" class="input_contact_mail" name="Email" id="addContactEmail"
+                            <input type="email" class="input_contact_mail" type="email"  id="addContactEmail"
                                 placeholder="Email" required>
                             <input type="tel" class="input_contact_phone" name="Phone" id="addContactPhone"
                                 placeholder="Phone" required>
@@ -80,7 +80,7 @@
                                     contact
                                     <img src="./img/check.png" alt=""></button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
 
                     <div class="close_overlay_button" onclick="hideEditContactOverlay();"><img src="./img/Close.png"
                             alt="close button"></div>
-                    <div class="contact_user_information">
+                    <form class="contact_user_information">
                         <div class="user_image"><button id="editContactInitials"></button></div>
                         <div class="user_information_form">
                             <input type="text" class="input_contact_name" name="Name" id="editContactName"
@@ -118,7 +118,7 @@
                                     <img src="./img/check.png" alt=""></button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

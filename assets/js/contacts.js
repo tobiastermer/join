@@ -105,6 +105,29 @@ function generateUniqueId() {
 }
 
 /**
+ * Check if the provided string is a valid email address.
+ *
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} True if the email is valid, false otherwise.
+ */
+function isValidEmail(email) {
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+/**
+ * Check if the provided string is a valid phone number.
+ *
+ * @param {string} phone - The phone number to validate.
+ * @returns {boolean} True if the phone number is valid, false otherwise.
+ */
+function isValidPhoneNumber(phone) {
+  let phoneRegex = /^(?:\(\d{3}\)\s?|^\d{3}-?\d{3}-?)\d{4}$/;
+  return phoneRegex.test(phone);
+}
+
+
+/**
  * Add a new contact to the list.
  */
 async function addContact() {
@@ -113,7 +136,7 @@ async function addContact() {
   let phone = document.getElementById("addContactPhone").value;
   let initials = getInitials(fullName);
 
-  if (!checkForRightInput(fullName, email, phone)) {
+  if (!checkForRightInput(fullName, email, phone) || !isValidEmail(email) || !isValidPhoneNumber(phone)){
     return;
   }
 
@@ -260,7 +283,7 @@ function saveContact() {
   let editContactPhone = document.getElementById("editContactPhone").value;
 
   if (
-    !checkForRightInput(editContactName, editContactEmail, editContactPhone)
+    !checkForRightInput(editContactName, editContactEmail, editContactPhone) || !isValidEmail(email) || !isValidPhoneNumber(phone)
   ) {
     return;
   }
