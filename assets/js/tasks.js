@@ -62,7 +62,7 @@ async function showAddTaskOverlay(progressIndex, mode) {
 function closeAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "none";
     document.getElementById("addTask-close-button").style.display = "none";
-
+    resetAddTask();
 }
 
 /**
