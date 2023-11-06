@@ -9,7 +9,7 @@
  */
 async function initRegister() {
     loadUsers();
-    validatePassword();
+    validateInputFields();
     setPasswordVisibilityListener('password', 'passwordToggle');
     setPasswordVisibilityListener('PWconfirm', 'confirmToggle');
     loadMsgBox();
