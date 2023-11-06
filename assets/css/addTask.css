@@ -124,10 +124,16 @@ select {
     cursor: pointer;
 }
 
+.reduce-and-scroll-list {
+    max-height: 135px;
+    overflow-y: auto;
+}
+
 .contact-initials-and-name {
     display: flex;
     align-items: center;
     height: 45px;
+    flex-wrap: wrap;
 }
 
 .form-list span {

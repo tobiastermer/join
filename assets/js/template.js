@@ -19,6 +19,20 @@ function getHTMLTemplateRenderContactForList(id, color, name, initials) {
 }
 
 /**
+ * Generates an HTML template for rendering errorhandler in case of no found contacts.
+ * @returns {string} - The HTML template.
+ */
+function getHTMLTemplateRenderNoContactForList() {
+    return `
+        <li>
+            <div class="contact-initials-and-name">
+                <span>No contacts found. Please add a contact or reload the page.</span>
+            </div>
+        </li>
+    `;
+}
+
+/**
  * Generates an HTML template for rendering a contact assigned to a task.
  * @param {string} color - The background color for the contact's initials.
  * @param {number} zindex - The z-index for the contact's initials.
@@ -56,6 +70,18 @@ function getHTMLTemplateRenderCategoryForList(i, template) {
     return `
         <li id="selectCategoryLi-${i}" onclick="selectCategory('${i}'); return false">
             ${template}
+        </li>
+    `;
+}
+
+/**
+ * Generates an HTML template for rendering errorhandler in case of no found categories.
+ * @returns {string} - The HTML template.
+ */
+function getHTMLTemplateRenderNoCategoryForList() {
+    return `
+        <li>
+            <span>No categories found. Please reload the page.</span>
         </li>
     `;
 }

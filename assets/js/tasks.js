@@ -100,6 +100,8 @@ function renderContactList() {
             let color = contacts[i].color;
             selectContactList.innerHTML += getHTMLTemplateRenderContactForList(id, color, name, initials);
         };
+    } else {
+        selectContactList.innerHTML += getHTMLTemplateRenderNoContactForList();
     };
 }
 
@@ -335,12 +337,16 @@ function showCategoryList() {
 function renderCategoryList() {
     let selectCategoryList = document.getElementById('addTaskListCategories');
     selectCategoryList.innerHTML = '';
-    for (let i = 0; i < categories.length; i++) {
-        let name = categories[i].name;
-        let color = categories[i].color;
-        let template = getTemplateCategory(name, color);
-        selectCategoryList.innerHTML += getHTMLTemplateRenderCategoryForList(i, template);
-    };
+    if (categories.length > 0) {
+        for (let i = 0; i < categories.length; i++) {
+            let name = categories[i].name;
+            let color = categories[i].color;
+            let template = getTemplateCategory(name, color);
+            selectCategoryList.innerHTML += getHTMLTemplateRenderCategoryForList(i, template);
+        };
+    } else {
+        selectCategoryList.innerHTML += getHTMLTemplateRenderNoCategoryForList();
+    };    
 }
 
 /**
