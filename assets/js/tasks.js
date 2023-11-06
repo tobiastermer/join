@@ -459,7 +459,6 @@ async function submitTask() {
     disableTaskSubmitButton(true);
     try {
         if (isTaskFormFilledCorrectly()) {
-            // updateSubtasksCheckedStatus('addForm');
             selectedSubtasks = updatedArrayCheckedStatus(selectedSubtasks, 'addForm');
             pushTaskToArray();
             await saveTasks();

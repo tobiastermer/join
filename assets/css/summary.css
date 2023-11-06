@@ -188,6 +188,13 @@ body {
 }
 
 @media(max-width: 1150px) {
+    .main-content h1 {
+        font-size: 71px;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        width: min-content;
+    }
+
     .summary-main-section {
         gap: 6%;
     }
@@ -195,11 +202,15 @@ body {
     .summary-main-hello {
         display: none;
     }
+
+    .main-content {
+        padding-top: 30px;
+    }
 }
 
 @media(max-width: 850px) {
     .main-content {
-        padding-left: 200px
+        padding-left: 200px;
     }
 }
 
@@ -255,7 +266,7 @@ body {
     .summary-main-container {
         justify-content: space-around;
         gap: unset;
-        padding: 20px 20px;
+        padding: 14px 14px;
         width: -webkit-fill-available;
     }
 
@@ -283,5 +294,12 @@ body {
 
     .main-content h1 {
         font-size: 40px !important;
+    }
+}
+
+@media (min-height: 910px) {
+    .main-content {
+            overflow-x: unset;
+            overflow-y: unset;
     }
 }
