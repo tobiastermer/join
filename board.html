@@ -59,7 +59,7 @@
 
         <div class="overlay_background" id="addTaskOverlay">
             <div class="addTask-body addTask-include overlay">
-                <div w3-include-html="./assets/template/addTask_template.html"></div>
+                <div w3-include-html="./assets/template/addTask_template.html" id="addForm"></div>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
                 <div class="close_button_mobile" onclick="hideTaskOverlay();">
                     <img src="./img/close_white.png" alt="">
                 </div>
-                <div class="todo-card-detailed">
+                <div class="todo-card-detailed" id="todo-card-detailed">
                     <div class="todo-card-detailed-header">
                         <p class="todo-category bg-blue" id="todo-card-detailed-category">
                             <!-- wird dynamisch gefüllt -->
@@ -133,12 +133,8 @@
         // hide contact dropdwon on click outside the div
         document.addEventListener('mousedown', function (event) {
             let container = document.getElementById('addTaskListContactsContainer');
-
-            // check if click was outside the container
             if (!container.contains(event.target)) {
-                // check if container is actually visible
                 if (isAssignToDropdownActive) {
-                    // hide the container
                     hideContactList();
                 }
             }
@@ -147,14 +143,30 @@
         // hide category dropdwon on click outside the div
         document.addEventListener('mousedown', function (event) {
             let container = document.getElementById('addTaskListCategoriesContainer');
-
-            // check if click was outside the container
             if (!container.contains(event.target)) {
-                // check if container is actually visible
                 if (isCategoryDropdownActive) {
-                    // hide the container
                     hideCategoryList();
                 }
+            }
+        });
+
+        // hide detailed todo card on click outside the card
+        document.addEventListener('mousedown', function (event) {
+            let container = document.getElementById('todo-card-detailed');
+            if (!container.contains(event.target)) {
+                if (overlayToDoCardActive && !overlayAddFormActive) {
+                    hideTaskOverlay();
+                };
+            }
+        });
+
+        // hide add form on click outside the form
+        document.addEventListener('mousedown', function (event) {
+            let container = document.getElementById('addForm');
+            if (!container.contains(event.target)) {
+                if (overlayAddFormActive) {
+                    closeAddTaskOverlay();
+                };
             }
         });
 

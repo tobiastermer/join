@@ -1,32 +1,11 @@
-/**
- * The main board DOM reference.
- * @type {HTMLElement}
- */
+// Global variables
 let board;
-
-/**
- * The ID of the currently dragged element.
- * @type {string}
- */
 let currentDraggedElementId;
-
-/**
- * The index of the currently dragged element.
- * @type {number}
- */
 let currentDraggedElementIndex
-
-/**
- * The current task ID being used.
- * @type {string}
- */
 let currentTaskId;
-
-/**
- * The Index of task being used in globalTasks Array.
- * @type {string}
- */
-let currentTaskIndex
+let currentTaskIndex;
+let overlayToDoCardActive = false;
+let overlayAddFormActive = false;
 
 /**
  * Initialize the application.
@@ -215,23 +194,24 @@ function removeHighlight(element) {
 }
 
 /**
- * Show the overlay for editing a contact.
- * @param {number} contactIndex - The index of the contact to edit.
+ * Show the overlay for editing a task.
  */
 function showTaskOverlay() {
     document.getElementById("showTaskOverlay").style.right = "0";
     document.getElementById("showTaskOverlay").classList.remove("hidden");
     document.getElementById("overlayBackground").style.display = "flex";
-    document.getElementById("showTaskOverlay").style.opacity = "100"
+    document.getElementById("showTaskOverlay").style.opacity = "100";
+    overlayToDoCardActive = true;
 }
 
 /**
- * Hide the overlay for editing a contact.
+ * Hide the overlay for editing a task.
  */
 function hideTaskOverlay() {
     document.getElementById("overlayBackground").style.display = "none";
     document.getElementById("showTaskOverlay").style.right = "-100%";
     document.getElementById("showTaskOverlay").classList.add("hidden");
+    overlayToDoCardActive = false;
 }
 
 /**

@@ -54,6 +54,7 @@ async function showAddTaskOverlay(progressIndex, mode) {
     document.getElementById("addTaskOverlay").style.zIndex = "1000";
     document.getElementById("addTask-close-button").style.display = "flex";
     await initAddTask(progressIndex, mode);
+    overlayAddFormActive = true;
 }
 
 /**
@@ -63,6 +64,7 @@ function closeAddTaskOverlay() {
     document.getElementById("addTaskOverlay").style.display = "none";
     document.getElementById("addTask-close-button").style.display = "none";
     resetAddTask();
+    overlayAddFormActive = false;
 }
 
 /**
