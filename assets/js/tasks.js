@@ -28,6 +28,7 @@ async function initAddTask(progressIndex, inputMode) {
  */
 function initAddTaskVariables(progressIndex, inputMode) {
     progress = progressIndex;
+    selectedContacts = [];
     selectedSubtasks = [];
     currentTaskId = '';
     currentTaskIndex = '';
@@ -219,14 +220,18 @@ function renderSelectedContacts() {
     if (selectedContacts.length > 0) {
         showContactsContainer.classList.remove('d-none');
         showContactsContainer.innerHTML = '';
-        for (i = 0; i < selectedContacts.length; i++) {
+        for (let i = 0; i < selectedContacts.length; i++) {
             let id = selectedContacts[i];
             let j = getIndexByIdFromComplexArray(id, contacts);
-            if (j >= 0) {
+            let zindex = i + 1;
+            if (j >= 0 && i < 3) {
                 let initials = contacts[j].initials;
                 let color = contacts[j].color;
-                let zindex = i + 1;
                 showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo(color, zindex, initials);
+            } else if (j >= 0 && i >= 3) {
+                let numberFurtherContacts = selectedContacts.length - i;
+                showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo('#D1D1D1', zindex, `+${numberFurtherContacts}`);
+                return;
             };
         };
     } else {

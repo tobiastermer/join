@@ -125,7 +125,7 @@ select {
 }
 
 .reduce-and-scroll-list {
-    max-height: 135px;
+    max-height: 140px;
     overflow-y: auto;
 }
 
