@@ -51,6 +51,7 @@ html {
     display: flex;
     justify-content: center;
     margin-top: 29px;
+    cursor: pointer;
 }
 
 /* Style for generic contact buttons */
