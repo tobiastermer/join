@@ -252,6 +252,12 @@ select {
     cursor: pointer;
 }
 
+.no-linebreak {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .category-color-and-name {
     display: flex;
     align-items: center;
@@ -413,5 +419,15 @@ select {
 
     .form-lower-half {
         gap: 8px;
+    }
+
+    .contact-initials-and-name span {
+        font-size: 14px;
+    }
+
+
+    .form-list li {
+        gap: 12px;
+        padding: 8px 12px 8px 12px;
     }
 }
