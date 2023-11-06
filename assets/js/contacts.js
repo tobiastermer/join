@@ -453,7 +453,8 @@ function openMobileSettingsBox() {
  * Hides the mobile settings box by changing its display style to "none".
  */
 function closeMobileSettingsBox() {
-  if (document.getElementById("mobileSettingsBox").style.display === "flex") {
+
+  if (window.innerWidth < 770 && document.getElementById("mobileSettingsBox").style.display === "flex") {
     document.getElementById("mobileSettingsBox").style.display = "none";
   }
 }
