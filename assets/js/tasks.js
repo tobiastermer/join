@@ -202,6 +202,7 @@ function setContactLiStyle(id, bgColor, textColor, imgSrc) {
  */
 function renderSelectedContacts() {
     let showContactsContainer = document.getElementById('addTaskShowSelectedContacts');
+    let k = 0;
     if (selectedContacts.length > 0) {
         showContactsContainer.classList.remove('d-none');
         showContactsContainer.innerHTML = '';
@@ -209,17 +210,19 @@ function renderSelectedContacts() {
             let id = selectedContacts[i];
             let j = getIndexByIdFromComplexArray(id, contacts);
             let zindex = i + 1;
-            if (j >= 0 && i < 3) {
+            if (j >= 0 && k < 3) {
                 let initials = contacts[j].initials;
                 let color = contacts[j].color;
                 showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo(color, zindex, initials);
-            } else if (j >= 0 && i >= 3) {
+            } else if (j >= 0 && k >= 3) {
                 let numberFurtherContacts = selectedContacts.length - i;
                 showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo('#D1D1D1', zindex, `+${numberFurtherContacts}`);
                 return;
             };
+            k = k + 1;
         };
-    } else {
+    };
+    if (selectedContacts.length == 0 || k == 0) {
         showContactsContainer.classList.add('d-none');
     };
 }
@@ -398,7 +401,7 @@ function renderSubtaskList() {
     if (selectedSubtasks.length > 0) {
         subtaskList.classList.remove('d-none');
         subtaskList.innerHTML = '';
-        for (i = 0; i < selectedSubtasks.length; i++) {
+        for (let i = 0; i < selectedSubtasks.length; i++) {
             let subtaskName = selectedSubtasks[i].name;
             let subtaskDone = selectedSubtasks[i].done;
             let checked = '';
