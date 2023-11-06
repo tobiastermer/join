@@ -148,24 +148,22 @@ function renderCards() {
  */
 function getTemplateAssignedTo(assignedToArray) {
     let compoundTemplate = '';
-    for (let j = 0; j < assignedToArray.length; j++) {
-        let k = getIndexByIdFromComplexArray(assignedToArray[j], contacts);
-        if (k >= 0) {
-            let initials = contacts[k].initials;
-            let color = contacts[k].color;
-            let style = `background-color: ${color};`
-            if (j > 0) {
-                style += ` z-index: ${j}; margin-left: -10px;`;
+    let k = 0;
+    for (let i = 0; i < assignedToArray.length; i++) {
+        let j = getIndexByIdFromComplexArray(assignedToArray[i], contacts);
+        if (j >= 0) {
+            let initials = contacts[j].initials;
+            let color = contacts[j].color;
+            if (k == 0) {
+                compoundTemplate += `<div class="" style="background-color: ${color};">${initials}</div>`;
+            } else if (k > 0 && k < 3) {
+                compoundTemplate += `<div class="" style="background-color: ${color};z-index: ${i}; margin-left: -10px;">${initials}</div>`;
             } else {
-                style += '';
-            };
-            if (j < 3) {
-                compoundTemplate += `<div class="" style="${style}">${initials}</div>`;
-            } else {
-                let numberFurtherContacts = assignedToArray.length - j;
-                compoundTemplate += `<div class="" style="${style}">+${numberFurtherContacts}</div>`;
+                let numberFurtherContacts = assignedToArray.length - i;
+                compoundTemplate += `<div class="" style="background-color: ${color};z-index: ${i}; margin-left: -10px;">+${numberFurtherContacts}</div>`;
                 return compoundTemplate;
             };
+            k = k + 1;
         };
     }
     return compoundTemplate;
