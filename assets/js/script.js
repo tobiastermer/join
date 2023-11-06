@@ -21,16 +21,3 @@ function showSuccessMessage(text) {
     }, 1000);
   }, 3000);
 }
-
-// function initializeListeners() {
-//   document.getElementById('addTaskSubtaskInput').addEventListener('keydown', function (event) {
-//     if (event.key === 'Enter') {
-//       event.preventDefault();
-//       addSubtask();
-//     }
-//   });
-  // Andere Initialisierungscodes oder Event-Listener können hier hinzugefügt werden
-// }
-
-// Rufen Sie die Initialisierungsfunktion auf, wenn das Dokument geladen ist
-// document.addEventListener('DOMContentLoaded', initializeListeners);
