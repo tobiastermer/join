@@ -380,7 +380,7 @@ body {
     }
 
     .register-main input {
-        width: fit-content;
+        width: 220px;
     }
 
     .register-main h1 {
@@ -413,5 +413,29 @@ body {
 
     .CheckPos {
         margin-top: 0px;
+        width: 100%;
+    }
+    
+    .register-input-fields {
+        margin-top: 2px;
+        width: 100%;
+        gap: 24px;
+    }
+
+    .register-checkbox-label {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        left: 50px;
+        gap: 8px;
+        height: 20px;
+    }
+
+    .register-checkbox {
+        position: absolute;
+        left: 43px;
+        top: -16px;
+        opacity: 0;
     }
 }
