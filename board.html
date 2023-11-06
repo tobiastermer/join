@@ -101,42 +101,13 @@
                         <div class="form-list form-list-selection">
                             <ul class="no-scroll" id="todo-card-detailed-assignedToList">
                                 <!-- wird dynamisch gefüllt -->
-                                <li id="selectContactLi-${id}" onclick="selectContact(id); return false">
-                                    <div class="contact-initials-and-name">
-                                        <div class="contact_initial_image" style="background-color: #2A3647">HW</div>
-                                        <span>Hans Wurst</span>
-                                    </div>
-                                </li>
-                                <li id="selectContactLi-${id}" onclick="selectContact(id); return false">
-                                    <div class="contact-initials-and-name">
-                                        <div class="contact_initial_image" style="background-color: #2A3647">HW</div>
-                                        <span>Hans Wurst</span>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="todo-card-detailed-list-container">
                         <label for="">Subtasks:</label>
-                        <div class="form-list" id="todo-card-detailed-subtasks">
-                            <div class="subtask" id="subtask-${i}">
-                                <div>
-                                    <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox" checked>
-                                    <span>subtaskName</span>
-                                </div>
-                            </div>
-                            <div class="subtask" id="subtask-${i}">
-                                <div>
-                                    <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox" checked>
-                                    <span>subtaskName</span>
-                                </div>
-                            </div>
-                            <div class="subtask" id="subtask-${i}">
-                                <div>
-                                    <input type="checkbox" id="subtask-checkbox-${i}" class="largerCheckbox">
-                                    <span>subtaskName</span>
-                                </div>
-                            </div>
+                        <div class="form-list reduce-and-scroll-list" id="todo-card-detailed-subtasks">
+                            <!-- wird dynamisch gefüllt -->
                         </div>
                     </div>
                     <div class="todo-card-detailed-row flex-end">
