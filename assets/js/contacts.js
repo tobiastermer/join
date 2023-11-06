@@ -51,6 +51,9 @@ async function loadContacts() {
  * Show the overlay for adding a new contact.
  */
 function showAddContactOverlay() {
+  document.getElementById("addContactName").value = '';
+  document.getElementById("addContactEmail").value = '';
+  document.getElementById("addContactPhone").value = '';
   document.getElementById("addContactOverlay").style.right = "0";
   document.getElementById("addContactOverlay").classList.remove("hidden");
   document.getElementById("overlayBackground").style.display = "flex";
