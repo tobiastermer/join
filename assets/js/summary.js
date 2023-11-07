@@ -15,7 +15,7 @@ function renderSummary() {
     document.getElementById('summary-kpi-done').innerHTML = getAmountTasksPerProgress(3);
     document.getElementById('summary-kpi-urgent').innerHTML = getAmountTasksPerPrio('high');
     document.getElementById('summary-kpi-deadline').innerHTML = getEarliestDueDateWithPriority();
-    document.getElementById('summary-kpi-tasksInBoard').innerHTML = getAmountTasksPerProgress(0) + getAmountTasksPerProgress(1) + getAmountTasksPerProgress(2) + getAmountTasksPerProgress(3);
+    document.getElementById('summary-kpi-tasksInBoard').innerHTML = globalTasks.length;
     document.getElementById('summary-kpi-progress').innerHTML = getAmountTasksPerProgress(1);
     document.getElementById('summary-kpi-feedback').innerHTML = getAmountTasksPerProgress(2);
 }
@@ -56,14 +56,16 @@ function getEarliestDueDateWithPriority() {
             return 1;
         }
 
-        return task1.dueDate.localeCompare(task2.dueDate);
+        let date1 = new Date(task1.dueDate);
+        let date2 = new Date(task2.dueDate);
+
+        return date1 - date2;
     });
 
     let earliestTask = filteredTasks[0];
     let formattedDate = changeDateFormat(earliestTask.dueDate);
     return formattedDate;
 }
-
 
 /**
  * Converts a date string into the format "Month Day, Year".
