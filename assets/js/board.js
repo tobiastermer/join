@@ -193,13 +193,22 @@ function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
 
+/**
+ * Toggles the visibility of a dropdown list for mobile drag actions.
+ * @param {Event} event - Das Event-Objekt, das von einem Klick-Ereignis stammt.
+ * @param {HTMLElement} element - Das HTML-Element, das als Schalter für das Dropdown dient.
+ */
 function toggleDropdownMobileDrag(event, element) {
-    // Verhindert, dass das Klick-Ereignis an übergeordnete Elemente weitergeleitet wird
     event.stopPropagation();
     var dropdown = element.nextElementSibling;
     dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
 }
 
+/**
+ * Handles the logic to move a task to a different progress stage in a mobile drag context.
+ * @param {Event} event - Das Event-Objekt, das von einem Klick-Ereignis stammt.
+ * @param {number} progress - Der Index des Fortschrittsstatus, zu dem die Aufgabe verschoben werden soll.
+ */
 function moveToMobileDrag(event, progress) {
     event.stopPropagation();
     startDragging(currentTaskId);
@@ -207,7 +216,9 @@ function moveToMobileDrag(event, progress) {
     event.target.parentElement.style.display = 'none';
 }
 
-// Klicken außerhalb des Dropdowns schließt alle Dropdowns
+/**
+ * Closes dropdown ul by clicking outside the dropdown.
+ */
 window.onclick = function(event) {
     var dropdowns = document.getElementsByClassName("dropdown");
     for (var i = 0; i < dropdowns.length; i++) {
@@ -365,6 +376,51 @@ function renderEditTaskFormSubtasks(i) {
     };
     selectedSubtasks = JSON.parse(JSON.stringify(globalTasks[i].subtasks)); // JSON method necessary to avoid mutable reference problem
     renderSubtaskList();
+}
+
+/**
+ * Navigates to the board page or updates the current board view based on the current mode and URL.
+ * If the current page is 'board.html', it will either add a new task or edit an existing task.
+ * If the current page is not 'board.html', it will navigate to 'board.html'.
+ */
+function goToBoard() {
+    if (window.location.href.indexOf("board.html") > -1) {
+        if (mode == 'add') { //add new task mode
+            returnToBoardAfterAddTask();
+        } else { //edit mode
+            returnToBoardAfterEditTask();
+        };
+    } else {
+        showSuccessMessage('Task succesfully created');
+        setTimeout(function () {
+            window.location.href = 'board.html';
+        }, 750); // 750 Millisekunden = 0,75 Sekunde
+    };
+}
+
+/**
+ * Updates the board view after adding a new task.
+ * It hides the task overlay, closes the add task overlay, initializes the board, 
+ * and then displays a success message.
+ */
+function returnToBoardAfterAddTask() {
+    hideTaskOverlay();
+    closeAddTaskOverlay();
+    initBoard();
+    showSuccessMessage('Task succesfully created');
+}
+
+/**
+ * Updates the board view after editing an existing task.
+ * It closes the add task overlay, renders the tasks to the board, displays the details of the edited task,
+ * and then displays a success message.
+ */
+function returnToBoardAfterEditTask() {
+    let storedTaskIndex = currentTaskIndex;
+    closeAddTaskOverlay();
+    renderTasksToBoard();
+    renderDetailedCard(storedTaskIndex);
+    showSuccessMessage('Task succesfully edited');
 }
 
 /**

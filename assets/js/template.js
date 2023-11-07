@@ -104,6 +104,27 @@ function getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName) {
         </div>
     `;
 }
+
+/**
+ * Builds the task array before pushing it into the global tasks array.
+ */
+function buildTaskArray() {
+    // Variablen definieren
+    let assignedTo = selectedContacts;
+    let subtasks = selectedSubtasks.slice();
+    return {
+        id: getTaskID(),
+        title: document.getElementById('addTaskTitle').value,
+        description: document.getElementById('addTaskDescription').value,
+        assignedTo: assignedTo,
+        dueDate: document.getElementById('addTaskDueDate').value,
+        prio: selectedPrio,
+        category: selectedCategory,
+        subtasks: subtasks,
+        progress: progress,
+    };
+}
+
 /**
  * Generates an HTML template for creating a column on the board.
  * @param {number} i - The index of the column / progress level.
