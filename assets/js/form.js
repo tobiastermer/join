@@ -343,6 +343,14 @@ function deleteSubtask(i) {
     renderSubtaskList();
 }
 
+function editSubtask(i) {
+    // span d-none
+    // input d-unset
+    // edit und delete img/button d-none
+    // confirm img/button d-unset
+}
+
+
 /**
  * Creates list of all entered subtasks.
  */
