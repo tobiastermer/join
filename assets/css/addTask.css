@@ -137,7 +137,7 @@ select {
 }
 
 .form-list span {
-    /* width: 100%; */
+    max-width: 270px;
     font-size: 16px;
 }
 
@@ -259,9 +259,10 @@ select {
 }
 
 .no-linebreak {
-    white-space: nowrap;
+    /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
+    overflow-wrap: break-word;
 }
 
 .category-color-and-name {
@@ -398,6 +399,9 @@ select {
         flex-direction: column;
     }
 
+    .form-list span {
+        max-width: 270px;
+    }
 }
 
 
@@ -432,6 +436,10 @@ select {
 
     .addTask-include {
         padding: 32px 32px 32px 32px;
+    }
+
+    .form-list span {
+        max-width: 150px;
     }
 }
 
