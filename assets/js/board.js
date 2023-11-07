@@ -193,6 +193,28 @@ function removeHighlight(element) {
     document.getElementById(element).classList.remove('drag-highlight');
 }
 
+function toggleDropdownMobileDrag(event, element) {
+    // Verhindert, dass das Klick-Ereignis an übergeordnete Elemente weitergeleitet wird
+    event.stopPropagation();
+    var dropdown = element.nextElementSibling;
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+
+function moveToMobileDrag(event, progress) {
+    event.stopPropagation();
+    startDragging(currentTaskId);
+    moveTo(progress);
+    event.target.parentElement.style.display = 'none';
+}
+
+// Klicken außerhalb des Dropdowns schließt alle Dropdowns
+window.onclick = function(event) {
+    var dropdowns = document.getElementsByClassName("dropdown");
+    for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].style.display = 'none';
+    }
+}
+
 /**
  * Show the overlay for editing a task.
  */

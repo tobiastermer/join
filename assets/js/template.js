@@ -40,10 +40,10 @@ function getHTMLTemplateRenderNoContactForList() {
  * @returns {string} - The HTML template.
  */
 function getHTMLTemplateRenderContactAssignedTo(color, zindex, initials) {
-   return `
+    return `
         <div class="contact_initial_image" style="background-color: ${color}; z-index: ${zindex}; 
         margin-left: -10px; margin-right: 0px;">${initials}</div>
-    `; 
+    `;
 }
 
 /**
@@ -176,9 +176,15 @@ function getHTMLTemplateCreateNoToDoCard(progress) {
  */
 function getHTMLTemplateRenderCard(categoryColor, categoryName, title, description, progressInPercent, subtasksDone, subtasksLength, assignedToTemplate, taskprio) {
     return `
-        <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
+        <div class="category-and-move-img">
+            <p class="todo-category" style="background-color: ${categoryColor}">${categoryName}</p>
+            <div class="img-drag desktop-hidden" onclick="toggleDropdownMobileDrag(event, this)"></div>
+            <ul class="dropdown" style="display: none;">
+                ${progresses.map((progress, index) => `<li onclick="moveToMobileDrag(event, ${index})">${progress}</li>`).join('')}
+            </ul>
+        </div>
         <div class="todo-title-and-description">
-            <p class="todo-title">${title}</h3>
+            <p class="todo-title">${title}</p>
             <p class="todo-description">${description}</p>
         </div>
         <div class="todo-progress-and-subtasks">

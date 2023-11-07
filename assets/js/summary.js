@@ -81,6 +81,9 @@ function changeDateFormat(date) {
     return formattedDate;
 }
 
+/**
+ * Initializes greeting  on summary.
+ */
 function initializeGreeting() {
     updateGreetingBasedOnTime();
     fadeOutGreetingMobile();
