@@ -141,7 +141,7 @@ function getTemplateAssignedTo(assignedToArray) {
                 k = k + 1;
             } else {
                 let numberFurtherContacts = assignedToArray.length - i;
-                compoundTemplate += `<div class="" style="background-color: ${color};z-index: ${i}; margin-left: -10px;">+${numberFurtherContacts}</div>`;
+                compoundTemplate += `<div class="" style="background-color: #2A3647;z-index: ${i}; margin-left: -10px;">+${numberFurtherContacts}</div>`;
                 return compoundTemplate;
             };
         };
