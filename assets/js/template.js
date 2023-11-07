@@ -302,3 +302,67 @@ function getHTMLTemplateDetailedCardSubtasks(i, j, checked, subtaskName) {
         </div>
     `;
 }
+
+/**
+ * Create the HTML for the contact details.
+ * @param {Object} contact - The contact object.
+ * @param {number} contactIndex - The index of the contact.
+ * @returns {string} - The HTML for the contact details.
+ */
+function createContactDetails(contact, contactIndex) {
+    return `
+      <div class="big_contact_top">
+        <div class="big_contact_initial_image"><button style="background-color: ${
+          contact.color
+        }">${getInitials(contact.name)}</button></div>
+        <div class="big_contact_name_settings">
+          <div class="big_contact_name">${contact.name}</div>
+          <div class="big_contact_settings">
+            <button onclick="showEditContactOverlay(${contactIndex})"><img src="./img/edit.png" alt="Edit Icon">Edit</button>
+            <button onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete Icon">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="big_contact_info">
+        <div class="big_contact_headline">Contact Information</div>
+        <div class="big_contact_mail">
+          <b>Email</b>
+          <div class="contact_mail"><a href="mailto:${contact.email}">${
+      contact.email
+    }</a></div>
+        </div>
+        <div class="big_contact_phone">
+          <b>Phone</b>
+          ${contact.phone}
+        </div>
+      </div>
+  
+  
+      
+      <div class="mobile_settings_box" id="mobileSettingsBox">
+      <div class="edit_contact_mobile" onclick="showEditContactOverlay(${contactIndex})"><div><img src="./img/edit.png" alt="Edit"></div><div>Edit</div></div>
+      <div class="delete_contact_mobile" onclick="deleteContact(${contactIndex})"><img src="./img/delete.png" alt="Delete"><span>Delete</span></div>
+  </div>
+      
+      `;
+  }
+
+  /**
+ * Create the HTML for a contact list item.
+ * @param {Object} contact - The contact object.
+ * @param {number} index - The index of the contact.
+ * @returns {string} - The HTML for the contact list item.
+ */
+function createContactListItem(contact, index) {
+    let initials = getInitials(contact.name);
+    return `
+      <button class="contact" onclick="showContactInfo(${index}), setButtonActive(${index})" id="contact${index}">
+        <div class="contact_initial_image" style="background-color: ${contact.color}">${initials}</div>
+        <div class="contact_name_mail">
+          <div class="contact_name">${contact.name}</div>
+          <div class="contact_mail">
+            <a a href="mailto:${contact.email}">${contact.email}</a>
+          </div>
+        </div>
+      </button>`;
+  }
