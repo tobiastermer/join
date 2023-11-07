@@ -991,3 +991,9 @@ html {
 
 
 }
+
+@media(max-width: 380px){
+    .user_information_form input {
+        width: 288px;
+    }
+}
