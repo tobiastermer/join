@@ -58,7 +58,7 @@
         </div>
 
         <div class="overlay_background" id="addTaskOverlay">
-            <div class="addTask-body addTask-include overlay">
+            <div class="addTask-body addTask-include overlay" id="addTaskOverlayContainer">
                 <div w3-include-html="./assets/template/addTask_template.html" id="addForm"></div>
             </div>
         </div>
@@ -66,7 +66,7 @@
 
         <!-- SHOW TASK OVERLAY -->
         <div class="overlay_background_add" id="showTaskOverlay">
-            <div class="overlay">
+            <div class="overlay" id="showTaskOverlayContainer">
                 <div class="close_button_mobile" onclick="hideTaskOverlay();">
                     <img src="./img/close_white.png" alt="">
                 </div>
@@ -152,7 +152,7 @@
 
         // hide detailed todo card on click outside the card
         document.addEventListener('mousedown', function (event) {
-            let container = document.getElementById('todo-card-detailed');
+            let container = document.getElementById('showTaskOverlayContainer');
             if (!container.contains(event.target)) {
                 if (overlayToDoCardActive && !overlayAddFormActive) {
                     hideTaskOverlay();
@@ -162,7 +162,7 @@
 
         // hide add form on click outside the form
         document.addEventListener('mousedown', function (event) {
-            let container = document.getElementById('addForm');
+            let container = document.getElementById('addTaskOverlayContainer');
             if (!container.contains(event.target)) {
                 if (overlayAddFormActive) {
                     closeAddTaskOverlay();

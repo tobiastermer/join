@@ -262,6 +262,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    overflow-y: auto;
 }
 
 .todo-card-detailed .todo-category {
@@ -427,17 +428,18 @@
     }
 
 
-    .todo-card-detailed {
+    /* .todo-card-detailed {
         max-width: unset;
-    }
-
-
-
+    } */
 
 }
 
 
 
-/* MOBILE VERSION 600PX */
+/* MOBILE VERSION 770PX */
 
-@media (max-width: 600px) {}
+@media (max-width: 770px) {
+    .todo-card-detailed {
+        max-width: unset;
+    }
+}

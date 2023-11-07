@@ -626,7 +626,11 @@ html {
         flex-direction: column;
         position: relative;
         align-items: unset;
+    }
 
+    .board-body .overlay {
+        width: unset;
+        height: 95vh;
     }
 
     .user_information_form {
@@ -956,6 +960,10 @@ html {
         padding: 8px;
         cursor: pointer;
         gap: 18px;
+    }
+
+    .board-body .overlay {
+        width: 95vw;
     }
 
 }
