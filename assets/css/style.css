@@ -49,20 +49,23 @@
     border: 3px solid #ffffff;
 }
 
- /* Hide scrollbar for Chrome, Safari and Opera */
- .todo-card-detailed::-webkit-scrollbar,
- #addForm::-webkit-scrollbar,
- .overlay::-webkit-scrollbar {
+/* Hide scrollbar for Chrome, Safari and Opera */
+.todo-card-detailed::-webkit-scrollbar,
+#addForm::-webkit-scrollbar,
+.overlay::-webkit-scrollbar {
     display: none;
-  }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .todo-card-detailed::-webkit-scrollbar,
-  #addForm::-webkit-scrollbar,
-  .overlay::-webkit-scrollbar  {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  } 
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.todo-card-detailed::-webkit-scrollbar,
+#addForm::-webkit-scrollbar,
+.overlay::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
 .main-content h1 {
     font-size: 71px;
     margin-block-start: 0;
@@ -178,6 +181,22 @@
     box-shadow: 0px 0px 4px 0px #00000026;
     transition: opacity 1s ease-in-out;
     z-index: 9999;
+}
+
+.desktop-hidden {
+    display: none !important;
+}
+
+@media(max-width: 1360px) {
+
+    .desktop-hidden {
+        display: flex !important;
+    }
+
+    .mobile-hidden {
+        display: none !important;
+    }
+
 }
 
 /* MOBILE VERSION 600PX */

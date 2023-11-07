@@ -368,10 +368,6 @@
     cursor: pointer;
 }
 
-.desktop-hidden {
-    display: none !important;
-}
-
 
 /* Media Query */
 
@@ -379,14 +375,6 @@
 
     .board-main-section {
         flex-direction: column;
-    }
-
-    .desktop-hidden {
-        display: flex !important;
-    }
-
-    .mobile-hidden {
-        display: none !important;
     }
 
     .board-header {

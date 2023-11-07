@@ -89,10 +89,12 @@ async function displayUserName() {
         return;
     } else {
         const userNameElement = document.getElementById('activUserName');
+        const userNameElementMobile = document.getElementById('activUserNameMobile');
         const userProfileElement = document.getElementById('profileButton');
 
         if (userNameElement && activUser.name) {
             userNameElement.textContent = activUser.name;
+            userNameElementMobile.textContent = activUser.name;
         }
         userProfileElement.innerHTML = getInitialsOf(activUser.name || "");
     }

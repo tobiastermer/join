@@ -3,6 +3,7 @@
  * @async
  */
 async function initSummary() {
+    updateGreetingBasedOnTime();
     await loadTasks();
     renderSummary();
 }
@@ -79,4 +80,51 @@ function changeDateFormat(date) {
         "July", "August", "September", "October", "November", "December"];
     let formattedDate = `${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
     return formattedDate;
+}
+
+function fadeOutGreetingMobile() {
+    if (window.innerWidth < 1360) {
+        let greetingContainer = document.getElementById('greetingContainerMobile');
+        if (greetingContainer) {
+            makeGreetingContainerContentVisible();
+            makeGreetingContainerVisible(greetingContainer);
+            setTimeout(function () {
+                makeGreetingContainerInvisible(greetingContainer);
+            }, 750); // 500ms = 0.5 Sekunden
+        }
+    }
+}
+
+function makeGreetingContainerVisible(greetingContainer) {
+    greetingContainer.style.display = 'block';
+    greetingContainer.style.visibility = 'visible';
+    greetingContainer.style.opacity = 1;
+}
+
+function makeGreetingContainerContentVisible() {
+    let helloPageMobile = document.getElementById('helloPageMobile');
+    helloPageMobile.style.visibility = 'visible';
+    helloPageMobile.style.opacity = 1;
+}
+
+function makeGreetingContainerInvisible(greetingContainer) {
+    greetingContainer.style.visibility = 'hidden';
+    greetingContainer.style.opacity = 0;
+}
+
+function updateGreetingBasedOnTime() {
+    let now = new Date();
+    let hour = now.getHours();
+    let greeting;
+
+    if (hour < 12) {
+        greeting = "Good morning";
+    } else if (hour < 18) {
+        greeting = "Good afternoon";
+    } else {
+        greeting = "Good evening";
+    }
+
+    document.getElementById('greetingDaytime').innerHTML = greeting;
+    document.getElementById('greetingDaytimeMobile').innerHTML = greeting;
 }

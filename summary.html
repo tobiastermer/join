@@ -8,8 +8,8 @@
     <link rel="icon" type="image/x-icon" href="">
     <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/header.css">
-    <link rel="stylesheet" href="./assets/css/summary.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/summary.css">
     <link rel="stylesheet" href="./assets/css/color.css">
     <script src="./assets/js/storage.js"></script>
     <script src="./assets/js/data.js"></script>
@@ -19,7 +19,7 @@
     <script src="./assets/js/openMenu.js"></script>
 </head>
 
-<body class="summary-body" onload="includeHTML();initSummary();initUserName()">
+<body class="summary-body" onload="includeHTML();initUserName();initSummary();fadeOutGreetingMobile();">
 
     <div w3-include-html="./assets/template/design_template.html"></div>
 
@@ -89,11 +89,18 @@
                 </div>
             </div>
 
-            <div class="summary-main-hello">
-                <p>Good Morning,</p>
+            <div class="summary-main-hello mobile-hidden">
+                <p id="greetingDaytime"></p>
                 <span id="activUserName" class="text-lightblue"></span>
             </div>
 
+        </div>
+    </div>
+
+    <div class="fadeOut desktop-hidden" id="greetingContainerMobile">
+        <div id="helloPageMobile" class="summary-main-hello">
+            <span id="greetingDaytimeMobile"></span>
+            <h1 class="text-lightblue" id="activUserNameMobile"></h1>
         </div>
     </div>
 
