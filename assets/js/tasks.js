@@ -94,7 +94,7 @@ async function loadContactsForTasks() {
  */
 function renderContactList() {
     let selectContactList = document.getElementById('addTaskListContacts');
-    // selectContactList.innerHTML = '';
+    selectContactList.innerHTML = '';
     if (contacts.length > 0) {
         for (let i = 0; i < contacts.length; i++) {
             let id = contacts[i].id
@@ -182,6 +182,14 @@ function addToSelectedContacts(id) {
 }
 
 /**
+ * Adds style to all selected list-elements in contact list in add task form.
+ */
+function setContactLiStyleForAllSelectedContacts() {
+    for (let i = 0; i < selectedContacts.length; i++) {
+        setContactLiStyle(selectedContacts[i], '#2A3647', '#FFFFFF', "../../img/remember-checked-white.png")
+    };
+}
+/**
  * Sets the color and design for contact inside the dropdownlist, depends of if he is already assignt to or not
  * @param {string} id - The unique ID of the contact to select.
  * @param {string} bgColor - The background-color of the contact as '000000'.
@@ -263,6 +271,7 @@ async function addContactExtra() {
     renderContactList();
     hideAddContactOverlay();
     showSuccessMessage('Contact succesfully created');
+    setContactLiStyleForAllSelectedContacts();
 }
 
 /**
@@ -341,7 +350,7 @@ function renderCategoryList() {
         };
     } else {
         selectCategoryList.innerHTML += getHTMLTemplateRenderNoCategoryForList();
-    };    
+    };
 }
 
 /**
