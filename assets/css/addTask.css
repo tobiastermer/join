@@ -259,9 +259,12 @@ select {
 }
 
 .no-linebreak {
-    /* white-space: nowrap;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; */
+    text-overflow: ellipsis;
+}
+
+.linebreak {
     overflow-wrap: break-word;
 }
 
@@ -470,5 +473,9 @@ select {
     .form-list li {
         gap: 12px;
         padding: 8px 12px 8px 12px;
+    }
+
+    .form-list span {
+        max-width: 120px;
     }
 }
