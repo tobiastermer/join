@@ -343,13 +343,30 @@ function deleteSubtask(i) {
     renderSubtaskList();
 }
 
-function editSubtask(i) {
-    // span d-none
-    // input d-unset
-    // edit und delete img/button d-none
-    // confirm img/button d-unset
+function startEditSubtask(i) {
+    toggleEditSubtaskElements(i);
 }
 
+function saveEditedSubtask(i) {
+    let input = document.getElementById(`subtask-input-addForm-${i}`).value;
+    document.getElementById(`subtask-span-addForm-${i}`).innerHTML = input;
+    selectedSubtasks[i].name = input;
+    toggleEditSubtaskElements(i);
+}
+
+function clearEditedSubtask(i) {
+    document.getElementById(`subtask-input-addForm-${i}`).value = selectedSubtasks[i].name;
+    toggleEditSubtaskElements(i);
+}
+
+function toggleEditSubtaskElements(i) {
+    document.getElementById(`subtask-span-addForm-${i}`).classList.toggle('d-none');
+    document.getElementById(`subtask-img-addForm-edit-${i}`).classList.toggle('d-none');
+    document.getElementById(`subtask-img-addForm-delete-${i}`).classList.toggle('d-none');
+    document.getElementById(`subtask-input-addForm-${i}`).classList.toggle('d-none');
+    document.getElementById(`subtask-img-addForm-clear-${i}`).classList.toggle('d-none');
+    document.getElementById(`subtask-img-addForm-save-${i}`).classList.toggle('d-none');
+}
 
 /**
  * Creates list of all entered subtasks.
