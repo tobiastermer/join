@@ -807,7 +807,7 @@ html {
     /* Set contacts width to 100% of viewport width, center items, and add top padding */
     .contacts {
         width: 100vw;
-        height: calc(100vh - 243px);
+        height: calc(100vh - 192px);
         margin-right: 0px;
         align-items: center;
         padding-top: 32px;
