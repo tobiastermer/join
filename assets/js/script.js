@@ -1,4 +1,5 @@
-
+// global variables
+let greetingMobileAlreadyShown;
 
 /**
  * Show the success message when successfully created or edited contact or task
@@ -20,4 +21,22 @@ function showSuccessMessage(text) {
       successMessage.style.display = "none";
     }, 1000);
   }, 3000);
+}
+
+function setGreetingMobileStatus() {
+  localStorage.setItem('greetingMobileAlreadyShown', greetingMobileAlreadyShown);
+}
+
+function setGreetingMobileStatusToFalse() {
+  greetingMobileAlreadyShown = false;
+  setGreetingMobileStatus();
+}
+
+function setGreetingMobileStatusToTrue() {
+  greetingMobileAlreadyShown = true;
+  setGreetingMobileStatus();
+}
+
+function getGreetingMobileStatus() {
+  greetingMobileAlreadyShown = localStorage.getItem('greetingMobileAlreadyShown');
 }

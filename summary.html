@@ -13,17 +13,18 @@
     <link rel="stylesheet" href="./assets/css/color.css">
     <script src="./assets/js/storage.js"></script>
     <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/script.js"></script>
     <script src="./assets/js/tasks.js"></script>
     <script src="./assets/js/summary.js"></script>
     <script src="./assets/js/w3c_include.js"></script>
     <script src="./assets/js/openMenu.js"></script>
 </head>
 
-<body class="summary-body" onload="includeHTML();initUserName();initSummary();fadeOutGreetingMobile();">
+<body class="summary-body" onload="includeHTML();initUserName();initializeGreeting();initSummary();">
 
     <div w3-include-html="./assets/template/design_template.html"></div>
 
-    <div class="main-content">
+    <div class="main-content" style="display: none"; id="summary-content">
 
         <div class="summary-header">
             <h1>Join 360</h1>
@@ -97,7 +98,7 @@
         </div>
     </div>
 
-    <div class="fadeOut desktop-hidden" id="greetingContainerMobile">
+    <div class="fadeOut" id="greetingContainerMobile">
         <div id="helloPageMobile" class="summary-main-hello">
             <span id="greetingDaytimeMobile"></span>
             <h1 class="text-lightblue" id="activUserNameMobile"></h1>

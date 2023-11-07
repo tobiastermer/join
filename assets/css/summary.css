@@ -7,6 +7,11 @@ body {
     background-color: rgb(246, 247, 248);
 }
 
+#summary-content {
+    display: flex;
+    flex-direction: column;
+}
+
 .summary-body h1 {
     font-size: 61px;
 }
@@ -179,14 +184,15 @@ body {
 }
 
 .fadeOut {
-    opacity: 1;
-    transition: visibility 2.75s, opacity 0.75s ease-in-out;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s ease-in-out;
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
     background-color: white;
     z-index: 100;
+    display: none;
 }
 
 #helloPageMobile {
@@ -200,7 +206,7 @@ body {
     font-size: 2.25rem;
     color: #2a3647;
     text-align: center;
-    transition: visibility 2.75s, opacity 0.75s ease-in-out;
+    transition: visibility 0.8s, opacity 0.5s ease-in-out;
 }
 
 @media(max-width: 1330px) {

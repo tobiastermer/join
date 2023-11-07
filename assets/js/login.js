@@ -62,7 +62,9 @@ function login() {
             localStorage.removeItem('rememberedPassword');
         }
 
+        setGreetingMobileStatusToFalse();
         window.location.href = 'summary.html';
+
     } else {
         passwordInput.classList.add("error-border");
         errorElement.textContent = "Wrong password. Please try again.";
@@ -76,6 +78,7 @@ function login() {
 function guestLogin() {
     activUser.name = 'Guest 743';
     localStorage.setItem('activUser', JSON.stringify(activUser));
+    setGreetingMobileStatusToFalse();
     window.location.href = "./summary.html";
 }
 
@@ -91,7 +94,7 @@ function togglePasswordVisibility(fieldId, imgId) {
 
     if (passwordField.type === 'password') {
         passwordField.type = 'text';
-        eyeIcon.src = '/img/register-visibility.png'; 
+        eyeIcon.src = '/img/register-visibility.png';
     } else {
         passwordField.type = 'password';
         if (passwordField.value) {

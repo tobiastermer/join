@@ -3,7 +3,6 @@
  * @async
  */
 async function initSummary() {
-    updateGreetingBasedOnTime();
     await loadTasks();
     renderSummary();
 }
@@ -82,36 +81,65 @@ function changeDateFormat(date) {
     return formattedDate;
 }
 
+function initializeGreeting() {
+    updateGreetingBasedOnTime();
+    fadeOutGreetingMobile();
+}
+
+/**
+ * Fades out the greeting container on mobile devices if the screen width is less than 1360px.
+ */
 function fadeOutGreetingMobile() {
+    getGreetingMobileStatus();
+    let greetingContainer = document.getElementById('greetingContainerMobile');
     if (window.innerWidth < 1360) {
-        let greetingContainer = document.getElementById('greetingContainerMobile');
-        if (greetingContainer) {
+        if (greetingMobileAlreadyShown == 'false') {
             makeGreetingContainerContentVisible();
             makeGreetingContainerVisible(greetingContainer);
             setTimeout(function () {
                 makeGreetingContainerInvisible(greetingContainer);
             }, 750); // 500ms = 0.5 Sekunden
-        }
-    }
+            setGreetingMobileStatusToTrue();
+        };
+    };
+    document.getElementById('summary-content').style.display = 'flex';
 }
 
+/**
+ * Sets the display properties of the greeting container to make it visible.
+ * @param {HTMLElement} greetingContainer - The container element to be made visible.
+ */
 function makeGreetingContainerVisible(greetingContainer) {
     greetingContainer.style.display = 'block';
     greetingContainer.style.visibility = 'visible';
     greetingContainer.style.opacity = 1;
 }
 
+/**
+ * Makes the content of the 'helloPageMobile' element visible.
+ */
 function makeGreetingContainerContentVisible() {
     let helloPageMobile = document.getElementById('helloPageMobile');
     helloPageMobile.style.visibility = 'visible';
     helloPageMobile.style.opacity = 1;
 }
 
+/**
+ * Sets the visibility properties of the greeting container to make it invisible.
+ * @param {HTMLElement} greetingContainer - The container element to be made invisible.
+ */
 function makeGreetingContainerInvisible(greetingContainer) {
     greetingContainer.style.visibility = 'hidden';
     greetingContainer.style.opacity = 0;
+    setTimeout(function () {
+        greetingContainer.style.display = 'none';
+    }, 500); // 500ms = 0.5 Sekunden
 }
 
+/**
+ * Updates the greeting text based on the current time of the day.
+ * Sets the greeting for both desktop and mobile greeting elements.
+ */
 function updateGreetingBasedOnTime() {
     let now = new Date();
     let hour = now.getHours();
