@@ -222,6 +222,7 @@
 .todo-persons {
     display: flex;
     margin-right: -10px;
+    align-items: center;
 }
 
 .todo-persons div {
@@ -230,6 +231,11 @@
     color: white;
     font-size: 12px;
     padding: 8px;
+    height: 16px;
+    width: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .todo-prio {
