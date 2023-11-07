@@ -367,6 +367,10 @@ select {
         display: none;
     }
 
+    .form-lower-half {
+        flex-direction: column;
+    }
+
 }
 
 
@@ -378,10 +382,6 @@ select {
         min-width: unset;
         padding: 16px 0px 16px 0px;
         font-size: 16px;
-    }
-
-    .form-lower-half {
-        flex-direction: column;
     }
 
     .form-upper-half span,

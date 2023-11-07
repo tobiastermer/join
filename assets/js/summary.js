@@ -15,7 +15,7 @@ function renderSummary() {
     document.getElementById('summary-kpi-done').innerHTML = getAmountTasksPerProgress(3);
     document.getElementById('summary-kpi-urgent').innerHTML = getAmountTasksPerPrio('high');
     document.getElementById('summary-kpi-deadline').innerHTML = getEarliestDueDateWithPriority();
-    document.getElementById('summary-kpi-tasksInBoard').innerHTML = getAmountTasksPerProgress(0) + getAmountTasksPerProgress(1) + getAmountTasksPerProgress(2);
+    document.getElementById('summary-kpi-tasksInBoard').innerHTML = getAmountTasksPerProgress(0) + getAmountTasksPerProgress(1) + getAmountTasksPerProgress(2) + getAmountTasksPerProgress(3);
     document.getElementById('summary-kpi-progress').innerHTML = getAmountTasksPerProgress(1);
     document.getElementById('summary-kpi-feedback').innerHTML = getAmountTasksPerProgress(2);
 }

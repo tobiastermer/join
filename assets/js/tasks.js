@@ -227,7 +227,7 @@ function renderSelectedContacts() {
                 k = k + 1;
             } else if (j >= 0 && k >= 3) {
                 let numberFurtherContacts = selectedContacts.length - i;
-                showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo('#D1D1D1', zindex, `+${numberFurtherContacts}`);
+                showContactsContainer.innerHTML += getHTMLTemplateRenderContactAssignedTo('#2A3647', zindex, `+${numberFurtherContacts}`);
                 return;
             };
         };
