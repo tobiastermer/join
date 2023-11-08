@@ -98,7 +98,7 @@ function getHTMLTemplateRenderAddTaskSubtask(i, checked, subtaskName) {
         <div class="subtask" id="subtask-${i}">
             <div>
                 <input type="checkbox" id="subtask-checkbox-addForm-${i}" class="largerCheckbox" onclick="updateCheckedStatusAddForm()" ${checked}>
-                <span class="no-linebreak" id="subtask-span-addForm-${i}" >${subtaskName}</span>
+                <span class="linebreak" id="subtask-span-addForm-${i}" >${subtaskName}</span>
                 <input type="text" class="d-none" id="subtask-input-addForm-${i}" value="${subtaskName}">
             </div>
             <div class="subtask-buttons">
