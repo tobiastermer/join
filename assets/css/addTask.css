@@ -478,8 +478,4 @@ select {
     .form-list span {
         max-width: 120px;
     }
-
-    .form-list span {
-        max-width: 100px;
-    }
 }
